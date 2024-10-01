@@ -15,15 +15,18 @@ def parse_can_message(frame_id, frame_data):
     for byte_index, byte_value in enumerate(frame_data):
         byte_num = byte_index + 1
         if byte_num in frame_protocol:
-            # 获取字节的位的定义
+            # 获取字节的定义
             byte_protocol = frame_protocol.get(byte_num)
-            for key, value in byte_protocol:
-                # bit 处理
+            for key in byte_protocol.keys():
+                # 按 bit 处理
                 if key < 8:
-                    for bit_position, bit_value in 
-                # byte 处理
+                    for bit_position, function in byte_protocol.items():
+                        if (byte_value >> bit_position) & 1:
+                            parsed_data[f'bit{bit_position}: {function}'] = 1
+                    print(f'Byte{byte_num} {parsed_data}')
+                #按 byte 处理
                 else:
-
+                    pass
 
             
 
@@ -55,7 +58,7 @@ if __name__ == "__main__":
                         # 检查此CAN ID是否已经有记录
                         if frame_id not in previous_messages or frame_id != 0x9c4 and previous_messages[frame_id] != frame_data_tuple or frame_id == 0x9c4 and previous_messages[frame_id][:7] != frame_data_tuple:
                             # 打印 CAN 数据
-                            print(f"\nCAN_ID: {hex(frame_id)}, 数据: {[hex(x) for x in frame_data]}")
+                            print(f"\nCAN_ID: {hex(frame_id)}  Data: {[hex(x) for x in frame_data]}")
                             # 解析 CAN 报文
                             parse_can_message(frame_id, frame_data)
 
