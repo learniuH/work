@@ -74,21 +74,3 @@ def parse_can_message(frame_id, frame_data):
         print()
         # 一帧结束 初始化
         parsed_data = {}
-
-
-# 测试用例
-frame = {0x9c4: (0x09, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01), # 引擎启动 空挡  驻刹 前灯  心跳
-         0x9c5: (0xff, 0x00, 0x00, 0x00, 0xff, 0x00, 0x00, 0xff), # 油门  降臂  辅刹
-         0x6:   (0x00, 0x00, 0x00, 0x05, 0x22, 0x00, 0x00, 0x00), # 前车桥压力 1314
-         0x1f6: (0x00, 0x01, 0x10, 0x00, 0x10, 0x00, 0x00, 0x01), # 报警1  报警13  发动机运行时间286 435 457
-         0x1:   [0x01] # 心跳不处理
-        }
-
-for frame_id, frame_data in frame.items():
-    if frame_id == 0x9c4:
-        frame_data = frame_data[:len(frame_data) - 1] # 不要最后一个字节心跳信号不做处理
-    elif frame_id == 0x1:
-        frame_data = frame_data[1:] # 不要第一个字节
-    else:
-        frame_data = frame_data[:len(frame_data)]  # 获取当前帧的数据
-    parse_can_message(frame_id, frame_data)
