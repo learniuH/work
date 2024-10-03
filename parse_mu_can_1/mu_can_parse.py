@@ -1,10 +1,19 @@
 from mu_can_protocol import CAN_PROTOCOLS
 import re
 
-def LearniuH_print(parsed_data):
+def LearniuH_mu_print(frame_id, byte_num, parsed_data):
     # ANSI 颜色码,终端显示绿色
-    highlight_start = '\033[32m'
-    highlight_end = '\033[0m'
+    red_highlight_start = '\033[31m'
+    red_highlight_end = '\033[0m'
+
+    green_highlight_start = '\033[32m'
+    green_highlight_end = '\033[0m'
+
+    yellow_highlight_start = '\033[33m'
+    yellow_highlight_end = '\033[0m'
+
+    blue_highlight_start = '\033[34m'
+    blue_highlight_end = '\033[0m'
     '''
     '\033[31m'  红色
     '\033[32m'  绿色
@@ -19,11 +28,14 @@ def LearniuH_print(parsed_data):
     
     for key, value in parsed_data.items():
         # 匹配汉字并高亮
-        highlighted_key = re.sub(chinese_characters, lambda match: f'{highlight_start}{match.group()}{highlight_end}', key)
+        highlighted_key = re.sub(chinese_characters, lambda match: f'{green_highlight_start}{match.group()}{green_highlight_end}', key)
         LearniuH_dict[highlighted_key] = value
     
+    # 打印
+    print(f'{blue_highlight_start}Byte{byte_num}{blue_highlight_end}: ', end='')
+
     for key, value in LearniuH_dict.items():
-        print(f'{key}: {value}     ', end='')
+        print(f'{key}: {value}\t', end='')
 
 
 def parse_can_message(frame_id, frame_data):
@@ -45,7 +57,7 @@ def parse_can_message(frame_id, frame_data):
             # 按 bit 处理
             for bit_position, function in byte_protocol.items():
                 if (frame_data[byte_index] >> bit_position) & 1:
-                    parsed_data[f'Byte{byte_num}_bit{bit_position}: {function}'] = 1
+                    parsed_data[f'bit{bit_position}: {function}'] = 1
         # 字节整体处理
         else:
             # 对 frame 的 key 处理,存储 byte_num 和 byte_len
@@ -65,12 +77,11 @@ def parse_can_message(frame_id, frame_data):
                 for i in range(num_len[byte_num]):
                     byte_value = byte_value << 8 | frame_data[byte_index + i]
                     if byte_value != 0:
-                        parsed_data[f'Byte{byte_num}: {frame_protocol[byte_num + num_len[byte_num] * 8]}'] = byte_value
+                        parsed_data[f'{frame_protocol[byte_num + num_len[byte_num] * 8]}'] = byte_value
 
-    # 将解析后的内容存储到 parsed_data 中
-    if parsed_data:
-        LearniuH_print(parsed_data)
-        # 换行
-        print()
-        # 一帧结束 初始化
-        parsed_data = {}
+        # 将解析后的内容存储到 parsed_data 中
+        if parsed_data:
+            LearniuH_mu_print(frame_id, byte_num, parsed_data)
+            # 换行
+            print()
+            parsed_data = {}
