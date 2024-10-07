@@ -48,11 +48,14 @@ class Controller:
         self.ui.tk_button_disconnect.configure(state='disabled')
 
     def receive_data(self):
+        previous_data_field = None
         while self.receiving:
             try:
                 data, addr = self.sock.recvfrom(1024)
-                if len(data) == 56:
+                current_data_field = data[23: 51]
+                if current_data_field != previous_data_field:
                     self.process_data(data)
+                    previous_data_field = current_data_field
             except socket.error:
                 break
 
@@ -69,25 +72,20 @@ class Controller:
 
         # 解析数据并填充表格
         analog_data = {}
-        for byte_num, protocol in OU_PROTOCOLS.items():
+        for byte_num in OU_PROTOCOLS:
             row_data = [''] * 9
-            #row_data[0] = f"Byte{byte_num}"
 
-            byte_value = data[byte_num - 1]
-            #parsed_data = parse_ou_message(byte_num, data)
-
-            if isinstance(protocol, dict):
-                for bit, function in protocol.items():
-                    if bit < 8 and byte_value >> bit & 1:
-                        row_data[0] = f"Byte{byte_num}"
-                        row_data[8 - bit] = function
-                if row_data[1:]:
-                    self.ui.tk_table_bit.insert('', 'end', values=row_data)
-            else:
-                if byte_value:
-                    analog_data[protocol] = byte_value
-
-            #self.ui.tk_table_bit.insert('', 'end', values=row_data)
+            parsed_data_bit, parsed_data_byte = parse_ou_message(byte_num, data)
+            if parsed_data_bit:
+                for bit_position, function in parsed_data_bit[byte_num].items():
+                    row_data[0] = f'Byte{byte_num}'
+                    row_data[8 - bit_position] = function
+                self.ui.tk_table_bit.insert('', 'end', values=row_data)
+            if parsed_data_byte:
+                if analog_data == {}:
+                    analog_data = parsed_data_byte[byte_num]
+                else:
+                    analog_data.update(parsed_data_byte[byte_num])
 
         # 更新模拟量区域
         analog_frame = self.ui.tk_label_frame_analog
@@ -105,9 +103,15 @@ class Controller:
         # 更新历史数据
         history_text = self.ui.tk_text_historical_data
         history_text.insert('end', f"Raw Data: {hex_data}\n")
-        for byte_num, protocol in OU_PROTOCOLS.items():
-            parsed = parse_ou_message(byte_num, data)
-            if parsed:
-                history_text.insert('end', f"Byte{byte_num}: {parsed}\n")
+        for byte_num in OU_PROTOCOLS:
+            parsed_data_bit, parsed_data_byte = parse_ou_message(byte_num, data)
+            if parsed_data_bit:
+                history_text.insert('end', f"Byte{byte_num}: ")
+                for bit_index in parsed_data_bit[byte_num]:
+                    history_text.insert('end', f"bit{bit_index}: {parsed_data_bit[byte_num][bit_index]}\t")
+                history_text.insert('end', "\n")
+            if parsed_data_byte:
+                for function, byte_value in parsed_data_byte[byte_num].items():
+                    history_text.insert('end', f"Byte{byte_num}: {function}:{byte_value}\n")
         history_text.insert('end', "\n")
         history_text.see('end')

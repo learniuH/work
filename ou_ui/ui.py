@@ -18,7 +18,7 @@ class WinGUI(Tk):
         self.tk_button_connect = self.__tk_button_connect(self)
         self.tk_button_disconnect = self.__tk_button_disconnect(self)
     def __win(self):
-        self.title("Visualizer")
+        self.title("VisuaLizer")
         # 设置窗口大小、居中
         width = 1000
         height = 600
@@ -147,7 +147,7 @@ class Win(WinGUI):
         # Configure table styles
         style = Style()
         style.configure("Treeview", font=('微软雅黑', 10))
-        style.configure("Treeview.Heading", font=('monospace', 10, 'bold'))
+        style.configure("Treeview.Heading", font=('monospace', 11, 'bold'))
 
         # Configure tags for alternating row colors
         self.tk_table_bit.tag_configure('even', background=self.row_colors[0])
@@ -157,7 +157,7 @@ class Win(WinGUI):
         for i, column in enumerate(self.tk_table_bit["columns"]):
             self.tk_table_bit.tag_configure(f'column_{i}', background=self.column_colors[i % len(self.column_colors)])
 
-        # Configure button styles
+        # 按钮风格
         style.configure('TButton', font=('楷体', 15, 'bold'))
         self.tk_button_connect.configure(style='TButton')
         self.tk_button_disconnect.configure(style='TButton')
