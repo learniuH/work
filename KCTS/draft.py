@@ -10,7 +10,7 @@ class MainWindow(QWidget):
 
         #绑定按钮点击事件到自定义的 slot 函数
         self.ui.connect_pushButton.clicked.connect(self.print_text)
-        self.ui.openFile_pushButton.clicked.connect(self.open_file_dialog())
+        self.ui.openFile_pushButton.clicked.connect(self.open_file_dialog)
     
     def print_text(self):
         ''' 获取文本框的内容 '''
@@ -24,12 +24,10 @@ class MainWindow(QWidget):
         file_path, _ = QFileDialog.getOpenFileName(
             self, '选择文件', '', 'Excel Files (*.xlsx);;All Files (*)'
         )
-        self.read_excel_content(file_path)
+        if file_path:
+            self.read_excel_content(file_path)
     
     def read_excel_content(self):
-        # try:
-        #     # 读取 Excel 文件的第一个 Sheet
-        #     df = 
         pass
     
 
