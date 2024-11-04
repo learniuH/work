@@ -35,12 +35,14 @@ def clean_byte_number(byte_num):
     return byte_num
 
 def read_protocol_excel(file_path, sheet_name):
-    ou_to_mu_df = pd.read_excel(file_path, sheet_name=sheet_name, header=1)
+    ou_to_mu_df = pd.read_excel(file_path, sheet_name=sheet_name)
 
-
-    # # 筛选 '字节序号' 所在行的索引
-    # header = ou_to_mu_df[ou_to_mu_df.eq('字节序号').any(axis=1)].index[0]
-    # ou_to_mu_df.columns[header]
+    # 找到包含 '字节序号' 的行号
+    header_index = ou_to_mu_df[ou_to_mu_df.eq('字节序号').any(axis=1)].index[0]
+    # 将 '字节序号' 行作为列名
+    ou_to_mu_df.columns = ou_to_mu_df.iloc[header_index]
+    # 删除作为列名的行，并重置索引
+    ou_to_mu_df = ou_to_mu_df[(header_index + 1):].reset_index(drop=True)
 
 
     # 将名称和字节序号两列填充
@@ -63,9 +65,6 @@ def read_protocol_excel(file_path, sheet_name):
         byte_num = switch_row['字节序号']
         # 提取 byte_num 中的数字
         byte_num = clean_byte_number(byte_num)
-        # 更新协议
-        if byte_num not in ou_protocol:
-            ou_protocol[byte_num] = {}
 
         # 通过 '内容' 索引读取 bit_index
         bit_index = switch_row['内容']
@@ -74,11 +73,12 @@ def read_protocol_excel(file_path, sheet_name):
 
         # 通过 '描述' 更新
         switch_desc = switch_row['描述']
-        # 更新协议
+        # 更新字节序号
+        if byte_num not in ou_protocol and switch_desc != '预留' and not pd.isnull(switch_desc):
+            ou_protocol[byte_num] = {}
+        # 更新协议内容
         if switch_desc != '预留' and not pd.isnull(switch_desc):
             ou_protocol[byte_num][bit_index] = switch_desc
-        else:   # 删除预留和空白的字节序号
-            ou_protocol.pop(byte_num)
 
     # 模拟量协议更新
     for _, analog_row in analog_df.iterrows():
@@ -97,7 +97,7 @@ def read_protocol_excel(file_path, sheet_name):
 
 
 if __name__ == '__main__':
-    file_path = './金冠铜业-双闪配料行车KC144-CRB-JG-220725-通信协议设计-洪常乐-双车20240603.xls'
+    file_path = './test.xlsx'
     sheet_name = 'OU->MU'
     ou_protocol = read_protocol_excel(file_path, sheet_name)
     print(ou_protocol)
