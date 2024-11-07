@@ -1,11 +1,12 @@
 import sys
+from distutils.command.check import check
 from threading import Timer
 
-from PyQt5.QtWidgets import QApplication, QWidget, QFileDialog, QLineEdit
+from PyQt5.QtWidgets import QApplication, QWidget, QFileDialog, QLineEdit, QCheckBox
 from PyQt5.QtCore import QTimer
 
 from ui import Ui_Window
-from switchWidget import Switch
+from updateWidget import Switch, Analog
 
 class MainWindow(QWidget):
     def __init__(self):
@@ -39,11 +40,31 @@ class MainWindow(QWidget):
 
         # num_lineEdit 文本框内容变化绑定到生成按键函数
         self.ui.num_lineEdit.textChanged.connect(self.updateSwitchs)
+        self.ui.num_lineEdit.textChanged.connect(self.updateAnalog)
+
         # 按键容器存放处
         self.switch_container = None
+        # 模拟量按键存放处
+        self.analog_container = None
 
-        # 用于追踪按键是否被按下
-        self.is_key_down = False
+
+
+        # OU的包
+        self.package = bytearray(24)
+
+        self.ou_protocol = {
+            11: {
+                0: '前进',
+                7: '后退'
+            },
+            12: {
+                6: '灯'
+            },
+            24: '升臂',
+            5: '取料',
+            1: '装料'
+        }
+
     
     def print_text(self):
         ''' 获取文本框的内容 '''
@@ -62,19 +83,6 @@ class MainWindow(QWidget):
         if file_path:
             pass
 
-    # # keyPressEvent 方法
-    # def keyPressEvent(self, event):
-    #     # 获取文本框中的内容
-    #     expected_text = self.ui.e_stop_lineEdit.text()
-    #
-    #     # 判断是否按下的键与文本框内容匹配
-    #     if event.text() == expected_text.lower() or event.text() == expected_text.upper():
-    #         print(f'检测到{expected_text}按键按下')
-    #     else:
-    #         print(f'不是{expected_text}键位')
-    #
-    # def button_click(self):
-    #     print('急停触发')
 
 
     # def start_detctLongPressTimer(self):
@@ -97,21 +105,7 @@ class MainWindow(QWidget):
     #     # 当按钮释放时关闭定时器
     #     self.longPressTimer.stop()
 
-    # def on_checkbox_changed(self, state):
-    #     if state == 2:  # 表示勾选状态
-    #         print('复选框被勾选')
-    #         self.on_long_press()
-    #         self.ui.e_stop_button.setDisabled(True)
-    #     if state == 0:  # 表示空选状态
-    #         print('复选框没有勾选')
-    #         self.stop_long_press()
-    #         self.ui.e_stop_button.setEnabled(True)
 
-    # def mousePressEvent(self, event):
-    #     # 当点击其他地方时, 取消文本框的焦点
-    #     if not self.ui.e_stop_lineEdit.geometry().contains(event.pos()):
-    #         self.ui.e_stop_lineEdit.clearFocus()
-    #     super().mousePressEvent(event)
 
     def updateSwitchs(self):
         try:
@@ -125,20 +119,28 @@ class MainWindow(QWidget):
             self.switch_container.deleteLater()
             self.switch_container = None
 
-        dict = {
-            11: {
-                0: '前进',
-                7: '后退'
-            },
-            12: {
-                6: '灯'
-            },
-            24: '升臂'
-        }
+        # 创建新的按键并添加到界面
+        self.switch_container = Switch(self.ou_protocol, self.package)
+        self.ui.verticalLayout_3.addWidget(self.switch_container)
+
+    def updateAnalog(self):
+        try:
+            count = int(self.ui.num_lineEdit.text())
+        except ValueError:
+            return  # 如果不是正数, 则不做任何操作
+
+        # 如果之前有按键容器, 删除它
+        if self.analog_container:
+            self.ui.verticalLayout_6.removeWidget(self.switch_container)
+            self.analog_container.deleteLater()
+            self.analog_container = None
 
         # 创建新的按键并添加到界面
-        self.switch_container = Switch(dict)
-        self.ui.verticalLayout_3.addWidget(self.switch_container)
+        self.analog_container = Analog(self.ou_protocol, self.package)
+        self.ui.verticalLayout_6.addWidget(self.analog_container)
+
+
+
 
     # 重写键盘按下事件
     def keyPressEvent(self, event):
@@ -146,59 +148,111 @@ class MainWindow(QWidget):
         在大多数操作系统中，键盘按键长按会触发「重复按键」的功能。这种机制会在一定的时间间隔内重复触发 keyPressEvent，
         所以即使长按一个键，程序仍会检测到多次按下和松开事件（keyPressEvent 和 keyReleaseEvent 交替触发）
         '''
-        # 获取按下的字符
+        # 获取按下的键盘按键
         key_char = event.text().upper()
 
-        # 检查按下的键是字母, 并且没有被按下
-        if key_char.isalpha():
-            # 遍历窗口中所有的子控件, 检查是否有绑定的键
+        # 返回 True 表示是由按键长按自动触发的, 返回 False 表示是真正的按键松开事件
+        if not event.isAutoRepeat() and key_char.isalpha():
+            # 遍历 switch_container 中所有的 LineEdit  检查按键与 lineEdit 内容相同
             for lineEdit in self.switch_container.findChildren(QLineEdit):
-                if lineEdit.text().upper() == key_char and not self.is_key_down:
+                if lineEdit.text().upper() == key_char:
                     byte_num = lineEdit.property('byte_num')
                     bit_index = lineEdit.property('bit_index')
+                    # 检查 lineEdit 对应的 checkBox 是否被选中
+                    checkBox = self.switch_container.get_checkBox_by_property(['byte_num', byte_num],
+                                                                              ['bit_index', bit_index])
+                    if not checkBox.isChecked():
+                        # 开关量, 按键所在的位赋 1
+                        self.switch_container.package[byte_num - 1] |= (1 << bit_index)
+                        # 对应的 button disabled
+                        button = self.switch_container.get_button_by_property(['byte_num', byte_num],
+                                                                              ['bit_index', bit_index])
+                        button.setDisabled(True)
 
-                    # 如果是开关量, 按键所在的位赋 1
-                    self.switch_container.package[byte_num - 1] |= (1 << bit_index)
+                        # 调试打印信息
+                        message = ' '.join(f'{byte:02X}' for byte in self.switch_container.package)
+                        print(f'{key_char}: {message}')
+                        break
+
+            # 遍历 analog_container 中所有的 LineEdit  检查按键与 lineEdit 内容相同
+            for lineEdit in self.analog_container.findChildren(QLineEdit):
+                if lineEdit.text().upper() == key_char:
+                    byte_num = lineEdit.property('byte_num')
+
+                    # 获取 lineEdit 对应的属性对应的 timer
+                    increaseTimer = self.analog_container.get_timer_by_property(['increase', byte_num])
+                    decreaseTimer = self.analog_container.get_timer_by_property(['decrease', byte_num])
+                    # 按键按下, 开启使 progressBar 增加的定时器
+                    increaseTimer.start(6)
+                    decreaseTimer.stop()
+
                     # 对应的 button disabled
-                    button = self.switch_container.get_button_by_property(['byte_num', byte_num],
-                                                                          ['bit_index', bit_index])
+                    button = self.analog_container.get_button_by_property(['byte_num', byte_num])
                     button.setDisabled(True)
-                    self.is_key_down = True
 
-                    # 调试打印信息
-                    message = ' '.join(f'{byte:02X}' for byte in self.switch_container.package)
-                    print(f'{key_char}: {message}')
+                    # # 调试打印信息
+                    # message = ' '.join(f'{byte:02X}' for byte in self.switch_container.package)
+                    # print(f'{key_char}: {message}')
+                    # break
 
     # 重写键盘按下事件
     def keyReleaseEvent(self, event):
-        # 获取松开的字符
+        '''
+        当焦点在 lineedit 上时，松开 key 会自动触发 keyrelease 事件, 影响其他逻辑
+        '''
+        # 获取松开的键盘按键
         key_char = event.text().upper()
 
-        # 检查按下的键是字母
-        if key_char.isalpha():
-            # 遍历窗口中所有的子控件, 检查是否有绑定的键
+        # 手动松开 且 按键是字母
+        if not event.isAutoRepeat() and key_char.isalpha():
+            # 遍历 switch_container 中所有的 LineEdit  检查按键与 lineEdit 内容相同
             for lineEdit in self.switch_container.findChildren(QLineEdit):
-                if lineEdit.text().upper() == key_char and self.is_key_down:
+                # 如果焦点在 lineEdit 上不做处理   按键与 lineEdit 内容相同
+                if not lineEdit.hasFocus() and lineEdit.text().upper() == key_char:
                     byte_num = lineEdit.property('byte_num')
                     bit_index = lineEdit.property('bit_index')
+                    # 检查 lineEdit 对应的 checkBox 是否被选中
+                    checkBox = self.switch_container.get_checkBox_by_property(['byte_num', byte_num],
+                                                                              ['bit_index', bit_index])
+                    if not checkBox.isChecked():
+                        # 开关量, 按键所在的位赋 0
+                        self.switch_container.package[byte_num - 1] &= ~(1 << bit_index)
+                        # 对应的 button disabled
+                        button = self.switch_container.get_button_by_property(['byte_num', byte_num],
+                                                                              ['bit_index', bit_index])
+                        button.setEnabled(True)
 
-                    # 如果是开关量, 按键所在的位赋 0
-                    self.switch_container.package[byte_num - 1] &= ~(1 << bit_index)
+                        # 调试打印信息
+                        message = ' '.join(f'{byte:02X}' for byte in self.switch_container.package)
+                        print(f'{key_char}: {message}')
+                        break
+
+            #  遍历 analog_container 中所有的 LineEdit  检查按键与 lineEdit 内容相同
+            for lineEdit in self.analog_container.findChildren(QLineEdit):
+                # 如果焦点在 lineEdit 上不做处理   按键与 lineEdit 内容相同
+                if not lineEdit.hasFocus() and lineEdit.text().upper() == key_char:
+                    byte_num = lineEdit.property('byte_num')
+
+                    # 获取 lineEdit 对应的属性对应的 timer
+                    increaseTimer = self.analog_container.get_timer_by_property(['increase', byte_num])
+                    decreaseTimer = self.analog_container.get_timer_by_property(['decrease', byte_num])
+                    # 按键松开, 开启使 progressBar 减少的定时器
+                    increaseTimer.stop()
+                    decreaseTimer.start(6)
+
                     # 对应的 button disabled
-                    button = self.switch_container.get_button_by_property(['byte_num', byte_num],
-                                                                          ['bit_index', bit_index])
+                    button = self.analog_container.get_button_by_property(['byte_num', byte_num])
                     button.setEnabled(True)
-                    self.is_key_down = False
 
-                    # 调试打印信息
-                    message = ' '.join(f'{byte:02X}' for byte in self.switch_container.package)
-                    print(f'{key_char}: {message}')
+                    # # 调试打印信息
+                    # message = ' '.join(f'{byte:02X}' for byte in self.switch_container.package)
+                    # print(f'{key_char}: {message}')
+                    # break
 
     def mousePressEvent(self, event):
         # 清除所有控件的焦点
         self.setFocus()
         super().mousePressEvent(event)  # 调用父类的鼠标点击事件处理
-
 
 
 if __name__ == '__main__':
