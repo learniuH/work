@@ -29,10 +29,10 @@ class MainWindow(QWidget):
 
         # 获取本地电脑 IP 和 端口
         self.local_ip = socket.gethostbyname(socket.gethostname())
-        self.ui.local_ip_lineEdit.setText(f'Local IP: {self.local_ip}')
+        self.ui.local_ip_lineEdit.setText(f'{self.local_ip}')
 
         # Target Port 和 Local Port 和 周期 只能输入数字 且范围最多5位数
-        self.ui.port_lineEdit.setValidator(QIntValidator(1, 65535))
+        self.ui.target_port_lineEdit.setValidator(QIntValidator(1, 65535))
         self.ui.local_port_lineEdit.setValidator(QIntValidator(1, 65535))
         self.ui.sending_cycle_lineEdit.setValidator(QIntValidator(1, 65535))
 
@@ -85,8 +85,8 @@ class MainWindow(QWidget):
 
 
     def sending_message(self):
-        ip = self.ui.ip_lineEdit.text()
-        port = self.ui.port_lineEdit.text()
+        ip = self.ui.target_ip_lineEdit.text()
+        port = self.ui.target_port_lineEdit.text()
         with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
             try:
                 local_port = self.ui.local_port_lineEdit.text()
@@ -95,9 +95,9 @@ class MainWindow(QWidget):
                 sock.bind((local_address[0], int(local_address[1])))
             except ValueError as e:
                 # 错误信息打印
-                self.ui.tips_lineEdit.setText(f'错误： 请输入有效端口！')
+                self.ui.local_port_lineEdit.setPlaceholderText('错误： 请绑定本地端口！')
             except OSError as e:
-                self.ui.tips_lineEdit.setText(f'错误： 端口已被占用！')
+                self.ui.tips_lineEdit.setText('错误： 端口已被占用！')
             message = self.package
             while self.send_message:
                 sock.sendto(message, (ip, int(port)))
@@ -127,13 +127,13 @@ class MainWindow(QWidget):
 
         # 如果之前有按键容器, 删除它
         if self.switch_container:
-            self.ui.verticalLayout_3.removeWidget(self.switch_container)
+            self.ui.switch_container_layout.removeWidget(self.switch_container)
             self.switch_container.deleteLater()
             self.switch_container = None
 
         # 创建新的按键并添加到界面
         self.switch_container = Switch(self.ou_protocol, self.package)
-        self.ui.verticalLayout_3.addWidget(self.switch_container)
+        self.ui.switch_container_layout.addWidget(self.switch_container)
 
     def updateAnalog(self):
         try:
@@ -143,13 +143,13 @@ class MainWindow(QWidget):
 
         # 如果之前有按键容器, 删除它
         if self.analog_container:
-            self.ui.verticalLayout_6.removeWidget(self.switch_container)
+            self.ui.analog_container_layout.removeWidget(self.switch_container)
             self.analog_container.deleteLater()
             self.analog_container = None
 
         # 创建新的按键并添加到界面
         self.analog_container = Analog(self.ou_protocol, self.package)
-        self.ui.verticalLayout_6.addWidget(self.analog_container)
+        self.ui.analog_container_layout.addWidget(self.analog_container)
 
 
 

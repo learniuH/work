@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>562</width>
-    <height>474</height>
+    <width>786</width>
+    <height>606</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,16 +22,9 @@
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="openFile_pushButton">
-     <property name="text">
-      <string>打开文件</string>
-     </property>
-    </widget>
-   </item>
-   <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
+      <layout class="QVBoxLayout" name="switch_container_layout">
        <property name="sizeConstraint">
         <enum>QLayout::SetMinAndMaxSize</enum>
        </property>
@@ -45,7 +38,7 @@
       </widget>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_6">
+      <layout class="QVBoxLayout" name="analog_container_layout">
        <property name="sizeConstraint">
         <enum>QLayout::SetMinAndMaxSize</enum>
        </property>
@@ -54,98 +47,185 @@
     </layout>
    </item>
    <item>
-    <widget class="QLabel" name="targetIp_label">
-     <property name="text">
-      <string>Target_IP</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="ip_lineEdit">
-     <property name="locale">
-      <locale language="English" country="UnitedStates"/>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="targetPort_label">
-     <property name="text">
-      <string>Target_Port</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="port_lineEdit">
-     <property name="locale">
-      <locale language="English" country="UnitedStates"/>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPushButton" name="connect_pushButton">
-     <property name="styleSheet">
-      <string notr="true">background:rgb(255, 255, 127)</string>
-     </property>
-     <property name="text">
-      <string>点击连接</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="sending_cycle_lineEdit">
-     <property name="locale">
-      <locale language="English" country="UnitedStates"/>
-     </property>
-     <property name="placeholderText">
-      <string>周期: ms</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="local_ip_lineEdit">
-     <property name="locale">
-      <locale language="English" country="UnitedStates"/>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-     <property name="placeholderText">
-      <string>Local Ip</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="local_port_lineEdit">
-     <property name="locale">
-      <locale language="English" country="UnitedStates"/>
-     </property>
-     <property name="placeholderText">
-      <string>Local Port</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="tips_lineEdit">
-     <property name="locale">
-      <locale language="English" country="UnitedStates"/>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-     <property name="placeholderText">
-      <string>提示信息</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPushButton" name="clear_info_pushButton">
-     <property name="text">
-      <string>清除</string>
-     </property>
-    </widget>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="1" column="5" colspan="2">
+      <widget class="QLineEdit" name="protocol_header_lineEdit">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string>填写协议头</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="6">
+      <widget class="QLineEdit" name="sending_cycle_lineEdit">
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
+       <property name="placeholderText">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QLineEdit" name="target_ip_lineEdit">
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="4">
+      <widget class="QPushButton" name="connect_pushButton">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(211, 221, 255);
+font: 75 9pt &quot;微软雅黑&quot;;</string>
+       </property>
+       <property name="text">
+        <string>点击连接</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="local_port_lineEdit">
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
+       <property name="placeholderText">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="local_ip_lineEdit">
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+       <property name="placeholderText">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="local_port_label">
+       <property name="styleSheet">
+        <string notr="true">font: 75 9pt &quot;Courier&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Local Port</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLabel" name="target_ip_label">
+       <property name="styleSheet">
+        <string notr="true">font: 75 9pt &quot;Courier&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Target IP</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="5">
+      <widget class="QLabel" name="sending_cycle_label">
+       <property name="styleSheet">
+        <string notr="true">font: 9pt &quot;微软雅黑&quot;;</string>
+       </property>
+       <property name="text">
+        <string>周期（ms）</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="4">
+      <widget class="QPushButton" name="openFile_pushButton">
+       <property name="styleSheet">
+        <string notr="true">background-color:rgb(255, 170, 127);
+font: 75 9pt &quot;微软雅黑&quot;;</string>
+       </property>
+       <property name="text">
+        <string>导入协议</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="local_ip_label">
+       <property name="styleSheet">
+        <string notr="true">font: 75 9pt &quot;Courier&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Local IP</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2">
+      <widget class="QLabel" name="target_port_label">
+       <property name="styleSheet">
+        <string notr="true">font: 75 9pt &quot;Courier&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Target port</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="3">
+      <widget class="QLineEdit" name="target_port_lineEdit">
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="6">
+      <widget class="QPushButton" name="clear_info_pushButton">
+       <property name="styleSheet">
+        <string notr="true">font: 75 9pt &quot;微软雅黑&quot;;</string>
+       </property>
+       <property name="text">
+        <string>清除信息</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0" colspan="6">
+      <widget class="QLineEdit" name="tips_lineEdit">
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+       <property name="placeholderText">
+        <string>提示信息</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>target_ip_lineEdit</tabstop>
+  <tabstop>target_port_lineEdit</tabstop>
+  <tabstop>local_port_lineEdit</tabstop>
+  <tabstop>protocol_header_lineEdit</tabstop>
+  <tabstop>sending_cycle_lineEdit</tabstop>
+  <tabstop>openFile_pushButton</tabstop>
+  <tabstop>connect_pushButton</tabstop>
+  <tabstop>clear_info_pushButton</tabstop>
+  <tabstop>local_ip_lineEdit</tabstop>
+  <tabstop>num_lineEdit</tabstop>
+  <tabstop>tips_lineEdit</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
