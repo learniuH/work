@@ -22,12 +22,9 @@
     </widget>
    </item>
    <item>
-    <widget class="QLineEdit" name="ip_lineEdit"/>
-   </item>
-   <item>
-    <widget class="QLabel" name="targetPort_label">
+    <widget class="QPushButton" name="openFile_pushButton">
      <property name="text">
-      <string>Target_Port</string>
+      <string>打开文件</string>
      </property>
     </widget>
    </item>
@@ -64,7 +61,25 @@
     </widget>
    </item>
    <item>
-    <widget class="QLineEdit" name="port_lineEdit"/>
+    <widget class="QLineEdit" name="ip_lineEdit">
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="targetPort_label">
+     <property name="text">
+      <string>Target_Port</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="port_lineEdit">
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QPushButton" name="connect_pushButton">
@@ -72,14 +87,60 @@
       <string notr="true">background:rgb(255, 255, 127)</string>
      </property>
      <property name="text">
-      <string>连接</string>
+      <string>点击连接</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="openFile_pushButton">
+    <widget class="QLineEdit" name="sending_cycle_lineEdit">
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
+     <property name="placeholderText">
+      <string>周期: ms</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="local_ip_lineEdit">
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+     <property name="placeholderText">
+      <string>Local Ip</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="local_port_lineEdit">
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
+     <property name="placeholderText">
+      <string>Local Port</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="tips_lineEdit">
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+     <property name="placeholderText">
+      <string>提示信息</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="clear_info_pushButton">
      <property name="text">
-      <string>打开文件</string>
+      <string>清除</string>
      </property>
     </widget>
    </item>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>659</width>
-    <height>634</height>
+    <width>648</width>
+    <height>633</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,46 +17,16 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>540</y>
+     <y>500</y>
      <width>591</width>
-     <height>71</height>
+     <height>127</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout" rowminimumheight="0,0">
+   <layout class="QGridLayout" name="gridLayout" rowminimumheight="0,0,0,0,0,0">
     <property name="sizeConstraint">
      <enum>QLayout::SetDefaultConstraint</enum>
     </property>
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>Target Port</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="2">
-     <widget class="QPushButton" name="pushButton">
-      <property name="text">
-       <string>导入协议</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="lineEdit_2"/>
-    </item>
-    <item row="1" column="2">
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="text">
-       <string>点击连接</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLineEdit" name="lineEdit"/>
-    </item>
-    <item row="0" column="0">
+    <item row="3" column="0">
      <widget class="QLabel" name="label">
       <property name="text">
        <string>Target IP</string>
@@ -69,17 +39,88 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="3">
-     <widget class="QLineEdit" name="lineEdit_3">
-      <property name="placeholderText">
-       <string>提示信息</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="3">
+    <item row="3" column="5">
      <widget class="QLineEdit" name="lineEdit_4">
       <property name="placeholderText">
        <string>填写协议头</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="5">
+     <widget class="QLineEdit" name="lineEdit_5">
+      <property name="placeholderText">
+       <string>周期: ms</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="4">
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>导入协议</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLineEdit" name="lineEdit"/>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Target Port</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="4">
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="text">
+       <string>点击连接</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QLineEdit" name="lineEdit_2"/>
+    </item>
+    <item row="4" column="2">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>Local Port</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>Loacal IP</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="3">
+     <widget class="QLineEdit" name="lineEdit_7">
+      <property name="placeholderText">
+       <string>Local Port</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="3">
+     <widget class="QLineEdit" name="lineEdit_6">
+      <property name="placeholderText">
+       <string>Local IP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="6">
+     <widget class="QLineEdit" name="lineEdit_3">
+      <property name="placeholderText">
+       <string>提示信息</string>
       </property>
      </widget>
     </item>

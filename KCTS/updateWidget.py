@@ -1,6 +1,8 @@
+from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtWidgets import QWidget, QPushButton, QCheckBox, QGridLayout, QLineEdit, QSlider, QProgressBar, QLabel, \
     QHBoxLayout
-from PyQt5.QtCore import Qt, QTimer
+from PyQt5.QtCore import Qt, QTimer, QRegExp
+
 
 class Switch(QWidget):
     def __init__(self, ou_protocol, package):
@@ -34,10 +36,12 @@ class Switch(QWidget):
                     # 复选框状态变化绑定到 slot
                     self.checkBox.stateChanged.connect(self.on_checkbox_changed)
 
-                    ''' lineEdit '''
+                    ''' lineEdit: 当 button 按下时, 对应绑定的 key 按下, lineEdit 会获得焦点, 程序异常'''
                     self.lineEdit = QLineEdit()
+                    self.lineEdit.setFocusPolicy(Qt.ClickFocus)     # 只能通过单击获得焦点
                     self.lineEdit.setPlaceholderText('Key')
                     self.set_costom_property(self.lineEdit, byte_num, bit_index)
+                    self.lineEdit.setValidator(QRegExpValidator(QRegExp('^[A-Za-z]+$')))    # 正则表达式匹配26个英文字母
                     # 监听文本变化, 最多输入一个字母
                     self.lineEdit.textChanged.connect(self.on_text_changed)
 
@@ -169,10 +173,12 @@ class Analog(QWidget):
                 self.decrease_timer.setProperty('decrease', byte_num)
                 self.decrease_timer.timeout.connect(self.decreaseProgress)
 
-                ''' lineEdit '''
+                ''' lineEdit: 当 button 按下时, 对应绑定的 key 按下, lineEdit 会获得焦点, 程序异常'''
                 self.lineEdit = QLineEdit()
+                self.lineEdit.setFocusPolicy(Qt.ClickFocus)  # 只能通过单击获得焦点
                 self.lineEdit.setPlaceholderText("Key")
                 self.set_costom_property(self.lineEdit, byte_num)
+                self.lineEdit.setValidator(QRegExpValidator(QRegExp('^[A-Za-z]+$')))  # 正则表达式匹配26个英文字母
                 self.lineEdit.textChanged.connect(self.on_text_changed)
 
                 ''' hLayout '''
