@@ -11,9 +11,9 @@ class Switch(QWidget):
         self.switchesLayout = QGridLayout()
 
 
-        # 存放 ou 的包
+        # 存放 ou 的包 校验和
         self.package = package
-
+        self.cumulative_sum = 0
 
 
         i = 0
@@ -41,9 +41,7 @@ class Switch(QWidget):
                     self.lineEdit.setFocusPolicy(Qt.ClickFocus)     # 只能通过单击获得焦点
                     self.lineEdit.setPlaceholderText('Key')
                     self.set_costom_property(self.lineEdit, byte_num, bit_index)
-                    self.lineEdit.setValidator(QRegExpValidator(QRegExp('^[A-Za-z]+$')))    # 正则表达式匹配26个英文字母
-                    # 监听文本变化, 最多输入一个字母
-                    self.lineEdit.textChanged.connect(self.on_text_changed)
+                    self.lineEdit.setValidator(QRegExpValidator(QRegExp('^[A-Za-z]?$')))    # 正则表达式匹配26个英文字母
 
 
                     self.switches.append([self.pushButton, self.checkBox, self.lineEdit])
@@ -69,12 +67,24 @@ class Switch(QWidget):
         byte_num = sender.property('byte_num')
         bit_index = sender.property('bit_index')
 
+        # 校验和减去历史的字节量
+        self.cumulative_sum -= self.package[byte_num - 1]
         # 开关量, 按键所在的位赋 1
-        self.package[byte_num - 1] |= (1 << bit_index)
+        if isinstance(bit_index, int):
+            # 1个 bit 代表一个开关
+            self.package[byte_num - 1] |= (1 << bit_index)
+        else:
+            # 多个 bit 代表一个开关, 所有 bit 置 1
+            start_index, end_index = bit_index.split('-')
+            start_index, end_index = int(start_index), int(end_index)
+            for i in range(start_index, end_index + 1):
+                self.package[byte_num - 1] |= (1 << i)
+        # 校验和更新新的字节量
+        self.cumulative_sum += self.package[byte_num - 1]
 
         # 调试打印信息
         message = ' '.join(f'{byte:02X}' for byte in self.package)
-        print(message)
+        print(f'{message}\n校验和(HEX): {self.cumulative_sum:02X}    CRC: {self.cumulative_sum & 0xFF:02X}')
 
     def on_button_released(self):
         # 获取发送信号的 pushButton
@@ -82,12 +92,24 @@ class Switch(QWidget):
         byte_num = sender.property('byte_num')
         bit_index = sender.property('bit_index')
 
-        # 如果是开关量, 按键所在的位赋 0
-        self.package[byte_num - 1] &= ~(1 << bit_index)
+        # 开关量, 按键所在的位赋 0 校验和减去历史的字节量
+        self.cumulative_sum -= self.package[byte_num - 1]
+        if isinstance(bit_index, int):
+            # 1个 bit 代表一个开关
+            self.package[byte_num - 1] &= ~(1 << bit_index)
+        else:
+            # 多个 bit 代表一个开关, 所有 bit 置 0
+            start_index, end_index = bit_index.split('-')
+            start_index, end_index = int(start_index), int(end_index)
+            for i in range(start_index, end_index + 1):
+                self.package[byte_num - 1] &= ~(1 << i)
+        # 校验和更新新的字节量
+        self.cumulative_sum += self.package[byte_num - 1]
 
         # 调试打印信息
         message = ' '.join(f'{byte:02X}' for byte in self.package)
-        print(message)
+        print(f'{message}\n校验和(HEX): {self.cumulative_sum:02X}    CRC: {self.cumulative_sum & 0xFF:02X}')
+
 
     def get_button_by_property(self, property1, property2):
         # 遍历窗口中的所有 pushButton  找到匹配的按钮
@@ -103,20 +125,45 @@ class Switch(QWidget):
         bit_index = sender.property('bit_index')
 
         # checkBox 现在的状态
-        checkBox_state = sender.isChecked()
+        checkBox_ischecked = sender.isChecked()
 
-        # 如果是开关量, 所在位赋 1, 并且按键 disabled
-        if checkBox_state:  # 如果被勾选
-            # 复选框所在的位赋 1
-            self.package[byte_num - 1] |= (1 << bit_index)
+        # 开关量, 所在位赋 1, 并且按键 disabled
+        if checkBox_ischecked:  # 如果被勾选
+            # 复选框所在的位赋 1 校验和减去历史的字节量
+            self.cumulative_sum -= self.package[byte_num - 1]
+            if isinstance(bit_index, int):
+                # 1个 bit 代表一个开关
+                self.package[byte_num - 1] |= (1 << bit_index)
+            else:
+                # 多个 bit 代表一个开关, 所有 bit 置 1
+                start_index, end_index = bit_index.split('-')
+                start_index, end_index = int(start_index), int(end_index)
+                for i in range(start_index, end_index + 1):
+                    self.package[byte_num - 1] |= (1 << i)
+            # 校验和更新新的字节量
+            self.cumulative_sum += self.package[byte_num - 1]
+
             # 对应 button disabled
             button = self.get_button_by_property(['byte_num', byte_num],
                                                  ['bit_index', bit_index])
             button.setDisabled(True)
 
         else:
+            # 校验和减去历史的字节量
+            self.cumulative_sum -= self.package[byte_num - 1]
             # 复选框所在的位赋 0
-            self.package[byte_num - 1] &= ~(1 << bit_index)
+            if isinstance(bit_index, int):
+                # 1个 bit 代表一个开关
+                self.package[byte_num - 1] &= ~(1 << bit_index)
+            else:
+                # 多个 bit 代表一个开关, 所有 bit 置 0
+                start_index, end_index = bit_index.split('-')
+                start_index, end_index = int(start_index), int(end_index)
+                for i in range(start_index, end_index + 1):
+                    self.package[byte_num - 1] &= ~(1 << i)
+            # 校验和更新新的字节量
+            self.cumulative_sum += self.package[byte_num - 1]
+
             # 对应 button enabled
             button = self.get_button_by_property(['byte_num', byte_num],
                                                  ['bit_index', bit_index])
@@ -124,7 +171,7 @@ class Switch(QWidget):
 
         # 调试打印信息
         message = ' '.join(f'{byte:02X}' for byte in self.package)
-        print(message)
+        print(f'{message}\n校验和(HEX): {self.cumulative_sum:02X}    CRC: {self.cumulative_sum & 0xFF:02X}')
 
     def get_checkBox_by_property(self, property1, property2):
         # 遍历窗口中的所有 checkBox  找到匹配的按钮
@@ -133,14 +180,6 @@ class Switch(QWidget):
                 return checkBox
         return None
 
-    def on_text_changed(self):
-        # 限制 lineEdit 文本内容最多 1 个英文字母
-        sender = self.sender()
-        if sender.text().isalpha():
-            sender.setText(sender.text()[0])
-        else:
-            sender.clear()
-
 
 class Analog(QWidget):
     def __init__(self, ou_protocol, package):
@@ -148,8 +187,9 @@ class Analog(QWidget):
         self.analog = []
         self.analogLayout = QGridLayout()
 
-        # ou 的包
+        # ou 的包 校验和
         self.package = package
+        self.cumulative_sum = 0
 
         i = 0
         # 循环创建组合控件
@@ -178,8 +218,7 @@ class Analog(QWidget):
                 self.lineEdit.setFocusPolicy(Qt.ClickFocus)  # 只能通过单击获得焦点
                 self.lineEdit.setPlaceholderText("Key")
                 self.set_costom_property(self.lineEdit, byte_num)
-                self.lineEdit.setValidator(QRegExpValidator(QRegExp('^[A-Za-z]+$')))  # 正则表达式匹配26个英文字母
-                self.lineEdit.textChanged.connect(self.on_text_changed)
+                self.lineEdit.setValidator(QRegExpValidator(QRegExp('^[A-Za-z]?$')))  # 正则表达式匹配26个英文字母 且只能是1个
 
                 ''' hLayout '''
                 self.hLayout = QHBoxLayout()
@@ -206,7 +245,6 @@ class Analog(QWidget):
                 self.set_costom_property(self.progressBar, byte_num)
                 self.progressBar.limit = 100
                 self.progressBar.valueChanged.connect(self.on_value_changed)
-
 
 
 
@@ -251,7 +289,7 @@ class Analog(QWidget):
         progressBar.limit = sender.value()
 
     def get_timer_by_property(self, property):
-        ''' QTimer 需要有夫对象才能被 findChildren 找到'''
+        ''' QTimer 需要有父对象才能被 findChildren 找到'''
         # 遍历窗口中的所有 timer  找到匹配的定时器
         for timer in self.findChildren(QTimer):
             if timer.property(property[0]) == property[1]:
@@ -311,23 +349,20 @@ class Analog(QWidget):
         else:
             sender.stop()
 
-    def on_text_changed(self):
-        # 限制 lineEdit 文本内容最多 1 个英文字母
-        sender = self.sender()
-        if sender.text().isalpha():
-            sender.setText(sender.text()[0])
-        else:
-            sender.clear()
 
     def on_value_changed(self):
         ''' progressBar 值变化的时候, 更新报文 '''
         sender = self.sender()
         byte_num = sender.property('byte_num')
+        # 校验和减去历史的字节量
+        self.cumulative_sum -= self.package[byte_num - 1]
         self.package[byte_num - 1] = sender.value()
+        # 校验和更新新的字节量
+        self.cumulative_sum += self.package[byte_num - 1]
 
         # 调试打印信息
         message = ' '.join(f'{byte:02X}' for byte in self.package)
-        print(message)
+        print(f'{message}\n校验和(HEX): {self.cumulative_sum:02X}    CRC: {self.cumulative_sum & 0xFF:02X}')
 
 
     def get_button_by_property(self, property):
@@ -336,8 +371,5 @@ class Analog(QWidget):
             if button.property(property[0]) == property[1]:
                 return button
         return None
-
-
-
 
 
