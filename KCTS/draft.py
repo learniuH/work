@@ -1,18 +1,21 @@
-from PyQt5.QtGui import QRegExpValidator, QIntValidator, QColor, QPalette
+from PyQt5.QtGui import QRegExpValidator, QIntValidator, QColor, QPalette, QTextCursor, QTextCharFormat
 from PyQt5.QtWidgets import QApplication, QWidget, QFileDialog, QLineEdit
-from PyQt5.QtCore import QRegExp, QTimer, QSettings
+from PyQt5.QtCore import QRegExp, QTimer, QSettings, pyqtSignal
 
 from ui import Ui_Window
 from updateWidget import Switch, Analog
-from read_file import read_protocol_excel
 
 import sys
+import pandas as pd
 import socket
 import threading
 import time
 
 
 class MainWindow(QWidget):
+    # 定义信号, 将更新 textEdit 的请求发送到主线程
+    update_textEdit_signal = pyqtSignal(bytearray)
+
     def __init__(self):
         super().__init__()  #初始化父类
         self.ui = Ui_Window()   # 创建 UI 类的实例
@@ -52,6 +55,9 @@ class MainWindow(QWidget):
         palette.setColor(QPalette.PlaceholderText, palceholderText_color)
         self.ui.protocol_header_lineEdit.setPalette(palette)
 
+        # 将子线程中请求更新 textEdit 的信号绑定到对应的更新函数
+        self.update_textEdit_signal.connect(self.update_raw_message_textEdit)
+
 
         # 按键容器存放处
         self.switch_container = None
@@ -89,13 +95,168 @@ class MainWindow(QWidget):
         if file_path:
             # 读取文件的 OU->MU 表单, 更新协议内容
             sheet_name = 'OU->MU'
-            self.ou_protocol, self.protocol_length = read_protocol_excel(file_path, sheet_name)
-            # 定义 package 长度
-            self.package = bytearray(self.protocol_length)
+            try:
+                self.ou_protocol, self.protocol_length = self.read_protocol_excel(file_path, sheet_name)
+                # 定义 package 长度
+                self.package = bytearray(self.protocol_length)
 
-            # 更新界面上的 switch 和 analog 控件
-            self.updateSwitchs()
-            self.updateAnalog()
+                # 更新界面上的 switch 和 analog 控件
+                self.updateSwitchs()
+                self.updateAnalog()
+            except TypeError:
+                self.ui.tips_lineEdit.setText('协议读取失败！请按提示内容修改协议！')
+                return
+
+
+    def clean_number(self, value, prefix):
+        """
+        从 value 中提取数字，支持以指定 prefix（如 'bit' 或 'byte'）开头的格式。
+
+        Args:
+            value (str, int, float): 输入的值，可能是带前缀的字符串或数字。
+            prefix (str): 指定的前缀（例如 'bit' 或 'byte'），用于识别并提取数字部分。
+
+        Returns:
+            int, str, float: 返回提取后的数字或范围字符串。
+        """
+        if isinstance(value, (int, float)):
+            # 如果是数字直接返回
+            return value
+
+        # 统一处理字符串的大小写，去除前缀
+        value_lower = value.lower()
+        if prefix.lower() in value_lower:
+            value_lower = value_lower.replace(prefix.lower(), '')
+
+            # 如果是单一的数字，则转换为整数
+            if value_lower.isdigit():
+                return int(value_lower)
+
+            # 如果是范围格式，如 '2-3'，则去除空格后返回原始字符串
+            if '-' in value_lower:
+                return value_lower.replace(' ', '')
+
+        # 如果无法处理，返回原始值
+        return value
+
+    def read_protocol_excel(self, file_path, sheet_name):
+        """
+        读取通信协议表, 提取其中对 开关量和模拟量 的字节定义、位定义、描述
+
+        Args:
+            file_path (str): 通信协议的路径，只能是 Excel 文件
+            sheet_name (str): Excel表单名字（例如 OU->MU）
+
+        Returns:
+            ou_protocol(dict): {
+                byte_num: {
+                    bit_index: describe     # 开关量部分
+                }
+                byte_num: describe          # 模拟量部分
+            }   # byte_num 和 bit_index 如果是 str 代表是 describe 由多个字节或多个位组成
+        """
+        try:
+            ou2mu_df = pd.read_excel(file_path, sheet_name=sheet_name)
+        except ValueError as e:
+            if "Worksheet named 'OU->MU' not found" in str(e):
+                self.ui.tips_lineEdit.setText('请检查协议中是否有 "OU->MU" 表单！')
+                return
+
+        try:
+            # 找到包含 '字节序号' 的行号
+            header_index = ou2mu_df[ou2mu_df.eq('字节序号').any(axis=1)].index[0]
+            # 将 '字节序号' 行作为 columns
+            ou2mu_df.columns = ou2mu_df.iloc[header_index]
+            # 删除作为列名的行，并重置索引
+            ou2mu_df = ou2mu_df[(header_index + 1):].reset_index(drop=True)
+        except IndexError as e:
+            if 'index 0 is out of bounds for axis 0 with size 0' in str(e):
+                self.ui.tips_lineEdit.setText('检查模块定义行中是否有"字节序号"单元格！')
+                return
+
+        try:
+            # 将名称和字节序号两列填充
+            ou2mu_df.loc[:, '名称'] = ou2mu_df['名称'].fillna(method='ffill')
+            ou2mu_df.loc[:, '字节序号'] = ou2mu_df['字节序号'].fillna(method='ffill')
+        except KeyError as e:
+            if '名称' in str(e):
+                self.ui.tips_lineEdit.setText('请检查模块定义行中是否有"名称"单元格！')
+                return
+
+        # 将 '名称' 列置为 index
+        ou2mu_df.set_index('名称', inplace=True)
+
+        # 初始化协议字典
+        ou_protocol = {}
+
+        # 取开关量和模拟量这部分的 df
+        try:
+            switch_df = ou2mu_df.loc['开关量', :]
+            analog_df = ou2mu_df.loc['模拟量', :]
+        except KeyError as e:
+            if '开关量' in str(e):
+                self.ui.tips_lineEdit.setText('请检查协议中名称列是否有"开关量"单元格！')
+                return
+            if '模拟量' in str(e):
+                self.ui.tips_lineEdit.setText('请检查协议中名称列是否有"模拟量"单元格！')
+                return
+
+        try:
+            # 读取 CRC 校验位所在的行
+            crc_ser = ou2mu_df.loc['CRC']
+        except KeyError as e:
+            if 'CRC' in str(e):
+                self.ui.tips_lineEdit.setText('请检查通信协议中名称列是否有"CRC"单元格，大小写注意！')
+                return
+        # OU->MU 协议的字节数量
+        protocol_length = self.clean_number(crc_ser['字节序号'], 'byte')
+
+        # 开关量协议更新
+        for _, switch_row in switch_df.iterrows():
+            # 通过 '字节序号' 索引读取 byte_num
+            byte_num = switch_row['字节序号']
+            # 提取 byte_num 中的数字
+            byte_num = self.clean_number(byte_num, 'byte')
+
+            try:
+                # 通过 '内容' 索引读取 bit_index
+                bit_index = switch_row['内容']
+                # 提取 bit_index 中的数字
+                bit_index = self.clean_number(bit_index, 'bit')
+
+                # 通过 '描述' 更新协议内容
+                switch_desc = switch_row['描述']
+            except KeyError as e:
+                if '内容' in str(e):
+                    self.ui.tips_lineEdit.setText('请检查通信协议中模块定义行是否有"内容"单元格！')
+                    return
+                if '描述' in str(e):
+                    self.ui.tips_lineEdit.setText('请将功能定义所在列的列名修改为"描述"！')
+                    return
+
+
+            # 更新字节序号
+            if byte_num not in ou_protocol and switch_desc != '预留' and not pd.isnull(switch_desc):
+                ou_protocol[byte_num] = {}
+            # 更新协议内容
+            if switch_desc != '预留' and not pd.isnull(switch_desc):
+                ou_protocol[byte_num][bit_index] = switch_desc
+
+        # 模拟量协议更新
+        for _, analog_row in analog_df.iterrows():
+            # 通过 '字节序号' 索引读取 byte_num
+            byte_num = analog_row['字节序号']
+            # 提取 byte_num 中的数字
+            byte_num = self.clean_number(byte_num, 'byte')
+
+            # 通过 '描述' 更新协议内容
+            analog_desc = analog_row['描述']
+            # 更新协议
+            if analog_desc != '预留' and not pd.isnull(analog_desc):
+                ou_protocol[byte_num] = analog_desc
+
+        return ou_protocol, protocol_length
+
 
 
     def updateSwitchs(self):
@@ -107,7 +268,7 @@ class MainWindow(QWidget):
             self.switch_container = None
 
         # 创建新的按键并添加到界面
-        self.switch_container = Switch(self.ou_protocol, self.package)
+        self.switch_container = Switch(self.ou_protocol, self.package, self.cumulative_sum, self.ui.tips_lineEdit)
         self.ui.switch_container_layout.addWidget(self.switch_container)
 
     def updateAnalog(self):
@@ -119,13 +280,14 @@ class MainWindow(QWidget):
             self.analog_container = None
 
         # 创建新的按键并添加到界面
-        self.analog_container = Analog(self.ou_protocol, self.package)
+        self.analog_container = Analog(self.ou_protocol, self.package, self.cumulative_sum, self.ui.tips_lineEdit)
         self.ui.analog_container_layout.addWidget(self.analog_container)
 
 
     def connect_button_clicked(self):
         # 没有导入协议, 没有输入协议头, 点击按钮不做处理
         if self.ou_protocol is None or self.ui.protocol_header_lineEdit.text() == '':
+            self.ui.tips_lineEdit.setText('请先导入项目通信协议！')
             return
 
         ''' 点击连接  判断所有 lineEdit 里是否有内容且合法 '''
@@ -162,9 +324,6 @@ class MainWindow(QWidget):
                     # 更新累加值
                     self.cumulative_sum += self.package[i]
 
-                # 打印调试信息
-                print(f'校验和(HEX): {self.cumulative_sum:02X}    CRC: {self.cumulative_sum & 0xFF:02X}')
-
             else:
                 self.ui.tips_lineEdit.setText('请输入协议头 Byte1-10！')
                 return
@@ -180,6 +339,10 @@ class MainWindow(QWidget):
 
         # 点击断开
         else:
+            # 清除 textEdit 第二行的内容, 保留字节序号
+            line = self.ui.raw_message_textEdit.toPlainText().splitlines()
+            self.ui.raw_message_textEdit.setText(line[0])
+
             # lineEdit 恢复正常使用
             self.ui.target_ip_lineEdit.setReadOnly(False)
             self.ui.target_port_lineEdit.setReadOnly(False)
@@ -194,6 +357,7 @@ class MainWindow(QWidget):
 
 
     def sending_message(self):
+        ''' 用于发送报文的线程 '''
         ip = self.ui.target_ip_lineEdit.text()
         port = self.ui.target_port_lineEdit.text()
         with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
@@ -218,20 +382,50 @@ class MainWindow(QWidget):
                 self.ui.openFile_pushButton.setDisabled(True)
 
             except OSError as e:
-                self.ui.tips_lineEdit.setText('错误：端口可能被占用，请使用其他端口！')
+                self.ui.tips_lineEdit.setText('错误：本地端口可能被占用，请使用其他端口！')
 
             # 发送 UDP 包
             while self.send_message:
                 # 计算三部分的 校验和 取低8位
                 crc = self.cumulative_sum + self.switch_container.cumulative_sum + self.analog_container.cumulative_sum
+                self.package[-1] = crc & 0xFF
                 sock.sendto(self.package, (ip, int(port)))
+
+                # 发射信号到主线程, 将报文更新到 textEdit 上
+                self.update_textEdit_signal.emit(self.package)
+
                 time.sleep(int(self.ui.sending_cycle_lineEdit.text()) / 1000)   # 周期 ms
+
+
+    def update_raw_message_textEdit(self, raw_message):
+        ''' 同步更新 raw message textEdit '''
+        lines = self.ui.raw_message_textEdit.toPlainText().splitlines()
+
+        # 保留第一行的字节序号, 从第二行开始更新
+        byte_num_series = lines[0]
+        raw_message = ' '.join(f'{byte:02X} ' for byte in raw_message)
+
+        # 清空 textEdit
+        self.ui.raw_message_textEdit.clear()
+
+        # 设置第一行的内容为蓝色
+        cursor = self.ui.raw_message_textEdit.textCursor()
+        cursor.movePosition(QTextCursor.Start)
+
+        blue_format = QTextCharFormat()
+        blue_format.setForeground(QColor("blue"))
+
+        black_format = QTextCharFormat()
+        black_format.setForeground(QColor('black'))
+
+        cursor.insertText(f'{byte_num_series}', blue_format)  # 第一行蓝色
+        cursor.insertText(f'\n{raw_message}', black_format)  # 其他行默认颜色
+
 
 
     def clear_prompt_info(self):
         ''' 清除提示信息 '''
         self.ui.tips_lineEdit.clear()
-
 
 
     # 处理 开关量 和 模拟量 区域英文键盘按下的事件
@@ -259,28 +453,32 @@ class MainWindow(QWidget):
                                                                           ['bit_index', bit_index])
                     # 如果按钮没有被按下 checkbox 没有被选择
                     if button.isEnabled() and not checkBox.isChecked():
-                        # 校验和减去历史的字节量
-                        self.switch_container.cumulative_sum -= self.switch_container.package[byte_num - 1]
-                        # 开关量, 按键所在的位赋 1
-                        if isinstance(bit_index, int):
-                            # 1个 bit 代表一个开关
-                            self.switch_container.package[byte_num - 1] |= (1 << bit_index)
-                        else:
-                            # 多个 bit 代表一个开关, 所有 bit 置 1
-                            start_index, end_index = bit_index.split('-')
-                            start_index, end_index = int(start_index), int(end_index)
-                            for i in range(start_index, end_index + 1):
-                                self.switch_container.package[byte_num - 1] |= (1 << i)
-                        # 校验和更新新的字节量
-                        self.switch_container.cumulative_sum += self.switch_container.package[byte_num - 1]
+                        try:
+                            # 校验和减去历史的字节量
+                            self.switch_container.cumulative_sum -= self.switch_container.package[byte_num - 1]
+                            # 开关量, 按键所在的位赋 1
+                            if isinstance(bit_index, int):
+                                # 1个 bit 代表一个开关
+                                self.switch_container.package[byte_num - 1] |= (1 << bit_index)
+                            else:
+                                # 多个 bit 代表一个开关, 所有 bit 置 1
+                                start_index, end_index = bit_index.split('-')
+                                start_index, end_index = int(start_index), int(end_index)
+                                for i in range(start_index, end_index + 1):
+                                    self.switch_container.package[byte_num - 1] |= (1 << i)
+                            # 校验和更新新的字节量
+                            self.switch_container.cumulative_sum += self.switch_container.package[byte_num - 1]
 
-                        # 对应的 button disabled
-                        button.setDisabled(True)
+                            # 对应的 button disabled
+                            button.setDisabled(True)
+                            # 对应的 lineEdit 只读
+                            lineEdit.setReadOnly(True)
+                        except TypeError:
+                            self.ui.tips_lineEdit.setText('请检查协议，现阶段不对多字节的开关量做处理！')
 
                         # 调试打印信息
-                        message = ' '.join(f'{byte:02X}' for byte in self.switch_container.package)
-                        print(f'{key_char}: {message}\n校验和(HEX): {self.switch_container.cumulative_sum:02X} \
-                           CRC: {self.switch_container.cumulative_sum & 0xFF:02X}')
+                        message = ' '.join(f'{byte:02X}' for byte in self.package)
+                        print(f'{key_char}: {message}')
                         # break 允许多个 lineEdit 绑定同一个按键
 
             # 遍历 analog_container 中所有的 LineEdit  检查按键与 lineEdit 内容相同
@@ -299,6 +497,8 @@ class MainWindow(QWidget):
 
                         # 对应的 button disabled
                         button.setDisabled(True)
+                        # 对用的 lineEdit 只读
+                        lineEdit.setReadOnly(True)
 
     # 处理 开关量 和 模拟量 区域英文键盘松开的事件
     def keyReleaseEvent(self, event):
@@ -308,7 +508,7 @@ class MainWindow(QWidget):
         # 获取松开的键盘按键
         key_char = event.text().upper()
         # 文本框初始化
-        lineEdit = None
+        # lineEdit = None
 
         # 手动松开 且 按键是字母
         if (self.switch_container is not None or self.analog_container is not None) and \
@@ -352,13 +552,14 @@ class MainWindow(QWidget):
                         # 校验和更新新的字节量
                         self.switch_container.cumulative_sum += self.switch_container.package[byte_num - 1]
 
-                        # 对应的 button disabled
+                        # 对应的 button enabled
                         button.setEnabled(True)
+                        # 对应的 lineEdit 可写
+                        lineEdit.setReadOnly(False)
 
                         # 调试打印信息
-                        message = ' '.join(f'{byte:02X}' for byte in self.switch_container.package)
-                        print(f'{key_char}: {message}\n校验和(HEX): {self.switch_container.cumulative_sum:02X} \
-                           CRC: {self.switch_container.cumulative_sum & 0xFF:02X}')
+                        message = ' '.join(f'{byte:02X}' for byte in self.package)
+                        print(f'{key_char}: {message}')
                         # break 允许多个 lineEdit 绑定同一个按键
 
 
@@ -379,6 +580,26 @@ class MainWindow(QWidget):
 
                         # 对应的 button disabled
                         button.setEnabled(True)
+                        # 对应的 lineEdit 可写
+                        lineEdit.setReadOnly(False)
+
+
+    def update_byte_num_placeholderText(self):
+        ''' 获取当前宽度并计算需要的字节数 '''
+        width = self.ui.raw_message_textEdit.width()    # 当前控件的宽度
+        font_metrics = self.ui.raw_message_textEdit.fontMetrics()   # 当前字体的宽度
+        char_width = font_metrics.horizontalAdvance('0')    # 计算一个字符的宽度
+        num_pairs = max(1, width // (char_width * 4))  # 计算当前宽度适合的 "01  " 数量
+
+        # 更新到 textEdit 上
+        byte_num = '  '.join(f'{i:02d}' for i in range(1, num_pairs + 1))
+        self.ui.raw_message_textEdit.setText(byte_num)
+
+
+    def resizeEvent(self, event):
+        ''' 当窗口大小变化时, 更新 raw_message_textEdit 的 placeholderText '''
+        self.update_byte_num_placeholderText()
+        super().resizeEvent(event)
 
 
     def mousePressEvent(self, event):
@@ -394,6 +615,7 @@ class MainWindow(QWidget):
         settings.setValue('target_port_content', self.ui.target_port_lineEdit.text())
         settings.setValue('local_port_content', self.ui.local_port_lineEdit.text())
         super().closeEvent(event)
+
 
 
 if __name__ == '__main__':

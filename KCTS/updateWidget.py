@@ -5,23 +5,31 @@ from PyQt5.QtCore import Qt, QTimer, QRegExp
 
 
 class Switch(QWidget):
-    def __init__(self, ou_protocol, package):
+    def __init__(self, ou_protocol, package, cumulative_sum, tips_lineEdit):
         super().__init__()
         self.switches = []
         self.switchesLayout = QGridLayout()
 
+        # 提示信息
+        self.tips_lineEdit = tips_lineEdit
 
         # 存放 ou 的包 校验和
         self.package = package
-        self.cumulative_sum = 0
+        self.cumulative_sum = cumulative_sum
 
+        # gridlayout 的行和列索引
+        layout_row = 0
+        layout_column = 0
 
-        i = 0
         # 循环创建组合控件
         for byte_num in ou_protocol:
             if isinstance(ou_protocol.get(byte_num), dict):
                 # 开关量区域控件创建
                 for bit_index in ou_protocol.get(byte_num):
+                    # 每列最多放16个开关
+                    if layout_row > 14:
+                        layout_row = 0
+                        layout_column += 3
                     ''' pushButton '''
                     self.pushButton = QPushButton(ou_protocol[byte_num][bit_index])
                     # 赋予 pushButton 两个自定义属性
@@ -29,6 +37,17 @@ class Switch(QWidget):
                     # pushButton 按下和松开 绑定到 slot
                     self.pushButton.pressed.connect(self.on_button_pressed)
                     self.pushButton.released.connect(self.on_button_released)
+                    # 按键被 disabled 时, 设置颜色为淡黄色
+                    self.pushButton.setStyleSheet("""
+                        QPushButton {
+                            font-family: '微软雅黑';
+                            font-size: 9pt;
+                        }
+                        QPushButton:disabled {
+                            background-color: #FFFF00;  /* 淡黄色 */
+                            color: #808080;  /* 使文本颜色变为灰色以显示禁用状态 */
+                        }
+                    """)
 
                     ''' checkBox '''
                     self.checkBox = QCheckBox('自锁')
@@ -42,16 +61,30 @@ class Switch(QWidget):
                     self.lineEdit.setPlaceholderText('Key')
                     self.set_costom_property(self.lineEdit, byte_num, bit_index)
                     self.lineEdit.setValidator(QRegExpValidator(QRegExp('^[A-Za-z]?$')))    # 正则表达式匹配26个英文字母
+                    # 字体 大小 颜色 文本居中 获得焦点时字体黑色
+                    self.lineEdit.setStyleSheet("""
+                        QLineEdit {
+                            font-family: Courier;
+                            font-size: 9pt;
+                            qproperty-alignment: AlignCenter;
+                        }
+                        QLineEdit:!focus {
+                            color: green;
+                        }
+                        QLineEdit:focus {
+                            color: black;
+                        }
+                    """)
 
 
                     self.switches.append([self.pushButton, self.checkBox, self.lineEdit])
                     # 第 i 行第 1 列放 checkBox
-                    self.switchesLayout.addWidget(self.checkBox, i, 0)
+                    self.switchesLayout.addWidget(self.checkBox, layout_row, layout_column)
                     # 第 i 行第 2 列放 PushButton
-                    self.switchesLayout.addWidget(self.pushButton, i, 1)
+                    self.switchesLayout.addWidget(self.pushButton, layout_row, layout_column + 1)
                     # 第 i 行第 3 列放 lineEdit
-                    self.switchesLayout.addWidget(self.lineEdit, i, 2)
-                    i += 1
+                    self.switchesLayout.addWidget(self.lineEdit, layout_row, layout_column + 2)
+                    layout_row += 1
 
 
                 self.setLayout(self.switchesLayout)
@@ -67,24 +100,28 @@ class Switch(QWidget):
         byte_num = sender.property('byte_num')
         bit_index = sender.property('bit_index')
 
-        # 校验和减去历史的字节量
-        self.cumulative_sum -= self.package[byte_num - 1]
-        # 开关量, 按键所在的位赋 1
-        if isinstance(bit_index, int):
-            # 1个 bit 代表一个开关
-            self.package[byte_num - 1] |= (1 << bit_index)
-        else:
-            # 多个 bit 代表一个开关, 所有 bit 置 1
-            start_index, end_index = bit_index.split('-')
-            start_index, end_index = int(start_index), int(end_index)
-            for i in range(start_index, end_index + 1):
-                self.package[byte_num - 1] |= (1 << i)
-        # 校验和更新新的字节量
-        self.cumulative_sum += self.package[byte_num - 1]
+        try:
+            # 校验和减去历史的字节量
+            self.cumulative_sum -= self.package[byte_num - 1]
+            # 开关量, 按键所在的位赋 1
+            if isinstance(bit_index, int):
+                # 1个 bit 代表一个开关
+                self.package[byte_num - 1] |= (1 << bit_index)
+            else:
+                # 多个 bit 代表一个开关, 所有 bit 置 1
+                start_index, end_index = bit_index.split('-')
+                start_index, end_index = int(start_index), int(end_index)
+                for i in range(start_index, end_index + 1):
+                    self.package[byte_num - 1] |= (1 << i)
+            # 校验和更新新的字节量
+            self.cumulative_sum += self.package[byte_num - 1]
+        # 开关量是多个byte  形式为 '0-1', 现阶段不做处理
+        except TypeError:
+            self.tips_lineEdit.setText('请检查协议，现阶段不对多字节的开关量做处理！')
 
         # 调试打印信息
         message = ' '.join(f'{byte:02X}' for byte in self.package)
-        print(f'{message}\n校验和(HEX): {self.cumulative_sum:02X}    CRC: {self.cumulative_sum & 0xFF:02X}')
+        print(message)
 
     def on_button_released(self):
         # 获取发送信号的 pushButton
@@ -92,23 +129,26 @@ class Switch(QWidget):
         byte_num = sender.property('byte_num')
         bit_index = sender.property('bit_index')
 
-        # 开关量, 按键所在的位赋 0 校验和减去历史的字节量
-        self.cumulative_sum -= self.package[byte_num - 1]
-        if isinstance(bit_index, int):
-            # 1个 bit 代表一个开关
-            self.package[byte_num - 1] &= ~(1 << bit_index)
-        else:
-            # 多个 bit 代表一个开关, 所有 bit 置 0
-            start_index, end_index = bit_index.split('-')
-            start_index, end_index = int(start_index), int(end_index)
-            for i in range(start_index, end_index + 1):
-                self.package[byte_num - 1] &= ~(1 << i)
-        # 校验和更新新的字节量
-        self.cumulative_sum += self.package[byte_num - 1]
+        try:
+            # 开关量, 按键所在的位赋 0 校验和减去历史的字节量
+            self.cumulative_sum -= self.package[byte_num - 1]
+            if isinstance(bit_index, int):
+                # 1个 bit 代表一个开关
+                self.package[byte_num - 1] &= ~(1 << bit_index)
+            else:
+                # 多个 bit 代表一个开关, 所有 bit 置 0
+                start_index, end_index = bit_index.split('-')
+                start_index, end_index = int(start_index), int(end_index)
+                for i in range(start_index, end_index + 1):
+                    self.package[byte_num - 1] &= ~(1 << i)
+            # 校验和更新新的字节量
+            self.cumulative_sum += self.package[byte_num - 1]
+        except TypeError:
+            self.tips_lineEdit.setText('请检查协议，现阶段不对多字节的开关量做处理！')
 
         # 调试打印信息
         message = ' '.join(f'{byte:02X}' for byte in self.package)
-        print(f'{message}\n校验和(HEX): {self.cumulative_sum:02X}    CRC: {self.cumulative_sum & 0xFF:02X}')
+        print(message)
 
 
     def get_button_by_property(self, property1, property2):
@@ -129,49 +169,55 @@ class Switch(QWidget):
 
         # 开关量, 所在位赋 1, 并且按键 disabled
         if checkBox_ischecked:  # 如果被勾选
-            # 复选框所在的位赋 1 校验和减去历史的字节量
-            self.cumulative_sum -= self.package[byte_num - 1]
-            if isinstance(bit_index, int):
-                # 1个 bit 代表一个开关
-                self.package[byte_num - 1] |= (1 << bit_index)
-            else:
-                # 多个 bit 代表一个开关, 所有 bit 置 1
-                start_index, end_index = bit_index.split('-')
-                start_index, end_index = int(start_index), int(end_index)
-                for i in range(start_index, end_index + 1):
-                    self.package[byte_num - 1] |= (1 << i)
-            # 校验和更新新的字节量
-            self.cumulative_sum += self.package[byte_num - 1]
+            try:
+                # 复选框所在的位赋 1 校验和减去历史的字节量
+                self.cumulative_sum -= self.package[byte_num - 1]
+                if isinstance(bit_index, int):
+                    # 1个 bit 代表一个开关
+                    self.package[byte_num - 1] |= (1 << bit_index)
+                else:
+                    # 多个 bit 代表一个开关, 所有 bit 置 1
+                    start_index, end_index = bit_index.split('-')
+                    start_index, end_index = int(start_index), int(end_index)
+                    for i in range(start_index, end_index + 1):
+                        self.package[byte_num - 1] |= (1 << i)
+                # 校验和更新新的字节量
+                self.cumulative_sum += self.package[byte_num - 1]
 
-            # 对应 button disabled
-            button = self.get_button_by_property(['byte_num', byte_num],
-                                                 ['bit_index', bit_index])
-            button.setDisabled(True)
+                # 对应 button disabled
+                button = self.get_button_by_property(['byte_num', byte_num],
+                                                     ['bit_index', bit_index])
+                button.setDisabled(True)
+            except TypeError:
+                self.tips_lineEdit.setText('请检查协议，现阶段不对多字节的开关量做处理！')
 
         else:
-            # 校验和减去历史的字节量
-            self.cumulative_sum -= self.package[byte_num - 1]
-            # 复选框所在的位赋 0
-            if isinstance(bit_index, int):
-                # 1个 bit 代表一个开关
-                self.package[byte_num - 1] &= ~(1 << bit_index)
-            else:
-                # 多个 bit 代表一个开关, 所有 bit 置 0
-                start_index, end_index = bit_index.split('-')
-                start_index, end_index = int(start_index), int(end_index)
-                for i in range(start_index, end_index + 1):
-                    self.package[byte_num - 1] &= ~(1 << i)
-            # 校验和更新新的字节量
-            self.cumulative_sum += self.package[byte_num - 1]
+            try:
+                # 校验和减去历史的字节量
+                self.cumulative_sum -= self.package[byte_num - 1]
+                # 复选框所在的位赋 0
+                if isinstance(bit_index, int):
+                    # 1个 bit 代表一个开关
+                    self.package[byte_num - 1] &= ~(1 << bit_index)
+                else:
+                    # 多个 bit 代表一个开关, 所有 bit 置 0
+                    start_index, end_index = bit_index.split('-')
+                    start_index, end_index = int(start_index), int(end_index)
+                    for i in range(start_index, end_index + 1):
+                        self.package[byte_num - 1] &= ~(1 << i)
+                # 校验和更新新的字节量
+                self.cumulative_sum += self.package[byte_num - 1]
 
-            # 对应 button enabled
-            button = self.get_button_by_property(['byte_num', byte_num],
-                                                 ['bit_index', bit_index])
-            button.setEnabled(True)
+                # 对应 button enabled
+                button = self.get_button_by_property(['byte_num', byte_num],
+                                                     ['bit_index', bit_index])
+                button.setEnabled(True)
+            except TypeError:
+                self.tips_lineEdit.setText('请检查协议，现阶段不对多字节的开关量做处理！')
 
         # 调试打印信息
         message = ' '.join(f'{byte:02X}' for byte in self.package)
-        print(f'{message}\n校验和(HEX): {self.cumulative_sum:02X}    CRC: {self.cumulative_sum & 0xFF:02X}')
+        print(message)
 
     def get_checkBox_by_property(self, property1, property2):
         # 遍历窗口中的所有 checkBox  找到匹配的按钮
@@ -182,26 +228,47 @@ class Switch(QWidget):
 
 
 class Analog(QWidget):
-    def __init__(self, ou_protocol, package):
+    def __init__(self, ou_protocol, package, cumulative_sum, tips_lineEdit):
         super().__init__()
         self.analog = []
         self.analogLayout = QGridLayout()
 
+        # 提示信息
+        self.tips_lineEdit = tips_lineEdit
+
         # ou 的包 校验和
         self.package = package
-        self.cumulative_sum = 0
+        self.cumulative_sum = cumulative_sum
 
-        i = 0
+        # gridlayout 的行和列
+        layout_row = 0
+        layout_column = 0
+
         # 循环创建组合控件
         for byte_num in ou_protocol:
             # 模拟量区域控件创建
             if isinstance(ou_protocol.get(byte_num), str):
+                # 每列最多放八个模拟量开关
+                if layout_row > 15:
+                    layout_row = 0
+                    layout_column += 2
                 ''' pushButton '''
                 self.pushButton = QPushButton(ou_protocol.get(byte_num))
                 self.set_costom_property(self.pushButton, byte_num)
                 # pushButton 按下和松开 绑定到 slot
                 self.pushButton.pressed.connect(self.startIncreasing)
                 self.pushButton.released.connect(self.startDecreasing)
+                # 按键被 disabled 时, 设置颜色为淡黄色
+                self.pushButton.setStyleSheet("""
+                    QPushButton {
+                        font-family: '微软雅黑';
+                        font-size: 9pt;
+                    }
+                    QPushButton:disabled {
+                        background-color: #FFFF00;  /* 淡黄色 */
+                        color: #808080;  /* 使文本颜色变为灰色以显示禁用状态 */
+                    }
+                """)
 
                 ''' Timer '''
                 # 计时器用于增加和减少进度条的值
@@ -219,6 +286,20 @@ class Analog(QWidget):
                 self.lineEdit.setPlaceholderText("Key")
                 self.set_costom_property(self.lineEdit, byte_num)
                 self.lineEdit.setValidator(QRegExpValidator(QRegExp('^[A-Za-z]?$')))  # 正则表达式匹配26个英文字母 且只能是1个
+                # 字体 大小 颜色 文本居中 获得焦点时字体黑色
+                self.lineEdit.setStyleSheet("""
+                    QLineEdit {
+                        font-family: Courier;
+                        font-size: 9pt;
+                        qproperty-alignment: AlignCenter;
+                    }
+                    QLineEdit:!focus {
+                        color: green;
+                    }
+                    QLineEdit:focus {
+                        color: black;
+                    }
+                """)
 
                 ''' hLayout '''
                 self.hLayout = QHBoxLayout()
@@ -250,14 +331,14 @@ class Analog(QWidget):
 
                 self.analog.append([self.pushButton, self.lineEdit, self.hLayout, self.progressBar])
                 # 第 2 行第 1 列放 PushButton
-                self.analogLayout.addWidget(self.pushButton, i, 0)
+                self.analogLayout.addWidget(self.pushButton, layout_row, layout_column)
                 # 第 1 行第 2 列放 lineEdit
-                self.analogLayout.addWidget(self.lineEdit, i + 1, 0)
+                self.analogLayout.addWidget(self.lineEdit, layout_row + 1, layout_column)
                 # 第 1 行第 1 列放 hLayout
-                self.analogLayout.addLayout(self.hLayout, i + 1, 1)
+                self.analogLayout.addLayout(self.hLayout, layout_row + 1, layout_column + 1)
                 # 第 2 行第 2 列放 progressBar
-                self.analogLayout.addWidget(self.progressBar, i, 1)
-                i += 2
+                self.analogLayout.addWidget(self.progressBar, layout_row, layout_column + 1)
+                layout_row += 2
 
 
                 self.setLayout(self.analogLayout)
@@ -354,15 +435,23 @@ class Analog(QWidget):
         ''' progressBar 值变化的时候, 更新报文 '''
         sender = self.sender()
         byte_num = sender.property('byte_num')
-        # 校验和减去历史的字节量
-        self.cumulative_sum -= self.package[byte_num - 1]
-        self.package[byte_num - 1] = sender.value()
-        # 校验和更新新的字节量
-        self.cumulative_sum += self.package[byte_num - 1]
+        try:
+            # 校验和减去历史的字节量
+            self.cumulative_sum -= self.package[byte_num - 1]
+            self.package[byte_num - 1] = sender.value()
+            # 校验和更新新的字节量
+            self.cumulative_sum += self.package[byte_num - 1]
+
+        # byte_num 是 '1-2' 这种形式, 现在的版本不做处理
+        except TypeError:
+            # 通过 byte_num 找到 increase / decrease 定时器
+            increaseTimer = self.get_timer_by_property(['increase', byte_num])
+            increaseTimer.stop()  # 停止增加的计时器
+            self.tips_lineEdit.setText('请检查协议，现阶段不对多字节的模拟量做处理！')
 
         # 调试打印信息
         message = ' '.join(f'{byte:02X}' for byte in self.package)
-        print(f'{message}\n校验和(HEX): {self.cumulative_sum:02X}    CRC: {self.cumulative_sum & 0xFF:02X}')
+        print(message)
 
 
     def get_button_by_property(self, property):
