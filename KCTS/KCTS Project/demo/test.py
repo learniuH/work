@@ -1,87 +1,46 @@
-from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtWidgets import QApplication, QMainWindow, QListWidget, QStackedWidget, QVBoxLayout, QWidget
-import sys
+import socket
+import threading
 
+# 本机设备的IP和接收端口
+LOCAL_IP = "192.168.1.23"
+RECEIVE_PORT = 8000
+SEND_PORT = 9000
 
-# 子界面1
-class Page1(QWidget):
-    def __init__(self, parent=None):
-        super(Page1, self).__init__(parent)
-        self.ui = Ui_Form()
-        self.ui.setupUi(self)
-        self.ui.label.setText("这是界面1")
+# 目标设备的IP和接收端口
+TARGET_IP = "192.168.1.3"
+TARGET_PORT = 8888
 
+def receiver():
+    """接收端"""
+    recv_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    recv_sock.bind((LOCAL_IP, RECEIVE_PORT))  # 绑定本地接收端口
 
-# 子界面2
-class Page2(QWidget):
-    def __init__(self, parent=None):
-        super(Page2, self).__init__(parent)
-        self.ui = Ui_Form()
-        self.ui.setupUi(self)
-        self.ui.label.setText("这是界面2")
+    print(f"接收端已启动，在 {LOCAL_IP}:{RECEIVE_PORT} 等待数据...")
+    while True:
+        data, addr = recv_sock.recvfrom(1024)  # 接收数据
+        print(f"接收到来自 {addr} 的数据: {data.decode('utf-8')}")
 
+def sender():
+    """发送端"""
+    send_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    send_sock.bind((LOCAL_IP, SEND_PORT))  # 绑定本地发送端口
 
-# 子界面3
-class Page3(QWidget):
-    def __init__(self, parent=None):
-        super(Page3, self).__init__(parent)
-        self.ui = Ui_Form()
-        self.ui.setupUi(self)
-        self.ui.label.setText("这是界面3")
-
-
-# 主窗口
-class MainWindow(QMainWindow):
-    def __init__(self):
-        super(MainWindow, self).__init__()
-        self.setWindowTitle("ListWidget 和 StackedWidget 切换")
-        self.resize(800, 600)
-
-        # 主部件
-        main_widget = QWidget()
-        self.setCentralWidget(main_widget)
-        layout = QVBoxLayout(main_widget)
-
-        # 左侧的 ListWidget 作为导航栏
-        self.list_widget = QListWidget()
-        self.list_widget.addItem("界面1")
-        self.list_widget.addItem("界面2")
-        self.list_widget.addItem("界面3")
-        self.list_widget.currentRowChanged.connect(self.switch_page)  # 绑定切换方法
-        layout.addWidget(self.list_widget)
-
-        # 右侧的 StackedWidget
-        self.stacked_widget = QStackedWidget()
-        self.stacked_widget.addWidget(Page2())  # 添加子界面1
-        self.stacked_widget.addWidget(Page1())  # 添加子界面2
-        self.stacked_widget.addWidget(Page3())  # 添加子界面3
-        layout.addWidget(self.stacked_widget)
-
-    def switch_page(self, index):
-        """切换 stackedWidget 的子界面"""
-        self.stacked_widget.setCurrentIndex(index)
-
-
-# 子界面类由 Qt Designer 生成
-class Ui_Form(object):
-    def setupUi(self, Form):
-        Form.setObjectName("Form")
-        Form.resize(387, 297)
-        self.label = QtWidgets.QLabel(Form)
-        self.label.setGeometry(QtCore.QRect(210, 140, 72, 15))
-        self.label.setObjectName("label")
-
-        self.retranslateUi(Form)
-        QtCore.QMetaObject.connectSlotsByName(Form)
-
-    def retranslateUi(self, Form):
-        _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
-        self.label.setText(_translate("Form", "这是界面1"))
-
+    print(f"发送端已启动，从 {LOCAL_IP}:{SEND_PORT} 发送到 {TARGET_IP}:{TARGET_PORT}...")
+    while True:
+        message = input("请输入要发送的消息: ")
+        send_sock.sendto(message.encode('utf-8'), (TARGET_IP, TARGET_PORT))  # 发送数据
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = MainWindow()
-    window.show()
-    sys.exit(app.exec_())
+    # 创建接收线程
+    recv_thread = threading.Thread(target=receiver)
+    recv_thread.daemon = True
+    recv_thread.start()
+
+    # 创建发送线程
+    send_thread = threading.Thread(target=sender)
+    send_thread.daemon = True
+    send_thread.start()
+
+    recv_thread.join()
+    send_thread.join()
+
