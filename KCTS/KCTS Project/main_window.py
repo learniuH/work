@@ -1,6 +1,6 @@
 from itertools import cycle
 
-from PyQt5.QtCore import QSize, Qt
+from PyQt5.QtCore import QSize, Qt, QSettings
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QListWidgetItem
 
 
@@ -24,9 +24,20 @@ class MainWindow(QMainWindow):
 
         self.main_window_init()     # 窗口界面初始化
 
+        self.load_last_content()    # 加载上一次运行时的配置
+
         self.setup_validators()     # 正则表达式匹配 IP 端口 信息
         self.setup_connections()    # 信号连接绑定
 
+    def load_last_content(self):
+        ''' 加载上一次程序运行时的相关配置 '''
+        settings = QSettings('KCTS', 'CONFIGURE')
+        self.main_window_ui.kc_ts_recv_port_lineEdit.setText(settings.value('KCTS_recv_port_content', ''))
+        self.main_window_ui.kc_ts_send_port_lineEdit.setText(settings.value('KCTS_send_port_content', ''))
+        self.main_window_ui.mu_ip_lineEdit.setText(settings.value('MU_IP_content', ''))
+        self.main_window_ui.mu_recv_port_lineEdit.setText(settings.value('MU_recv_port_content', ''))
+        self.main_window_ui.kc_tu_ip_lineEdit.setText(settings.value('KCTU_IP_content', ''))
+        self.main_window_ui.kc_tu_recv_port_lineEdit.setText(settings.value('KCTU_recv_port_content', ''))
 
     def main_window_init(self):
         ''' listWdiget items 创建, 获取电脑IP   '''
@@ -71,6 +82,7 @@ class MainWindow(QMainWindow):
         # 切换到其他界面关闭监听和发送线程
         else:
             self.network_manager.stop_receiving()   # 关闭接收数据的线程
+            self.network_manager.stop_sending()     # 关闭发送数据的线程
 
 
 
@@ -107,6 +119,17 @@ class MainWindow(QMainWindow):
         ''' 鼠标点击空白区域清除所有控件的焦点 '''
         self.setFocus()
         super().mousePressEvent(event)  # 调用父类的鼠标点击事件处理
+
+    def closeEvent(self, event):
+        ''' 主程序关闭时, 保存配置页面的所有配置 '''
+        settings = QSettings('KCTS', 'CONFIGURE')
+        settings.setValue('KCTS_recv_port_content', self.main_window_ui.kc_ts_recv_port_lineEdit.text())
+        settings.setValue('KCTS_send_port_content', self.main_window_ui.kc_ts_send_port_lineEdit.text())
+        settings.setValue('MU_IP_content', self.main_window_ui.mu_ip_lineEdit.text())
+        settings.setValue('MU_recv_port_content', self.main_window_ui.mu_recv_port_lineEdit.text())
+        settings.setValue('KCTU_IP_content', self.main_window_ui.kc_tu_ip_lineEdit.text())
+        settings.setValue('KCTU_recv_port_content', self.main_window_ui.kc_tu_recv_port_lineEdit.text())
+        super().closeEvent(event)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

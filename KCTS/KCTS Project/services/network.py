@@ -89,11 +89,11 @@ class NetworkManager:
 
             self.send_thread = threading.Thread(
                 target=self.sending_loop,
-                args=cycle_ms,
+                args=(cycle_ms,),
                 daemon=True
             )
             self.send_thread.start()
-            print(1)
+            print('已经走到start sending 并且线程启动了')
             return True
 
         except OSError as e:
@@ -105,9 +105,9 @@ class NetworkManager:
         Args:
             cycle_ms: 发送周期(毫秒)
         '''
+        print('已经走到sending loop了')
         while self.is_sending and self.send_socket and self.package_send:
             try:
-                print(1)
                 self.send_socket.sendto(self.package_send, self.target_address)
 
                 time.sleep(cycle_ms / 1000)
@@ -117,7 +117,7 @@ class NetworkManager:
     def stop_sending(self):
         ''' 停止连接 '''
         self.is_sending = False
-        if self.socket:
+        if self.send_socket:
             self.send_socket.close()
             self.send_socket = None
             print('发送数据停止')
