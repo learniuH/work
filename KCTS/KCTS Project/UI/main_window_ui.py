@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_KCTS(object):
     def setupUi(self, KCTS):
         KCTS.setObjectName("KCTS")
-        KCTS.resize(1064, 611)
+        KCTS.resize(1064, 690)
         self.Window = QtWidgets.QWidget(KCTS)
         self.Window.setObjectName("Window")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.Window)
@@ -71,8 +71,242 @@ class Ui_KCTS(object):
         self.device_status_page = QtWidgets.QWidget()
         self.device_status_page.setObjectName("device_status_page")
         self.label = QtWidgets.QLabel(self.device_status_page)
-        self.label.setGeometry(QtCore.QRect(290, 90, 141, 41))
+        self.label.setGeometry(QtCore.QRect(70, 20, 141, 41))
         self.label.setObjectName("label")
+        self.gridLayoutWidget = QtWidgets.QWidget(self.device_status_page)
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(80, 60, 691, 536))
+        self.gridLayoutWidget.setObjectName("gridLayoutWidget")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.gridLayoutWidget)
+        self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.kc_ts_send_tu_port_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
+        self.kc_ts_send_tu_port_lineEdit.setStyleSheet("QLineEdit {\n"
+"        min-width: 150px;    /* 最小宽度 */\n"
+"        max-width: 200px;    /* 最大宽度 */\n"
+"        height: 40px;        /* 高度 */\n"
+"        font-size: 16px;     /* 字体大小 */\n"
+"        border: 2px solid gray;  /* 边框 */\n"
+"        border-radius: 5px;      /* 圆角 */\n"
+"        padding: 5px;            /* 内边距 */\n"
+"}")
+        self.kc_ts_send_tu_port_lineEdit.setObjectName("kc_ts_send_tu_port_lineEdit")
+        self.gridLayout_2.addWidget(self.kc_ts_send_tu_port_lineEdit, 3, 1, 1, 1)
+        self.kc_ts_send_tu_port_label = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.kc_ts_send_tu_port_label.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.kc_ts_send_tu_port_label.setStyleSheet("QLabel {\n"
+"    border: 0px solid #298DFF; /* 无边框 */\n"
+"    border-radius: 3px; /* 边框圆角 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: #298DFF; /* 文本颜色 */\n"
+"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
+"    font-size: 10pt; /* 文本字体大小 */\n"
+"}")
+        self.kc_ts_send_tu_port_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_ts_send_tu_port_label.setObjectName("kc_ts_send_tu_port_label")
+        self.gridLayout_2.addWidget(self.kc_ts_send_tu_port_label, 3, 0, 1, 1)
+        self.kc_ts_send_mu_port_label = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.kc_ts_send_mu_port_label.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.kc_ts_send_mu_port_label.setStyleSheet("QLabel {\n"
+"    border: 0px solid #298DFF; /* 无边框 */\n"
+"    border-radius: 3px; /* 边框圆角 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: #298DFF; /* 文本颜色 */\n"
+"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
+"    font-size: 10pt; /* 文本字体大小 */\n"
+"}")
+        self.kc_ts_send_mu_port_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_ts_send_mu_port_label.setObjectName("kc_ts_send_mu_port_label")
+        self.gridLayout_2.addWidget(self.kc_ts_send_mu_port_label, 4, 0, 1, 1)
+        self.kc_ts_recv_tu_port_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
+        self.kc_ts_recv_tu_port_lineEdit.setStyleSheet("QLineEdit {\n"
+"        min-width: 150px;    /* 最小宽度 */\n"
+"        max-width: 200px;    /* 最大宽度 */\n"
+"        height: 40px;        /* 高度 */\n"
+"        font-size: 16px;     /* 字体大小 */\n"
+"        border: 2px solid gray;  /* 边框 */\n"
+"        border-radius: 5px;      /* 圆角 */\n"
+"        padding: 5px;            /* 内边距 */\n"
+"}")
+        self.kc_ts_recv_tu_port_lineEdit.setObjectName("kc_ts_recv_tu_port_lineEdit")
+        self.gridLayout_2.addWidget(self.kc_ts_recv_tu_port_lineEdit, 1, 1, 1, 1)
+        self.kc_ts_recv_ou_port_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
+        self.kc_ts_recv_ou_port_lineEdit.setStyleSheet("QLineEdit {\n"
+"        min-width: 150px;    /* 最小宽度 */\n"
+"        max-width: 200px;    /* 最大宽度 */\n"
+"        height: 40px;        /* 高度 */\n"
+"        font-size: 16px;     /* 字体大小 */\n"
+"        border: 2px solid gray;  /* 边框 */\n"
+"        border-radius: 5px;      /* 圆角 */\n"
+"        padding: 5px;            /* 内边距 */\n"
+"}")
+        self.kc_ts_recv_ou_port_lineEdit.setObjectName("kc_ts_recv_ou_port_lineEdit")
+        self.gridLayout_2.addWidget(self.kc_ts_recv_ou_port_lineEdit, 2, 1, 1, 1)
+        self.kc_ts_ip_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
+        self.kc_ts_ip_lineEdit.setStyleSheet("QLineEdit {\n"
+"        min-width: 150px;    /* 最小宽度 */\n"
+"        max-width: 200px;    /* 最大宽度 */\n"
+"        height: 40px;        /* 高度 */\n"
+"        font-size: 16px;     /* 字体大小 */\n"
+"        border: 2px solid gray;  /* 边框 */\n"
+"        border-radius: 5px;      /* 圆角 */\n"
+"        padding: 5px;            /* 内边距 */\n"
+"}")
+        self.kc_ts_ip_lineEdit.setReadOnly(True)
+        self.kc_ts_ip_lineEdit.setObjectName("kc_ts_ip_lineEdit")
+        self.gridLayout_2.addWidget(self.kc_ts_ip_lineEdit, 0, 1, 1, 1)
+        self.kc_ts_send_mu_port_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
+        self.kc_ts_send_mu_port_lineEdit.setStyleSheet("QLineEdit {\n"
+"        min-width: 150px;    /* 最小宽度 */\n"
+"        max-width: 200px;    /* 最大宽度 */\n"
+"        height: 40px;        /* 高度 */\n"
+"        font-size: 16px;     /* 字体大小 */\n"
+"        border: 2px solid gray;  /* 边框 */\n"
+"        border-radius: 5px;      /* 圆角 */\n"
+"        padding: 5px;            /* 内边距 */\n"
+"}")
+        self.kc_ts_send_mu_port_lineEdit.setObjectName("kc_ts_send_mu_port_lineEdit")
+        self.gridLayout_2.addWidget(self.kc_ts_send_mu_port_lineEdit, 4, 1, 1, 1)
+        self.kc_ts_recv_port_label = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.kc_ts_recv_port_label.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.kc_ts_recv_port_label.setStyleSheet("QLabel {\n"
+"    border: 0px solid #298DFF; /* 无边框 */\n"
+"    border-radius: 3px; /* 边框圆角 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: #298DFF; /* 文本颜色 */\n"
+"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
+"    font-size: 10pt; /* 文本字体大小 */\n"
+"}")
+        self.kc_ts_recv_port_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_ts_recv_port_label.setObjectName("kc_ts_recv_port_label")
+        self.gridLayout_2.addWidget(self.kc_ts_recv_port_label, 1, 0, 1, 1)
+        self.kc_ts_ip_label = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.kc_ts_ip_label.setStyleSheet("QLabel {\n"
+"    border: 0px solid #298DFF; /* 无边框 */\n"
+"    border-radius: 3px; /* 边框圆角 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: #298DFF; /* 文本颜色 */\n"
+"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
+"    font-size: 10pt; /* 文本字体大小 */\n"
+"}")
+        self.kc_ts_ip_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_ts_ip_label.setObjectName("kc_ts_ip_label")
+        self.gridLayout_2.addWidget(self.kc_ts_ip_label, 0, 0, 1, 1)
+        self.mu_ip_label = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.mu_ip_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.mu_ip_label.setStyleSheet("QLabel {\n"
+"    border: 0px solid #298DFF; /* 无边框 */\n"
+"    border-radius: 3px; /* 边框圆角 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: #298DFF; /* 文本颜色 */\n"
+"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
+"    font-size: 10pt; /* 文本字体大小 */\n"
+"}")
+        self.mu_ip_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.mu_ip_label.setObjectName("mu_ip_label")
+        self.gridLayout_2.addWidget(self.mu_ip_label, 0, 2, 1, 1)
+        self.recv_ou_port_label = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.recv_ou_port_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.recv_ou_port_label.setStyleSheet("QLabel {\n"
+"    border: 0px solid #298DFF; /* 无边框 */\n"
+"    border-radius: 3px; /* 边框圆角 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: #298DFF; /* 文本颜色 */\n"
+"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
+"    font-size: 10pt; /* 文本字体大小 */\n"
+"}")
+        self.recv_ou_port_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.recv_ou_port_label.setObjectName("recv_ou_port_label")
+        self.gridLayout_2.addWidget(self.recv_ou_port_label, 2, 0, 1, 1)
+        self.mu_ip_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
+        self.mu_ip_lineEdit.setStyleSheet("QLineEdit {\n"
+"        min-width: 150px;    /* 最小宽度 */\n"
+"        max-width: 200px;    /* 最大宽度 */\n"
+"        height: 40px;        /* 高度 */\n"
+"        font-size: 16px;     /* 字体大小 */\n"
+"        border: 2px solid gray;  /* 边框 */\n"
+"        border-radius: 5px;      /* 圆角 */\n"
+"        padding: 5px;            /* 内边距 */\n"
+"}")
+        self.mu_ip_lineEdit.setObjectName("mu_ip_lineEdit")
+        self.gridLayout_2.addWidget(self.mu_ip_lineEdit, 0, 3, 1, 1)
+        self.mu_recv_port_label = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.mu_recv_port_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.mu_recv_port_label.setStyleSheet("QLabel {\n"
+"    border: 0px solid #298DFF; /* 无边框 */\n"
+"    border-radius: 3px; /* 边框圆角 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: #298DFF; /* 文本颜色 */\n"
+"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
+"    font-size: 10pt; /* 文本字体大小 */\n"
+"}")
+        self.mu_recv_port_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.mu_recv_port_label.setObjectName("mu_recv_port_label")
+        self.gridLayout_2.addWidget(self.mu_recv_port_label, 1, 2, 1, 1)
+        self.mu_recv_port_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
+        self.mu_recv_port_lineEdit.setStyleSheet("QLineEdit {\n"
+"        min-width: 150px;    /* 最小宽度 */\n"
+"        max-width: 200px;    /* 最大宽度 */\n"
+"        height: 40px;        /* 高度 */\n"
+"        font-size: 16px;     /* 字体大小 */\n"
+"        border: 2px solid gray;  /* 边框 */\n"
+"        border-radius: 5px;      /* 圆角 */\n"
+"        padding: 5px;            /* 内边距 */\n"
+"}")
+        self.mu_recv_port_lineEdit.setObjectName("mu_recv_port_lineEdit")
+        self.gridLayout_2.addWidget(self.mu_recv_port_lineEdit, 1, 3, 1, 1)
+        self.kc_tu_ip_label = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.kc_tu_ip_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.kc_tu_ip_label.setStyleSheet("QLabel {\n"
+"    border: 0px solid #298DFF; /* 无边框 */\n"
+"    border-radius: 3px; /* 边框圆角 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: #298DFF; /* 文本颜色 */\n"
+"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
+"    font-size: 10pt; /* 文本字体大小 */\n"
+"}")
+        self.kc_tu_ip_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_tu_ip_label.setObjectName("kc_tu_ip_label")
+        self.gridLayout_2.addWidget(self.kc_tu_ip_label, 2, 2, 1, 1)
+        self.kc_tu_ip_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
+        self.kc_tu_ip_lineEdit.setStyleSheet("QLineEdit {\n"
+"        min-width: 150px;    /* 最小宽度 */\n"
+"        max-width: 200px;    /* 最大宽度 */\n"
+"        height: 40px;        /* 高度 */\n"
+"        font-size: 16px;     /* 字体大小 */\n"
+"        border: 2px solid gray;  /* 边框 */\n"
+"        border-radius: 5px;      /* 圆角 */\n"
+"        padding: 5px;            /* 内边距 */\n"
+"}")
+        self.kc_tu_ip_lineEdit.setObjectName("kc_tu_ip_lineEdit")
+        self.gridLayout_2.addWidget(self.kc_tu_ip_lineEdit, 2, 3, 1, 1)
+        self.kc_tu_recv_port_label = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.kc_tu_recv_port_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.kc_tu_recv_port_label.setStyleSheet("QLabel {\n"
+"    border: 0px solid #298DFF; /* 无边框 */\n"
+"    border-radius: 3px; /* 边框圆角 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: #298DFF; /* 文本颜色 */\n"
+"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
+"    font-size: 10pt; /* 文本字体大小 */\n"
+"}")
+        self.kc_tu_recv_port_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_tu_recv_port_label.setObjectName("kc_tu_recv_port_label")
+        self.gridLayout_2.addWidget(self.kc_tu_recv_port_label, 3, 2, 1, 1)
+        self.kc_tu_recv_port_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
+        self.kc_tu_recv_port_lineEdit.setStyleSheet("QLineEdit {\n"
+"        min-width: 150px;    /* 最小宽度 */\n"
+"        max-width: 200px;    /* 最大宽度 */\n"
+"        height: 40px;        /* 高度 */\n"
+"        font-size: 16px;     /* 字体大小 */\n"
+"        border: 2px solid gray;  /* 边框 */\n"
+"        border-radius: 5px;      /* 圆角 */\n"
+"        padding: 5px;            /* 内边距 */\n"
+"}")
+        self.kc_tu_recv_port_lineEdit.setObjectName("kc_tu_recv_port_lineEdit")
+        self.gridLayout_2.addWidget(self.kc_tu_recv_port_lineEdit, 3, 3, 1, 1)
+        self.apply_pushButton = QtWidgets.QPushButton(self.device_status_page)
+        self.apply_pushButton.setGeometry(QtCore.QRect(800, 490, 131, 61))
+        self.apply_pushButton.setObjectName("apply_pushButton")
         self.sub_interface_stacked.addWidget(self.device_status_page)
         self.auto_test_page = QtWidgets.QWidget()
         self.auto_test_page.setObjectName("auto_test_page")
@@ -366,190 +600,6 @@ class Ui_KCTS(object):
         self.tabWidget.addTab(self.history_tab, "")
         self.verticalLayout_2.addWidget(self.tabWidget)
         self.sub_interface_stacked.addWidget(self.analysis_page)
-        self.configuration_page = QtWidgets.QWidget()
-        self.configuration_page.setObjectName("configuration_page")
-        self.gridLayoutWidget = QtWidgets.QWidget(self.configuration_page)
-        self.gridLayoutWidget.setGeometry(QtCore.QRect(50, 30, 371, 491))
-        self.gridLayoutWidget.setObjectName("gridLayoutWidget")
-        self.gridLayout_2 = QtWidgets.QGridLayout(self.gridLayoutWidget)
-        self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout_2.setObjectName("gridLayout_2")
-        self.kc_tu_ip_label = QtWidgets.QLabel(self.gridLayoutWidget)
-        self.kc_tu_ip_label.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.kc_tu_ip_label.setStyleSheet("QLabel {\n"
-"    border: 0px solid #298DFF; /* 无边框 */\n"
-"    border-radius: 3px; /* 边框圆角 */\n"
-"    background-color: ; /* 背景颜色 */\n"
-"    color: #298DFF; /* 文本颜色 */\n"
-"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
-"    font-size: 10pt; /* 文本字体大小 */\n"
-"}")
-        self.kc_tu_ip_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.kc_tu_ip_label.setObjectName("kc_tu_ip_label")
-        self.gridLayout_2.addWidget(self.kc_tu_ip_label, 5, 0, 1, 1)
-        self.kc_ts_send_port_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
-        self.kc_ts_send_port_lineEdit.setStyleSheet("QLineEdit {\n"
-"        min-width: 150px;    /* 最小宽度 */\n"
-"        max-width: 200px;    /* 最大宽度 */\n"
-"        height: 40px;        /* 高度 */\n"
-"        font-size: 16px;     /* 字体大小 */\n"
-"        border: 2px solid gray;  /* 边框 */\n"
-"        border-radius: 5px;      /* 圆角 */\n"
-"        padding: 5px;            /* 内边距 */\n"
-"}")
-        self.kc_ts_send_port_lineEdit.setObjectName("kc_ts_send_port_lineEdit")
-        self.gridLayout_2.addWidget(self.kc_ts_send_port_lineEdit, 2, 1, 1, 1)
-        self.kc_ts_recv_port_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
-        self.kc_ts_recv_port_lineEdit.setStyleSheet("QLineEdit {\n"
-"        min-width: 150px;    /* 最小宽度 */\n"
-"        max-width: 200px;    /* 最大宽度 */\n"
-"        height: 40px;        /* 高度 */\n"
-"        font-size: 16px;     /* 字体大小 */\n"
-"        border: 2px solid gray;  /* 边框 */\n"
-"        border-radius: 5px;      /* 圆角 */\n"
-"        padding: 5px;            /* 内边距 */\n"
-"}")
-        self.kc_ts_recv_port_lineEdit.setObjectName("kc_ts_recv_port_lineEdit")
-        self.gridLayout_2.addWidget(self.kc_ts_recv_port_lineEdit, 1, 1, 1, 1)
-        self.kc_ts_recv_port_label = QtWidgets.QLabel(self.gridLayoutWidget)
-        self.kc_ts_recv_port_label.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.kc_ts_recv_port_label.setStyleSheet("QLabel {\n"
-"    border: 0px solid #298DFF; /* 无边框 */\n"
-"    border-radius: 3px; /* 边框圆角 */\n"
-"    background-color: ; /* 背景颜色 */\n"
-"    color: #298DFF; /* 文本颜色 */\n"
-"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
-"    font-size: 10pt; /* 文本字体大小 */\n"
-"}")
-        self.kc_ts_recv_port_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.kc_ts_recv_port_label.setObjectName("kc_ts_recv_port_label")
-        self.gridLayout_2.addWidget(self.kc_ts_recv_port_label, 1, 0, 1, 1)
-        self.mu_recv_port_label = QtWidgets.QLabel(self.gridLayoutWidget)
-        self.mu_recv_port_label.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.mu_recv_port_label.setStyleSheet("QLabel {\n"
-"    border: 0px solid #298DFF; /* 无边框 */\n"
-"    border-radius: 3px; /* 边框圆角 */\n"
-"    background-color: ; /* 背景颜色 */\n"
-"    color: #298DFF; /* 文本颜色 */\n"
-"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
-"    font-size: 10pt; /* 文本字体大小 */\n"
-"}")
-        self.mu_recv_port_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.mu_recv_port_label.setObjectName("mu_recv_port_label")
-        self.gridLayout_2.addWidget(self.mu_recv_port_label, 4, 0, 1, 1)
-        self.mu_ip_label = QtWidgets.QLabel(self.gridLayoutWidget)
-        self.mu_ip_label.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.mu_ip_label.setStyleSheet("QLabel {\n"
-"    border: 0px solid #298DFF; /* 无边框 */\n"
-"    border-radius: 3px; /* 边框圆角 */\n"
-"    background-color: ; /* 背景颜色 */\n"
-"    color: #298DFF; /* 文本颜色 */\n"
-"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
-"    font-size: 10pt; /* 文本字体大小 */\n"
-"}")
-        self.mu_ip_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.mu_ip_label.setObjectName("mu_ip_label")
-        self.gridLayout_2.addWidget(self.mu_ip_label, 3, 0, 1, 1)
-        self.kc_ts_send_port_label = QtWidgets.QLabel(self.gridLayoutWidget)
-        self.kc_ts_send_port_label.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.kc_ts_send_port_label.setStyleSheet("QLabel {\n"
-"    border: 0px solid #298DFF; /* 无边框 */\n"
-"    border-radius: 3px; /* 边框圆角 */\n"
-"    background-color: ; /* 背景颜色 */\n"
-"    color: #298DFF; /* 文本颜色 */\n"
-"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
-"    font-size: 10pt; /* 文本字体大小 */\n"
-"}")
-        self.kc_ts_send_port_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.kc_ts_send_port_label.setObjectName("kc_ts_send_port_label")
-        self.gridLayout_2.addWidget(self.kc_ts_send_port_label, 2, 0, 1, 1)
-        self.kc_ts_ip_label = QtWidgets.QLabel(self.gridLayoutWidget)
-        self.kc_ts_ip_label.setStyleSheet("QLabel {\n"
-"    border: 0px solid #298DFF; /* 无边框 */\n"
-"    border-radius: 3px; /* 边框圆角 */\n"
-"    background-color: ; /* 背景颜色 */\n"
-"    color: #298DFF; /* 文本颜色 */\n"
-"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
-"    font-size: 10pt; /* 文本字体大小 */\n"
-"}")
-        self.kc_ts_ip_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.kc_ts_ip_label.setObjectName("kc_ts_ip_label")
-        self.gridLayout_2.addWidget(self.kc_ts_ip_label, 0, 0, 1, 1)
-        self.kc_ts_ip_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
-        self.kc_ts_ip_lineEdit.setStyleSheet("QLineEdit {\n"
-"        min-width: 150px;    /* 最小宽度 */\n"
-"        max-width: 200px;    /* 最大宽度 */\n"
-"        height: 40px;        /* 高度 */\n"
-"        font-size: 16px;     /* 字体大小 */\n"
-"        border: 2px solid gray;  /* 边框 */\n"
-"        border-radius: 5px;      /* 圆角 */\n"
-"        padding: 5px;            /* 内边距 */\n"
-"}")
-        self.kc_ts_ip_lineEdit.setReadOnly(True)
-        self.kc_ts_ip_lineEdit.setObjectName("kc_ts_ip_lineEdit")
-        self.gridLayout_2.addWidget(self.kc_ts_ip_lineEdit, 0, 1, 1, 1)
-        self.kc_tu_recv_port_label = QtWidgets.QLabel(self.gridLayoutWidget)
-        self.kc_tu_recv_port_label.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.kc_tu_recv_port_label.setStyleSheet("QLabel {\n"
-"    border: 0px solid #298DFF; /* 无边框 */\n"
-"    border-radius: 3px; /* 边框圆角 */\n"
-"    background-color: ; /* 背景颜色 */\n"
-"    color: #298DFF; /* 文本颜色 */\n"
-"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
-"    font-size: 10pt; /* 文本字体大小 */\n"
-"}")
-        self.kc_tu_recv_port_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.kc_tu_recv_port_label.setObjectName("kc_tu_recv_port_label")
-        self.gridLayout_2.addWidget(self.kc_tu_recv_port_label, 6, 0, 1, 1)
-        self.mu_ip_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
-        self.mu_ip_lineEdit.setStyleSheet("QLineEdit {\n"
-"        min-width: 150px;    /* 最小宽度 */\n"
-"        max-width: 200px;    /* 最大宽度 */\n"
-"        height: 40px;        /* 高度 */\n"
-"        font-size: 16px;     /* 字体大小 */\n"
-"        border: 2px solid gray;  /* 边框 */\n"
-"        border-radius: 5px;      /* 圆角 */\n"
-"        padding: 5px;            /* 内边距 */\n"
-"}")
-        self.mu_ip_lineEdit.setObjectName("mu_ip_lineEdit")
-        self.gridLayout_2.addWidget(self.mu_ip_lineEdit, 3, 1, 1, 1)
-        self.mu_recv_port_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
-        self.mu_recv_port_lineEdit.setStyleSheet("QLineEdit {\n"
-"        min-width: 150px;    /* 最小宽度 */\n"
-"        max-width: 200px;    /* 最大宽度 */\n"
-"        height: 40px;        /* 高度 */\n"
-"        font-size: 16px;     /* 字体大小 */\n"
-"        border: 2px solid gray;  /* 边框 */\n"
-"        border-radius: 5px;      /* 圆角 */\n"
-"        padding: 5px;            /* 内边距 */\n"
-"}")
-        self.mu_recv_port_lineEdit.setObjectName("mu_recv_port_lineEdit")
-        self.gridLayout_2.addWidget(self.mu_recv_port_lineEdit, 4, 1, 1, 1)
-        self.kc_tu_ip_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
-        self.kc_tu_ip_lineEdit.setStyleSheet("QLineEdit {\n"
-"        min-width: 150px;    /* 最小宽度 */\n"
-"        max-width: 200px;    /* 最大宽度 */\n"
-"        height: 40px;        /* 高度 */\n"
-"        font-size: 16px;     /* 字体大小 */\n"
-"        border: 2px solid gray;  /* 边框 */\n"
-"        border-radius: 5px;      /* 圆角 */\n"
-"        padding: 5px;            /* 内边距 */\n"
-"}")
-        self.kc_tu_ip_lineEdit.setObjectName("kc_tu_ip_lineEdit")
-        self.gridLayout_2.addWidget(self.kc_tu_ip_lineEdit, 5, 1, 1, 1)
-        self.kc_tu_recv_port_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
-        self.kc_tu_recv_port_lineEdit.setStyleSheet("QLineEdit {\n"
-"        min-width: 150px;    /* 最小宽度 */\n"
-"        max-width: 200px;    /* 最大宽度 */\n"
-"        height: 40px;        /* 高度 */\n"
-"        font-size: 16px;     /* 字体大小 */\n"
-"        border: 2px solid gray;  /* 边框 */\n"
-"        border-radius: 5px;      /* 圆角 */\n"
-"        padding: 5px;            /* 内边距 */\n"
-"}")
-        self.kc_tu_recv_port_lineEdit.setObjectName("kc_tu_recv_port_lineEdit")
-        self.gridLayout_2.addWidget(self.kc_tu_recv_port_lineEdit, 6, 1, 1, 1)
-        self.sub_interface_stacked.addWidget(self.configuration_page)
         self.horizontalLayout_2.addWidget(self.sub_interface_stacked)
         self.horizontalLayout_2.setStretch(0, 1)
         self.horizontalLayout_2.setStretch(1, 15)
@@ -571,6 +621,16 @@ class Ui_KCTS(object):
         self.pushButton_2.setText(_translate("KCTS", "生成报告"))
         self.pushButton_3.setText(_translate("KCTS", "……"))
         self.label.setText(_translate("KCTS", "这是设备状态界面"))
+        self.kc_ts_send_tu_port_label.setText(_translate("KCTS", "send_tu_port :"))
+        self.kc_ts_send_mu_port_label.setText(_translate("KCTS", "send_mu_port :"))
+        self.kc_ts_recv_port_label.setText(_translate("KCTS", "recv_TU_port :"))
+        self.kc_ts_ip_label.setText(_translate("KCTS", "KC-TS IP:"))
+        self.mu_ip_label.setText(_translate("KCTS", "MU IP :"))
+        self.recv_ou_port_label.setText(_translate("KCTS", "recv_OU_prot :"))
+        self.mu_recv_port_label.setText(_translate("KCTS", "MU recv_port :"))
+        self.kc_tu_ip_label.setText(_translate("KCTS", "KC-TU IP :"))
+        self.kc_tu_recv_port_label.setText(_translate("KCTS", "KC-TU recv_port :"))
+        self.apply_pushButton.setText(_translate("KCTS", "应用"))
         self.label_2.setText(_translate("KCTS", "这是自动化测试界面"))
         self.PWM15_progressBar.setFormat(_translate("KCTS", "PWM15{%vV}"))
         self.PWM7_progressBar.setFormat(_translate("KCTS", "PWM7{%vV}"))
@@ -618,10 +678,3 @@ class Ui_KCTS(object):
         self.send_package_pushButton.setText(_translate("KCTS", "模拟发包"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.real_time_analysis_tab), _translate("KCTS", "实时解析"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.history_tab), _translate("KCTS", "历史记录"))
-        self.kc_tu_ip_label.setText(_translate("KCTS", "KC-TU IP :"))
-        self.kc_ts_recv_port_label.setText(_translate("KCTS", "KC-TS recv_port :"))
-        self.mu_recv_port_label.setText(_translate("KCTS", "MU recv_port :"))
-        self.mu_ip_label.setText(_translate("KCTS", "MU IP :"))
-        self.kc_ts_send_port_label.setText(_translate("KCTS", "KC-TS send_port :"))
-        self.kc_ts_ip_label.setText(_translate("KCTS", "KC-TS IP:"))
-        self.kc_tu_recv_port_label.setText(_translate("KCTS", "KC-TU recv_port :"))

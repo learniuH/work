@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1064</width>
-    <height>611</height>
+    <height>690</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -190,14 +190,411 @@
           <widget class="QLabel" name="label">
            <property name="geometry">
             <rect>
-             <x>290</x>
-             <y>90</y>
+             <x>70</x>
+             <y>20</y>
              <width>141</width>
              <height>41</height>
             </rect>
            </property>
            <property name="text">
             <string>这是设备状态界面</string>
+           </property>
+          </widget>
+          <widget class="QWidget" name="gridLayoutWidget">
+           <property name="geometry">
+            <rect>
+             <x>80</x>
+             <y>60</y>
+             <width>691</width>
+             <height>536</height>
+            </rect>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_2">
+            <item row="3" column="1">
+             <widget class="QLineEdit" name="kc_ts_send_tu_port_lineEdit">
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+        min-width: 150px;    /* 最小宽度 */
+        max-width: 200px;    /* 最大宽度 */
+        height: 40px;        /* 高度 */
+        font-size: 16px;     /* 字体大小 */
+        border: 2px solid gray;  /* 边框 */
+        border-radius: 5px;      /* 圆角 */
+        padding: 5px;            /* 内边距 */
+}</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="kc_ts_send_tu_port_label">
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+	border: 0px solid #298DFF; /* 无边框 */
+	border-radius: 3px; /* 边框圆角 */
+	background-color: ; /* 背景颜色 */
+	color: #298DFF; /* 文本颜色 */
+	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
+	font-size: 10pt; /* 文本字体大小 */
+}</string>
+              </property>
+              <property name="text">
+               <string>send_tu_port :</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="kc_ts_send_mu_port_label">
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+	border: 0px solid #298DFF; /* 无边框 */
+	border-radius: 3px; /* 边框圆角 */
+	background-color: ; /* 背景颜色 */
+	color: #298DFF; /* 文本颜色 */
+	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
+	font-size: 10pt; /* 文本字体大小 */
+}</string>
+              </property>
+              <property name="text">
+               <string>send_mu_port :</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="kc_ts_recv_tu_port_lineEdit">
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+        min-width: 150px;    /* 最小宽度 */
+        max-width: 200px;    /* 最大宽度 */
+        height: 40px;        /* 高度 */
+        font-size: 16px;     /* 字体大小 */
+        border: 2px solid gray;  /* 边框 */
+        border-radius: 5px;      /* 圆角 */
+        padding: 5px;            /* 内边距 */
+}</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLineEdit" name="kc_ts_recv_ou_port_lineEdit">
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+        min-width: 150px;    /* 最小宽度 */
+        max-width: 200px;    /* 最大宽度 */
+        height: 40px;        /* 高度 */
+        font-size: 16px;     /* 字体大小 */
+        border: 2px solid gray;  /* 边框 */
+        border-radius: 5px;      /* 圆角 */
+        padding: 5px;            /* 内边距 */
+}</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="kc_ts_ip_lineEdit">
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+        min-width: 150px;    /* 最小宽度 */
+        max-width: 200px;    /* 最大宽度 */
+        height: 40px;        /* 高度 */
+        font-size: 16px;     /* 字体大小 */
+        border: 2px solid gray;  /* 边框 */
+        border-radius: 5px;      /* 圆角 */
+        padding: 5px;            /* 内边距 */
+}</string>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QLineEdit" name="kc_ts_send_mu_port_lineEdit">
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+        min-width: 150px;    /* 最小宽度 */
+        max-width: 200px;    /* 最大宽度 */
+        height: 40px;        /* 高度 */
+        font-size: 16px;     /* 字体大小 */
+        border: 2px solid gray;  /* 边框 */
+        border-radius: 5px;      /* 圆角 */
+        padding: 5px;            /* 内边距 */
+}</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="kc_ts_recv_port_label">
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+	border: 0px solid #298DFF; /* 无边框 */
+	border-radius: 3px; /* 边框圆角 */
+	background-color: ; /* 背景颜色 */
+	color: #298DFF; /* 文本颜色 */
+	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
+	font-size: 10pt; /* 文本字体大小 */
+}</string>
+              </property>
+              <property name="text">
+               <string>recv_TU_port :</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="kc_ts_ip_label">
+              <property name="maximumSize">
+               <size>
+                <width>150</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+	border: 0px solid #298DFF; /* 无边框 */
+	border-radius: 3px; /* 边框圆角 */
+	background-color: ; /* 背景颜色 */
+	color: #298DFF; /* 文本颜色 */
+	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
+	font-size: 10pt; /* 文本字体大小 */
+}</string>
+              </property>
+              <property name="text">
+               <string>KC-TS IP:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLabel" name="mu_ip_label">
+              <property name="maximumSize">
+               <size>
+                <width>150</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+	border: 0px solid #298DFF; /* 无边框 */
+	border-radius: 3px; /* 边框圆角 */
+	background-color: ; /* 背景颜色 */
+	color: #298DFF; /* 文本颜色 */
+	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
+	font-size: 10pt; /* 文本字体大小 */
+}</string>
+              </property>
+              <property name="text">
+               <string>MU IP :</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="recv_ou_port_label">
+              <property name="maximumSize">
+               <size>
+                <width>150</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+	border: 0px solid #298DFF; /* 无边框 */
+	border-radius: 3px; /* 边框圆角 */
+	background-color: ; /* 背景颜色 */
+	color: #298DFF; /* 文本颜色 */
+	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
+	font-size: 10pt; /* 文本字体大小 */
+}</string>
+              </property>
+              <property name="text">
+               <string>recv_OU_prot :</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="QLineEdit" name="mu_ip_lineEdit">
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+        min-width: 150px;    /* 最小宽度 */
+        max-width: 200px;    /* 最大宽度 */
+        height: 40px;        /* 高度 */
+        font-size: 16px;     /* 字体大小 */
+        border: 2px solid gray;  /* 边框 */
+        border-radius: 5px;      /* 圆角 */
+        padding: 5px;            /* 内边距 */
+}</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="QLabel" name="mu_recv_port_label">
+              <property name="maximumSize">
+               <size>
+                <width>150</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+	border: 0px solid #298DFF; /* 无边框 */
+	border-radius: 3px; /* 边框圆角 */
+	background-color: ; /* 背景颜色 */
+	color: #298DFF; /* 文本颜色 */
+	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
+	font-size: 10pt; /* 文本字体大小 */
+}</string>
+              </property>
+              <property name="text">
+               <string>MU recv_port :</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="3">
+             <widget class="QLineEdit" name="mu_recv_port_lineEdit">
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+        min-width: 150px;    /* 最小宽度 */
+        max-width: 200px;    /* 最大宽度 */
+        height: 40px;        /* 高度 */
+        font-size: 16px;     /* 字体大小 */
+        border: 2px solid gray;  /* 边框 */
+        border-radius: 5px;      /* 圆角 */
+        padding: 5px;            /* 内边距 */
+}</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2">
+             <widget class="QLabel" name="kc_tu_ip_label">
+              <property name="maximumSize">
+               <size>
+                <width>150</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+	border: 0px solid #298DFF; /* 无边框 */
+	border-radius: 3px; /* 边框圆角 */
+	background-color: ; /* 背景颜色 */
+	color: #298DFF; /* 文本颜色 */
+	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
+	font-size: 10pt; /* 文本字体大小 */
+}</string>
+              </property>
+              <property name="text">
+               <string>KC-TU IP :</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="3">
+             <widget class="QLineEdit" name="kc_tu_ip_lineEdit">
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+        min-width: 150px;    /* 最小宽度 */
+        max-width: 200px;    /* 最大宽度 */
+        height: 40px;        /* 高度 */
+        font-size: 16px;     /* 字体大小 */
+        border: 2px solid gray;  /* 边框 */
+        border-radius: 5px;      /* 圆角 */
+        padding: 5px;            /* 内边距 */
+}</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="2">
+             <widget class="QLabel" name="kc_tu_recv_port_label">
+              <property name="maximumSize">
+               <size>
+                <width>150</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+	border: 0px solid #298DFF; /* 无边框 */
+	border-radius: 3px; /* 边框圆角 */
+	background-color: ; /* 背景颜色 */
+	color: #298DFF; /* 文本颜色 */
+	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
+	font-size: 10pt; /* 文本字体大小 */
+}</string>
+              </property>
+              <property name="text">
+               <string>KC-TU recv_port :</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="3">
+             <widget class="QLineEdit" name="kc_tu_recv_port_lineEdit">
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+        min-width: 150px;    /* 最小宽度 */
+        max-width: 200px;    /* 最大宽度 */
+        height: 40px;        /* 高度 */
+        font-size: 16px;     /* 字体大小 */
+        border: 2px solid gray;  /* 边框 */
+        border-radius: 5px;      /* 圆角 */
+        padding: 5px;            /* 内边距 */
+}</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QPushButton" name="apply_pushButton">
+           <property name="geometry">
+            <rect>
+             <x>800</x>
+             <y>490</y>
+             <width>131</width>
+             <height>61</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>应用</string>
            </property>
           </widget>
          </widget>
@@ -946,304 +1343,6 @@
             </widget>
            </item>
           </layout>
-         </widget>
-         <widget class="QWidget" name="configuration_page">
-          <widget class="QWidget" name="gridLayoutWidget">
-           <property name="geometry">
-            <rect>
-             <x>50</x>
-             <y>30</y>
-             <width>371</width>
-             <height>491</height>
-            </rect>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_2">
-            <item row="5" column="0">
-             <widget class="QLabel" name="kc_tu_ip_label">
-              <property name="maximumSize">
-               <size>
-                <width>150</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QLabel {
-	border: 0px solid #298DFF; /* 无边框 */
-	border-radius: 3px; /* 边框圆角 */
-	background-color: ; /* 背景颜色 */
-	color: #298DFF; /* 文本颜色 */
-	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
-	font-size: 10pt; /* 文本字体大小 */
-}</string>
-              </property>
-              <property name="text">
-               <string>KC-TU IP :</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QLineEdit" name="kc_ts_send_port_lineEdit">
-              <property name="styleSheet">
-               <string notr="true">QLineEdit {
-        min-width: 150px;    /* 最小宽度 */
-        max-width: 200px;    /* 最大宽度 */
-        height: 40px;        /* 高度 */
-        font-size: 16px;     /* 字体大小 */
-        border: 2px solid gray;  /* 边框 */
-        border-radius: 5px;      /* 圆角 */
-        padding: 5px;            /* 内边距 */
-}</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLineEdit" name="kc_ts_recv_port_lineEdit">
-              <property name="styleSheet">
-               <string notr="true">QLineEdit {
-        min-width: 150px;    /* 最小宽度 */
-        max-width: 200px;    /* 最大宽度 */
-        height: 40px;        /* 高度 */
-        font-size: 16px;     /* 字体大小 */
-        border: 2px solid gray;  /* 边框 */
-        border-radius: 5px;      /* 圆角 */
-        padding: 5px;            /* 内边距 */
-}</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="kc_ts_recv_port_label">
-              <property name="maximumSize">
-               <size>
-                <width>150</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QLabel {
-	border: 0px solid #298DFF; /* 无边框 */
-	border-radius: 3px; /* 边框圆角 */
-	background-color: ; /* 背景颜色 */
-	color: #298DFF; /* 文本颜色 */
-	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
-	font-size: 10pt; /* 文本字体大小 */
-}</string>
-              </property>
-              <property name="text">
-               <string>KC-TS recv_port :</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="mu_recv_port_label">
-              <property name="maximumSize">
-               <size>
-                <width>150</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QLabel {
-	border: 0px solid #298DFF; /* 无边框 */
-	border-radius: 3px; /* 边框圆角 */
-	background-color: ; /* 背景颜色 */
-	color: #298DFF; /* 文本颜色 */
-	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
-	font-size: 10pt; /* 文本字体大小 */
-}</string>
-              </property>
-              <property name="text">
-               <string>MU recv_port :</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="mu_ip_label">
-              <property name="maximumSize">
-               <size>
-                <width>150</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QLabel {
-	border: 0px solid #298DFF; /* 无边框 */
-	border-radius: 3px; /* 边框圆角 */
-	background-color: ; /* 背景颜色 */
-	color: #298DFF; /* 文本颜色 */
-	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
-	font-size: 10pt; /* 文本字体大小 */
-}</string>
-              </property>
-              <property name="text">
-               <string>MU IP :</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="kc_ts_send_port_label">
-              <property name="maximumSize">
-               <size>
-                <width>150</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QLabel {
-	border: 0px solid #298DFF; /* 无边框 */
-	border-radius: 3px; /* 边框圆角 */
-	background-color: ; /* 背景颜色 */
-	color: #298DFF; /* 文本颜色 */
-	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
-	font-size: 10pt; /* 文本字体大小 */
-}</string>
-              </property>
-              <property name="text">
-               <string>KC-TS send_port :</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="kc_ts_ip_label">
-              <property name="styleSheet">
-               <string notr="true">QLabel {
-	border: 0px solid #298DFF; /* 无边框 */
-	border-radius: 3px; /* 边框圆角 */
-	background-color: ; /* 背景颜色 */
-	color: #298DFF; /* 文本颜色 */
-	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
-	font-size: 10pt; /* 文本字体大小 */
-}</string>
-              </property>
-              <property name="text">
-               <string>KC-TS IP:</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLineEdit" name="kc_ts_ip_lineEdit">
-              <property name="styleSheet">
-               <string notr="true">QLineEdit {
-        min-width: 150px;    /* 最小宽度 */
-        max-width: 200px;    /* 最大宽度 */
-        height: 40px;        /* 高度 */
-        font-size: 16px;     /* 字体大小 */
-        border: 2px solid gray;  /* 边框 */
-        border-radius: 5px;      /* 圆角 */
-        padding: 5px;            /* 内边距 */
-}</string>
-              </property>
-              <property name="readOnly">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="0">
-             <widget class="QLabel" name="kc_tu_recv_port_label">
-              <property name="maximumSize">
-               <size>
-                <width>150</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QLabel {
-	border: 0px solid #298DFF; /* 无边框 */
-	border-radius: 3px; /* 边框圆角 */
-	background-color: ; /* 背景颜色 */
-	color: #298DFF; /* 文本颜色 */
-	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
-	font-size: 10pt; /* 文本字体大小 */
-}</string>
-              </property>
-              <property name="text">
-               <string>KC-TU recv_port :</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QLineEdit" name="mu_ip_lineEdit">
-              <property name="styleSheet">
-               <string notr="true">QLineEdit {
-        min-width: 150px;    /* 最小宽度 */
-        max-width: 200px;    /* 最大宽度 */
-        height: 40px;        /* 高度 */
-        font-size: 16px;     /* 字体大小 */
-        border: 2px solid gray;  /* 边框 */
-        border-radius: 5px;      /* 圆角 */
-        padding: 5px;            /* 内边距 */
-}</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="1">
-             <widget class="QLineEdit" name="mu_recv_port_lineEdit">
-              <property name="styleSheet">
-               <string notr="true">QLineEdit {
-        min-width: 150px;    /* 最小宽度 */
-        max-width: 200px;    /* 最大宽度 */
-        height: 40px;        /* 高度 */
-        font-size: 16px;     /* 字体大小 */
-        border: 2px solid gray;  /* 边框 */
-        border-radius: 5px;      /* 圆角 */
-        padding: 5px;            /* 内边距 */
-}</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="1">
-             <widget class="QLineEdit" name="kc_tu_ip_lineEdit">
-              <property name="styleSheet">
-               <string notr="true">QLineEdit {
-        min-width: 150px;    /* 最小宽度 */
-        max-width: 200px;    /* 最大宽度 */
-        height: 40px;        /* 高度 */
-        font-size: 16px;     /* 字体大小 */
-        border: 2px solid gray;  /* 边框 */
-        border-radius: 5px;      /* 圆角 */
-        padding: 5px;            /* 内边距 */
-}</string>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="1">
-             <widget class="QLineEdit" name="kc_tu_recv_port_lineEdit">
-              <property name="styleSheet">
-               <string notr="true">QLineEdit {
-        min-width: 150px;    /* 最小宽度 */
-        max-width: 200px;    /* 最大宽度 */
-        height: 40px;        /* 高度 */
-        font-size: 16px;     /* 字体大小 */
-        border: 2px solid gray;  /* 边框 */
-        border-radius: 5px;      /* 圆角 */
-        padding: 5px;            /* 内边距 */
-}</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
          </widget>
         </widget>
        </item>

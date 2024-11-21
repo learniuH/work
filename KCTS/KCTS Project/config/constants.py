@@ -6,5 +6,5 @@ class ConnectionStatus(Enum):
     CONNECTED = 1
 
 class NavigationBarItems:
-    LIST = ['设备状态', 'MU功能测试', '输出查询', '配置管理']
+    LIST = ['设备状态', 'MU功能测试', '输出查询']
 
