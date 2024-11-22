@@ -4,6 +4,8 @@ import time
 from itertools import cycle
 from typing import Optional, Tuple
 
+from .package_send import QueryCollectionStatus as QueryStatus
+
 class NetworkManager:
     ''' 网络管理, 处理UDP通信 '''
 
@@ -23,7 +25,6 @@ class NetworkManager:
         self.is_sending_mu: bool = False
         self.is_receiving_ou: bool = False
         self.is_receiving_tu: bool = False
-        self.tu_package_send: Optional[bytearray] = None
         self.mu_package_send: Optional[bytearray] = None
         self.tu_package_recv: Optional[bytearray] = None
         self.ou_package_recv: Optional[bytearray] = None
@@ -86,8 +87,6 @@ class NetworkManager:
             self.recv_ou_socket.close()
             self.recv_ou_socket = None
 
-            print('数据接收停止')
-
     def start_receiving_tu(self, local_ip: str, recv_tu_port: str) -> bool:
         '''开始监听数据
 
@@ -122,7 +121,7 @@ class NetworkManager:
         while self.is_receiving_tu and self.recv_tu_socket:   # and self.package_recv:
             try:
                 self.tu_package_recv, tu_addr = self.recv_tu_socket.recvfrom(1024)
-                print(f'正在从{tu_addr}接收TU数据')
+                print(f'正在从{tu_addr}接收TU数据, 接收数据流程：第一校验CRC是否正确？')
 
             except Exception as e:
                 break
@@ -134,13 +133,9 @@ class NetworkManager:
             self.recv_tu_socket.close()
             self.recv_tu_socket = None
 
-            print('数据接收停止')
-
-
 
     def start_sending_tu(self, local_ip: str, send_tu_port: str,
-                      tu_ip: str, tu_recv_port: int,
-                      package_to_tu: bytearray, cycle_ms: int) -> bool:
+                      tu_ip: str, tu_recv_port: int, cycle_ms: int) -> bool:
         ''' 开始发送数据
 
         Args:
@@ -148,8 +143,7 @@ class NetworkManager:
             send_tu_port: 给TU发送数据的端口
             tu_ip: TU IP地址
             tu_recv_port: 目标端口
-            package_to_tu: 要发送的数据包
-            cycle_ms: 发送周期(毫秒)
+            cycle_ms: 发送周期-ms
 
         Returns:
             bool: 连接是否成功
@@ -158,7 +152,6 @@ class NetworkManager:
             self.send_tu_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             self.send_tu_socket.bind((local_ip, int(send_tu_port)))
 
-            self.tu_package_send = package_to_tu
             self.send_tu_addr = (tu_ip, int(tu_recv_port))
             self.is_sending_tu = True
 
@@ -168,7 +161,6 @@ class NetworkManager:
                 daemon=True
             )
             self.send_tu_thread.start()
-            print('已经走到start sending 并且线程启动了')
             return True
 
         except OSError as e:
@@ -180,10 +172,9 @@ class NetworkManager:
         Args:
             cycle_ms: 发送周期(毫秒)
         '''
-        print('已经走到sending loop了')
-        while self.is_sending_tu and self.send_tu_socket and self.tu_package_send:
+        while self.is_sending_tu and self.send_tu_socket:
             try:
-                self.send_tu_socket.sendto(self.tu_package_send, self.send_tu_addr)
+                self.send_tu_socket.sendto(QueryStatus.package_send(), self.send_tu_addr)
 
                 time.sleep(cycle_ms / 1000)
             except Exception as e:
@@ -195,7 +186,6 @@ class NetworkManager:
         if self.send_tu_socket:
             self.send_tu_socket.close()
             self.send_tu_socket = None
-            print('发送数据停止')
 
 
     def start_sending_mu(self, local_ip: str, send_mu_port: str,
@@ -228,7 +218,6 @@ class NetworkManager:
                 daemon=True
             )
             self.send_mu_thread.start()
-            print('已经走到start sending 并且线程启动了')
             return True
 
         except OSError as e:
@@ -240,7 +229,6 @@ class NetworkManager:
         Args:
             cycle_ms: 发送周期(毫秒)
         '''
-        print('已经走到sending loop了')
         while self.is_sending_mu and self.send_mu_socket and self.mu_package_send:
             try:
                 self.send_mu_socket.sendto(self.mu_package_send, self.send_mu_addr)
@@ -255,4 +243,3 @@ class NetworkManager:
         if self.send_mu_socket:
             self.send_mu_socket.close()
             self.send_mu_socket = None
-            print('发送mu数据停止')

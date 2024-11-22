@@ -7,7 +7,7 @@ from UI.main_window_ui import Ui_KCTS
 
 
 from config.validators import Validators
-from config.constants import NavigationBarItems
+from config.constants import NavigationBarItems, SendCycle
 from services.network import NetworkManager
 
 import sys
@@ -163,8 +163,7 @@ class MainWindow(QMainWindow):
                                               current_configuration['send_tu_port'],
                                               current_configuration['kctu_ip'],
                                               current_configuration['kctu_recv_port'],
-                                              bytearray(56),
-                                              100
+                                              SendCycle.CYCLE
                                               )
 
     def sending_mu_thread_init(self):
@@ -175,25 +174,12 @@ class MainWindow(QMainWindow):
                                               current_configuration['mu_ip'],
                                               current_configuration['mu_recv_port'],
                                               bytearray(56),
-                                              100
+                                              SendCycle.CYCLE
                                               )
-
 
     def switch_ou_analysis_send_stacked_page(self, index):
         ''' 点击 pushButton 切换 ou 解析界面和发包界面 '''
         self.main_window_ui.ou_analysis_send_stacked.setCurrentIndex(index)
-
-        # # OU 解析界面, IO查询禁用, 模拟发包使能, 关闭发送数据线程
-        # if index == 0:
-        #     self.main_window_ui.IOQuery_pushButton.setDisabled(True)
-        #     self.main_window_ui.send_package_pushButton.setEnabled(True)
-        #     print('发送数据线程关闭')
-        # # 模拟发包界面, IO查询使能, 模拟发包禁用, 启动发送数据线程
-        # else:
-        #     self.main_window_ui.IOQuery_pushButton.setEnabled(True)
-        #     self.main_window_ui.send_package_pushButton.setDisabled(True)
-        #     print('发送数据线程打开')
-
 
         # OU 解析界面, IO查询禁用, 模拟发包使能, 关闭往MU发包的线程, 启动接收OU数据线程
         if index == 0:
@@ -207,7 +193,6 @@ class MainWindow(QMainWindow):
             self.sending_mu_thread_init()
             self.main_window_ui.IOQuery_pushButton.setEnabled(True)
             self.main_window_ui.send_package_pushButton.setDisabled(True)
-            print('发送数据线程打开')
 
 
     def mousePressEvent(self, event):
