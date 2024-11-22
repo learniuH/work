@@ -180,6 +180,7 @@ class Ui_KCTS(object):
         self.kc_ts_recv_port_label.setObjectName("kc_ts_recv_port_label")
         self.gridLayout_2.addWidget(self.kc_ts_recv_port_label, 1, 0, 1, 1)
         self.kc_ts_ip_label = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.kc_ts_ip_label.setMaximumSize(QtCore.QSize(150, 16777215))
         self.kc_ts_ip_label.setStyleSheet("QLabel {\n"
 "    border: 0px solid #298DFF; /* 无边框 */\n"
 "    border-radius: 3px; /* 边框圆角 */\n"

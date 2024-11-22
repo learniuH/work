@@ -42,6 +42,24 @@ class MainWindow(QMainWindow):
         self.main_window_ui.kc_tu_ip_lineEdit.setText(settings.value('KCTU_IP_content', ''))
         self.main_window_ui.kc_tu_recv_port_lineEdit.setText(settings.value('KCTU_recv_port_content', ''))
 
+    def setup_validators(self):
+        ''' 设置输入验证器 '''
+        self.main_window_ui.kc_ts_ip_lineEdit.setValidator(Validators.get_ipv4_validator())             # KCTS IP 验证器
+        self.main_window_ui.kc_ts_recv_tu_port_lineEdit.setValidator(Validators.get_port_validator())   # KCTS 接收端口验证器
+        self.main_window_ui.kc_ts_send_tu_port_lineEdit.setValidator(Validators.get_port_validator())   # KCTS 发送端口验证器
+        self.main_window_ui.kc_ts_recv_ou_port_lineEdit.setValidator(Validators.get_port_validator())   # KCTS 接收端口验证器
+        self.main_window_ui.kc_ts_send_mu_port_lineEdit.setValidator(Validators.get_port_validator())   # KCTS 发送端口验证器
+        self.main_window_ui.mu_ip_lineEdit.setValidator(Validators.get_ipv4_validator())            # MU IP 验证器
+        self.main_window_ui.mu_recv_port_lineEdit.setValidator(Validators.get_port_validator())     # MU 接收端口验证器
+        self.main_window_ui.kc_tu_ip_lineEdit.setValidator(Validators.get_ipv4_validator())         # KCTU IP 验证器
+        self.main_window_ui.kc_tu_recv_port_lineEdit.setValidator(Validators.get_port_validator())  # KCTU 接收端口验证器
+
+    def setup_connections(self):
+        ''' 设置信号连接 '''
+        self.main_window_ui.apply_pushButton.clicked.connect(self.apply_current_configuration)
+        self.main_window_ui.IOQuery_pushButton.clicked.connect(lambda: self.switch_ou_analysis_send_stacked_page(index=0))
+        self.main_window_ui.send_package_pushButton.clicked.connect(lambda: self.switch_ou_analysis_send_stacked_page(index=1))
+
     def main_window_init(self):
         ''' listWdiget items 创建, 获取电脑IP   '''
         # 导航栏初始化
@@ -106,16 +124,7 @@ class MainWindow(QMainWindow):
         }
         return current_configuration
 
-    def sending_tu_thread_init(self):
-        ''' 初始化给TU发送数据的线程 '''
-        current_configuration = self.update_current_configuration()
-        self.network_manager.start_sending_tu(current_configuration['local_ip'],
-                                              current_configuration['send_tu_port'],
-                                              current_configuration['kctu_ip'],
-                                              current_configuration['kctu_recv_port'],
-                                              bytearray(56),
-                                              1000
-                                              )
+
 
 
     def switch_sub_interface_stacked_page(self, index: int):
@@ -123,39 +132,20 @@ class MainWindow(QMainWindow):
         self.main_window_ui.sub_interface_stacked.setCurrentIndex(index)
 
         # 切换到输出查询界面, index == 2(输出查询页面)时, 往TU一直发包采集MU状态
-        if index == 2 and self.network_manager.is_sending_tu == False:
+        if index == 2:
             self.sending_tu_thread_init()   # 开始往TU发包
-            # 在输出查询界面的OU模拟器界面
-            if self.main_window_ui.ou_analysis_send_stacked.currentIndex() == 1 \
-                    and self.network_manager.is_receiving_ou == True:
-                self.network_manager.stop_receiving_ou()    # 停止接收OU的数据
-                # self.sending_mu_thread_init()   # OU模拟器开始往MU发包
+
+            # 同时在模拟发包界面, 开启往MU发包线程
+            if self.main_window_ui.ou_analysis_send_stacked.currentIndex() == 1:
+                self.sending_mu_thread_init()
+
+        # 切换到非输出查询界面, 关闭给TU发送数据的线程
         else:
             self.network_manager.stop_sending_tu()
+            # 如果同时在主动给MU发包, 就关闭给MU发数据的线程
+            if self.network_manager.is_sending_mu:
+                self.network_manager.stop_sending_mu()
 
-
-
-
-
-
-
-    def setup_validators(self):
-        ''' 设置输入验证器 '''
-        self.main_window_ui.kc_ts_ip_lineEdit.setValidator(Validators.get_ipv4_validator())             # KCTS IP 验证器
-        self.main_window_ui.kc_ts_recv_tu_port_lineEdit.setValidator(Validators.get_port_validator())   # KCTS 接收端口验证器
-        self.main_window_ui.kc_ts_send_tu_port_lineEdit.setValidator(Validators.get_port_validator())   # KCTS 发送端口验证器
-        self.main_window_ui.kc_ts_recv_ou_port_lineEdit.setValidator(Validators.get_port_validator())   # KCTS 接收端口验证器
-        self.main_window_ui.kc_ts_send_mu_port_lineEdit.setValidator(Validators.get_port_validator())   # KCTS 发送端口验证器
-        self.main_window_ui.mu_ip_lineEdit.setValidator(Validators.get_ipv4_validator())            # MU IP 验证器
-        self.main_window_ui.mu_recv_port_lineEdit.setValidator(Validators.get_port_validator())     # MU 接收端口验证器
-        self.main_window_ui.kc_tu_ip_lineEdit.setValidator(Validators.get_ipv4_validator())         # KCTU IP 验证器
-        self.main_window_ui.kc_tu_recv_port_lineEdit.setValidator(Validators.get_port_validator())  # KCTU 接收端口验证器
-
-    def setup_connections(self):
-        ''' 设置信号连接 '''
-        self.main_window_ui.apply_pushButton.clicked.connect(self.apply_current_configuration)
-        self.main_window_ui.IOQuery_pushButton.clicked.connect(lambda: self.switch_ou_analysis_send_stacked_page(index=0))
-        self.main_window_ui.send_package_pushButton.clicked.connect(lambda: self.switch_ou_analysis_send_stacked_page(index=1))
 
     def apply_current_configuration(self):
         ''' 点击应用, 停止所有收发的线程, 更新配置后重新启用 '''
@@ -166,17 +156,55 @@ class MainWindow(QMainWindow):
         self.listening_ou_thread_init()
         self.listening_tu_thread_init()
 
+    def sending_tu_thread_init(self):
+        ''' 初始化给TU发送数据的线程 '''
+        current_configuration = self.update_current_configuration()
+        self.network_manager.start_sending_tu(current_configuration['local_ip'],
+                                              current_configuration['send_tu_port'],
+                                              current_configuration['kctu_ip'],
+                                              current_configuration['kctu_recv_port'],
+                                              bytearray(56),
+                                              100
+                                              )
+
+    def sending_mu_thread_init(self):
+        ''' 初始化给MU发送数据的线程 '''
+        current_configuration = self.update_current_configuration()
+        self.network_manager.start_sending_mu(current_configuration['local_ip'],
+                                              current_configuration['send_mu_port'],
+                                              current_configuration['mu_ip'],
+                                              current_configuration['mu_recv_port'],
+                                              bytearray(56),
+                                              100
+                                              )
+
 
     def switch_ou_analysis_send_stacked_page(self, index):
         ''' 点击 pushButton 切换 ou 解析界面和发包界面 '''
         self.main_window_ui.ou_analysis_send_stacked.setCurrentIndex(index)
-        # OU 解析界面, IO查询禁用, 模拟发包使能, 关闭发送数据线程
+
+        # # OU 解析界面, IO查询禁用, 模拟发包使能, 关闭发送数据线程
+        # if index == 0:
+        #     self.main_window_ui.IOQuery_pushButton.setDisabled(True)
+        #     self.main_window_ui.send_package_pushButton.setEnabled(True)
+        #     print('发送数据线程关闭')
+        # # 模拟发包界面, IO查询使能, 模拟发包禁用, 启动发送数据线程
+        # else:
+        #     self.main_window_ui.IOQuery_pushButton.setEnabled(True)
+        #     self.main_window_ui.send_package_pushButton.setDisabled(True)
+        #     print('发送数据线程打开')
+
+
+        # OU 解析界面, IO查询禁用, 模拟发包使能, 关闭往MU发包的线程, 启动接收OU数据线程
         if index == 0:
+            self.network_manager.stop_sending_mu()
+            self.listening_ou_thread_init()
             self.main_window_ui.IOQuery_pushButton.setDisabled(True)
             self.main_window_ui.send_package_pushButton.setEnabled(True)
-            print('发送数据线程关闭')
-        # 模拟发包界面, IO查询使能, 模拟发包禁用, 启动发送数据线程
-        else:
+        # 模拟发包界面, IO查询使能, 模拟发包禁用, 关闭接收OU数据的线程, 启动往MU发包线程
+        elif index == 1 and not self.network_manager.is_sending_mu:
+            self.network_manager.stop_receiving_ou()
+            self.sending_mu_thread_init()
             self.main_window_ui.IOQuery_pushButton.setEnabled(True)
             self.main_window_ui.send_package_pushButton.setDisabled(True)
             print('发送数据线程打开')

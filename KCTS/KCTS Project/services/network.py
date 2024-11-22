@@ -12,15 +12,19 @@ class NetworkManager:
 
     def __init__(self):
         self.send_tu_socket: Optional[socket.socket] = None
+        self.send_mu_socket: Optional[socket.socket] = None
         self.recv_tu_socket: Optional[socket.socket] = None
         self.recv_ou_socket: Optional[socket.socket] = None
         self.send_tu_thread: Optional[threading.Thread] = None
+        self.send_mu_thread: Optional[threading.Thread] = None
         self.recv_ou_thread: Optional[threading.Thread] = None
         self.recv_tu_thread: Optional[threading.Thread] = None
         self.is_sending_tu: bool = False
+        self.is_sending_mu: bool = False
         self.is_receiving_ou: bool = False
         self.is_receiving_tu: bool = False
         self.tu_package_send: Optional[bytearray] = None
+        self.mu_package_send: Optional[bytearray] = None
         self.tu_package_recv: Optional[bytearray] = None
         self.ou_package_recv: Optional[bytearray] = None
         self.send_tu_addr: Optional[Tuple[str, int]] = None
@@ -133,6 +137,7 @@ class NetworkManager:
             print('数据接收停止')
 
 
+
     def start_sending_tu(self, local_ip: str, send_tu_port: str,
                       tu_ip: str, tu_recv_port: int,
                       package_to_tu: bytearray, cycle_ms: int) -> bool:
@@ -193,3 +198,61 @@ class NetworkManager:
             print('发送数据停止')
 
 
+    def start_sending_mu(self, local_ip: str, send_mu_port: str,
+                      mu_ip: str, mu_recv_port: int,
+                      package_to_mu: bytearray, cycle_ms: int) -> bool:
+        ''' 开始发送数据
+
+        Args:
+            local_ip: 本地IP地址
+            send_mu_port: 给MU发送数据的端口
+            mu_ip: MU IP地址
+            mu_recv_port: MU接收端口
+            package_to_mu: 要发送给MU的数据包
+            cycle_ms: 发送周期(毫秒)
+
+        Returns:
+            bool: 连接是否成功
+        '''
+        try:
+            self.send_mu_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            self.send_mu_socket.bind((local_ip, int(send_mu_port)))
+
+            self.mu_package_send = package_to_mu
+            self.send_mu_addr = (mu_ip, int(mu_recv_port))
+            self.is_sending_mu = True
+
+            self.send_mu_thread = threading.Thread(
+                target=self.sending_mu_loop,
+                args=(cycle_ms,),
+                daemon=True
+            )
+            self.send_mu_thread.start()
+            print('已经走到start sending 并且线程启动了')
+            return True
+
+        except OSError as e:
+            return False
+
+    def sending_mu_loop(self, cycle_ms: int):
+        '''发送循环
+
+        Args:
+            cycle_ms: 发送周期(毫秒)
+        '''
+        print('已经走到sending loop了')
+        while self.is_sending_mu and self.send_mu_socket and self.mu_package_send:
+            try:
+                self.send_mu_socket.sendto(self.mu_package_send, self.send_mu_addr)
+
+                time.sleep(cycle_ms / 1000)
+            except Exception as e:
+                break
+
+    def stop_sending_mu(self):
+        ''' 停止给MU发包 '''
+        self.is_sending_mu = False
+        if self.send_mu_socket:
+            self.send_mu_socket.close()
+            self.send_mu_socket = None
+            print('发送mu数据停止')
