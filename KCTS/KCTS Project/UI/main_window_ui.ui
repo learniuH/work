@@ -141,7 +141,7 @@
     <item>
      <widget class="QWidget" name="Body" native="true">
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(211, 211, 211);</string>
+       <string notr="true"/>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,15">
        <property name="spacing">
@@ -167,6 +167,9 @@
            <height>0</height>
           </size>
          </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(16, 21, 31);</string>
+         </property>
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
          </property>
@@ -183,6 +186,17 @@
        </item>
        <item>
         <widget class="QStackedWidget" name="sub_interface_stacked">
+         <property name="styleSheet">
+          <string notr="true">QWidget {
+	background-color: rgb(64, 74, 90);
+                background: qlineargradient(
+                    spread: pad,
+                    x1: 0, y1: 1, x2: 1, y2: 0,
+                    stop: 0 #414b5b,  /* 起始颜色 */
+                    stop: 1 #1c1f2c   /* 结束颜色 */
+                );
+            }</string>
+         </property>
          <property name="currentIndex">
           <number>0</number>
          </property>
@@ -631,10 +645,37 @@
                <item>
                 <widget class="QWidget" name="widget" native="true">
                  <layout class="QVBoxLayout" name="verticalLayout_3">
+                  <property name="spacing">
+                   <number>0</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
                   <item>
                    <layout class="QGridLayout" name="gridLayout">
+                    <property name="horizontalSpacing">
+                     <number>7</number>
+                    </property>
+                    <property name="verticalSpacing">
+                     <number>8</number>
+                    </property>
                     <item row="3" column="7">
                      <widget class="QProgressBar" name="PWM15_progressBar">
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="maximum">
                        <number>24</number>
                       </property>
@@ -654,6 +695,18 @@
                     </item>
                     <item row="0" column="6">
                      <widget class="QProgressBar" name="PWM7_progressBar">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="maximum">
                        <number>24</number>
                       </property>
@@ -673,6 +726,18 @@
                     </item>
                     <item row="0" column="5">
                      <widget class="QProgressBar" name="PWM2_progressBar">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="maximum">
                        <number>24</number>
                       </property>
@@ -692,6 +757,18 @@
                     </item>
                     <item row="3" column="6">
                      <widget class="QProgressBar" name="PWM10_progressBar">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="maximum">
                        <number>24</number>
                       </property>
@@ -711,6 +788,18 @@
                     </item>
                     <item row="4" column="5">
                      <widget class="QProgressBar" name="PWM6_progressBar">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="maximum">
                        <number>24</number>
                       </property>
@@ -730,6 +819,18 @@
                     </item>
                     <item row="1" column="5">
                      <widget class="QProgressBar" name="PWM3_progressBar">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="maximum">
                        <number>24</number>
                       </property>
@@ -749,6 +850,18 @@
                     </item>
                     <item row="1" column="6">
                      <widget class="QProgressBar" name="PWM8_progressBar">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="maximum">
                        <number>24</number>
                       </property>
@@ -768,6 +881,12 @@
                     </item>
                     <item row="1" column="7">
                      <widget class="QProgressBar" name="PWM13_progressBar">
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="maximum">
                        <number>24</number>
                       </property>
@@ -787,6 +906,18 @@
                     </item>
                     <item row="4" column="4">
                      <widget class="QProgressBar" name="PWM1_progressBar">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="maximum">
                        <number>24</number>
                       </property>
@@ -806,6 +937,12 @@
                     </item>
                     <item row="2" column="7">
                      <widget class="QProgressBar" name="PWM14_progressBar">
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="maximum">
                        <number>24</number>
                       </property>
@@ -825,6 +962,18 @@
                     </item>
                     <item row="3" column="5">
                      <widget class="QProgressBar" name="PWM5_progressBar">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="maximum">
                        <number>24</number>
                       </property>
@@ -844,6 +993,18 @@
                     </item>
                     <item row="2" column="5">
                      <widget class="QProgressBar" name="PWM4_progressBar">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="maximum">
                        <number>24</number>
                       </property>
@@ -863,6 +1024,18 @@
                     </item>
                     <item row="0" column="0">
                      <widget class="QLabel" name="DO1_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO1</string>
                       </property>
@@ -876,6 +1049,18 @@
                     </item>
                     <item row="4" column="6">
                      <widget class="QProgressBar" name="PWM11_progressBar">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="maximum">
                        <number>24</number>
                       </property>
@@ -895,6 +1080,18 @@
                     </item>
                     <item row="0" column="7">
                      <widget class="QProgressBar" name="PWM12_progressBar">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="maximum">
                        <number>24</number>
                       </property>
@@ -914,6 +1111,18 @@
                     </item>
                     <item row="2" column="6">
                      <widget class="QProgressBar" name="PWM9_progressBar">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="maximum">
                        <number>24</number>
                       </property>
@@ -933,6 +1142,12 @@
                     </item>
                     <item row="4" column="7">
                      <widget class="QProgressBar" name="PWM16_progressBar">
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="maximum">
                        <number>24</number>
                       </property>
@@ -952,6 +1167,18 @@
                     </item>
                     <item row="1" column="0">
                      <widget class="QLabel" name="DO2_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO2</string>
                       </property>
@@ -965,6 +1192,18 @@
                     </item>
                     <item row="2" column="0">
                      <widget class="QLabel" name="DO3_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO3</string>
                       </property>
@@ -978,6 +1217,18 @@
                     </item>
                     <item row="3" column="0">
                      <widget class="QLabel" name="DO4_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO4</string>
                       </property>
@@ -991,6 +1242,18 @@
                     </item>
                     <item row="4" column="0">
                      <widget class="QLabel" name="DO5_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO5</string>
                       </property>
@@ -1004,6 +1267,18 @@
                     </item>
                     <item row="0" column="1">
                      <widget class="QLabel" name="DO6_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO6</string>
                       </property>
@@ -1017,6 +1292,18 @@
                     </item>
                     <item row="2" column="1">
                      <widget class="QLabel" name="DO8_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO8</string>
                       </property>
@@ -1030,6 +1317,24 @@
                     </item>
                     <item row="1" column="1">
                      <widget class="QLabel" name="DO7_label">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO7</string>
                       </property>
@@ -1043,6 +1348,18 @@
                     </item>
                     <item row="3" column="1">
                      <widget class="QLabel" name="DO9_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO9</string>
                       </property>
@@ -1056,6 +1373,18 @@
                     </item>
                     <item row="4" column="1">
                      <widget class="QLabel" name="DO10_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO10</string>
                       </property>
@@ -1069,6 +1398,18 @@
                     </item>
                     <item row="0" column="2">
                      <widget class="QLabel" name="DO11_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO11</string>
                       </property>
@@ -1082,6 +1423,18 @@
                     </item>
                     <item row="1" column="2">
                      <widget class="QLabel" name="DO12_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO12</string>
                       </property>
@@ -1095,6 +1448,18 @@
                     </item>
                     <item row="2" column="2">
                      <widget class="QLabel" name="DO13_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO13</string>
                       </property>
@@ -1108,6 +1473,18 @@
                     </item>
                     <item row="3" column="2">
                      <widget class="QLabel" name="DO14_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO14</string>
                       </property>
@@ -1121,6 +1498,18 @@
                     </item>
                     <item row="4" column="2">
                      <widget class="QLabel" name="DO15_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO15</string>
                       </property>
@@ -1134,6 +1523,18 @@
                     </item>
                     <item row="0" column="3">
                      <widget class="QLabel" name="DO16_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO16</string>
                       </property>
@@ -1147,6 +1548,18 @@
                     </item>
                     <item row="2" column="3">
                      <widget class="QLabel" name="DO18_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>150</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO18</string>
                       </property>
@@ -1160,6 +1573,18 @@
                     </item>
                     <item row="1" column="3">
                      <widget class="QLabel" name="DO17_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO17</string>
                       </property>
@@ -1173,6 +1598,18 @@
                     </item>
                     <item row="3" column="3">
                      <widget class="QLabel" name="DO19_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO19</string>
                       </property>
@@ -1186,6 +1623,18 @@
                     </item>
                     <item row="4" column="3">
                      <widget class="QLabel" name="DO20_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO20</string>
                       </property>
@@ -1199,6 +1648,18 @@
                     </item>
                     <item row="0" column="4">
                      <widget class="QLabel" name="DO21_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO21</string>
                       </property>
@@ -1212,6 +1673,18 @@
                     </item>
                     <item row="2" column="4">
                      <widget class="QLabel" name="DO23_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO23</string>
                       </property>
@@ -1225,6 +1698,18 @@
                     </item>
                     <item row="3" column="4">
                      <widget class="QLabel" name="DO24_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO24</string>
                       </property>
@@ -1238,6 +1723,18 @@
                     </item>
                     <item row="1" column="4">
                      <widget class="QLabel" name="DO22_label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>DO22</string>
                       </property>
@@ -1256,6 +1753,9 @@
                </item>
                <item>
                 <widget class="QStackedWidget" name="ou_analysis_send_stacked">
+                 <property name="currentIndex">
+                  <number>0</number>
+                 </property>
                  <widget class="QWidget" name="ou_analysis_page">
                   <widget class="QLabel" name="label_3">
                    <property name="geometry">

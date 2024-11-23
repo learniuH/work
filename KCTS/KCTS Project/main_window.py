@@ -1,5 +1,3 @@
-from itertools import cycle
-
 from PyQt5.QtCore import QSize, Qt, QSettings
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QListWidgetItem
 
@@ -23,12 +21,15 @@ class MainWindow(QMainWindow):
 
         self.network_manager = NetworkManager()     # 初始化网络管理器
 
+        self.function_definition: dict = None       # 线号与UI控件绑定
+
         self.main_window_init()     # 窗口界面初始化
 
 
 
         self.setup_validators()     # 正则表达式匹配 IP 端口 信息
         self.setup_connections()    # 信号连接绑定
+        self.signal_bind()          # pyqtSignal 信号绑定, 控件与线号连接
 
     def load_last_content(self):
         ''' 加载上一次程序运行时的相关配置 '''
@@ -59,6 +60,64 @@ class MainWindow(QMainWindow):
         self.main_window_ui.apply_pushButton.clicked.connect(self.apply_current_configuration)
         self.main_window_ui.IOQuery_pushButton.clicked.connect(lambda: self.switch_ou_analysis_send_stacked_page(index=0))
         self.main_window_ui.send_package_pushButton.clicked.connect(lambda: self.switch_ou_analysis_send_stacked_page(index=1))
+
+    def signal_bind(self):
+        ''' 绑定 pyqtSignal 到对应事件与按键 '''
+        self.network_manager.tu_package_receiver.update_do_signal.connect(self.update_do_label_status)
+        self.network_manager.tu_package_receiver.update_pwm_signal.connect(self.update_pwm_progressBar_status)
+
+        # 将 DO PWM 信号与UI控件绑定
+        self.function_definition = {
+            'DO1':   self.main_window_ui.DO1_label,
+            'DO2':   self.main_window_ui.DO2_label,
+            'DO3':   self.main_window_ui.DO3_label,
+            'DO4':   self.main_window_ui.DO4_label,
+            'DO5':   self.main_window_ui.DO5_label,
+            'DO6':   self.main_window_ui.DO6_label,
+            'DO7':   self.main_window_ui.DO7_label,
+            'DO8':   self.main_window_ui.DO8_label,
+            'DO9':   self.main_window_ui.DO9_label,
+            'DO10':  self.main_window_ui.DO10_label,
+            'DO11':  self.main_window_ui.DO11_label,
+            'DO12':  self.main_window_ui.DO12_label,
+            'DO13':  self.main_window_ui.DO13_label,
+            'DO14':  self.main_window_ui.DO14_label,
+            'DO15':  self.main_window_ui.DO15_label,
+            'DO16':  self.main_window_ui.DO16_label,
+            'DO17':  self.main_window_ui.DO17_label,
+            'DO18':  self.main_window_ui.DO18_label,
+            'DO19':  self.main_window_ui.DO19_label,
+            'DO20':  self.main_window_ui.DO20_label,
+            'DO21':  self.main_window_ui.DO21_label,
+            'DO22':  self.main_window_ui.DO22_label,
+            'DO23':  self.main_window_ui.DO23_label,
+            'DO24':  self.main_window_ui.DO24_label,
+            'PWM1':  self.main_window_ui.PWM1_progressBar,
+            'PWM2':  self.main_window_ui.PWM2_progressBar,
+            'PWM3':  self.main_window_ui.PWM3_progressBar,
+            'PWM4':  self.main_window_ui.PWM4_progressBar,
+            'PWM5':  self.main_window_ui.PWM5_progressBar,
+            'PWM6':  self.main_window_ui.PWM6_progressBar,
+            'PWM7':  self.main_window_ui.PWM7_progressBar,
+            'PWM8':  self.main_window_ui.PWM8_progressBar,
+            'PWM9':  self.main_window_ui.PWM9_progressBar,
+            'PWM10': self.main_window_ui.PWM10_progressBar,
+            'PWM11': self.main_window_ui.PWM11_progressBar,
+            'PWM12': self.main_window_ui.PWM12_progressBar,
+            'PWM13': self.main_window_ui.PWM13_progressBar,
+            'PWM14': self.main_window_ui.PWM14_progressBar,
+            'PWM15': self.main_window_ui.PWM15_progressBar,
+            'PWM16': self.main_window_ui.PWM16_progressBar
+        }
+
+    def update_do_label_status(self, do_num: str):
+        ''' 接收来自 pyqtSignal 的信号, 更新 QLabel 状态 '''
+        do_label = self.function_definition[do_num]
+
+
+    def update_pwm_progressBar_status(self, pwm_num: str, pwm_value: float):
+        ''' 接收来自 pyqtSignal 的信号, 更新 QLabel 状态 '''
+        pwm_progressBar = self.function_definition[pwm_num]
 
     def main_window_init(self):
         ''' listWdiget items 创建, 获取电脑IP   '''

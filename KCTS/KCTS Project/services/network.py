@@ -1,10 +1,11 @@
 import socket
 import threading
 import time
-from itertools import cycle
+
 from typing import Optional, Tuple
 
 from .package_send import QueryCollectionStatus as QueryStatus
+from .package_parse import PackageFromTU
 
 class NetworkManager:
     ''' 网络管理, 处理UDP通信 '''
@@ -30,6 +31,8 @@ class NetworkManager:
         self.ou_package_recv: Optional[bytearray] = None
         self.send_tu_addr: Optional[Tuple[str, int]] = None
         self.send_mu_addr: Optional[Tuple[str, int]] = None
+
+        self.tu_package_receiver: Optional[PackageFromTU] = PackageFromTU()
 
     def start_receiving_ou(self, local_ip: str,
                            recv_ou_port: str,
@@ -121,7 +124,12 @@ class NetworkManager:
         while self.is_receiving_tu and self.recv_tu_socket:   # and self.package_recv:
             try:
                 self.tu_package_recv, tu_addr = self.recv_tu_socket.recvfrom(1024)
-                print(f'正在从{tu_addr}接收TU数据, 接收数据流程：第一校验CRC是否正确？')
+
+                tu_package = ' '.join(f'{byte:02X}' for byte in self.tu_package_recv)
+                print(f'recv_from: {tu_addr[0]} {tu_addr[1]}\tRaw Data: {tu_package}')
+
+                # 处理来自TU的数据包
+                self.tu_package_receiver.parse_tu_package(self.tu_package_recv)
 
             except Exception as e:
                 break
@@ -162,6 +170,11 @@ class NetworkManager:
             )
             self.send_tu_thread.start()
             return True
+
+        except ValueError as e:
+            if 'invalid literal for int() with base 10' in str(e):
+                print('请输入接收给TU发送数据的端口!')
+                return False
 
         except OSError as e:
             return False
@@ -219,6 +232,10 @@ class NetworkManager:
             )
             self.send_mu_thread.start()
             return True
+
+        except ValueError as e:
+            if 'invalid literal for int() with base 10' in str(e):
+                print('请输入给MU发送数据的端口!')
 
         except OSError as e:
             return False
