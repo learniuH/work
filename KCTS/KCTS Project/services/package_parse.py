@@ -8,7 +8,7 @@ class PackageFromTU(QObject):
 
     # 当检测到 DO 置 1 或 PWM 非 0 时, 发出pyqtSignal信号到主窗口
     update_do_signal = pyqtSignal(str)
-    update_pwm_signal = pyqtSignal(str, float)
+    update_pwm_signal = pyqtSignal(str, int)
 
     # _instance = None
     #
@@ -71,7 +71,7 @@ class PackageFromTU(QObject):
                 if pwm_value:
                     print(f'Byte{byte_num}  {pwm_value}')
                     # 将数据包
-                    self.update_pwm_signal.emit(StatusFeedBack.data_field_protocol[byte_num], pwm_value / 100)
+                    self.update_pwm_signal.emit(StatusFeedBack.data_field_protocol[byte_num], pwm_value)
 
 
     def handle_tu_status(self):

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1064</width>
+    <width>1221</width>
     <height>690</height>
    </rect>
   </property>
@@ -39,30 +39,43 @@
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(125, 125, 125);</string>
+       <string notr="true">QWidget {
+	background: qlineargradient(
+		spread: pad,
+		x1: 1, y1: 0, x2: 0, y2: 1,
+		stop: 0 #0d1117,  /* 起始颜色 */
+		stop: 1 #414a5a   /* 结束颜色 */
+	);
+}</string>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <spacer name="horizontalSpacer_2">
+        <spacer name="horizontalSpacer_4">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
          <property name="sizeType">
-          <enum>QSizePolicy::Expanding</enum>
+          <enum>QSizePolicy::Maximum</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>120</width>
-           <height>10</height>
+           <width>45</width>
+           <height>20</height>
           </size>
          </property>
         </spacer>
        </item>
        <item>
         <widget class="QLabel" name="system_label">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
-           <width>16777215</width>
+           <width>400</width>
            <height>16777215</height>
           </size>
          </property>
@@ -73,10 +86,17 @@
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">font: 20pt &quot;幼圆&quot;;</string>
+          <string notr="true">QLabel {
+	background: transparent;
+	border-width: 0;
+	border-style: outset;
+	font: 20pt &quot;幼圆&quot;;
+	color: white;
+}
+</string>
          </property>
          <property name="text">
-          <string>KCTS</string>
+          <string>宸控科技自动化测试软件</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -84,7 +104,7 @@
         </widget>
        </item>
        <item>
-        <spacer name="horizontalSpacer_4">
+        <spacer name="horizontalSpacer_2">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
@@ -97,25 +117,89 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
-         <property name="maximumSize">
+        <widget class="QPushButton" name="import_protocol_pushButton">
+         <property name="minimumSize">
           <size>
            <width>80</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
            <height>40</height>
           </size>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    border: 5px;
+    border-radius: 10px;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #435068, stop: 1 #2a354e);
+    min-width: 80px;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+}
+
+QPushButton:hover {
+	background-color: #435068
+}
+
+QPushButton:pressed {
+    background-color: #2c3646
+}
+
+QPushButton:disabled {
+    background-color: #434b5d
+}
+
+
+</string>
+         </property>
          <property name="text">
-          <string>选择项目</string>
+          <string>导入协议</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="pushButton_2">
-         <property name="maximumSize">
+         <property name="minimumSize">
           <size>
            <width>80</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
            <height>40</height>
           </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    border: 5px;
+    border-radius: 10px;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #435068, stop: 1 #2a354e);
+    min-width: 80px;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+}
+
+QPushButton:hover {
+	background-color: #435068
+}
+
+QPushButton:pressed {
+    background-color: #2c3646
+}
+
+QPushButton:disabled {
+    background-color: #434b5d
+}
+
+
+</string>
          </property>
          <property name="text">
           <string>生成报告</string>
@@ -124,11 +208,43 @@
        </item>
        <item>
         <widget class="QPushButton" name="pushButton_3">
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>40</width>
            <height>40</height>
           </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    border: 5px;
+    border-radius: 10px;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #435068, stop: 1 #2a354e);
+    min-width: 80px;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+}
+
+QPushButton:hover {
+	background-color: #435068
+}
+
+QPushButton:pressed {
+    background-color: #2c3646
+}
+
+QPushButton:disabled {
+    background-color: #434b5d
+}
+
+
+</string>
          </property>
          <property name="text">
           <string>……</string>
@@ -141,7 +257,11 @@
     <item>
      <widget class="QWidget" name="Body" native="true">
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">/* radial gradient */
+QWidget {
+    background: qradialgradient(cx:0.5, cy:0, radius: 1,
+                fx:0.6, fy:0.5, stop:0 #414a5a, stop:1 #0d1117)
+}</string>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,15">
        <property name="spacing">
@@ -163,12 +283,39 @@
         <widget class="QListWidget" name="navigation_list">
          <property name="minimumSize">
           <size>
-           <width>90</width>
+           <width>120</width>
            <height>0</height>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(16, 21, 31);</string>
+          <string notr="true">QListWidget {
+	background: qlineargradient(
+		spread: pad,
+		x1: 1, y1: 0, x2: 1, y2: 1,
+		stop: 0 #414a5a,  /* 起始颜色 */
+		stop: 1 #0d1117  /* 结束颜色 */
+	);
+	border-width: 0;
+	border-style: outset;
+	outline: 0px; /*去掉虚线边框*/
+}
+
+QListWidget::item{
+	height: 60px;
+
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+}
+
+QListWidget::item:hover{
+	background-color: #2c3646;
+}
+
+QListWidget::item:selected {
+    background-color: #435068;
+}
+
+</string>
          </property>
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
@@ -179,438 +326,764 @@
          <property name="horizontalScrollBarPolicy">
           <enum>Qt::ScrollBarAlwaysOff</enum>
          </property>
+         <property name="sizeAdjustPolicy">
+          <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="gridSize">
+          <size>
+           <width>0</width>
+           <height>60</height>
+          </size>
+         </property>
          <property name="itemAlignment">
           <set>Qt::AlignCenter</set>
          </property>
+         <item>
+          <property name="text">
+           <string>设备状态</string>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignCenter</set>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>MU功能测试</string>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignCenter</set>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>输出查询</string>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignCenter</set>
+          </property>
+         </item>
         </widget>
        </item>
        <item>
         <widget class="QStackedWidget" name="sub_interface_stacked">
          <property name="styleSheet">
-          <string notr="true">QWidget {
-	background-color: rgb(64, 74, 90);
-                background: qlineargradient(
-                    spread: pad,
-                    x1: 0, y1: 1, x2: 1, y2: 0,
-                    stop: 0 #414b5b,  /* 起始颜色 */
-                    stop: 1 #1c1f2c   /* 结束颜色 */
-                );
-            }</string>
+          <string notr="true"/>
          </property>
          <property name="currentIndex">
           <number>0</number>
          </property>
          <widget class="QWidget" name="device_status_page">
-          <widget class="QLabel" name="label">
-           <property name="geometry">
-            <rect>
-             <x>70</x>
-             <y>20</y>
-             <width>141</width>
-             <height>41</height>
-            </rect>
+          <layout class="QVBoxLayout" name="verticalLayout_5" stretch="2,5">
+           <property name="spacing">
+            <number>0</number>
            </property>
-           <property name="text">
-            <string>这是设备状态界面</string>
+           <property name="leftMargin">
+            <number>0</number>
            </property>
-          </widget>
-          <widget class="QWidget" name="gridLayoutWidget">
-           <property name="geometry">
-            <rect>
-             <x>80</x>
-             <y>60</y>
-             <width>691</width>
-             <height>536</height>
-            </rect>
+           <property name="topMargin">
+            <number>0</number>
            </property>
-           <layout class="QGridLayout" name="gridLayout_2">
-            <item row="3" column="1">
-             <widget class="QLineEdit" name="kc_ts_send_tu_port_lineEdit">
-              <property name="styleSheet">
-               <string notr="true">QLineEdit {
-        min-width: 150px;    /* 最小宽度 */
-        max-width: 200px;    /* 最大宽度 */
-        height: 40px;        /* 高度 */
-        font-size: 16px;     /* 字体大小 */
-        border: 2px solid gray;  /* 边框 */
-        border-radius: 5px;      /* 圆角 */
-        padding: 5px;            /* 内边距 */
-}</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="kc_ts_send_tu_port_label">
-              <property name="maximumSize">
-               <size>
-                <width>200</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QLabel {
-	border: 0px solid #298DFF; /* 无边框 */
-	border-radius: 3px; /* 边框圆角 */
-	background-color: ; /* 背景颜色 */
-	color: #298DFF; /* 文本颜色 */
-	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
-	font-size: 10pt; /* 文本字体大小 */
-}</string>
-              </property>
-              <property name="text">
-               <string>send_tu_port :</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="kc_ts_send_mu_port_label">
-              <property name="maximumSize">
-               <size>
-                <width>200</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QLabel {
-	border: 0px solid #298DFF; /* 无边框 */
-	border-radius: 3px; /* 边框圆角 */
-	background-color: ; /* 背景颜色 */
-	color: #298DFF; /* 文本颜色 */
-	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
-	font-size: 10pt; /* 文本字体大小 */
-}</string>
-              </property>
-              <property name="text">
-               <string>send_mu_port :</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLineEdit" name="kc_ts_recv_tu_port_lineEdit">
-              <property name="styleSheet">
-               <string notr="true">QLineEdit {
-        min-width: 150px;    /* 最小宽度 */
-        max-width: 200px;    /* 最大宽度 */
-        height: 40px;        /* 高度 */
-        font-size: 16px;     /* 字体大小 */
-        border: 2px solid gray;  /* 边框 */
-        border-radius: 5px;      /* 圆角 */
-        padding: 5px;            /* 内边距 */
-}</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QLineEdit" name="kc_ts_recv_ou_port_lineEdit">
-              <property name="styleSheet">
-               <string notr="true">QLineEdit {
-        min-width: 150px;    /* 最小宽度 */
-        max-width: 200px;    /* 最大宽度 */
-        height: 40px;        /* 高度 */
-        font-size: 16px;     /* 字体大小 */
-        border: 2px solid gray;  /* 边框 */
-        border-radius: 5px;      /* 圆角 */
-        padding: 5px;            /* 内边距 */
-}</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLineEdit" name="kc_ts_ip_lineEdit">
-              <property name="styleSheet">
-               <string notr="true">QLineEdit {
-        min-width: 150px;    /* 最小宽度 */
-        max-width: 200px;    /* 最大宽度 */
-        height: 40px;        /* 高度 */
-        font-size: 16px;     /* 字体大小 */
-        border: 2px solid gray;  /* 边框 */
-        border-radius: 5px;      /* 圆角 */
-        padding: 5px;            /* 内边距 */
-}</string>
-              </property>
-              <property name="readOnly">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="1">
-             <widget class="QLineEdit" name="kc_ts_send_mu_port_lineEdit">
-              <property name="styleSheet">
-               <string notr="true">QLineEdit {
-        min-width: 150px;    /* 最小宽度 */
-        max-width: 200px;    /* 最大宽度 */
-        height: 40px;        /* 高度 */
-        font-size: 16px;     /* 字体大小 */
-        border: 2px solid gray;  /* 边框 */
-        border-radius: 5px;      /* 圆角 */
-        padding: 5px;            /* 内边距 */
-}</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="kc_ts_recv_port_label">
-              <property name="maximumSize">
-               <size>
-                <width>200</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QLabel {
-	border: 0px solid #298DFF; /* 无边框 */
-	border-radius: 3px; /* 边框圆角 */
-	background-color: ; /* 背景颜色 */
-	color: #298DFF; /* 文本颜色 */
-	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
-	font-size: 10pt; /* 文本字体大小 */
-}</string>
-              </property>
-              <property name="text">
-               <string>recv_TU_port :</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="kc_ts_ip_label">
-              <property name="maximumSize">
-               <size>
-                <width>150</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QLabel {
-	border: 0px solid #298DFF; /* 无边框 */
-	border-radius: 3px; /* 边框圆角 */
-	background-color: ; /* 背景颜色 */
-	color: #298DFF; /* 文本颜色 */
-	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
-	font-size: 10pt; /* 文本字体大小 */
-}</string>
-              </property>
-              <property name="text">
-               <string>KC-TS IP:</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="2">
-             <widget class="QLabel" name="mu_ip_label">
-              <property name="maximumSize">
-               <size>
-                <width>150</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QLabel {
-	border: 0px solid #298DFF; /* 无边框 */
-	border-radius: 3px; /* 边框圆角 */
-	background-color: ; /* 背景颜色 */
-	color: #298DFF; /* 文本颜色 */
-	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
-	font-size: 10pt; /* 文本字体大小 */
-}</string>
-              </property>
-              <property name="text">
-               <string>MU IP :</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="recv_ou_port_label">
-              <property name="maximumSize">
-               <size>
-                <width>150</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QLabel {
-	border: 0px solid #298DFF; /* 无边框 */
-	border-radius: 3px; /* 边框圆角 */
-	background-color: ; /* 背景颜色 */
-	color: #298DFF; /* 文本颜色 */
-	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
-	font-size: 10pt; /* 文本字体大小 */
-}</string>
-              </property>
-              <property name="text">
-               <string>recv_OU_prot :</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="3">
-             <widget class="QLineEdit" name="mu_ip_lineEdit">
-              <property name="styleSheet">
-               <string notr="true">QLineEdit {
-        min-width: 150px;    /* 最小宽度 */
-        max-width: 200px;    /* 最大宽度 */
-        height: 40px;        /* 高度 */
-        font-size: 16px;     /* 字体大小 */
-        border: 2px solid gray;  /* 边框 */
-        border-radius: 5px;      /* 圆角 */
-        padding: 5px;            /* 内边距 */
-}</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="2">
-             <widget class="QLabel" name="mu_recv_port_label">
-              <property name="maximumSize">
-               <size>
-                <width>150</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QLabel {
-	border: 0px solid #298DFF; /* 无边框 */
-	border-radius: 3px; /* 边框圆角 */
-	background-color: ; /* 背景颜色 */
-	color: #298DFF; /* 文本颜色 */
-	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
-	font-size: 10pt; /* 文本字体大小 */
-}</string>
-              </property>
-              <property name="text">
-               <string>MU recv_port :</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="3">
-             <widget class="QLineEdit" name="mu_recv_port_lineEdit">
-              <property name="styleSheet">
-               <string notr="true">QLineEdit {
-        min-width: 150px;    /* 最小宽度 */
-        max-width: 200px;    /* 最大宽度 */
-        height: 40px;        /* 高度 */
-        font-size: 16px;     /* 字体大小 */
-        border: 2px solid gray;  /* 边框 */
-        border-radius: 5px;      /* 圆角 */
-        padding: 5px;            /* 内边距 */
-}</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="2">
-             <widget class="QLabel" name="kc_tu_ip_label">
-              <property name="maximumSize">
-               <size>
-                <width>150</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QLabel {
-	border: 0px solid #298DFF; /* 无边框 */
-	border-radius: 3px; /* 边框圆角 */
-	background-color: ; /* 背景颜色 */
-	color: #298DFF; /* 文本颜色 */
-	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
-	font-size: 10pt; /* 文本字体大小 */
-}</string>
-              </property>
-              <property name="text">
-               <string>KC-TU IP :</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="3">
-             <widget class="QLineEdit" name="kc_tu_ip_lineEdit">
-              <property name="styleSheet">
-               <string notr="true">QLineEdit {
-        min-width: 150px;    /* 最小宽度 */
-        max-width: 200px;    /* 最大宽度 */
-        height: 40px;        /* 高度 */
-        font-size: 16px;     /* 字体大小 */
-        border: 2px solid gray;  /* 边框 */
-        border-radius: 5px;      /* 圆角 */
-        padding: 5px;            /* 内边距 */
-}</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="2">
-             <widget class="QLabel" name="kc_tu_recv_port_label">
-              <property name="maximumSize">
-               <size>
-                <width>150</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QLabel {
-	border: 0px solid #298DFF; /* 无边框 */
-	border-radius: 3px; /* 边框圆角 */
-	background-color: ; /* 背景颜色 */
-	color: #298DFF; /* 文本颜色 */
-	font-family: &quot;Microsoft YaHei&quot;; /* 文本字体族 */
-	font-size: 10pt; /* 文本字体大小 */
-}</string>
-              </property>
-              <property name="text">
-               <string>KC-TU recv_port :</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="3">
-             <widget class="QLineEdit" name="kc_tu_recv_port_lineEdit">
-              <property name="styleSheet">
-               <string notr="true">QLineEdit {
-        min-width: 150px;    /* 最小宽度 */
-        max-width: 200px;    /* 最大宽度 */
-        height: 40px;        /* 高度 */
-        font-size: 16px;     /* 字体大小 */
-        border: 2px solid gray;  /* 边框 */
-        border-radius: 5px;      /* 圆角 */
-        padding: 5px;            /* 内边距 */
-}</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QPushButton" name="apply_pushButton">
-           <property name="geometry">
-            <rect>
-             <x>800</x>
-             <y>490</y>
-             <width>131</width>
-             <height>61</height>
-            </rect>
+           <property name="rightMargin">
+            <number>0</number>
            </property>
-           <property name="text">
-            <string>应用</string>
+           <property name="bottomMargin">
+            <number>0</number>
            </property>
-          </widget>
+           <item>
+            <widget class="QWidget" name="gridWidget" native="true">
+             <property name="styleSheet">
+              <string notr="true">QWidget {
+	background: transparent;
+	border-width: 0;
+	border-style: outset;
+}</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_3">
+              <item row="0" column="1">
+               <widget class="QLabel" name="softWare_version_text">
+                <property name="styleSheet">
+                 <string notr="true">QLabel {
+	border: 0px; /* 无边框 */
+	background-color: ; /* 背景颜色 */
+	color: white; /* 文本颜色 */
+	font: 11pt &quot;微软雅黑&quot;;
+}</string>
+                </property>
+                <property name="text">
+                 <string> KC-TU-V1.0.0</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="hardWare_version_label">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLabel {
+	border: 0px; /* 无边框 */
+	background-color: ; /* 背景颜色 */
+	color: white; /* 文本颜色 */
+	font: 11pt &quot;微软雅黑&quot;;
+}</string>
+                </property>
+                <property name="text">
+                 <string>KC-TU硬件版本 :</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="softWare_version_label">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLabel {
+	border: 0px; /* 无边框 */
+	background-color: ; /* 背景颜色 */
+	color: white; /* 文本颜色 */
+	font: 11pt &quot;微软雅黑&quot;;
+}</string>
+                </property>
+                <property name="text">
+                 <string>KC-TU-版本号 :</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLabel" name="hardWare_version_text">
+                <property name="styleSheet">
+                 <string notr="true">QLabel {
+	border: 0px; /* 无边框 */
+	background-color: ; /* 背景颜色 */
+	color: white; /* 文本颜色 */
+	font: 11pt &quot;微软雅黑&quot;;
+}</string>
+                </property>
+                <property name="text">
+                 <string> KC204-VCU-EU-2023-08-21</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="status_label">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLabel {
+	border: 0px; /* 无边框 */
+	background-color: ; /* 背景颜色 */
+	color: white; /* 文本颜色 */
+	font: 11pt &quot;微软雅黑&quot;;
+}</string>
+                </property>
+                <property name="text">
+                 <string>KC-TU运行状态 :</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLabel" name="status_text">
+                <property name="styleSheet">
+                 <string notr="true">QLabel {
+	border: 0px; /* 无边框 */
+	background-color: ; /* 背景颜色 */
+	color: white; /* 文本颜色 */
+	font: 11pt &quot;微软雅黑&quot;;
+}</string>
+                </property>
+                <property name="text">
+                 <string> 正常</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="gridWidget" native="true">
+             <property name="styleSheet">
+              <string notr="true">QWidget {
+	background: transparent;
+	border-width: 0;
+	border-style: outset;
+}</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_2" rowminimumheight="0,0,0,0,0" columnminimumwidth="0,0,0,0,0,0">
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <item row="2" column="4">
+               <widget class="QLineEdit" name="kc_tu_ip_lineEdit">
+                <property name="styleSheet">
+                 <string notr="true">QLineEdit {
+	background-color: transparent;
+	border-top: transparent;
+	border-left: transparent;
+	border-right: transparent;
+	border-bottom: 1px solid black;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+	min-width: 180px;
+	max-width: 180px;
+	height: 40px;
+}</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="5">
+               <spacer name="horizontalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="2" column="2">
+               <widget class="QLineEdit" name="kc_ts_recv_ou_port_lineEdit">
+                <property name="styleSheet">
+                 <string notr="true">QLineEdit {
+	background-color: transparent;
+	border-top: transparent;
+	border-left: transparent;
+	border-right: transparent;
+	border-bottom: 1px solid black;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+	min-width: 180px;
+	max-width: 180px;
+	height: 40px;
+}</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="3">
+               <widget class="QLabel" name="kc_tu_recv_port_label">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLabel {
+	border: 0px; /* 无边框 */
+	background-color: ; /* 背景颜色 */
+	color: white; /* 文本颜色 */
+	font: 11pt &quot;微软雅黑&quot;;
+}</string>
+                </property>
+                <property name="text">
+                 <string>KC-TU recv_port :</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="4">
+               <widget class="QLineEdit" name="kc_tu_recv_port_lineEdit">
+                <property name="styleSheet">
+                 <string notr="true">QLineEdit {
+	background-color: transparent;
+	border-top: transparent;
+	border-left: transparent;
+	border-right: transparent;
+	border-bottom: 1px solid black;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+	min-width: 180px;
+	max-width: 180px;
+	height: 40px;
+}</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QLineEdit" name="kc_ts_ip_lineEdit">
+                <property name="minimumSize">
+                 <size>
+                  <width>180</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>180</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLineEdit {
+	background-color: transparent;
+	border-top: transparent;
+	border-left: transparent;
+	border-right: transparent;
+	border-bottom: 1px solid black;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+	min-width: 180px;
+	max-width: 180px;
+	height: 40px;
+}</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLabel" name="recv_ou_port_label">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLabel {
+	border: 0px; /* 无边框 */
+	background-color: ; /* 背景颜色 */
+	color: white; /* 文本颜色 */
+	font: 11pt &quot;微软雅黑&quot;;
+}</string>
+                </property>
+                <property name="text">
+                 <string>recv_OU_port :</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="3">
+               <widget class="QLabel" name="kc_tu_ip_label">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLabel {
+	border: 0px; /* 无边框 */
+	background-color: ; /* 背景颜色 */
+	color: white; /* 文本颜色 */
+	font: 11pt &quot;微软雅黑&quot;;
+}</string>
+                </property>
+                <property name="text">
+                 <string>KC-TU IP :</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="4">
+               <widget class="QLineEdit" name="mu_ip_lineEdit">
+                <property name="styleSheet">
+                 <string notr="true">QLineEdit {
+	background-color: transparent;
+	border-top: transparent;
+	border-left: transparent;
+	border-right: transparent;
+	border-bottom: 1px solid black;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+	min-width: 180px;
+	max-width: 180px;
+	height: 40px;
+}</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="3">
+               <widget class="QLabel" name="mu_ip_label">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLabel {
+	border: 0px; /* 无边框 */
+	background-color: ; /* 背景颜色 */
+	color: white; /* 文本颜色 */
+	font: 11pt &quot;微软雅黑&quot;;
+}</string>
+                </property>
+                <property name="text">
+                 <string>MU IP :</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="2">
+               <widget class="QLineEdit" name="kc_ts_send_mu_port_lineEdit">
+                <property name="styleSheet">
+                 <string notr="true">QLineEdit {
+	background-color: transparent;
+	border-top: transparent;
+	border-left: transparent;
+	border-right: transparent;
+	border-bottom: 1px solid black;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+	min-width: 180px;
+	max-width: 180px;
+	height: 40px;
+}</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="3">
+               <widget class="QLabel" name="mu_recv_port_label">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLabel {
+	border: 0px; /* 无边框 */
+	background-color: ; /* 背景颜色 */
+	color: white; /* 文本颜色 */
+	font: 11pt &quot;微软雅黑&quot;;
+}</string>
+                </property>
+                <property name="text">
+                 <string>MU recv_port :</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="4">
+               <widget class="QLineEdit" name="mu_recv_port_lineEdit">
+                <property name="styleSheet">
+                 <string notr="true">QLineEdit {
+	background-color: transparent;
+	border-top: transparent;
+	border-left: transparent;
+	border-right: transparent;
+	border-bottom: 1px solid black;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+	min-width: 180px;
+	max-width: 180px;
+	height: 40px;
+}</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLineEdit" name="kc_ts_recv_tu_port_lineEdit">
+                <property name="minimumSize">
+                 <size>
+                  <width>180</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>180</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLineEdit {
+	background-color: transparent;
+	border-top: transparent;
+	border-left: transparent;
+	border-right: transparent;
+	border-bottom: 1px solid black;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+	min-width: 180px;
+	max-width: 180px;
+	height: 40px;
+}</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="2">
+               <widget class="QLineEdit" name="kc_ts_send_tu_port_lineEdit">
+                <property name="styleSheet">
+                 <string notr="true">QLineEdit {
+	background-color: transparent;
+	border-top: transparent;
+	border-left: transparent;
+	border-right: transparent;
+	border-bottom: 1px solid black;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+	min-width: 180px;
+	max-width: 180px;
+	height: 40px;
+}</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLabel" name="kc_ts_ip_label">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLabel {
+	border: 0px; /* 无边框 */
+	background-color: ; /* 背景颜色 */
+	color: white; /* 文本颜色 */
+	font: 11pt &quot;微软雅黑&quot;;
+}</string>
+                </property>
+                <property name="text">
+                 <string>KC-TS IP :</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="4">
+               <widget class="QPushButton" name="apply_pushButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>80</width>
+                  <height>50</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>120</width>
+                  <height>70</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+    border: 5px;
+    border-radius: 15px;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #435068, stop: 1 #2a354e);
+    min-width: 80px;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+}
+
+QPushButton:hover {
+	background-color: #435068
+}
+
+QPushButton:pressed {
+    background-color: #2c3646
+}
+
+QPushButton:disabled {
+    background-color: #434b5d
+}
+
+
+</string>
+                </property>
+                <property name="text">
+                 <string>应用</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLabel" name="kc_ts_send_tu_port_label">
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLabel {
+	border: 0px; /* 无边框 */
+	background-color: ; /* 背景颜色 */
+	color: white; /* 文本颜色 */
+	font: 11pt &quot;微软雅黑&quot;;
+}</string>
+                </property>
+                <property name="text">
+                 <string>send_TU_port :</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QLabel" name="kc_ts_send_mu_port_label">
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLabel {
+	border: 0px; /* 无边框 */
+	background-color: ; /* 背景颜色 */
+	color: white; /* 文本颜色 */
+	font: 11pt &quot;微软雅黑&quot;;
+}</string>
+                </property>
+                <property name="text">
+                 <string>send_MU_port :</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLabel" name="kc_ts_recv_port_label">
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLabel {
+	border: 0px; /* 无边框 */
+	background-color: ; /* 背景颜色 */
+	color: white; /* 文本颜色 */
+	font: 11pt &quot;微软雅黑&quot;;
+}</string>
+                </property>
+                <property name="text">
+                 <string>recv_TU_port :</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <spacer name="horizontalSpacer_3">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Maximum</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>50</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="auto_test_page">
           <widget class="QLabel" name="label_2">
@@ -631,6 +1104,51 @@
           <layout class="QVBoxLayout" name="verticalLayout_2">
            <item>
             <widget class="QTabWidget" name="tabWidget">
+             <property name="minimumSize">
+              <size>
+               <width>1079</width>
+               <height>613</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QTabWidget::pane { /* The tab widget frame */
+    border-top: 2px solid #C2C7CB;
+}
+
+QTabWidget::tab-bar {
+    left: 15px; /* move to the right by 10px */
+}
+
+/* Style the tab using the tab sub-control. Note that
+    it reads QTabBar _not_ QTabWidget */
+QTabBar::tab {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,
+                                stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);
+    border: 2px solid #C4C4C3;
+    border-bottom-color: #C2C7CB; /* same as the pane color */
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    min-width: 20ex;
+    padding: 2px;
+	font: 9pt &quot;微软雅黑&quot;;
+}
+
+QTabBar::tab:selected, QTabBar::tab:hover {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #fafafa, stop: 0.4 #f4f4f4,
+                                stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);
+}
+
+QTabBar::tab:selected {
+    border-color: #9B9B9B;
+    border-bottom-color: #C2C7CB; /* same as pane color */
+}
+
+QTabBar::tab:!selected {
+    margin-top: 2px; /* make non-selected tabs look smaller */
+}</string>
+             </property>
              <property name="tabShape">
               <enum>QTabWidget::Rounded</enum>
              </property>
@@ -644,6 +1162,14 @@
               <layout class="QVBoxLayout" name="verticalLayout_4">
                <item>
                 <widget class="QWidget" name="widget" native="true">
+                 <property name="styleSheet">
+                  <string notr="true">
+QWidget {
+	background: transparent;
+	border-width: 0;
+	border-style: outset;
+}</string>
+                 </property>
                  <layout class="QVBoxLayout" name="verticalLayout_3">
                   <property name="spacing">
                    <number>0</number>
@@ -676,11 +1202,27 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QProgressBar {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	border-color: #44909f;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QProgressBar::chunk {
+    background-color: #408a99;
+    width: 20px;
+}</string>
+                      </property>
                       <property name="maximum">
-                       <number>24</number>
+                       <number>2400</number>
                       </property>
                       <property name="value">
-                       <number>24</number>
+                       <number>2400</number>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -707,11 +1249,27 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QProgressBar {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	border-color: #44909f;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QProgressBar::chunk {
+    background-color: #408a99;
+    width: 20px;
+}</string>
+                      </property>
                       <property name="maximum">
-                       <number>24</number>
+                       <number>2400</number>
                       </property>
                       <property name="value">
-                       <number>24</number>
+                       <number>0</number>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -738,11 +1296,27 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QProgressBar {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	border-color: #44909f;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QProgressBar::chunk {
+    background-color: #408a99;
+    width: 20px;
+}</string>
+                      </property>
                       <property name="maximum">
-                       <number>24</number>
+                       <number>2400</number>
                       </property>
                       <property name="value">
-                       <number>24</number>
+                       <number>0</number>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -769,11 +1343,27 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QProgressBar {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	border-color: #44909f;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QProgressBar::chunk {
+    background-color: #408a99;
+    width: 20px;
+}</string>
+                      </property>
                       <property name="maximum">
-                       <number>24</number>
+                       <number>2400</number>
                       </property>
                       <property name="value">
-                       <number>24</number>
+                       <number>0</number>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -800,11 +1390,27 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QProgressBar {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	border-color: #44909f;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QProgressBar::chunk {
+    background-color: #408a99;
+    width: 20px;
+}</string>
+                      </property>
                       <property name="maximum">
-                       <number>24</number>
+                       <number>2400</number>
                       </property>
                       <property name="value">
-                       <number>24</number>
+                       <number>0</number>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -831,11 +1437,27 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QProgressBar {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	border-color: #44909f;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QProgressBar::chunk {
+    background-color: #408a99;
+    width: 20px;
+}</string>
+                      </property>
                       <property name="maximum">
-                       <number>24</number>
+                       <number>2400</number>
                       </property>
                       <property name="value">
-                       <number>24</number>
+                       <number>0</number>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -862,11 +1484,27 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QProgressBar {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	border-color: #44909f;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QProgressBar::chunk {
+    background-color: #408a99;
+    width: 20px;
+}</string>
+                      </property>
                       <property name="maximum">
-                       <number>24</number>
+                       <number>2400</number>
                       </property>
                       <property name="value">
-                       <number>24</number>
+                       <number>0</number>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -887,11 +1525,27 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QProgressBar {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	border-color: #44909f;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QProgressBar::chunk {
+    background-color: #408a99;
+    width: 20px;
+}</string>
+                      </property>
                       <property name="maximum">
-                       <number>24</number>
+                       <number>2400</number>
                       </property>
                       <property name="value">
-                       <number>24</number>
+                       <number>0</number>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -918,11 +1572,27 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QProgressBar {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	border-color: #44909f;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QProgressBar::chunk {
+    background-color: #408a99;
+    width: 20px;
+}</string>
+                      </property>
                       <property name="maximum">
-                       <number>24</number>
+                       <number>2400</number>
                       </property>
                       <property name="value">
-                       <number>24</number>
+                       <number>1200</number>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -943,11 +1613,27 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QProgressBar {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	border-color: #44909f;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QProgressBar::chunk {
+    background-color: #408a99;
+    width: 20px;
+}</string>
+                      </property>
                       <property name="maximum">
-                       <number>24</number>
+                       <number>2400</number>
                       </property>
                       <property name="value">
-                       <number>24</number>
+                       <number>0</number>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -974,11 +1660,27 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QProgressBar {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	border-color: #44909f;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QProgressBar::chunk {
+    background-color: #408a99;
+    width: 20px;
+}</string>
+                      </property>
                       <property name="maximum">
-                       <number>24</number>
+                       <number>2400</number>
                       </property>
                       <property name="value">
-                       <number>24</number>
+                       <number>0</number>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -1005,11 +1707,27 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QProgressBar {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	border-color: #44909f;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QProgressBar::chunk {
+    background-color: #408a99;
+    width: 20px;
+}</string>
+                      </property>
                       <property name="maximum">
-                       <number>24</number>
+                       <number>2400</number>
                       </property>
                       <property name="value">
-                       <number>24</number>
+                       <number>0</number>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -1036,6 +1754,16 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
+                      </property>
                       <property name="text">
                        <string>DO1</string>
                       </property>
@@ -1061,11 +1789,27 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QProgressBar {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	border-color: #44909f;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QProgressBar::chunk {
+    background-color: #408a99;
+    width: 20px;
+}</string>
+                      </property>
                       <property name="maximum">
-                       <number>24</number>
+                       <number>2400</number>
                       </property>
                       <property name="value">
-                       <number>24</number>
+                       <number>0</number>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -1092,11 +1836,27 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QProgressBar {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	border-color: #44909f;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QProgressBar::chunk {
+    background-color: #408a99;
+    width: 20px;
+}</string>
+                      </property>
                       <property name="maximum">
-                       <number>24</number>
+                       <number>2400</number>
                       </property>
                       <property name="value">
-                       <number>24</number>
+                       <number>0</number>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -1123,11 +1883,27 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QProgressBar {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	border-color: #44909f;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QProgressBar::chunk {
+    background-color: #408a99;
+    width: 20px;
+}</string>
+                      </property>
                       <property name="maximum">
-                       <number>24</number>
+                       <number>2400</number>
                       </property>
                       <property name="value">
-                       <number>24</number>
+                       <number>0</number>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -1148,11 +1924,27 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QProgressBar {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	border-color: #44909f;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QProgressBar::chunk {
+    background-color: #408a99;
+    width: 20px;
+}</string>
+                      </property>
                       <property name="maximum">
-                       <number>24</number>
+                       <number>2400</number>
                       </property>
                       <property name="value">
-                       <number>24</number>
+                       <number>0</number>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -1179,6 +1971,16 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
+                      </property>
                       <property name="text">
                        <string>DO2</string>
                       </property>
@@ -1203,6 +2005,16 @@
                         <width>150</width>
                         <height>16777215</height>
                        </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
                       </property>
                       <property name="text">
                        <string>DO3</string>
@@ -1229,6 +2041,16 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
+                      </property>
                       <property name="text">
                        <string>DO4</string>
                       </property>
@@ -1253,6 +2075,16 @@
                         <width>150</width>
                         <height>16777215</height>
                        </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
                       </property>
                       <property name="text">
                        <string>DO5</string>
@@ -1279,6 +2111,16 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
+                      </property>
                       <property name="text">
                        <string>DO6</string>
                       </property>
@@ -1303,6 +2145,16 @@
                         <width>150</width>
                         <height>16777215</height>
                        </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
                       </property>
                       <property name="text">
                        <string>DO8</string>
@@ -1335,6 +2187,16 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
+                      </property>
                       <property name="text">
                        <string>DO7</string>
                       </property>
@@ -1359,6 +2221,16 @@
                         <width>150</width>
                         <height>16777215</height>
                        </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
                       </property>
                       <property name="text">
                        <string>DO9</string>
@@ -1385,6 +2257,16 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
+                      </property>
                       <property name="text">
                        <string>DO10</string>
                       </property>
@@ -1409,6 +2291,16 @@
                         <width>150</width>
                         <height>16777215</height>
                        </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
                       </property>
                       <property name="text">
                        <string>DO11</string>
@@ -1435,6 +2327,16 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
+                      </property>
                       <property name="text">
                        <string>DO12</string>
                       </property>
@@ -1459,6 +2361,16 @@
                         <width>150</width>
                         <height>16777215</height>
                        </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
                       </property>
                       <property name="text">
                        <string>DO13</string>
@@ -1485,6 +2397,16 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
+                      </property>
                       <property name="text">
                        <string>DO14</string>
                       </property>
@@ -1509,6 +2431,16 @@
                         <width>150</width>
                         <height>16777215</height>
                        </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
                       </property>
                       <property name="text">
                        <string>DO15</string>
@@ -1535,6 +2467,16 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
+                      </property>
                       <property name="text">
                        <string>DO16</string>
                       </property>
@@ -1559,6 +2501,16 @@
                         <width>16777215</width>
                         <height>150</height>
                        </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
                       </property>
                       <property name="text">
                        <string>DO18</string>
@@ -1585,6 +2537,16 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
+                      </property>
                       <property name="text">
                        <string>DO17</string>
                       </property>
@@ -1609,6 +2571,16 @@
                         <width>150</width>
                         <height>16777215</height>
                        </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
                       </property>
                       <property name="text">
                        <string>DO19</string>
@@ -1635,6 +2607,16 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
+                      </property>
                       <property name="text">
                        <string>DO20</string>
                       </property>
@@ -1659,6 +2641,16 @@
                         <width>150</width>
                         <height>16777215</height>
                        </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
                       </property>
                       <property name="text">
                        <string>DO21</string>
@@ -1685,6 +2677,16 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
+                      </property>
                       <property name="text">
                        <string>DO23</string>
                       </property>
@@ -1709,6 +2711,16 @@
                         <width>150</width>
                         <height>16777215</height>
                        </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}</string>
                       </property>
                       <property name="text">
                        <string>DO24</string>
@@ -1735,6 +2747,15 @@
                         <height>16777215</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: #fcd97f;
+}</string>
+                      </property>
                       <property name="text">
                        <string>DO22</string>
                       </property>
@@ -1754,7 +2775,7 @@
                <item>
                 <widget class="QStackedWidget" name="ou_analysis_send_stacked">
                  <property name="currentIndex">
-                  <number>0</number>
+                  <number>1</number>
                  </property>
                  <widget class="QWidget" name="ou_analysis_page">
                   <widget class="QLabel" name="label_3">
@@ -1797,15 +2818,41 @@
                    </property>
                    <property name="minimumSize">
                     <size>
-                     <width>0</width>
-                     <height>35</height>
+                     <width>80</width>
+                     <height>45</height>
                     </size>
                    </property>
                    <property name="maximumSize">
                     <size>
-                     <width>100</width>
+                     <width>95</width>
                      <height>16777215</height>
                     </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton {
+    border: 5px;
+    border-radius: 6px;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #435068, stop: 1 #2a354e);
+    min-width: 80px;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+}
+
+QPushButton:hover {
+	background-color: #435068
+}
+
+QPushButton:pressed {
+    background-color: #2c3646
+}
+
+QPushButton:disabled {
+    background-color: #414a59
+}
+
+
+</string>
                    </property>
                    <property name="text">
                     <string>IO查询</string>
@@ -1816,15 +2863,41 @@
                   <widget class="QPushButton" name="send_package_pushButton">
                    <property name="minimumSize">
                     <size>
-                     <width>0</width>
-                     <height>35</height>
+                     <width>80</width>
+                     <height>45</height>
                     </size>
                    </property>
                    <property name="maximumSize">
                     <size>
-                     <width>100</width>
+                     <width>95</width>
                      <height>16777215</height>
                     </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton {
+    border: 5px;
+    border-radius: 6px;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #435068, stop: 1 #2a354e);
+    min-width: 80px;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+}
+
+QPushButton:hover {
+	background-color: #435068
+}
+
+QPushButton:pressed {
+    background-color: #2c3646
+}
+
+QPushButton:disabled {
+    background-color: #434b5d
+}
+
+
+</string>
                    </property>
                    <property name="text">
                     <string>模拟发包</string>

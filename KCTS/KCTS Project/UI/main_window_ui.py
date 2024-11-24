@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_KCTS(object):
     def setupUi(self, KCTS):
         KCTS.setObjectName("KCTS")
-        KCTS.resize(1064, 690)
+        KCTS.resize(1221, 690)
         self.Window = QtWidgets.QWidget(KCTS)
         self.Window.setObjectName("Window")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.Window)
@@ -23,301 +23,568 @@ class Ui_KCTS(object):
         self.verticalLayout.setObjectName("verticalLayout")
         self.Menu = QtWidgets.QWidget(self.Window)
         self.Menu.setMaximumSize(QtCore.QSize(16777215, 100))
-        self.Menu.setStyleSheet("background-color: rgb(125, 125, 125);")
+        self.Menu.setStyleSheet("QWidget {\n"
+"    background: qlineargradient(\n"
+"        spread: pad,\n"
+"        x1: 1, y1: 0, x2: 0, y2: 1,\n"
+"        stop: 0 #0d1117,  /* 起始颜色 */\n"
+"        stop: 1 #414a5a   /* 结束颜色 */\n"
+"    );\n"
+"}")
         self.Menu.setObjectName("Menu")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.Menu)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        spacerItem = QtWidgets.QSpacerItem(120, 10, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem = QtWidgets.QSpacerItem(45, 20, QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
         self.system_label = QtWidgets.QLabel(self.Menu)
-        self.system_label.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.system_label.setMinimumSize(QtCore.QSize(100, 0))
+        self.system_label.setMaximumSize(QtCore.QSize(400, 16777215))
         self.system_label.setSizeIncrement(QtCore.QSize(0, 0))
-        self.system_label.setStyleSheet("font: 20pt \"幼圆\";")
+        self.system_label.setStyleSheet("QLabel {\n"
+"    background: transparent;\n"
+"    border-width: 0;\n"
+"    border-style: outset;\n"
+"    font: 20pt \"幼圆\";\n"
+"    color: white;\n"
+"}\n"
+"")
         self.system_label.setAlignment(QtCore.Qt.AlignCenter)
         self.system_label.setObjectName("system_label")
         self.horizontalLayout.addWidget(self.system_label)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem1)
-        self.pushButton = QtWidgets.QPushButton(self.Menu)
-        self.pushButton.setMaximumSize(QtCore.QSize(80, 40))
-        self.pushButton.setObjectName("pushButton")
-        self.horizontalLayout.addWidget(self.pushButton)
+        self.import_protocol_pushButton = QtWidgets.QPushButton(self.Menu)
+        self.import_protocol_pushButton.setMinimumSize(QtCore.QSize(80, 0))
+        self.import_protocol_pushButton.setMaximumSize(QtCore.QSize(100, 40))
+        self.import_protocol_pushButton.setStyleSheet("QPushButton {\n"
+"    border: 5px;\n"
+"    border-radius: 10px;\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #435068, stop: 1 #2a354e);\n"
+"    min-width: 80px;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #435068\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2c3646\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: #434b5d\n"
+"}\n"
+"\n"
+"\n"
+"")
+        self.import_protocol_pushButton.setObjectName("import_protocol_pushButton")
+        self.horizontalLayout.addWidget(self.import_protocol_pushButton)
         self.pushButton_2 = QtWidgets.QPushButton(self.Menu)
-        self.pushButton_2.setMaximumSize(QtCore.QSize(80, 40))
+        self.pushButton_2.setMinimumSize(QtCore.QSize(80, 0))
+        self.pushButton_2.setMaximumSize(QtCore.QSize(100, 40))
+        self.pushButton_2.setStyleSheet("QPushButton {\n"
+"    border: 5px;\n"
+"    border-radius: 10px;\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #435068, stop: 1 #2a354e);\n"
+"    min-width: 80px;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #435068\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2c3646\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: #434b5d\n"
+"}\n"
+"\n"
+"\n"
+"")
         self.pushButton_2.setObjectName("pushButton_2")
         self.horizontalLayout.addWidget(self.pushButton_2)
         self.pushButton_3 = QtWidgets.QPushButton(self.Menu)
+        self.pushButton_3.setMinimumSize(QtCore.QSize(80, 0))
         self.pushButton_3.setMaximumSize(QtCore.QSize(40, 40))
+        self.pushButton_3.setStyleSheet("QPushButton {\n"
+"    border: 5px;\n"
+"    border-radius: 10px;\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #435068, stop: 1 #2a354e);\n"
+"    min-width: 80px;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #435068\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2c3646\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: #434b5d\n"
+"}\n"
+"\n"
+"\n"
+"")
         self.pushButton_3.setObjectName("pushButton_3")
         self.horizontalLayout.addWidget(self.pushButton_3)
         self.verticalLayout.addWidget(self.Menu)
         self.Body = QtWidgets.QWidget(self.Window)
-        self.Body.setStyleSheet("")
+        self.Body.setStyleSheet("/* radial gradient */\n"
+"QWidget {\n"
+"    background: qradialgradient(cx:0.5, cy:0, radius: 1,\n"
+"                fx:0.6, fy:0.5, stop:0 #414a5a, stop:1 #0d1117)\n"
+"}")
         self.Body.setObjectName("Body")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.Body)
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_2.setSpacing(0)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.navigation_list = QtWidgets.QListWidget(self.Body)
-        self.navigation_list.setMinimumSize(QtCore.QSize(90, 0))
-        self.navigation_list.setStyleSheet("background-color: rgb(16, 21, 31);")
+        self.navigation_list.setMinimumSize(QtCore.QSize(120, 0))
+        self.navigation_list.setStyleSheet("QListWidget {\n"
+"    background: qlineargradient(\n"
+"        spread: pad,\n"
+"        x1: 1, y1: 0, x2: 1, y2: 1,\n"
+"        stop: 0 #414a5a,  /* 起始颜色 */\n"
+"        stop: 1 #0d1117  /* 结束颜色 */\n"
+"    );\n"
+"    border-width: 0;\n"
+"    border-style: outset;\n"
+"    outline: 0px; /*去掉虚线边框*/\n"
+"}\n"
+"\n"
+"QListWidget::item{\n"
+"    height: 60px;\n"
+"\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"QListWidget::item:hover{\n"
+"    background-color: #2c3646;\n"
+"}\n"
+"\n"
+"QListWidget::item:selected {\n"
+"    background-color: #435068;\n"
+"}\n"
+"\n"
+"")
         self.navigation_list.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.navigation_list.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.navigation_list.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.navigation_list.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContentsOnFirstShow)
+        self.navigation_list.setIconSize(QtCore.QSize(0, 0))
+        self.navigation_list.setGridSize(QtCore.QSize(0, 60))
         self.navigation_list.setItemAlignment(QtCore.Qt.AlignCenter)
         self.navigation_list.setObjectName("navigation_list")
+        item = QtWidgets.QListWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        item.setFont(font)
+        self.navigation_list.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        item.setFont(font)
+        self.navigation_list.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        item.setFont(font)
+        self.navigation_list.addItem(item)
         self.horizontalLayout_2.addWidget(self.navigation_list)
         self.sub_interface_stacked = QtWidgets.QStackedWidget(self.Body)
-        self.sub_interface_stacked.setStyleSheet("QWidget {\n"
-"    background-color: rgb(64, 74, 90);\n"
-"                background: qlineargradient(\n"
-"                    spread: pad,\n"
-"                    x1: 0, y1: 1, x2: 1, y2: 0,\n"
-"                    stop: 0 #414b5b,  /* 起始颜色 */\n"
-"                    stop: 1 #1c1f2c   /* 结束颜色 */\n"
-"                );\n"
-"            }")
+        self.sub_interface_stacked.setStyleSheet("")
         self.sub_interface_stacked.setObjectName("sub_interface_stacked")
         self.device_status_page = QtWidgets.QWidget()
         self.device_status_page.setObjectName("device_status_page")
-        self.label = QtWidgets.QLabel(self.device_status_page)
-        self.label.setGeometry(QtCore.QRect(70, 20, 141, 41))
-        self.label.setObjectName("label")
-        self.gridLayoutWidget = QtWidgets.QWidget(self.device_status_page)
-        self.gridLayoutWidget.setGeometry(QtCore.QRect(80, 60, 691, 536))
-        self.gridLayoutWidget.setObjectName("gridLayoutWidget")
-        self.gridLayout_2 = QtWidgets.QGridLayout(self.gridLayoutWidget)
+        self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.device_status_page)
+        self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_5.setSpacing(0)
+        self.verticalLayout_5.setObjectName("verticalLayout_5")
+        self.gridWidget = QtWidgets.QWidget(self.device_status_page)
+        self.gridWidget.setStyleSheet("QWidget {\n"
+"    background: transparent;\n"
+"    border-width: 0;\n"
+"    border-style: outset;\n"
+"}")
+        self.gridWidget.setObjectName("gridWidget")
+        self.gridLayout_3 = QtWidgets.QGridLayout(self.gridWidget)
+        self.gridLayout_3.setObjectName("gridLayout_3")
+        self.softWare_version_text = QtWidgets.QLabel(self.gridWidget)
+        self.softWare_version_text.setStyleSheet("QLabel {\n"
+"    border: 0px; /* 无边框 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: white; /* 文本颜色 */\n"
+"    font: 11pt \"微软雅黑\";\n"
+"}")
+        self.softWare_version_text.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.softWare_version_text.setObjectName("softWare_version_text")
+        self.gridLayout_3.addWidget(self.softWare_version_text, 0, 1, 1, 1)
+        self.hardWare_version_label = QtWidgets.QLabel(self.gridWidget)
+        self.hardWare_version_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.hardWare_version_label.setStyleSheet("QLabel {\n"
+"    border: 0px; /* 无边框 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: white; /* 文本颜色 */\n"
+"    font: 11pt \"微软雅黑\";\n"
+"}")
+        self.hardWare_version_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.hardWare_version_label.setObjectName("hardWare_version_label")
+        self.gridLayout_3.addWidget(self.hardWare_version_label, 1, 0, 1, 1)
+        self.softWare_version_label = QtWidgets.QLabel(self.gridWidget)
+        self.softWare_version_label.setMinimumSize(QtCore.QSize(0, 0))
+        self.softWare_version_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.softWare_version_label.setStyleSheet("QLabel {\n"
+"    border: 0px; /* 无边框 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: white; /* 文本颜色 */\n"
+"    font: 11pt \"微软雅黑\";\n"
+"}")
+        self.softWare_version_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.softWare_version_label.setObjectName("softWare_version_label")
+        self.gridLayout_3.addWidget(self.softWare_version_label, 0, 0, 1, 1)
+        self.hardWare_version_text = QtWidgets.QLabel(self.gridWidget)
+        self.hardWare_version_text.setStyleSheet("QLabel {\n"
+"    border: 0px; /* 无边框 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: white; /* 文本颜色 */\n"
+"    font: 11pt \"微软雅黑\";\n"
+"}")
+        self.hardWare_version_text.setObjectName("hardWare_version_text")
+        self.gridLayout_3.addWidget(self.hardWare_version_text, 1, 1, 1, 1)
+        self.status_label = QtWidgets.QLabel(self.gridWidget)
+        self.status_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.status_label.setStyleSheet("QLabel {\n"
+"    border: 0px; /* 无边框 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: white; /* 文本颜色 */\n"
+"    font: 11pt \"微软雅黑\";\n"
+"}")
+        self.status_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.status_label.setObjectName("status_label")
+        self.gridLayout_3.addWidget(self.status_label, 2, 0, 1, 1)
+        self.status_text = QtWidgets.QLabel(self.gridWidget)
+        self.status_text.setStyleSheet("QLabel {\n"
+"    border: 0px; /* 无边框 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: white; /* 文本颜色 */\n"
+"    font: 11pt \"微软雅黑\";\n"
+"}")
+        self.status_text.setObjectName("status_text")
+        self.gridLayout_3.addWidget(self.status_text, 2, 1, 1, 1)
+        self.verticalLayout_5.addWidget(self.gridWidget)
+        self.gridWidget1 = QtWidgets.QWidget(self.device_status_page)
+        self.gridWidget1.setStyleSheet("QWidget {\n"
+"    background: transparent;\n"
+"    border-width: 0;\n"
+"    border-style: outset;\n"
+"}")
+        self.gridWidget1.setObjectName("gridWidget1")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.gridWidget1)
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_2.setSpacing(0)
         self.gridLayout_2.setObjectName("gridLayout_2")
-        self.kc_ts_send_tu_port_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
-        self.kc_ts_send_tu_port_lineEdit.setStyleSheet("QLineEdit {\n"
-"        min-width: 150px;    /* 最小宽度 */\n"
-"        max-width: 200px;    /* 最大宽度 */\n"
-"        height: 40px;        /* 高度 */\n"
-"        font-size: 16px;     /* 字体大小 */\n"
-"        border: 2px solid gray;  /* 边框 */\n"
-"        border-radius: 5px;      /* 圆角 */\n"
-"        padding: 5px;            /* 内边距 */\n"
-"}")
-        self.kc_ts_send_tu_port_lineEdit.setObjectName("kc_ts_send_tu_port_lineEdit")
-        self.gridLayout_2.addWidget(self.kc_ts_send_tu_port_lineEdit, 3, 1, 1, 1)
-        self.kc_ts_send_tu_port_label = QtWidgets.QLabel(self.gridLayoutWidget)
-        self.kc_ts_send_tu_port_label.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.kc_ts_send_tu_port_label.setStyleSheet("QLabel {\n"
-"    border: 0px solid #298DFF; /* 无边框 */\n"
-"    border-radius: 3px; /* 边框圆角 */\n"
-"    background-color: ; /* 背景颜色 */\n"
-"    color: #298DFF; /* 文本颜色 */\n"
-"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
-"    font-size: 10pt; /* 文本字体大小 */\n"
-"}")
-        self.kc_ts_send_tu_port_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.kc_ts_send_tu_port_label.setObjectName("kc_ts_send_tu_port_label")
-        self.gridLayout_2.addWidget(self.kc_ts_send_tu_port_label, 3, 0, 1, 1)
-        self.kc_ts_send_mu_port_label = QtWidgets.QLabel(self.gridLayoutWidget)
-        self.kc_ts_send_mu_port_label.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.kc_ts_send_mu_port_label.setStyleSheet("QLabel {\n"
-"    border: 0px solid #298DFF; /* 无边框 */\n"
-"    border-radius: 3px; /* 边框圆角 */\n"
-"    background-color: ; /* 背景颜色 */\n"
-"    color: #298DFF; /* 文本颜色 */\n"
-"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
-"    font-size: 10pt; /* 文本字体大小 */\n"
-"}")
-        self.kc_ts_send_mu_port_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.kc_ts_send_mu_port_label.setObjectName("kc_ts_send_mu_port_label")
-        self.gridLayout_2.addWidget(self.kc_ts_send_mu_port_label, 4, 0, 1, 1)
-        self.kc_ts_recv_tu_port_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
-        self.kc_ts_recv_tu_port_lineEdit.setStyleSheet("QLineEdit {\n"
-"        min-width: 150px;    /* 最小宽度 */\n"
-"        max-width: 200px;    /* 最大宽度 */\n"
-"        height: 40px;        /* 高度 */\n"
-"        font-size: 16px;     /* 字体大小 */\n"
-"        border: 2px solid gray;  /* 边框 */\n"
-"        border-radius: 5px;      /* 圆角 */\n"
-"        padding: 5px;            /* 内边距 */\n"
-"}")
-        self.kc_ts_recv_tu_port_lineEdit.setObjectName("kc_ts_recv_tu_port_lineEdit")
-        self.gridLayout_2.addWidget(self.kc_ts_recv_tu_port_lineEdit, 1, 1, 1, 1)
-        self.kc_ts_recv_ou_port_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
-        self.kc_ts_recv_ou_port_lineEdit.setStyleSheet("QLineEdit {\n"
-"        min-width: 150px;    /* 最小宽度 */\n"
-"        max-width: 200px;    /* 最大宽度 */\n"
-"        height: 40px;        /* 高度 */\n"
-"        font-size: 16px;     /* 字体大小 */\n"
-"        border: 2px solid gray;  /* 边框 */\n"
-"        border-radius: 5px;      /* 圆角 */\n"
-"        padding: 5px;            /* 内边距 */\n"
-"}")
-        self.kc_ts_recv_ou_port_lineEdit.setObjectName("kc_ts_recv_ou_port_lineEdit")
-        self.gridLayout_2.addWidget(self.kc_ts_recv_ou_port_lineEdit, 2, 1, 1, 1)
-        self.kc_ts_ip_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
-        self.kc_ts_ip_lineEdit.setStyleSheet("QLineEdit {\n"
-"        min-width: 150px;    /* 最小宽度 */\n"
-"        max-width: 200px;    /* 最大宽度 */\n"
-"        height: 40px;        /* 高度 */\n"
-"        font-size: 16px;     /* 字体大小 */\n"
-"        border: 2px solid gray;  /* 边框 */\n"
-"        border-radius: 5px;      /* 圆角 */\n"
-"        padding: 5px;            /* 内边距 */\n"
-"}")
-        self.kc_ts_ip_lineEdit.setReadOnly(True)
-        self.kc_ts_ip_lineEdit.setObjectName("kc_ts_ip_lineEdit")
-        self.gridLayout_2.addWidget(self.kc_ts_ip_lineEdit, 0, 1, 1, 1)
-        self.kc_ts_send_mu_port_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
-        self.kc_ts_send_mu_port_lineEdit.setStyleSheet("QLineEdit {\n"
-"        min-width: 150px;    /* 最小宽度 */\n"
-"        max-width: 200px;    /* 最大宽度 */\n"
-"        height: 40px;        /* 高度 */\n"
-"        font-size: 16px;     /* 字体大小 */\n"
-"        border: 2px solid gray;  /* 边框 */\n"
-"        border-radius: 5px;      /* 圆角 */\n"
-"        padding: 5px;            /* 内边距 */\n"
-"}")
-        self.kc_ts_send_mu_port_lineEdit.setObjectName("kc_ts_send_mu_port_lineEdit")
-        self.gridLayout_2.addWidget(self.kc_ts_send_mu_port_lineEdit, 4, 1, 1, 1)
-        self.kc_ts_recv_port_label = QtWidgets.QLabel(self.gridLayoutWidget)
-        self.kc_ts_recv_port_label.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.kc_ts_recv_port_label.setStyleSheet("QLabel {\n"
-"    border: 0px solid #298DFF; /* 无边框 */\n"
-"    border-radius: 3px; /* 边框圆角 */\n"
-"    background-color: ; /* 背景颜色 */\n"
-"    color: #298DFF; /* 文本颜色 */\n"
-"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
-"    font-size: 10pt; /* 文本字体大小 */\n"
-"}")
-        self.kc_ts_recv_port_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.kc_ts_recv_port_label.setObjectName("kc_ts_recv_port_label")
-        self.gridLayout_2.addWidget(self.kc_ts_recv_port_label, 1, 0, 1, 1)
-        self.kc_ts_ip_label = QtWidgets.QLabel(self.gridLayoutWidget)
-        self.kc_ts_ip_label.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.kc_ts_ip_label.setStyleSheet("QLabel {\n"
-"    border: 0px solid #298DFF; /* 无边框 */\n"
-"    border-radius: 3px; /* 边框圆角 */\n"
-"    background-color: ; /* 背景颜色 */\n"
-"    color: #298DFF; /* 文本颜色 */\n"
-"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
-"    font-size: 10pt; /* 文本字体大小 */\n"
-"}")
-        self.kc_ts_ip_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.kc_ts_ip_label.setObjectName("kc_ts_ip_label")
-        self.gridLayout_2.addWidget(self.kc_ts_ip_label, 0, 0, 1, 1)
-        self.mu_ip_label = QtWidgets.QLabel(self.gridLayoutWidget)
-        self.mu_ip_label.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.mu_ip_label.setStyleSheet("QLabel {\n"
-"    border: 0px solid #298DFF; /* 无边框 */\n"
-"    border-radius: 3px; /* 边框圆角 */\n"
-"    background-color: ; /* 背景颜色 */\n"
-"    color: #298DFF; /* 文本颜色 */\n"
-"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
-"    font-size: 10pt; /* 文本字体大小 */\n"
-"}")
-        self.mu_ip_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.mu_ip_label.setObjectName("mu_ip_label")
-        self.gridLayout_2.addWidget(self.mu_ip_label, 0, 2, 1, 1)
-        self.recv_ou_port_label = QtWidgets.QLabel(self.gridLayoutWidget)
-        self.recv_ou_port_label.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.recv_ou_port_label.setStyleSheet("QLabel {\n"
-"    border: 0px solid #298DFF; /* 无边框 */\n"
-"    border-radius: 3px; /* 边框圆角 */\n"
-"    background-color: ; /* 背景颜色 */\n"
-"    color: #298DFF; /* 文本颜色 */\n"
-"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
-"    font-size: 10pt; /* 文本字体大小 */\n"
-"}")
-        self.recv_ou_port_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.recv_ou_port_label.setObjectName("recv_ou_port_label")
-        self.gridLayout_2.addWidget(self.recv_ou_port_label, 2, 0, 1, 1)
-        self.mu_ip_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
-        self.mu_ip_lineEdit.setStyleSheet("QLineEdit {\n"
-"        min-width: 150px;    /* 最小宽度 */\n"
-"        max-width: 200px;    /* 最大宽度 */\n"
-"        height: 40px;        /* 高度 */\n"
-"        font-size: 16px;     /* 字体大小 */\n"
-"        border: 2px solid gray;  /* 边框 */\n"
-"        border-radius: 5px;      /* 圆角 */\n"
-"        padding: 5px;            /* 内边距 */\n"
-"}")
-        self.mu_ip_lineEdit.setObjectName("mu_ip_lineEdit")
-        self.gridLayout_2.addWidget(self.mu_ip_lineEdit, 0, 3, 1, 1)
-        self.mu_recv_port_label = QtWidgets.QLabel(self.gridLayoutWidget)
-        self.mu_recv_port_label.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.mu_recv_port_label.setStyleSheet("QLabel {\n"
-"    border: 0px solid #298DFF; /* 无边框 */\n"
-"    border-radius: 3px; /* 边框圆角 */\n"
-"    background-color: ; /* 背景颜色 */\n"
-"    color: #298DFF; /* 文本颜色 */\n"
-"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
-"    font-size: 10pt; /* 文本字体大小 */\n"
-"}")
-        self.mu_recv_port_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.mu_recv_port_label.setObjectName("mu_recv_port_label")
-        self.gridLayout_2.addWidget(self.mu_recv_port_label, 1, 2, 1, 1)
-        self.mu_recv_port_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
-        self.mu_recv_port_lineEdit.setStyleSheet("QLineEdit {\n"
-"        min-width: 150px;    /* 最小宽度 */\n"
-"        max-width: 200px;    /* 最大宽度 */\n"
-"        height: 40px;        /* 高度 */\n"
-"        font-size: 16px;     /* 字体大小 */\n"
-"        border: 2px solid gray;  /* 边框 */\n"
-"        border-radius: 5px;      /* 圆角 */\n"
-"        padding: 5px;            /* 内边距 */\n"
-"}")
-        self.mu_recv_port_lineEdit.setObjectName("mu_recv_port_lineEdit")
-        self.gridLayout_2.addWidget(self.mu_recv_port_lineEdit, 1, 3, 1, 1)
-        self.kc_tu_ip_label = QtWidgets.QLabel(self.gridLayoutWidget)
-        self.kc_tu_ip_label.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.kc_tu_ip_label.setStyleSheet("QLabel {\n"
-"    border: 0px solid #298DFF; /* 无边框 */\n"
-"    border-radius: 3px; /* 边框圆角 */\n"
-"    background-color: ; /* 背景颜色 */\n"
-"    color: #298DFF; /* 文本颜色 */\n"
-"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
-"    font-size: 10pt; /* 文本字体大小 */\n"
-"}")
-        self.kc_tu_ip_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.kc_tu_ip_label.setObjectName("kc_tu_ip_label")
-        self.gridLayout_2.addWidget(self.kc_tu_ip_label, 2, 2, 1, 1)
-        self.kc_tu_ip_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
+        self.kc_tu_ip_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
         self.kc_tu_ip_lineEdit.setStyleSheet("QLineEdit {\n"
-"        min-width: 150px;    /* 最小宽度 */\n"
-"        max-width: 200px;    /* 最大宽度 */\n"
-"        height: 40px;        /* 高度 */\n"
-"        font-size: 16px;     /* 字体大小 */\n"
-"        border: 2px solid gray;  /* 边框 */\n"
-"        border-radius: 5px;      /* 圆角 */\n"
-"        padding: 5px;            /* 内边距 */\n"
+"    background-color: transparent;\n"
+"    border-top: transparent;\n"
+"    border-left: transparent;\n"
+"    border-right: transparent;\n"
+"    border-bottom: 1px solid black;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"    min-width: 180px;\n"
+"    max-width: 180px;\n"
+"    height: 40px;\n"
 "}")
+        self.kc_tu_ip_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.kc_tu_ip_lineEdit.setObjectName("kc_tu_ip_lineEdit")
-        self.gridLayout_2.addWidget(self.kc_tu_ip_lineEdit, 2, 3, 1, 1)
-        self.kc_tu_recv_port_label = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.gridLayout_2.addWidget(self.kc_tu_ip_lineEdit, 2, 4, 1, 1)
+        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_2.addItem(spacerItem2, 2, 5, 1, 1)
+        self.kc_ts_recv_ou_port_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
+        self.kc_ts_recv_ou_port_lineEdit.setStyleSheet("QLineEdit {\n"
+"    background-color: transparent;\n"
+"    border-top: transparent;\n"
+"    border-left: transparent;\n"
+"    border-right: transparent;\n"
+"    border-bottom: 1px solid black;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"    min-width: 180px;\n"
+"    max-width: 180px;\n"
+"    height: 40px;\n"
+"}")
+        self.kc_ts_recv_ou_port_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_ts_recv_ou_port_lineEdit.setObjectName("kc_ts_recv_ou_port_lineEdit")
+        self.gridLayout_2.addWidget(self.kc_ts_recv_ou_port_lineEdit, 2, 2, 1, 1)
+        self.kc_tu_recv_port_label = QtWidgets.QLabel(self.gridWidget1)
         self.kc_tu_recv_port_label.setMaximumSize(QtCore.QSize(150, 16777215))
         self.kc_tu_recv_port_label.setStyleSheet("QLabel {\n"
-"    border: 0px solid #298DFF; /* 无边框 */\n"
-"    border-radius: 3px; /* 边框圆角 */\n"
+"    border: 0px; /* 无边框 */\n"
 "    background-color: ; /* 背景颜色 */\n"
-"    color: #298DFF; /* 文本颜色 */\n"
-"    font-family: \"Microsoft YaHei\"; /* 文本字体族 */\n"
-"    font-size: 10pt; /* 文本字体大小 */\n"
+"    color: white; /* 文本颜色 */\n"
+"    font: 11pt \"微软雅黑\";\n"
 "}")
         self.kc_tu_recv_port_label.setAlignment(QtCore.Qt.AlignCenter)
         self.kc_tu_recv_port_label.setObjectName("kc_tu_recv_port_label")
-        self.gridLayout_2.addWidget(self.kc_tu_recv_port_label, 3, 2, 1, 1)
-        self.kc_tu_recv_port_lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
+        self.gridLayout_2.addWidget(self.kc_tu_recv_port_label, 3, 3, 1, 1)
+        self.kc_tu_recv_port_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
         self.kc_tu_recv_port_lineEdit.setStyleSheet("QLineEdit {\n"
-"        min-width: 150px;    /* 最小宽度 */\n"
-"        max-width: 200px;    /* 最大宽度 */\n"
-"        height: 40px;        /* 高度 */\n"
-"        font-size: 16px;     /* 字体大小 */\n"
-"        border: 2px solid gray;  /* 边框 */\n"
-"        border-radius: 5px;      /* 圆角 */\n"
-"        padding: 5px;            /* 内边距 */\n"
+"    background-color: transparent;\n"
+"    border-top: transparent;\n"
+"    border-left: transparent;\n"
+"    border-right: transparent;\n"
+"    border-bottom: 1px solid black;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"    min-width: 180px;\n"
+"    max-width: 180px;\n"
+"    height: 40px;\n"
 "}")
+        self.kc_tu_recv_port_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.kc_tu_recv_port_lineEdit.setObjectName("kc_tu_recv_port_lineEdit")
-        self.gridLayout_2.addWidget(self.kc_tu_recv_port_lineEdit, 3, 3, 1, 1)
-        self.apply_pushButton = QtWidgets.QPushButton(self.device_status_page)
-        self.apply_pushButton.setGeometry(QtCore.QRect(800, 490, 131, 61))
+        self.gridLayout_2.addWidget(self.kc_tu_recv_port_lineEdit, 3, 4, 1, 1)
+        self.kc_ts_ip_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
+        self.kc_ts_ip_lineEdit.setMinimumSize(QtCore.QSize(180, 40))
+        self.kc_ts_ip_lineEdit.setMaximumSize(QtCore.QSize(180, 16777215))
+        self.kc_ts_ip_lineEdit.setStyleSheet("QLineEdit {\n"
+"    background-color: transparent;\n"
+"    border-top: transparent;\n"
+"    border-left: transparent;\n"
+"    border-right: transparent;\n"
+"    border-bottom: 1px solid black;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"    min-width: 180px;\n"
+"    max-width: 180px;\n"
+"    height: 40px;\n"
+"}")
+        self.kc_ts_ip_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_ts_ip_lineEdit.setReadOnly(True)
+        self.kc_ts_ip_lineEdit.setObjectName("kc_ts_ip_lineEdit")
+        self.gridLayout_2.addWidget(self.kc_ts_ip_lineEdit, 0, 2, 1, 1)
+        self.recv_ou_port_label = QtWidgets.QLabel(self.gridWidget1)
+        self.recv_ou_port_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.recv_ou_port_label.setStyleSheet("QLabel {\n"
+"    border: 0px; /* 无边框 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: white; /* 文本颜色 */\n"
+"    font: 11pt \"微软雅黑\";\n"
+"}")
+        self.recv_ou_port_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.recv_ou_port_label.setObjectName("recv_ou_port_label")
+        self.gridLayout_2.addWidget(self.recv_ou_port_label, 2, 1, 1, 1)
+        self.kc_tu_ip_label = QtWidgets.QLabel(self.gridWidget1)
+        self.kc_tu_ip_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.kc_tu_ip_label.setStyleSheet("QLabel {\n"
+"    border: 0px; /* 无边框 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: white; /* 文本颜色 */\n"
+"    font: 11pt \"微软雅黑\";\n"
+"}")
+        self.kc_tu_ip_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_tu_ip_label.setObjectName("kc_tu_ip_label")
+        self.gridLayout_2.addWidget(self.kc_tu_ip_label, 2, 3, 1, 1)
+        self.mu_ip_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
+        self.mu_ip_lineEdit.setStyleSheet("QLineEdit {\n"
+"    background-color: transparent;\n"
+"    border-top: transparent;\n"
+"    border-left: transparent;\n"
+"    border-right: transparent;\n"
+"    border-bottom: 1px solid black;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"    min-width: 180px;\n"
+"    max-width: 180px;\n"
+"    height: 40px;\n"
+"}")
+        self.mu_ip_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.mu_ip_lineEdit.setObjectName("mu_ip_lineEdit")
+        self.gridLayout_2.addWidget(self.mu_ip_lineEdit, 0, 4, 1, 1)
+        self.mu_ip_label = QtWidgets.QLabel(self.gridWidget1)
+        self.mu_ip_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.mu_ip_label.setStyleSheet("QLabel {\n"
+"    border: 0px; /* 无边框 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: white; /* 文本颜色 */\n"
+"    font: 11pt \"微软雅黑\";\n"
+"}")
+        self.mu_ip_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.mu_ip_label.setObjectName("mu_ip_label")
+        self.gridLayout_2.addWidget(self.mu_ip_label, 0, 3, 1, 1)
+        self.kc_ts_send_mu_port_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
+        self.kc_ts_send_mu_port_lineEdit.setStyleSheet("QLineEdit {\n"
+"    background-color: transparent;\n"
+"    border-top: transparent;\n"
+"    border-left: transparent;\n"
+"    border-right: transparent;\n"
+"    border-bottom: 1px solid black;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"    min-width: 180px;\n"
+"    max-width: 180px;\n"
+"    height: 40px;\n"
+"}")
+        self.kc_ts_send_mu_port_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_ts_send_mu_port_lineEdit.setObjectName("kc_ts_send_mu_port_lineEdit")
+        self.gridLayout_2.addWidget(self.kc_ts_send_mu_port_lineEdit, 4, 2, 1, 1)
+        self.mu_recv_port_label = QtWidgets.QLabel(self.gridWidget1)
+        self.mu_recv_port_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.mu_recv_port_label.setStyleSheet("QLabel {\n"
+"    border: 0px; /* 无边框 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: white; /* 文本颜色 */\n"
+"    font: 11pt \"微软雅黑\";\n"
+"}")
+        self.mu_recv_port_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.mu_recv_port_label.setObjectName("mu_recv_port_label")
+        self.gridLayout_2.addWidget(self.mu_recv_port_label, 1, 3, 1, 1)
+        self.mu_recv_port_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
+        self.mu_recv_port_lineEdit.setStyleSheet("QLineEdit {\n"
+"    background-color: transparent;\n"
+"    border-top: transparent;\n"
+"    border-left: transparent;\n"
+"    border-right: transparent;\n"
+"    border-bottom: 1px solid black;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"    min-width: 180px;\n"
+"    max-width: 180px;\n"
+"    height: 40px;\n"
+"}")
+        self.mu_recv_port_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.mu_recv_port_lineEdit.setObjectName("mu_recv_port_lineEdit")
+        self.gridLayout_2.addWidget(self.mu_recv_port_lineEdit, 1, 4, 1, 1)
+        self.kc_ts_recv_tu_port_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
+        self.kc_ts_recv_tu_port_lineEdit.setMinimumSize(QtCore.QSize(180, 40))
+        self.kc_ts_recv_tu_port_lineEdit.setMaximumSize(QtCore.QSize(180, 16777215))
+        self.kc_ts_recv_tu_port_lineEdit.setStyleSheet("QLineEdit {\n"
+"    background-color: transparent;\n"
+"    border-top: transparent;\n"
+"    border-left: transparent;\n"
+"    border-right: transparent;\n"
+"    border-bottom: 1px solid black;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"    min-width: 180px;\n"
+"    max-width: 180px;\n"
+"    height: 40px;\n"
+"}")
+        self.kc_ts_recv_tu_port_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_ts_recv_tu_port_lineEdit.setObjectName("kc_ts_recv_tu_port_lineEdit")
+        self.gridLayout_2.addWidget(self.kc_ts_recv_tu_port_lineEdit, 1, 2, 1, 1)
+        self.kc_ts_send_tu_port_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
+        self.kc_ts_send_tu_port_lineEdit.setStyleSheet("QLineEdit {\n"
+"    background-color: transparent;\n"
+"    border-top: transparent;\n"
+"    border-left: transparent;\n"
+"    border-right: transparent;\n"
+"    border-bottom: 1px solid black;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"    min-width: 180px;\n"
+"    max-width: 180px;\n"
+"    height: 40px;\n"
+"}")
+        self.kc_ts_send_tu_port_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_ts_send_tu_port_lineEdit.setObjectName("kc_ts_send_tu_port_lineEdit")
+        self.gridLayout_2.addWidget(self.kc_ts_send_tu_port_lineEdit, 3, 2, 1, 1)
+        self.kc_ts_ip_label = QtWidgets.QLabel(self.gridWidget1)
+        self.kc_ts_ip_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.kc_ts_ip_label.setStyleSheet("QLabel {\n"
+"    border: 0px; /* 无边框 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: white; /* 文本颜色 */\n"
+"    font: 11pt \"微软雅黑\";\n"
+"}")
+        self.kc_ts_ip_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_ts_ip_label.setObjectName("kc_ts_ip_label")
+        self.gridLayout_2.addWidget(self.kc_ts_ip_label, 0, 1, 1, 1)
+        self.apply_pushButton = QtWidgets.QPushButton(self.gridWidget1)
+        self.apply_pushButton.setMinimumSize(QtCore.QSize(80, 50))
+        self.apply_pushButton.setMaximumSize(QtCore.QSize(120, 70))
+        self.apply_pushButton.setStyleSheet("QPushButton {\n"
+"    border: 5px;\n"
+"    border-radius: 15px;\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #435068, stop: 1 #2a354e);\n"
+"    min-width: 80px;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #435068\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2c3646\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: #434b5d\n"
+"}\n"
+"\n"
+"\n"
+"")
         self.apply_pushButton.setObjectName("apply_pushButton")
+        self.gridLayout_2.addWidget(self.apply_pushButton, 4, 4, 1, 1)
+        self.kc_ts_send_tu_port_label = QtWidgets.QLabel(self.gridWidget1)
+        self.kc_ts_send_tu_port_label.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.kc_ts_send_tu_port_label.setStyleSheet("QLabel {\n"
+"    border: 0px; /* 无边框 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: white; /* 文本颜色 */\n"
+"    font: 11pt \"微软雅黑\";\n"
+"}")
+        self.kc_ts_send_tu_port_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_ts_send_tu_port_label.setObjectName("kc_ts_send_tu_port_label")
+        self.gridLayout_2.addWidget(self.kc_ts_send_tu_port_label, 3, 1, 1, 1)
+        self.kc_ts_send_mu_port_label = QtWidgets.QLabel(self.gridWidget1)
+        self.kc_ts_send_mu_port_label.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.kc_ts_send_mu_port_label.setStyleSheet("QLabel {\n"
+"    border: 0px; /* 无边框 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: white; /* 文本颜色 */\n"
+"    font: 11pt \"微软雅黑\";\n"
+"}")
+        self.kc_ts_send_mu_port_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_ts_send_mu_port_label.setObjectName("kc_ts_send_mu_port_label")
+        self.gridLayout_2.addWidget(self.kc_ts_send_mu_port_label, 4, 1, 1, 1)
+        self.kc_ts_recv_port_label = QtWidgets.QLabel(self.gridWidget1)
+        self.kc_ts_recv_port_label.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.kc_ts_recv_port_label.setStyleSheet("QLabel {\n"
+"    border: 0px; /* 无边框 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: white; /* 文本颜色 */\n"
+"    font: 11pt \"微软雅黑\";\n"
+"}")
+        self.kc_ts_recv_port_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_ts_recv_port_label.setObjectName("kc_ts_recv_port_label")
+        self.gridLayout_2.addWidget(self.kc_ts_recv_port_label, 1, 1, 1, 1)
+        spacerItem3 = QtWidgets.QSpacerItem(50, 20, QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_2.addItem(spacerItem3, 2, 0, 1, 1)
+        self.verticalLayout_5.addWidget(self.gridWidget1)
+        self.verticalLayout_5.setStretch(0, 2)
+        self.verticalLayout_5.setStretch(1, 5)
         self.sub_interface_stacked.addWidget(self.device_status_page)
         self.auto_test_page = QtWidgets.QWidget()
         self.auto_test_page.setObjectName("auto_test_page")
@@ -330,6 +597,44 @@ class Ui_KCTS(object):
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.analysis_page)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.tabWidget = QtWidgets.QTabWidget(self.analysis_page)
+        self.tabWidget.setMinimumSize(QtCore.QSize(1079, 613))
+        self.tabWidget.setStyleSheet("QTabWidget::pane { /* The tab widget frame */\n"
+"    border-top: 2px solid #C2C7CB;\n"
+"}\n"
+"\n"
+"QTabWidget::tab-bar {\n"
+"    left: 15px; /* move to the right by 10px */\n"
+"}\n"
+"\n"
+"/* Style the tab using the tab sub-control. Note that\n"
+"    it reads QTabBar _not_ QTabWidget */\n"
+"QTabBar::tab {\n"
+"    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,\n"
+"                                stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);\n"
+"    border: 2px solid #C4C4C3;\n"
+"    border-bottom-color: #C2C7CB; /* same as the pane color */\n"
+"    border-top-left-radius: 4px;\n"
+"    border-top-right-radius: 4px;\n"
+"    min-width: 20ex;\n"
+"    padding: 2px;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"}\n"
+"\n"
+"QTabBar::tab:selected, QTabBar::tab:hover {\n"
+"    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                stop: 0 #fafafa, stop: 0.4 #f4f4f4,\n"
+"                                stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);\n"
+"}\n"
+"\n"
+"QTabBar::tab:selected {\n"
+"    border-color: #9B9B9B;\n"
+"    border-bottom-color: #C2C7CB; /* same as pane color */\n"
+"}\n"
+"\n"
+"QTabBar::tab:!selected {\n"
+"    margin-top: 2px; /* make non-selected tabs look smaller */\n"
+"}")
         self.tabWidget.setTabShape(QtWidgets.QTabWidget.Rounded)
         self.tabWidget.setObjectName("tabWidget")
         self.real_time_analysis_tab = QtWidgets.QWidget()
@@ -337,6 +642,12 @@ class Ui_KCTS(object):
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.real_time_analysis_tab)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.widget = QtWidgets.QWidget(self.real_time_analysis_tab)
+        self.widget.setStyleSheet("\n"
+"QWidget {\n"
+"    background: transparent;\n"
+"    border-width: 0;\n"
+"    border-style: outset;\n"
+"}")
         self.widget.setObjectName("widget")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.widget)
         self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
@@ -348,8 +659,22 @@ class Ui_KCTS(object):
         self.gridLayout.setObjectName("gridLayout")
         self.PWM15_progressBar = QtWidgets.QProgressBar(self.widget)
         self.PWM15_progressBar.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.PWM15_progressBar.setMaximum(24)
-        self.PWM15_progressBar.setProperty("value", 24)
+        self.PWM15_progressBar.setStyleSheet("QProgressBar {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    border-color: #44909f;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QProgressBar::chunk {\n"
+"    background-color: #408a99;\n"
+"    width: 20px;\n"
+"}")
+        self.PWM15_progressBar.setMaximum(2400)
+        self.PWM15_progressBar.setProperty("value", 2400)
         self.PWM15_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM15_progressBar.setTextVisible(True)
         self.PWM15_progressBar.setObjectName("PWM15_progressBar")
@@ -357,8 +682,22 @@ class Ui_KCTS(object):
         self.PWM7_progressBar = QtWidgets.QProgressBar(self.widget)
         self.PWM7_progressBar.setMinimumSize(QtCore.QSize(0, 25))
         self.PWM7_progressBar.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.PWM7_progressBar.setMaximum(24)
-        self.PWM7_progressBar.setProperty("value", 24)
+        self.PWM7_progressBar.setStyleSheet("QProgressBar {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    border-color: #44909f;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QProgressBar::chunk {\n"
+"    background-color: #408a99;\n"
+"    width: 20px;\n"
+"}")
+        self.PWM7_progressBar.setMaximum(2400)
+        self.PWM7_progressBar.setProperty("value", 0)
         self.PWM7_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM7_progressBar.setTextVisible(True)
         self.PWM7_progressBar.setObjectName("PWM7_progressBar")
@@ -366,8 +705,22 @@ class Ui_KCTS(object):
         self.PWM2_progressBar = QtWidgets.QProgressBar(self.widget)
         self.PWM2_progressBar.setMinimumSize(QtCore.QSize(0, 25))
         self.PWM2_progressBar.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.PWM2_progressBar.setMaximum(24)
-        self.PWM2_progressBar.setProperty("value", 24)
+        self.PWM2_progressBar.setStyleSheet("QProgressBar {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    border-color: #44909f;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QProgressBar::chunk {\n"
+"    background-color: #408a99;\n"
+"    width: 20px;\n"
+"}")
+        self.PWM2_progressBar.setMaximum(2400)
+        self.PWM2_progressBar.setProperty("value", 0)
         self.PWM2_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM2_progressBar.setTextVisible(True)
         self.PWM2_progressBar.setObjectName("PWM2_progressBar")
@@ -375,8 +728,22 @@ class Ui_KCTS(object):
         self.PWM10_progressBar = QtWidgets.QProgressBar(self.widget)
         self.PWM10_progressBar.setMinimumSize(QtCore.QSize(0, 25))
         self.PWM10_progressBar.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.PWM10_progressBar.setMaximum(24)
-        self.PWM10_progressBar.setProperty("value", 24)
+        self.PWM10_progressBar.setStyleSheet("QProgressBar {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    border-color: #44909f;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QProgressBar::chunk {\n"
+"    background-color: #408a99;\n"
+"    width: 20px;\n"
+"}")
+        self.PWM10_progressBar.setMaximum(2400)
+        self.PWM10_progressBar.setProperty("value", 0)
         self.PWM10_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM10_progressBar.setTextVisible(True)
         self.PWM10_progressBar.setObjectName("PWM10_progressBar")
@@ -384,8 +751,22 @@ class Ui_KCTS(object):
         self.PWM6_progressBar = QtWidgets.QProgressBar(self.widget)
         self.PWM6_progressBar.setMinimumSize(QtCore.QSize(0, 25))
         self.PWM6_progressBar.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.PWM6_progressBar.setMaximum(24)
-        self.PWM6_progressBar.setProperty("value", 24)
+        self.PWM6_progressBar.setStyleSheet("QProgressBar {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    border-color: #44909f;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QProgressBar::chunk {\n"
+"    background-color: #408a99;\n"
+"    width: 20px;\n"
+"}")
+        self.PWM6_progressBar.setMaximum(2400)
+        self.PWM6_progressBar.setProperty("value", 0)
         self.PWM6_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM6_progressBar.setTextVisible(True)
         self.PWM6_progressBar.setObjectName("PWM6_progressBar")
@@ -393,8 +774,22 @@ class Ui_KCTS(object):
         self.PWM3_progressBar = QtWidgets.QProgressBar(self.widget)
         self.PWM3_progressBar.setMinimumSize(QtCore.QSize(0, 25))
         self.PWM3_progressBar.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.PWM3_progressBar.setMaximum(24)
-        self.PWM3_progressBar.setProperty("value", 24)
+        self.PWM3_progressBar.setStyleSheet("QProgressBar {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    border-color: #44909f;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QProgressBar::chunk {\n"
+"    background-color: #408a99;\n"
+"    width: 20px;\n"
+"}")
+        self.PWM3_progressBar.setMaximum(2400)
+        self.PWM3_progressBar.setProperty("value", 0)
         self.PWM3_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM3_progressBar.setTextVisible(True)
         self.PWM3_progressBar.setObjectName("PWM3_progressBar")
@@ -402,16 +797,44 @@ class Ui_KCTS(object):
         self.PWM8_progressBar = QtWidgets.QProgressBar(self.widget)
         self.PWM8_progressBar.setMinimumSize(QtCore.QSize(0, 25))
         self.PWM8_progressBar.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.PWM8_progressBar.setMaximum(24)
-        self.PWM8_progressBar.setProperty("value", 24)
+        self.PWM8_progressBar.setStyleSheet("QProgressBar {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    border-color: #44909f;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QProgressBar::chunk {\n"
+"    background-color: #408a99;\n"
+"    width: 20px;\n"
+"}")
+        self.PWM8_progressBar.setMaximum(2400)
+        self.PWM8_progressBar.setProperty("value", 0)
         self.PWM8_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM8_progressBar.setTextVisible(True)
         self.PWM8_progressBar.setObjectName("PWM8_progressBar")
         self.gridLayout.addWidget(self.PWM8_progressBar, 1, 6, 1, 1)
         self.PWM13_progressBar = QtWidgets.QProgressBar(self.widget)
         self.PWM13_progressBar.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.PWM13_progressBar.setMaximum(24)
-        self.PWM13_progressBar.setProperty("value", 24)
+        self.PWM13_progressBar.setStyleSheet("QProgressBar {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    border-color: #44909f;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QProgressBar::chunk {\n"
+"    background-color: #408a99;\n"
+"    width: 20px;\n"
+"}")
+        self.PWM13_progressBar.setMaximum(2400)
+        self.PWM13_progressBar.setProperty("value", 0)
         self.PWM13_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM13_progressBar.setTextVisible(True)
         self.PWM13_progressBar.setObjectName("PWM13_progressBar")
@@ -419,16 +842,44 @@ class Ui_KCTS(object):
         self.PWM1_progressBar = QtWidgets.QProgressBar(self.widget)
         self.PWM1_progressBar.setMinimumSize(QtCore.QSize(0, 25))
         self.PWM1_progressBar.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.PWM1_progressBar.setMaximum(24)
-        self.PWM1_progressBar.setProperty("value", 24)
+        self.PWM1_progressBar.setStyleSheet("QProgressBar {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    border-color: #44909f;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QProgressBar::chunk {\n"
+"    background-color: #408a99;\n"
+"    width: 20px;\n"
+"}")
+        self.PWM1_progressBar.setMaximum(2400)
+        self.PWM1_progressBar.setProperty("value", 1200)
         self.PWM1_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM1_progressBar.setTextVisible(True)
         self.PWM1_progressBar.setObjectName("PWM1_progressBar")
         self.gridLayout.addWidget(self.PWM1_progressBar, 4, 4, 1, 1)
         self.PWM14_progressBar = QtWidgets.QProgressBar(self.widget)
         self.PWM14_progressBar.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.PWM14_progressBar.setMaximum(24)
-        self.PWM14_progressBar.setProperty("value", 24)
+        self.PWM14_progressBar.setStyleSheet("QProgressBar {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    border-color: #44909f;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QProgressBar::chunk {\n"
+"    background-color: #408a99;\n"
+"    width: 20px;\n"
+"}")
+        self.PWM14_progressBar.setMaximum(2400)
+        self.PWM14_progressBar.setProperty("value", 0)
         self.PWM14_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM14_progressBar.setTextVisible(True)
         self.PWM14_progressBar.setObjectName("PWM14_progressBar")
@@ -436,8 +887,22 @@ class Ui_KCTS(object):
         self.PWM5_progressBar = QtWidgets.QProgressBar(self.widget)
         self.PWM5_progressBar.setMinimumSize(QtCore.QSize(0, 25))
         self.PWM5_progressBar.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.PWM5_progressBar.setMaximum(24)
-        self.PWM5_progressBar.setProperty("value", 24)
+        self.PWM5_progressBar.setStyleSheet("QProgressBar {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    border-color: #44909f;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QProgressBar::chunk {\n"
+"    background-color: #408a99;\n"
+"    width: 20px;\n"
+"}")
+        self.PWM5_progressBar.setMaximum(2400)
+        self.PWM5_progressBar.setProperty("value", 0)
         self.PWM5_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM5_progressBar.setTextVisible(True)
         self.PWM5_progressBar.setObjectName("PWM5_progressBar")
@@ -445,8 +910,22 @@ class Ui_KCTS(object):
         self.PWM4_progressBar = QtWidgets.QProgressBar(self.widget)
         self.PWM4_progressBar.setMinimumSize(QtCore.QSize(0, 25))
         self.PWM4_progressBar.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.PWM4_progressBar.setMaximum(24)
-        self.PWM4_progressBar.setProperty("value", 24)
+        self.PWM4_progressBar.setStyleSheet("QProgressBar {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    border-color: #44909f;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QProgressBar::chunk {\n"
+"    background-color: #408a99;\n"
+"    width: 20px;\n"
+"}")
+        self.PWM4_progressBar.setMaximum(2400)
+        self.PWM4_progressBar.setProperty("value", 0)
         self.PWM4_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM4_progressBar.setTextVisible(True)
         self.PWM4_progressBar.setObjectName("PWM4_progressBar")
@@ -454,6 +933,14 @@ class Ui_KCTS(object):
         self.DO1_label = QtWidgets.QLabel(self.widget)
         self.DO1_label.setMinimumSize(QtCore.QSize(100, 25))
         self.DO1_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO1_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO1_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO1_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO1_label.setObjectName("DO1_label")
@@ -461,8 +948,22 @@ class Ui_KCTS(object):
         self.PWM11_progressBar = QtWidgets.QProgressBar(self.widget)
         self.PWM11_progressBar.setMinimumSize(QtCore.QSize(0, 25))
         self.PWM11_progressBar.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.PWM11_progressBar.setMaximum(24)
-        self.PWM11_progressBar.setProperty("value", 24)
+        self.PWM11_progressBar.setStyleSheet("QProgressBar {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    border-color: #44909f;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QProgressBar::chunk {\n"
+"    background-color: #408a99;\n"
+"    width: 20px;\n"
+"}")
+        self.PWM11_progressBar.setMaximum(2400)
+        self.PWM11_progressBar.setProperty("value", 0)
         self.PWM11_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM11_progressBar.setTextVisible(True)
         self.PWM11_progressBar.setObjectName("PWM11_progressBar")
@@ -470,8 +971,22 @@ class Ui_KCTS(object):
         self.PWM12_progressBar = QtWidgets.QProgressBar(self.widget)
         self.PWM12_progressBar.setMinimumSize(QtCore.QSize(0, 25))
         self.PWM12_progressBar.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.PWM12_progressBar.setMaximum(24)
-        self.PWM12_progressBar.setProperty("value", 24)
+        self.PWM12_progressBar.setStyleSheet("QProgressBar {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    border-color: #44909f;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QProgressBar::chunk {\n"
+"    background-color: #408a99;\n"
+"    width: 20px;\n"
+"}")
+        self.PWM12_progressBar.setMaximum(2400)
+        self.PWM12_progressBar.setProperty("value", 0)
         self.PWM12_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM12_progressBar.setTextVisible(True)
         self.PWM12_progressBar.setObjectName("PWM12_progressBar")
@@ -479,16 +994,44 @@ class Ui_KCTS(object):
         self.PWM9_progressBar = QtWidgets.QProgressBar(self.widget)
         self.PWM9_progressBar.setMinimumSize(QtCore.QSize(0, 25))
         self.PWM9_progressBar.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.PWM9_progressBar.setMaximum(24)
-        self.PWM9_progressBar.setProperty("value", 24)
+        self.PWM9_progressBar.setStyleSheet("QProgressBar {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    border-color: #44909f;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QProgressBar::chunk {\n"
+"    background-color: #408a99;\n"
+"    width: 20px;\n"
+"}")
+        self.PWM9_progressBar.setMaximum(2400)
+        self.PWM9_progressBar.setProperty("value", 0)
         self.PWM9_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM9_progressBar.setTextVisible(True)
         self.PWM9_progressBar.setObjectName("PWM9_progressBar")
         self.gridLayout.addWidget(self.PWM9_progressBar, 2, 6, 1, 1)
         self.PWM16_progressBar = QtWidgets.QProgressBar(self.widget)
         self.PWM16_progressBar.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.PWM16_progressBar.setMaximum(24)
-        self.PWM16_progressBar.setProperty("value", 24)
+        self.PWM16_progressBar.setStyleSheet("QProgressBar {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    border-color: #44909f;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QProgressBar::chunk {\n"
+"    background-color: #408a99;\n"
+"    width: 20px;\n"
+"}")
+        self.PWM16_progressBar.setMaximum(2400)
+        self.PWM16_progressBar.setProperty("value", 0)
         self.PWM16_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM16_progressBar.setTextVisible(True)
         self.PWM16_progressBar.setObjectName("PWM16_progressBar")
@@ -496,6 +1039,14 @@ class Ui_KCTS(object):
         self.DO2_label = QtWidgets.QLabel(self.widget)
         self.DO2_label.setMinimumSize(QtCore.QSize(100, 25))
         self.DO2_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO2_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO2_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO2_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO2_label.setObjectName("DO2_label")
@@ -503,6 +1054,14 @@ class Ui_KCTS(object):
         self.DO3_label = QtWidgets.QLabel(self.widget)
         self.DO3_label.setMinimumSize(QtCore.QSize(100, 25))
         self.DO3_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO3_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO3_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO3_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO3_label.setObjectName("DO3_label")
@@ -510,6 +1069,14 @@ class Ui_KCTS(object):
         self.DO4_label = QtWidgets.QLabel(self.widget)
         self.DO4_label.setMinimumSize(QtCore.QSize(100, 25))
         self.DO4_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO4_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO4_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO4_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO4_label.setObjectName("DO4_label")
@@ -517,6 +1084,14 @@ class Ui_KCTS(object):
         self.DO5_label = QtWidgets.QLabel(self.widget)
         self.DO5_label.setMinimumSize(QtCore.QSize(100, 25))
         self.DO5_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO5_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO5_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO5_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO5_label.setObjectName("DO5_label")
@@ -524,6 +1099,14 @@ class Ui_KCTS(object):
         self.DO6_label = QtWidgets.QLabel(self.widget)
         self.DO6_label.setMinimumSize(QtCore.QSize(100, 25))
         self.DO6_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO6_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO6_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO6_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO6_label.setObjectName("DO6_label")
@@ -531,6 +1114,14 @@ class Ui_KCTS(object):
         self.DO8_label = QtWidgets.QLabel(self.widget)
         self.DO8_label.setMinimumSize(QtCore.QSize(100, 25))
         self.DO8_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO8_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO8_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO8_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO8_label.setObjectName("DO8_label")
@@ -543,6 +1134,14 @@ class Ui_KCTS(object):
         self.DO7_label.setSizePolicy(sizePolicy)
         self.DO7_label.setMinimumSize(QtCore.QSize(100, 25))
         self.DO7_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO7_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO7_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO7_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO7_label.setObjectName("DO7_label")
@@ -550,6 +1149,14 @@ class Ui_KCTS(object):
         self.DO9_label = QtWidgets.QLabel(self.widget)
         self.DO9_label.setMinimumSize(QtCore.QSize(100, 25))
         self.DO9_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO9_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO9_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO9_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO9_label.setObjectName("DO9_label")
@@ -557,6 +1164,14 @@ class Ui_KCTS(object):
         self.DO10_label = QtWidgets.QLabel(self.widget)
         self.DO10_label.setMinimumSize(QtCore.QSize(100, 25))
         self.DO10_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO10_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO10_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO10_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO10_label.setObjectName("DO10_label")
@@ -564,6 +1179,14 @@ class Ui_KCTS(object):
         self.DO11_label = QtWidgets.QLabel(self.widget)
         self.DO11_label.setMinimumSize(QtCore.QSize(100, 25))
         self.DO11_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO11_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO11_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO11_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO11_label.setObjectName("DO11_label")
@@ -571,6 +1194,14 @@ class Ui_KCTS(object):
         self.DO12_label = QtWidgets.QLabel(self.widget)
         self.DO12_label.setMinimumSize(QtCore.QSize(100, 25))
         self.DO12_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO12_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO12_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO12_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO12_label.setObjectName("DO12_label")
@@ -578,6 +1209,14 @@ class Ui_KCTS(object):
         self.DO13_label = QtWidgets.QLabel(self.widget)
         self.DO13_label.setMinimumSize(QtCore.QSize(100, 25))
         self.DO13_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO13_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO13_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO13_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO13_label.setObjectName("DO13_label")
@@ -585,6 +1224,14 @@ class Ui_KCTS(object):
         self.DO14_label = QtWidgets.QLabel(self.widget)
         self.DO14_label.setMinimumSize(QtCore.QSize(100, 25))
         self.DO14_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO14_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO14_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO14_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO14_label.setObjectName("DO14_label")
@@ -592,6 +1239,14 @@ class Ui_KCTS(object):
         self.DO15_label = QtWidgets.QLabel(self.widget)
         self.DO15_label.setMinimumSize(QtCore.QSize(100, 25))
         self.DO15_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO15_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO15_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO15_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO15_label.setObjectName("DO15_label")
@@ -599,6 +1254,14 @@ class Ui_KCTS(object):
         self.DO16_label = QtWidgets.QLabel(self.widget)
         self.DO16_label.setMinimumSize(QtCore.QSize(100, 25))
         self.DO16_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO16_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO16_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO16_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO16_label.setObjectName("DO16_label")
@@ -606,6 +1269,14 @@ class Ui_KCTS(object):
         self.DO18_label = QtWidgets.QLabel(self.widget)
         self.DO18_label.setMinimumSize(QtCore.QSize(100, 25))
         self.DO18_label.setMaximumSize(QtCore.QSize(16777215, 150))
+        self.DO18_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO18_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO18_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO18_label.setObjectName("DO18_label")
@@ -613,6 +1284,14 @@ class Ui_KCTS(object):
         self.DO17_label = QtWidgets.QLabel(self.widget)
         self.DO17_label.setMinimumSize(QtCore.QSize(100, 25))
         self.DO17_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO17_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO17_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO17_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO17_label.setObjectName("DO17_label")
@@ -620,6 +1299,14 @@ class Ui_KCTS(object):
         self.DO19_label = QtWidgets.QLabel(self.widget)
         self.DO19_label.setMinimumSize(QtCore.QSize(100, 25))
         self.DO19_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO19_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO19_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO19_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO19_label.setObjectName("DO19_label")
@@ -627,6 +1314,14 @@ class Ui_KCTS(object):
         self.DO20_label = QtWidgets.QLabel(self.widget)
         self.DO20_label.setMinimumSize(QtCore.QSize(100, 25))
         self.DO20_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO20_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO20_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO20_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO20_label.setObjectName("DO20_label")
@@ -634,6 +1329,14 @@ class Ui_KCTS(object):
         self.DO21_label = QtWidgets.QLabel(self.widget)
         self.DO21_label.setMinimumSize(QtCore.QSize(0, 25))
         self.DO21_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO21_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO21_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO21_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO21_label.setObjectName("DO21_label")
@@ -641,6 +1344,14 @@ class Ui_KCTS(object):
         self.DO23_label = QtWidgets.QLabel(self.widget)
         self.DO23_label.setMinimumSize(QtCore.QSize(0, 25))
         self.DO23_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO23_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO23_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO23_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO23_label.setObjectName("DO23_label")
@@ -648,6 +1359,14 @@ class Ui_KCTS(object):
         self.DO24_label = QtWidgets.QLabel(self.widget)
         self.DO24_label.setMinimumSize(QtCore.QSize(0, 25))
         self.DO24_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO24_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}")
         self.DO24_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO24_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO24_label.setObjectName("DO24_label")
@@ -655,6 +1374,13 @@ class Ui_KCTS(object):
         self.DO22_label = QtWidgets.QLabel(self.widget)
         self.DO22_label.setMinimumSize(QtCore.QSize(0, 25))
         self.DO22_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.DO22_label.setStyleSheet("QLabel {\n"
+"    border: 3px solid grey;\n"
+"    border-radius: 10px;\n"
+"    text-align: center;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    background-color: #fcd97f;\n"
+"}")
         self.DO22_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO22_label.setAlignment(QtCore.Qt.AlignCenter)
         self.DO22_label.setObjectName("DO22_label")
@@ -680,13 +1406,61 @@ class Ui_KCTS(object):
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.IOQuery_pushButton = QtWidgets.QPushButton(self.real_time_analysis_tab)
         self.IOQuery_pushButton.setEnabled(False)
-        self.IOQuery_pushButton.setMinimumSize(QtCore.QSize(0, 35))
-        self.IOQuery_pushButton.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.IOQuery_pushButton.setMinimumSize(QtCore.QSize(80, 45))
+        self.IOQuery_pushButton.setMaximumSize(QtCore.QSize(95, 16777215))
+        self.IOQuery_pushButton.setStyleSheet("QPushButton {\n"
+"    border: 5px;\n"
+"    border-radius: 6px;\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #435068, stop: 1 #2a354e);\n"
+"    min-width: 80px;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #435068\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2c3646\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: #414a59\n"
+"}\n"
+"\n"
+"\n"
+"")
         self.IOQuery_pushButton.setObjectName("IOQuery_pushButton")
         self.horizontalLayout_3.addWidget(self.IOQuery_pushButton)
         self.send_package_pushButton = QtWidgets.QPushButton(self.real_time_analysis_tab)
-        self.send_package_pushButton.setMinimumSize(QtCore.QSize(0, 35))
-        self.send_package_pushButton.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.send_package_pushButton.setMinimumSize(QtCore.QSize(80, 45))
+        self.send_package_pushButton.setMaximumSize(QtCore.QSize(95, 16777215))
+        self.send_package_pushButton.setStyleSheet("QPushButton {\n"
+"    border: 5px;\n"
+"    border-radius: 6px;\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #435068, stop: 1 #2a354e);\n"
+"    min-width: 80px;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #435068\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2c3646\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: #434b5d\n"
+"}\n"
+"\n"
+"\n"
+"")
         self.send_package_pushButton.setObjectName("send_package_pushButton")
         self.horizontalLayout_3.addWidget(self.send_package_pushButton)
         self.verticalLayout_4.addLayout(self.horizontalLayout_3)
@@ -707,27 +1481,41 @@ class Ui_KCTS(object):
         self.retranslateUi(KCTS)
         self.sub_interface_stacked.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
-        self.ou_analysis_send_stacked.setCurrentIndex(0)
+        self.ou_analysis_send_stacked.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(KCTS)
 
     def retranslateUi(self, KCTS):
         _translate = QtCore.QCoreApplication.translate
         KCTS.setWindowTitle(_translate("KCTS", "KCTS"))
-        self.system_label.setText(_translate("KCTS", "KCTS"))
-        self.pushButton.setText(_translate("KCTS", "选择项目"))
+        self.system_label.setText(_translate("KCTS", "宸控科技自动化测试软件"))
+        self.import_protocol_pushButton.setText(_translate("KCTS", "导入协议"))
         self.pushButton_2.setText(_translate("KCTS", "生成报告"))
         self.pushButton_3.setText(_translate("KCTS", "……"))
-        self.label.setText(_translate("KCTS", "这是设备状态界面"))
-        self.kc_ts_send_tu_port_label.setText(_translate("KCTS", "send_tu_port :"))
-        self.kc_ts_send_mu_port_label.setText(_translate("KCTS", "send_mu_port :"))
-        self.kc_ts_recv_port_label.setText(_translate("KCTS", "recv_TU_port :"))
-        self.kc_ts_ip_label.setText(_translate("KCTS", "KC-TS IP:"))
-        self.mu_ip_label.setText(_translate("KCTS", "MU IP :"))
-        self.recv_ou_port_label.setText(_translate("KCTS", "recv_OU_prot :"))
-        self.mu_recv_port_label.setText(_translate("KCTS", "MU recv_port :"))
-        self.kc_tu_ip_label.setText(_translate("KCTS", "KC-TU IP :"))
+        __sortingEnabled = self.navigation_list.isSortingEnabled()
+        self.navigation_list.setSortingEnabled(False)
+        item = self.navigation_list.item(0)
+        item.setText(_translate("KCTS", "设备状态"))
+        item = self.navigation_list.item(1)
+        item.setText(_translate("KCTS", "MU功能测试"))
+        item = self.navigation_list.item(2)
+        item.setText(_translate("KCTS", "输出查询"))
+        self.navigation_list.setSortingEnabled(__sortingEnabled)
+        self.softWare_version_text.setText(_translate("KCTS", " KC-TU-V1.0.0"))
+        self.hardWare_version_label.setText(_translate("KCTS", "KC-TU硬件版本 :"))
+        self.softWare_version_label.setText(_translate("KCTS", "KC-TU-版本号 :"))
+        self.hardWare_version_text.setText(_translate("KCTS", " KC204-VCU-EU-2023-08-21"))
+        self.status_label.setText(_translate("KCTS", "KC-TU运行状态 :"))
+        self.status_text.setText(_translate("KCTS", " 正常"))
         self.kc_tu_recv_port_label.setText(_translate("KCTS", "KC-TU recv_port :"))
+        self.recv_ou_port_label.setText(_translate("KCTS", "recv_OU_port :"))
+        self.kc_tu_ip_label.setText(_translate("KCTS", "KC-TU IP :"))
+        self.mu_ip_label.setText(_translate("KCTS", "MU IP :"))
+        self.mu_recv_port_label.setText(_translate("KCTS", "MU recv_port :"))
+        self.kc_ts_ip_label.setText(_translate("KCTS", "KC-TS IP :"))
         self.apply_pushButton.setText(_translate("KCTS", "应用"))
+        self.kc_ts_send_tu_port_label.setText(_translate("KCTS", "send_TU_port :"))
+        self.kc_ts_send_mu_port_label.setText(_translate("KCTS", "send_MU_port :"))
+        self.kc_ts_recv_port_label.setText(_translate("KCTS", "recv_TU_port :"))
         self.label_2.setText(_translate("KCTS", "这是自动化测试界面"))
         self.PWM15_progressBar.setFormat(_translate("KCTS", "PWM15{%vV}"))
         self.PWM7_progressBar.setFormat(_translate("KCTS", "PWM7{%vV}"))

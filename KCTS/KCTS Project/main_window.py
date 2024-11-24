@@ -115,19 +115,19 @@ class MainWindow(QMainWindow):
         do_label = self.function_definition[do_num]
 
 
-    def update_pwm_progressBar_status(self, pwm_num: str, pwm_value: float):
+    def update_pwm_progressBar_status(self, pwm_num: str, pwm_value: int):
         ''' 接收来自 pyqtSignal 的信号, 更新 QLabel 状态 '''
         pwm_progressBar = self.function_definition[pwm_num]
 
     def main_window_init(self):
         ''' listWdiget items 创建, 获取电脑IP   '''
         # 导航栏初始化
-        navigation_bar = NavigationBarItems.LIST    # listWidget items
-        for index, page in enumerate(navigation_bar):
-            item = QListWidgetItem(page)
-            item.setSizeHint(QSize(180, 40))    # 设置项目高度
-            item.setTextAlignment(Qt.AlignCenter)   # 文字居中
-            self.main_window_ui.navigation_list.addItem(item)
+        # navigation_bar = NavigationBarItems.LIST    # listWidget items
+        # for index, page in enumerate(navigation_bar):
+        #     item = QListWidgetItem(page)
+        #     item.setSizeHint(QSize(180, 40))    # 设置项目高度
+        #     item.setTextAlignment(Qt.AlignCenter)   # 文字居中
+        #     self.main_window_ui.navigation_list.addItem(item)
 
         # 通过 QlistWidget 当前的 item 变化来切换 QStackedWidget 中的序号
         self.main_window_ui.navigation_list.currentRowChanged.connect(self.switch_sub_interface_stacked_page)
