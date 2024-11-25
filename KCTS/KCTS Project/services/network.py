@@ -125,8 +125,8 @@ class NetworkManager:
             try:
                 self.tu_package_recv, tu_addr = self.recv_tu_socket.recvfrom(1024)
 
-                tu_package = ' '.join(f'{byte:02X}' for byte in self.tu_package_recv)
-                print(f'recv_from: {tu_addr[0]} {tu_addr[1]}\tRaw Data: {tu_package}')
+                # tu_package = ' '.join(f'{byte:02X}' for byte in self.tu_package_recv)
+                # print(f'recv_from: {tu_addr[0]} {tu_addr[1]}\tRaw Data: {tu_package}')
 
                 # 处理来自TU的数据包
                 self.tu_package_receiver.parse_tu_package(self.tu_package_recv)

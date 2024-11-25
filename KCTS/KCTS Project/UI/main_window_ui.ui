@@ -308,11 +308,12 @@ QListWidget::item{
 }
 
 QListWidget::item:hover{
-	background-color: #2c3646;
+	background-color: #435068;
 }
 
 QListWidget::item:selected {
-    background-color: #435068;
+    background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,
+                                      stop: 0 #242b35, stop: 1 #3d4655);
 }
 
 </string>
@@ -1222,7 +1223,7 @@ QProgressBar::chunk {
                        <number>2400</number>
                       </property>
                       <property name="value">
-                       <number>2400</number>
+                       <number>0</number>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -1231,7 +1232,7 @@ QProgressBar::chunk {
                        <bool>true</bool>
                       </property>
                       <property name="format">
-                       <string>PWM15{%vV}</string>
+                       <string>PWM15: %v.00V</string>
                       </property>
                      </widget>
                     </item>
@@ -1278,7 +1279,7 @@ QProgressBar::chunk {
                        <bool>true</bool>
                       </property>
                       <property name="format">
-                       <string>PWM7{%vV}</string>
+                       <string>PWM7: %v.00V</string>
                       </property>
                      </widget>
                     </item>
@@ -1325,7 +1326,7 @@ QProgressBar::chunk {
                        <bool>true</bool>
                       </property>
                       <property name="format">
-                       <string>PWM2{%vV}</string>
+                       <string>PWM2: %v.00V</string>
                       </property>
                      </widget>
                     </item>
@@ -1372,7 +1373,7 @@ QProgressBar::chunk {
                        <bool>true</bool>
                       </property>
                       <property name="format">
-                       <string>PWM10{%vV}</string>
+                       <string>PWM10: %v.00V</string>
                       </property>
                      </widget>
                     </item>
@@ -1419,7 +1420,7 @@ QProgressBar::chunk {
                        <bool>true</bool>
                       </property>
                       <property name="format">
-                       <string>PWM6{%vV}</string>
+                       <string>PWM6: %v.00V</string>
                       </property>
                      </widget>
                     </item>
@@ -1466,7 +1467,7 @@ QProgressBar::chunk {
                        <bool>true</bool>
                       </property>
                       <property name="format">
-                       <string>PWM3{%vV}</string>
+                       <string>PWM3: %v.00V</string>
                       </property>
                      </widget>
                     </item>
@@ -1513,7 +1514,7 @@ QProgressBar::chunk {
                        <bool>true</bool>
                       </property>
                       <property name="format">
-                       <string>PWM8{%vV}</string>
+                       <string>PWM8: %v.00V</string>
                       </property>
                      </widget>
                     </item>
@@ -1554,7 +1555,7 @@ QProgressBar::chunk {
                        <bool>true</bool>
                       </property>
                       <property name="format">
-                       <string>PWM13{%vV}</string>
+                       <string>PWM13: %v.00V</string>
                       </property>
                      </widget>
                     </item>
@@ -1592,7 +1593,7 @@ QProgressBar::chunk {
                        <number>2400</number>
                       </property>
                       <property name="value">
-                       <number>1200</number>
+                       <number>0</number>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -1601,7 +1602,7 @@ QProgressBar::chunk {
                        <bool>true</bool>
                       </property>
                       <property name="format">
-                       <string>PWM1{%vV}</string>
+                       <string>PWM1: %v.00V</string>
                       </property>
                      </widget>
                     </item>
@@ -1642,7 +1643,7 @@ QProgressBar::chunk {
                        <bool>true</bool>
                       </property>
                       <property name="format">
-                       <string>PWM14{%vV}</string>
+                       <string>PWM14: %v.00V</string>
                       </property>
                      </widget>
                     </item>
@@ -1689,7 +1690,7 @@ QProgressBar::chunk {
                        <bool>true</bool>
                       </property>
                       <property name="format">
-                       <string>PWM5{%vV}</string>
+                       <string>PWM5: %v.00V</string>
                       </property>
                      </widget>
                     </item>
@@ -1736,7 +1737,7 @@ QProgressBar::chunk {
                        <bool>true</bool>
                       </property>
                       <property name="format">
-                       <string>PWM4{%vV}</string>
+                       <string>PWM4: %v.00V</string>
                       </property>
                      </widget>
                     </item>
@@ -1818,7 +1819,7 @@ QProgressBar::chunk {
                        <bool>true</bool>
                       </property>
                       <property name="format">
-                       <string>PWM11{%vV}</string>
+                       <string>PWM11: %v.00V</string>
                       </property>
                      </widget>
                     </item>
@@ -1865,7 +1866,7 @@ QProgressBar::chunk {
                        <bool>true</bool>
                       </property>
                       <property name="format">
-                       <string>PWM12{%vV}</string>
+                       <string>PWM12: %v.00V</string>
                       </property>
                      </widget>
                     </item>
@@ -1912,7 +1913,7 @@ QProgressBar::chunk {
                        <bool>true</bool>
                       </property>
                       <property name="format">
-                       <string>PWM9{%vV}</string>
+                       <string>PWM9: %v.00V</string>
                       </property>
                      </widget>
                     </item>
@@ -1953,7 +1954,7 @@ QProgressBar::chunk {
                        <bool>true</bool>
                       </property>
                       <property name="format">
-                       <string>PWM16{%vV}</string>
+                       <string>PWM16: %v.00V</string>
                       </property>
                      </widget>
                     </item>
@@ -2753,7 +2754,8 @@ QProgressBar::chunk {
     border-radius: 10px;
 	text-align: center;
 	font: 9pt &quot;微软雅黑&quot;;
-    background-color: #fcd97f;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
 }</string>
                       </property>
                       <property name="text">
@@ -2774,8 +2776,16 @@ QProgressBar::chunk {
                </item>
                <item>
                 <widget class="QStackedWidget" name="ou_analysis_send_stacked">
+                 <property name="styleSheet">
+                  <string notr="true">QWidget {
+	background: transparent;
+	border-width: 0;
+	border-style: outset;
+}
+</string>
+                 </property>
                  <property name="currentIndex">
-                  <number>1</number>
+                  <number>0</number>
                  </property>
                  <widget class="QWidget" name="ou_analysis_page">
                   <widget class="QLabel" name="label_3">

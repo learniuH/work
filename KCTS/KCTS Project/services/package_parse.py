@@ -7,7 +7,7 @@ class PackageFromTU(QObject):
     ''' 处理来自TU的有效数据包 '''
 
     # 当检测到 DO 置 1 或 PWM 非 0 时, 发出pyqtSignal信号到主窗口
-    update_do_signal = pyqtSignal(str)
+    update_do_signal = pyqtSignal(str, bool)
     update_pwm_signal = pyqtSignal(str, int)
 
     # _instance = None
@@ -23,6 +23,7 @@ class PackageFromTU(QObject):
         super().__init__()
         self.package: bytearray = None
         self.message_type: dict = None
+        self.previous_mu_status_package = None
 
     #     self.setup()
     #
@@ -44,6 +45,7 @@ class PackageFromTU(QObject):
                 0x02: self.handle_mu_status,
                 0x04: self.handle_tu_status
             }
+        # 只处理byte8有定义的包
         if eighth_byte in self.message_type:
             # 消息类型未定义的包不做处理
             self.message_type[eighth_byte]()
@@ -58,20 +60,42 @@ class PackageFromTU(QObject):
             if isinstance(StatusFeedBack.data_field_protocol.get(byte_num), dict):
                 # 遍历协议中定义的位索引
                 for bit_index, description in StatusFeedBack.data_field_protocol.get(byte_num).items():
-                    if self.package[byte_num - 1] >> bit_index & 1:
-                        # 字节的位索引为 1, 就发出 pyqtSignal 到主界面更新控件
-                        print(f'Byte{byte_num}  bit{bit_index}  {description}')
-                        self.update_do_signal.emit(description)
+                    # if self.package[byte_num - 1] >> bit_index & 1:
+                    #     # 字节的位索引为 1, 就发出 pyqtSignal 到主界面更新控件
+                    #     print(f'Byte{byte_num}  bit{bit_index}  {description}')
+                    #     # 发送DO线号 和 boolean值
+                    #     self.update_do_signal.emit(description, True)
+
+                    # 当前包的对应位与上一包不同, 将发送该位当前值的信号
+                    if self.previous_mu_status_package is None \
+                            or self.package[byte_num - 1] >> bit_index != \
+                                self.previous_mu_status_package[byte_num - 1] >> bit_index:
+                        if self.package[byte_num - 1] >> bit_index & 1:
+                            self.update_do_signal.emit(description, True)
+                            print(f'{description} emit True!')
+                        else:
+                            self.update_do_signal.emit(description, False)
+                            print(f'{description} emit False!')
 
             else:
                 # 处理 PWM 数据
                 high_byte, low_byte = byte_num.split('-')
                 high_byte, low_byte = int(high_byte) - 1, int(low_byte) - 1
-                pwm_value = (self.package[high_byte] << 8) + self.package[low_byte]
-                if pwm_value:
-                    print(f'Byte{byte_num}  {pwm_value}')
-                    # 将数据包
-                    self.update_pwm_signal.emit(StatusFeedBack.data_field_protocol[byte_num], pwm_value)
+                current_pwm_value = (self.package[high_byte] << 8) + self.package[low_byte]
+                # 计算上一帧的PWM值
+                if self.previous_mu_status_package is not None:
+                    previous_pwm_value = (self.previous_mu_status_package[high_byte] << 8) + \
+                                         self.previous_mu_status_package[low_byte]
+
+                # 当前包对应的PWM与上一包不同, 发送当前的PWM线号 和 值
+                if self.previous_mu_status_package is None or current_pwm_value != previous_pwm_value:
+                    # print(f'Byte{byte_num}  {current_pwm_value}')
+                    # 发送PWM的线号str 和 值int
+                    self.update_pwm_signal.emit(StatusFeedBack.data_field_protocol[byte_num], current_pwm_value)
+                    print(f'{StatusFeedBack.data_field_protocol[byte_num]} emit {current_pwm_value}')
+
+        # 更新previous包
+        self.previous_mu_status_package = self.package
 
 
     def handle_tu_status(self):
@@ -118,7 +142,7 @@ class PackageFromTU(QObject):
     def parse_tu_package(self, package: bytearray):
         ''' 对来自TU的数据包区分并解析 '''
         self.package = package
-        if self.crc_check():
+        if self.package[0] == 0x5A and self.crc_check():
             # crc校验通过后对包长度进行校验
             if self.package_length_check():
                 # 通过消息类型字节对TU的数据包进行处理

@@ -5,7 +5,7 @@ from UI.main_window_ui import Ui_KCTS
 
 
 from config.validators import Validators
-from config.constants import NavigationBarItems, SendCycle
+from config.constants import QLabelStyleSheet, SendCycle
 from services.network import NetworkManager
 
 import sys
@@ -110,14 +110,23 @@ class MainWindow(QMainWindow):
             'PWM16': self.main_window_ui.PWM16_progressBar
         }
 
-    def update_do_label_status(self, do_num: str):
+    def update_do_label_status(self, do_num: str, do_status: bool):
         ''' 接收来自 pyqtSignal 的信号, 更新 QLabel 状态 '''
         do_label = self.function_definition[do_num]
+        # DO 输出时, label 会显示橙色, DO 为0时, 显示白色
+        if do_status is True:
+            do_label.setStyleSheet(QLabelStyleSheet.LABEL_QSS_HIGHLIGHT)
+        else:
+            do_label.setStyleSheet(QLabelStyleSheet.LABEL_QSS_NORMAL)
 
 
     def update_pwm_progressBar_status(self, pwm_num: str, pwm_value: int):
         ''' 接收来自 pyqtSignal 的信号, 更新 QLabel 状态 '''
         pwm_progressBar = self.function_definition[pwm_num]
+        pwm_progressBar.setValue(pwm_value)
+        # 进度条显示 PWM 值, 保留两位小数
+        value = pwm_value / 100
+        pwm_progressBar.setFormat(f'{pwm_num}: {value:.2f}V')
 
     def main_window_init(self):
         ''' listWdiget items 创建, 获取电脑IP   '''

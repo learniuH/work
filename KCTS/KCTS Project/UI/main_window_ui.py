@@ -174,11 +174,12 @@ class Ui_KCTS(object):
 "}\n"
 "\n"
 "QListWidget::item:hover{\n"
-"    background-color: #2c3646;\n"
+"    background-color: #435068;\n"
 "}\n"
 "\n"
 "QListWidget::item:selected {\n"
-"    background-color: #435068;\n"
+"    background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,\n"
+"                                      stop: 0 #242b35, stop: 1 #3d4655);\n"
 "}\n"
 "\n"
 "")
@@ -674,7 +675,7 @@ class Ui_KCTS(object):
 "    width: 20px;\n"
 "}")
         self.PWM15_progressBar.setMaximum(2400)
-        self.PWM15_progressBar.setProperty("value", 2400)
+        self.PWM15_progressBar.setProperty("value", 0)
         self.PWM15_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM15_progressBar.setTextVisible(True)
         self.PWM15_progressBar.setObjectName("PWM15_progressBar")
@@ -857,7 +858,7 @@ class Ui_KCTS(object):
 "    width: 20px;\n"
 "}")
         self.PWM1_progressBar.setMaximum(2400)
-        self.PWM1_progressBar.setProperty("value", 1200)
+        self.PWM1_progressBar.setProperty("value", 0)
         self.PWM1_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM1_progressBar.setTextVisible(True)
         self.PWM1_progressBar.setObjectName("PWM1_progressBar")
@@ -1379,7 +1380,8 @@ class Ui_KCTS(object):
 "    border-radius: 10px;\n"
 "    text-align: center;\n"
 "    font: 9pt \"微软雅黑\";\n"
-"    background-color: #fcd97f;\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
 "}")
         self.DO22_label.setTextFormat(QtCore.Qt.PlainText)
         self.DO22_label.setAlignment(QtCore.Qt.AlignCenter)
@@ -1388,6 +1390,12 @@ class Ui_KCTS(object):
         self.verticalLayout_3.addLayout(self.gridLayout)
         self.verticalLayout_4.addWidget(self.widget)
         self.ou_analysis_send_stacked = QtWidgets.QStackedWidget(self.real_time_analysis_tab)
+        self.ou_analysis_send_stacked.setStyleSheet("QWidget {\n"
+"    background: transparent;\n"
+"    border-width: 0;\n"
+"    border-style: outset;\n"
+"}\n"
+"")
         self.ou_analysis_send_stacked.setObjectName("ou_analysis_send_stacked")
         self.ou_analysis_page = QtWidgets.QWidget()
         self.ou_analysis_page.setObjectName("ou_analysis_page")
@@ -1481,7 +1489,7 @@ class Ui_KCTS(object):
         self.retranslateUi(KCTS)
         self.sub_interface_stacked.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
-        self.ou_analysis_send_stacked.setCurrentIndex(1)
+        self.ou_analysis_send_stacked.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(KCTS)
 
     def retranslateUi(self, KCTS):
@@ -1517,23 +1525,23 @@ class Ui_KCTS(object):
         self.kc_ts_send_mu_port_label.setText(_translate("KCTS", "send_MU_port :"))
         self.kc_ts_recv_port_label.setText(_translate("KCTS", "recv_TU_port :"))
         self.label_2.setText(_translate("KCTS", "这是自动化测试界面"))
-        self.PWM15_progressBar.setFormat(_translate("KCTS", "PWM15{%vV}"))
-        self.PWM7_progressBar.setFormat(_translate("KCTS", "PWM7{%vV}"))
-        self.PWM2_progressBar.setFormat(_translate("KCTS", "PWM2{%vV}"))
-        self.PWM10_progressBar.setFormat(_translate("KCTS", "PWM10{%vV}"))
-        self.PWM6_progressBar.setFormat(_translate("KCTS", "PWM6{%vV}"))
-        self.PWM3_progressBar.setFormat(_translate("KCTS", "PWM3{%vV}"))
-        self.PWM8_progressBar.setFormat(_translate("KCTS", "PWM8{%vV}"))
-        self.PWM13_progressBar.setFormat(_translate("KCTS", "PWM13{%vV}"))
-        self.PWM1_progressBar.setFormat(_translate("KCTS", "PWM1{%vV}"))
-        self.PWM14_progressBar.setFormat(_translate("KCTS", "PWM14{%vV}"))
-        self.PWM5_progressBar.setFormat(_translate("KCTS", "PWM5{%vV}"))
-        self.PWM4_progressBar.setFormat(_translate("KCTS", "PWM4{%vV}"))
+        self.PWM15_progressBar.setFormat(_translate("KCTS", "PWM15: %v.00V"))
+        self.PWM7_progressBar.setFormat(_translate("KCTS", "PWM7: %v.00V"))
+        self.PWM2_progressBar.setFormat(_translate("KCTS", "PWM2: %v.00V"))
+        self.PWM10_progressBar.setFormat(_translate("KCTS", "PWM10: %v.00V"))
+        self.PWM6_progressBar.setFormat(_translate("KCTS", "PWM6: %v.00V"))
+        self.PWM3_progressBar.setFormat(_translate("KCTS", "PWM3: %v.00V"))
+        self.PWM8_progressBar.setFormat(_translate("KCTS", "PWM8: %v.00V"))
+        self.PWM13_progressBar.setFormat(_translate("KCTS", "PWM13: %v.00V"))
+        self.PWM1_progressBar.setFormat(_translate("KCTS", "PWM1: %v.00V"))
+        self.PWM14_progressBar.setFormat(_translate("KCTS", "PWM14: %v.00V"))
+        self.PWM5_progressBar.setFormat(_translate("KCTS", "PWM5: %v.00V"))
+        self.PWM4_progressBar.setFormat(_translate("KCTS", "PWM4: %v.00V"))
         self.DO1_label.setText(_translate("KCTS", "DO1"))
-        self.PWM11_progressBar.setFormat(_translate("KCTS", "PWM11{%vV}"))
-        self.PWM12_progressBar.setFormat(_translate("KCTS", "PWM12{%vV}"))
-        self.PWM9_progressBar.setFormat(_translate("KCTS", "PWM9{%vV}"))
-        self.PWM16_progressBar.setFormat(_translate("KCTS", "PWM16{%vV}"))
+        self.PWM11_progressBar.setFormat(_translate("KCTS", "PWM11: %v.00V"))
+        self.PWM12_progressBar.setFormat(_translate("KCTS", "PWM12: %v.00V"))
+        self.PWM9_progressBar.setFormat(_translate("KCTS", "PWM9: %v.00V"))
+        self.PWM16_progressBar.setFormat(_translate("KCTS", "PWM16: %v.00V"))
         self.DO2_label.setText(_translate("KCTS", "DO2"))
         self.DO3_label.setText(_translate("KCTS", "DO3"))
         self.DO4_label.setText(_translate("KCTS", "DO4"))
