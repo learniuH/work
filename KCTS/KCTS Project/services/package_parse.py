@@ -25,18 +25,6 @@ class PackageFromTU(QObject):
         self.message_type: dict = None
         self.previous_mu_status_package = None
 
-    #     self.setup()
-    #
-    # def setup(self):
-    #     self.update_do_signal.connect(self.do)
-    #     self.update_pwm_signal.connect(self.pwm)
-    #
-    # def do(self, do_num: str):
-    #     print(f'{do_num}触发了')
-    #
-    # def pwm(self, pwm_num: str, value: float):
-    #     print(f'{pwm_num}触发了, value is {value}')
-
 
     def define_message_type(self, eighth_byte: int):
         ''' TU反馈的消息类型定义 '''
@@ -147,7 +135,6 @@ class PackageFromTU(QObject):
             if self.package_length_check():
                 # 通过消息类型字节对TU的数据包进行处理
                 self.define_message_type(self.package[7])
-
 
 
 if __name__ == '__main__':

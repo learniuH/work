@@ -392,7 +392,7 @@ QListWidget::item:selected {
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="device_status_page">
           <layout class="QVBoxLayout" name="verticalLayout_5" stretch="2,5">
@@ -1189,6 +1189,12 @@ QWidget {
                   </property>
                   <item>
                    <layout class="QGridLayout" name="gridLayout">
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
                     <property name="horizontalSpacing">
                      <number>7</number>
                     </property>
@@ -1220,7 +1226,7 @@ QProgressBar::chunk {
 }</string>
                       </property>
                       <property name="maximum">
-                       <number>2400</number>
+                       <number>24</number>
                       </property>
                       <property name="value">
                        <number>0</number>
@@ -1267,7 +1273,7 @@ QProgressBar::chunk {
 }</string>
                       </property>
                       <property name="maximum">
-                       <number>2400</number>
+                       <number>24</number>
                       </property>
                       <property name="value">
                        <number>0</number>
@@ -1314,7 +1320,7 @@ QProgressBar::chunk {
 }</string>
                       </property>
                       <property name="maximum">
-                       <number>2400</number>
+                       <number>24</number>
                       </property>
                       <property name="value">
                        <number>0</number>
@@ -1361,7 +1367,7 @@ QProgressBar::chunk {
 }</string>
                       </property>
                       <property name="maximum">
-                       <number>2400</number>
+                       <number>24</number>
                       </property>
                       <property name="value">
                        <number>0</number>
@@ -1408,7 +1414,7 @@ QProgressBar::chunk {
 }</string>
                       </property>
                       <property name="maximum">
-                       <number>2400</number>
+                       <number>24</number>
                       </property>
                       <property name="value">
                        <number>0</number>
@@ -1455,7 +1461,7 @@ QProgressBar::chunk {
 }</string>
                       </property>
                       <property name="maximum">
-                       <number>2400</number>
+                       <number>24</number>
                       </property>
                       <property name="value">
                        <number>0</number>
@@ -1502,7 +1508,7 @@ QProgressBar::chunk {
 }</string>
                       </property>
                       <property name="maximum">
-                       <number>2400</number>
+                       <number>24</number>
                       </property>
                       <property name="value">
                        <number>0</number>
@@ -1543,7 +1549,7 @@ QProgressBar::chunk {
 }</string>
                       </property>
                       <property name="maximum">
-                       <number>2400</number>
+                       <number>24</number>
                       </property>
                       <property name="value">
                        <number>0</number>
@@ -1590,7 +1596,7 @@ QProgressBar::chunk {
 }</string>
                       </property>
                       <property name="maximum">
-                       <number>2400</number>
+                       <number>24</number>
                       </property>
                       <property name="value">
                        <number>0</number>
@@ -1631,7 +1637,7 @@ QProgressBar::chunk {
 }</string>
                       </property>
                       <property name="maximum">
-                       <number>2400</number>
+                       <number>24</number>
                       </property>
                       <property name="value">
                        <number>0</number>
@@ -1678,7 +1684,7 @@ QProgressBar::chunk {
 }</string>
                       </property>
                       <property name="maximum">
-                       <number>2400</number>
+                       <number>24</number>
                       </property>
                       <property name="value">
                        <number>0</number>
@@ -1725,7 +1731,7 @@ QProgressBar::chunk {
 }</string>
                       </property>
                       <property name="maximum">
-                       <number>2400</number>
+                       <number>24</number>
                       </property>
                       <property name="value">
                        <number>0</number>
@@ -1807,7 +1813,7 @@ QProgressBar::chunk {
 }</string>
                       </property>
                       <property name="maximum">
-                       <number>2400</number>
+                       <number>24</number>
                       </property>
                       <property name="value">
                        <number>0</number>
@@ -1854,7 +1860,7 @@ QProgressBar::chunk {
 }</string>
                       </property>
                       <property name="maximum">
-                       <number>2400</number>
+                       <number>24</number>
                       </property>
                       <property name="value">
                        <number>0</number>
@@ -1901,7 +1907,7 @@ QProgressBar::chunk {
 }</string>
                       </property>
                       <property name="maximum">
-                       <number>2400</number>
+                       <number>24</number>
                       </property>
                       <property name="value">
                        <number>0</number>
@@ -1942,7 +1948,7 @@ QProgressBar::chunk {
 }</string>
                       </property>
                       <property name="maximum">
-                       <number>2400</number>
+                       <number>24</number>
                       </property>
                       <property name="value">
                        <number>0</number>
@@ -2788,19 +2794,141 @@ QProgressBar::chunk {
                   <number>0</number>
                  </property>
                  <widget class="QWidget" name="ou_analysis_page">
-                  <widget class="QLabel" name="label_3">
-                   <property name="geometry">
-                    <rect>
-                     <x>320</x>
-                     <y>170</y>
-                     <width>191</width>
-                     <height>51</height>
-                    </rect>
+                  <layout class="QVBoxLayout" name="verticalLayout_6">
+                   <property name="leftMargin">
+                    <number>0</number>
                    </property>
-                   <property name="text">
-                    <string>这是OU解析的界面</string>
+                   <property name="rightMargin">
+                    <number>0</number>
                    </property>
-                  </widget>
+                   <item>
+                    <widget class="QTableWidget" name="ou_analysis_table">
+                     <property name="verticalScrollBarPolicy">
+                      <enum>Qt::ScrollBarAlwaysOff</enum>
+                     </property>
+                     <property name="horizontalScrollBarPolicy">
+                      <enum>Qt::ScrollBarAlwaysOff</enum>
+                     </property>
+                     <row>
+                      <property name="text">
+                       <string>新建行</string>
+                      </property>
+                     </row>
+                     <column>
+                      <property name="text">
+                       <string>Bit7</string>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>10</pointsize>
+                       </font>
+                      </property>
+                      <property name="textAlignment">
+                       <set>AlignCenter</set>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>Bit6</string>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>10</pointsize>
+                       </font>
+                      </property>
+                      <property name="textAlignment">
+                       <set>AlignCenter</set>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>Bit5</string>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>10</pointsize>
+                       </font>
+                      </property>
+                      <property name="textAlignment">
+                       <set>AlignCenter</set>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>Bit4</string>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>10</pointsize>
+                       </font>
+                      </property>
+                      <property name="textAlignment">
+                       <set>AlignCenter</set>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>Bit3</string>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>10</pointsize>
+                       </font>
+                      </property>
+                      <property name="textAlignment">
+                       <set>AlignCenter</set>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>Bit2</string>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>10</pointsize>
+                       </font>
+                      </property>
+                      <property name="textAlignment">
+                       <set>AlignCenter</set>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>Bit1</string>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>10</pointsize>
+                       </font>
+                      </property>
+                      <property name="textAlignment">
+                       <set>AlignCenter</set>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>Bit0</string>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>10</pointsize>
+                       </font>
+                      </property>
+                      <property name="textAlignment">
+                       <set>AlignCenter</set>
+                      </property>
+                     </column>
+                    </widget>
+                   </item>
+                  </layout>
                  </widget>
                  <widget class="QWidget" name="ou_simulator_page">
                   <widget class="QLabel" name="label_4">

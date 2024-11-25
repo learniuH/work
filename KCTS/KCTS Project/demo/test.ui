@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1225</width>
-    <height>731</height>
+    <width>1193</width>
+    <height>478</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -167,15 +167,15 @@ QPushButton:default {
     <rect>
      <x>0</x>
      <y>60</y>
-     <width>951</width>
-     <height>631</height>
+     <width>431</width>
+     <height>281</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">/* radial gradient */
 QTextEdit {
-    background: qradialgradient(cx:0.5, cy:0, radius: 1,
-                fx:0.6, fy:0.5, stop:0 #414a5a, stop:1 #0d1117)
+    background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,
+                                      stop: 0 #404959, stop: 1 #f0f0f0);
 }</string>
    </property>
   </widget>
@@ -226,6 +226,131 @@ QPushButton:pressed {
 	border-style: outset;
 }</string>
    </property>
+  </widget>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>70</y>
+     <width>541</width>
+     <height>241</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTableWidget" name="tableWidget">
+      <property name="styleSheet">
+       <string notr="true">QTableView {
+    selection-background-color: qlineargradient(x1: 0, y1: 0, x2: 0.5, y2: 0.5,
+                                stop: 0 #FF92BB, stop: 1 white);
+}
+
+QTableView::item {
+	outline: 0px;
+}
+
+QTableView QTableCornerButton::section {
+    background: red;
+    border: 2px outset red;
+}
+
+QTableView::indicator:unchecked {
+    background-color: #d7d6d5
+}</string>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="autoScrollMargin">
+       <number>16</number>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="showGrid">
+       <bool>true</bool>
+      </property>
+      <property name="gridStyle">
+       <enum>Qt::SolidLine</enum>
+      </property>
+      <property name="sortingEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+      <property name="cornerButtonEnabled">
+       <bool>true</bool>
+      </property>
+      <property name="rowCount">
+       <number>1</number>
+      </property>
+      <property name="columnCount">
+       <number>8</number>
+      </property>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>50</number>
+      </attribute>
+      <attribute name="verticalHeaderVisible">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="verticalHeaderMinimumSectionSize">
+       <number>40</number>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>60</number>
+      </attribute>
+      <row>
+       <property name="text">
+        <string>OU ANAL</string>
+       </property>
+      </row>
+      <column>
+       <property name="text">
+        <string>bit7</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>bit6</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>bit5</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>bit4</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>bit3</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>bit2</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>bit1</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>bit0</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

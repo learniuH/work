@@ -674,7 +674,7 @@ class Ui_KCTS(object):
 "    background-color: #408a99;\n"
 "    width: 20px;\n"
 "}")
-        self.PWM15_progressBar.setMaximum(2400)
+        self.PWM15_progressBar.setMaximum(24)
         self.PWM15_progressBar.setProperty("value", 0)
         self.PWM15_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM15_progressBar.setTextVisible(True)
@@ -697,7 +697,7 @@ class Ui_KCTS(object):
 "    background-color: #408a99;\n"
 "    width: 20px;\n"
 "}")
-        self.PWM7_progressBar.setMaximum(2400)
+        self.PWM7_progressBar.setMaximum(24)
         self.PWM7_progressBar.setProperty("value", 0)
         self.PWM7_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM7_progressBar.setTextVisible(True)
@@ -720,7 +720,7 @@ class Ui_KCTS(object):
 "    background-color: #408a99;\n"
 "    width: 20px;\n"
 "}")
-        self.PWM2_progressBar.setMaximum(2400)
+        self.PWM2_progressBar.setMaximum(24)
         self.PWM2_progressBar.setProperty("value", 0)
         self.PWM2_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM2_progressBar.setTextVisible(True)
@@ -743,7 +743,7 @@ class Ui_KCTS(object):
 "    background-color: #408a99;\n"
 "    width: 20px;\n"
 "}")
-        self.PWM10_progressBar.setMaximum(2400)
+        self.PWM10_progressBar.setMaximum(24)
         self.PWM10_progressBar.setProperty("value", 0)
         self.PWM10_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM10_progressBar.setTextVisible(True)
@@ -766,7 +766,7 @@ class Ui_KCTS(object):
 "    background-color: #408a99;\n"
 "    width: 20px;\n"
 "}")
-        self.PWM6_progressBar.setMaximum(2400)
+        self.PWM6_progressBar.setMaximum(24)
         self.PWM6_progressBar.setProperty("value", 0)
         self.PWM6_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM6_progressBar.setTextVisible(True)
@@ -789,7 +789,7 @@ class Ui_KCTS(object):
 "    background-color: #408a99;\n"
 "    width: 20px;\n"
 "}")
-        self.PWM3_progressBar.setMaximum(2400)
+        self.PWM3_progressBar.setMaximum(24)
         self.PWM3_progressBar.setProperty("value", 0)
         self.PWM3_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM3_progressBar.setTextVisible(True)
@@ -812,7 +812,7 @@ class Ui_KCTS(object):
 "    background-color: #408a99;\n"
 "    width: 20px;\n"
 "}")
-        self.PWM8_progressBar.setMaximum(2400)
+        self.PWM8_progressBar.setMaximum(24)
         self.PWM8_progressBar.setProperty("value", 0)
         self.PWM8_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM8_progressBar.setTextVisible(True)
@@ -834,7 +834,7 @@ class Ui_KCTS(object):
 "    background-color: #408a99;\n"
 "    width: 20px;\n"
 "}")
-        self.PWM13_progressBar.setMaximum(2400)
+        self.PWM13_progressBar.setMaximum(24)
         self.PWM13_progressBar.setProperty("value", 0)
         self.PWM13_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM13_progressBar.setTextVisible(True)
@@ -857,7 +857,7 @@ class Ui_KCTS(object):
 "    background-color: #408a99;\n"
 "    width: 20px;\n"
 "}")
-        self.PWM1_progressBar.setMaximum(2400)
+        self.PWM1_progressBar.setMaximum(24)
         self.PWM1_progressBar.setProperty("value", 0)
         self.PWM1_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM1_progressBar.setTextVisible(True)
@@ -879,7 +879,7 @@ class Ui_KCTS(object):
 "    background-color: #408a99;\n"
 "    width: 20px;\n"
 "}")
-        self.PWM14_progressBar.setMaximum(2400)
+        self.PWM14_progressBar.setMaximum(24)
         self.PWM14_progressBar.setProperty("value", 0)
         self.PWM14_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM14_progressBar.setTextVisible(True)
@@ -902,7 +902,7 @@ class Ui_KCTS(object):
 "    background-color: #408a99;\n"
 "    width: 20px;\n"
 "}")
-        self.PWM5_progressBar.setMaximum(2400)
+        self.PWM5_progressBar.setMaximum(24)
         self.PWM5_progressBar.setProperty("value", 0)
         self.PWM5_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM5_progressBar.setTextVisible(True)
@@ -925,7 +925,7 @@ class Ui_KCTS(object):
 "    background-color: #408a99;\n"
 "    width: 20px;\n"
 "}")
-        self.PWM4_progressBar.setMaximum(2400)
+        self.PWM4_progressBar.setMaximum(24)
         self.PWM4_progressBar.setProperty("value", 0)
         self.PWM4_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM4_progressBar.setTextVisible(True)
@@ -963,7 +963,7 @@ class Ui_KCTS(object):
 "    background-color: #408a99;\n"
 "    width: 20px;\n"
 "}")
-        self.PWM11_progressBar.setMaximum(2400)
+        self.PWM11_progressBar.setMaximum(24)
         self.PWM11_progressBar.setProperty("value", 0)
         self.PWM11_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM11_progressBar.setTextVisible(True)
@@ -986,7 +986,7 @@ class Ui_KCTS(object):
 "    background-color: #408a99;\n"
 "    width: 20px;\n"
 "}")
-        self.PWM12_progressBar.setMaximum(2400)
+        self.PWM12_progressBar.setMaximum(24)
         self.PWM12_progressBar.setProperty("value", 0)
         self.PWM12_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM12_progressBar.setTextVisible(True)
@@ -1009,7 +1009,7 @@ class Ui_KCTS(object):
 "    background-color: #408a99;\n"
 "    width: 20px;\n"
 "}")
-        self.PWM9_progressBar.setMaximum(2400)
+        self.PWM9_progressBar.setMaximum(24)
         self.PWM9_progressBar.setProperty("value", 0)
         self.PWM9_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM9_progressBar.setTextVisible(True)
@@ -1031,7 +1031,7 @@ class Ui_KCTS(object):
 "    background-color: #408a99;\n"
 "    width: 20px;\n"
 "}")
-        self.PWM16_progressBar.setMaximum(2400)
+        self.PWM16_progressBar.setMaximum(24)
         self.PWM16_progressBar.setProperty("value", 0)
         self.PWM16_progressBar.setAlignment(QtCore.Qt.AlignCenter)
         self.PWM16_progressBar.setTextVisible(True)

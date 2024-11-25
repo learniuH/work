@@ -123,13 +123,13 @@ class MainWindow(QMainWindow):
     def update_pwm_progressBar_status(self, pwm_num: str, pwm_value: int):
         ''' 接收来自 pyqtSignal 的信号, 更新 QLabel 状态 '''
         pwm_progressBar = self.function_definition[pwm_num]
-        pwm_progressBar.setValue(pwm_value)
-        # 进度条显示 PWM 值, 保留两位小数
         value = pwm_value / 100
+        # 进度条显示 PWM 值, 保留两位小数
+        pwm_progressBar.setValue(value)
         pwm_progressBar.setFormat(f'{pwm_num}: {value:.2f}V')
 
     def main_window_init(self):
-        ''' listWdiget items 创建, 获取电脑IP   '''
+        ''' listWdiget items 创建, 获取电脑IP '''
         # 导航栏初始化
         # navigation_bar = NavigationBarItems.LIST    # listWidget items
         # for index, page in enumerate(navigation_bar):
