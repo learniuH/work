@@ -105,7 +105,7 @@ def learniuh_print(ou_protocol):
             print(f'Byte{byte_num}: {ou_protocol[byte_num]}')
 
 if __name__ == '__main__':
-    file_path = './推土机标准化内部通信协议-V1.0-202400918.xlsx'
+    file_path = 'D:\LearniuH\Project\中测推土机\功能定义\推土机标准化内部通信协议-V1.0-202400918.xlsx'
     sheet_name = 'OU->MU'
     ou_protocol = read_protocol_excel(file_path, sheet_name)
     learniuh_print(ou_protocol)
