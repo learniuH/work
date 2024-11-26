@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_KCTS(object):
     def setupUi(self, KCTS):
         KCTS.setObjectName("KCTS")
-        KCTS.resize(1221, 690)
+        KCTS.resize(1225, 699)
         self.Window = QtWidgets.QWidget(KCTS)
         self.Window.setObjectName("Window")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.Window)
@@ -36,11 +36,11 @@ class Ui_KCTS(object):
         self.horizontalLayout.setObjectName("horizontalLayout")
         spacerItem = QtWidgets.QSpacerItem(45, 20, QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
-        self.system_label = QtWidgets.QLabel(self.Menu)
-        self.system_label.setMinimumSize(QtCore.QSize(100, 0))
-        self.system_label.setMaximumSize(QtCore.QSize(400, 16777215))
-        self.system_label.setSizeIncrement(QtCore.QSize(0, 0))
-        self.system_label.setStyleSheet("QLabel {\n"
+        self.system_name_label = QtWidgets.QLabel(self.Menu)
+        self.system_name_label.setMinimumSize(QtCore.QSize(100, 0))
+        self.system_name_label.setMaximumSize(QtCore.QSize(400, 16777215))
+        self.system_name_label.setSizeIncrement(QtCore.QSize(0, 0))
+        self.system_name_label.setStyleSheet("QLabel {\n"
 "    background: transparent;\n"
 "    border-width: 0;\n"
 "    border-style: outset;\n"
@@ -48,16 +48,49 @@ class Ui_KCTS(object):
 "    color: white;\n"
 "}\n"
 "")
-        self.system_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.system_label.setObjectName("system_label")
-        self.horizontalLayout.addWidget(self.system_label)
+        self.system_name_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.system_name_label.setObjectName("system_name_label")
+        self.horizontalLayout.addWidget(self.system_name_label)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem1)
+        self.sheet_name_list_comboBox = QtWidgets.QComboBox(self.Menu)
+        self.sheet_name_list_comboBox.setMinimumSize(QtCore.QSize(120, 30))
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(9)
+        self.sheet_name_list_comboBox.setFont(font)
+        self.sheet_name_list_comboBox.setStyleSheet("/*QComboBox:hover {\n"
+"    border: 1px solid grey;\n"
+"}*/\n"
+"\n"
+"QComboBox {\n"
+"    color: white;\n"
+"    background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,\n"
+"                                      stop: 0 #404959, stop: 1 #f0f0f0);\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item {\n"
+"    height: 50px;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item:hover {\n"
+"    color: #FFFFFF;\n"
+"    background-color: lightgreen;\n"
+"}\n"
+"\n"
+"QCombobox QAbstractScrollArea QScrollBar:vertical {\n"
+"    width: 10px;\n"
+"    background-color: #f0f0f0;\n"
+"}")
+        self.sheet_name_list_comboBox.setObjectName("sheet_name_list_comboBox")
+        self.sheet_name_list_comboBox.addItem("")
+        self.horizontalLayout.addWidget(self.sheet_name_list_comboBox)
         self.import_protocol_pushButton = QtWidgets.QPushButton(self.Menu)
-        self.import_protocol_pushButton.setMinimumSize(QtCore.QSize(80, 0))
+        self.import_protocol_pushButton.setMinimumSize(QtCore.QSize(84, 0))
         self.import_protocol_pushButton.setMaximumSize(QtCore.QSize(100, 40))
         self.import_protocol_pushButton.setStyleSheet("QPushButton {\n"
-"    border: 5px;\n"
+"    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
 "    border-radius: 10px;\n"
 "    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #435068, stop: 1 #2a354e);\n"
@@ -83,10 +116,11 @@ class Ui_KCTS(object):
         self.import_protocol_pushButton.setObjectName("import_protocol_pushButton")
         self.horizontalLayout.addWidget(self.import_protocol_pushButton)
         self.pushButton_2 = QtWidgets.QPushButton(self.Menu)
-        self.pushButton_2.setMinimumSize(QtCore.QSize(80, 0))
+        self.pushButton_2.setMinimumSize(QtCore.QSize(84, 0))
         self.pushButton_2.setMaximumSize(QtCore.QSize(100, 40))
         self.pushButton_2.setStyleSheet("QPushButton {\n"
-"    border: 5px;\n"
+"    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
 "    border-radius: 10px;\n"
 "    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #435068, stop: 1 #2a354e);\n"
@@ -112,10 +146,11 @@ class Ui_KCTS(object):
         self.pushButton_2.setObjectName("pushButton_2")
         self.horizontalLayout.addWidget(self.pushButton_2)
         self.pushButton_3 = QtWidgets.QPushButton(self.Menu)
-        self.pushButton_3.setMinimumSize(QtCore.QSize(80, 0))
+        self.pushButton_3.setMinimumSize(QtCore.QSize(84, 0))
         self.pushButton_3.setMaximumSize(QtCore.QSize(40, 40))
         self.pushButton_3.setStyleSheet("QPushButton {\n"
-"    border: 5px;\n"
+"    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
 "    border-radius: 10px;\n"
 "    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #435068, stop: 1 #2a354e);\n"
@@ -520,10 +555,11 @@ class Ui_KCTS(object):
         self.kc_ts_ip_label.setObjectName("kc_ts_ip_label")
         self.gridLayout_2.addWidget(self.kc_ts_ip_label, 0, 1, 1, 1)
         self.apply_pushButton = QtWidgets.QPushButton(self.gridWidget1)
-        self.apply_pushButton.setMinimumSize(QtCore.QSize(80, 50))
+        self.apply_pushButton.setMinimumSize(QtCore.QSize(84, 50))
         self.apply_pushButton.setMaximumSize(QtCore.QSize(120, 70))
         self.apply_pushButton.setStyleSheet("QPushButton {\n"
-"    border: 5px;\n"
+"    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
 "    border-radius: 15px;\n"
 "    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #435068, stop: 1 #2a354e);\n"
@@ -655,6 +691,7 @@ class Ui_KCTS(object):
         self.verticalLayout_3.setSpacing(0)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.gridLayout = QtWidgets.QGridLayout()
+        self.gridLayout.setContentsMargins(0, 0, -1, -1)
         self.gridLayout.setHorizontalSpacing(7)
         self.gridLayout.setVerticalSpacing(8)
         self.gridLayout.setObjectName("gridLayout")
@@ -1399,9 +1436,85 @@ class Ui_KCTS(object):
         self.ou_analysis_send_stacked.setObjectName("ou_analysis_send_stacked")
         self.ou_analysis_page = QtWidgets.QWidget()
         self.ou_analysis_page.setObjectName("ou_analysis_page")
-        self.label_3 = QtWidgets.QLabel(self.ou_analysis_page)
-        self.label_3.setGeometry(QtCore.QRect(320, 170, 191, 51))
-        self.label_3.setObjectName("label_3")
+        self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.ou_analysis_page)
+        self.verticalLayout_6.setContentsMargins(0, -1, 0, -1)
+        self.verticalLayout_6.setObjectName("verticalLayout_6")
+        self.ou_analysis_table = QtWidgets.QTableWidget(self.ou_analysis_page)
+        self.ou_analysis_table.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.ou_analysis_table.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.ou_analysis_table.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustIgnored)
+        self.ou_analysis_table.setAutoScroll(True)
+        self.ou_analysis_table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.ou_analysis_table.setTabKeyNavigation(False)
+        self.ou_analysis_table.setProperty("showDropIndicator", False)
+        self.ou_analysis_table.setDragDropOverwriteMode(False)
+        self.ou_analysis_table.setTextElideMode(QtCore.Qt.ElideLeft)
+        self.ou_analysis_table.setObjectName("ou_analysis_table")
+        self.ou_analysis_table.setColumnCount(8)
+        self.ou_analysis_table.setRowCount(1)
+        item = QtWidgets.QTableWidgetItem()
+        self.ou_analysis_table.setVerticalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(10)
+        item.setFont(font)
+        self.ou_analysis_table.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(10)
+        item.setFont(font)
+        self.ou_analysis_table.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(10)
+        item.setFont(font)
+        self.ou_analysis_table.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(10)
+        item.setFont(font)
+        self.ou_analysis_table.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(10)
+        item.setFont(font)
+        self.ou_analysis_table.setHorizontalHeaderItem(4, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(10)
+        item.setFont(font)
+        self.ou_analysis_table.setHorizontalHeaderItem(5, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(10)
+        item.setFont(font)
+        self.ou_analysis_table.setHorizontalHeaderItem(6, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(10)
+        item.setFont(font)
+        self.ou_analysis_table.setHorizontalHeaderItem(7, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setFlags(QtCore.Qt.ItemIsDragEnabled|QtCore.Qt.ItemIsDropEnabled|QtCore.Qt.ItemIsEnabled)
+        self.ou_analysis_table.setItem(0, 0, item)
+        self.ou_analysis_table.horizontalHeader().setMinimumSectionSize(29)
+        self.verticalLayout_6.addWidget(self.ou_analysis_table)
         self.ou_analysis_send_stacked.addWidget(self.ou_analysis_page)
         self.ou_simulator_page = QtWidgets.QWidget()
         self.ou_simulator_page.setObjectName("ou_simulator_page")
@@ -1414,10 +1527,11 @@ class Ui_KCTS(object):
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.IOQuery_pushButton = QtWidgets.QPushButton(self.real_time_analysis_tab)
         self.IOQuery_pushButton.setEnabled(False)
-        self.IOQuery_pushButton.setMinimumSize(QtCore.QSize(80, 45))
+        self.IOQuery_pushButton.setMinimumSize(QtCore.QSize(84, 45))
         self.IOQuery_pushButton.setMaximumSize(QtCore.QSize(95, 16777215))
         self.IOQuery_pushButton.setStyleSheet("QPushButton {\n"
-"    border: 5px;\n"
+"    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
 "    border-radius: 6px;\n"
 "    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #435068, stop: 1 #2a354e);\n"
@@ -1443,10 +1557,11 @@ class Ui_KCTS(object):
         self.IOQuery_pushButton.setObjectName("IOQuery_pushButton")
         self.horizontalLayout_3.addWidget(self.IOQuery_pushButton)
         self.send_package_pushButton = QtWidgets.QPushButton(self.real_time_analysis_tab)
-        self.send_package_pushButton.setMinimumSize(QtCore.QSize(80, 45))
+        self.send_package_pushButton.setMinimumSize(QtCore.QSize(84, 45))
         self.send_package_pushButton.setMaximumSize(QtCore.QSize(95, 16777215))
         self.send_package_pushButton.setStyleSheet("QPushButton {\n"
-"    border: 5px;\n"
+"    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
 "    border-radius: 6px;\n"
 "    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #435068, stop: 1 #2a354e);\n"
@@ -1495,7 +1610,8 @@ class Ui_KCTS(object):
     def retranslateUi(self, KCTS):
         _translate = QtCore.QCoreApplication.translate
         KCTS.setWindowTitle(_translate("KCTS", "KCTS"))
-        self.system_label.setText(_translate("KCTS", "宸控科技自动化测试软件"))
+        self.system_name_label.setText(_translate("KCTS", "宸控科技自动化测试软件"))
+        self.sheet_name_list_comboBox.setItemText(0, _translate("KCTS", "选择OU->MU协议"))
         self.import_protocol_pushButton.setText(_translate("KCTS", "导入协议"))
         self.pushButton_2.setText(_translate("KCTS", "生成报告"))
         self.pushButton_3.setText(_translate("KCTS", "……"))
@@ -1565,7 +1681,27 @@ class Ui_KCTS(object):
         self.DO23_label.setText(_translate("KCTS", "DO23"))
         self.DO24_label.setText(_translate("KCTS", "DO24"))
         self.DO22_label.setText(_translate("KCTS", "DO22"))
-        self.label_3.setText(_translate("KCTS", "这是OU解析的界面"))
+        item = self.ou_analysis_table.verticalHeaderItem(0)
+        item.setText(_translate("KCTS", "新建行"))
+        item = self.ou_analysis_table.horizontalHeaderItem(0)
+        item.setText(_translate("KCTS", "Bit7"))
+        item = self.ou_analysis_table.horizontalHeaderItem(1)
+        item.setText(_translate("KCTS", "Bit6"))
+        item = self.ou_analysis_table.horizontalHeaderItem(2)
+        item.setText(_translate("KCTS", "Bit5"))
+        item = self.ou_analysis_table.horizontalHeaderItem(3)
+        item.setText(_translate("KCTS", "Bit4"))
+        item = self.ou_analysis_table.horizontalHeaderItem(4)
+        item.setText(_translate("KCTS", "Bit3"))
+        item = self.ou_analysis_table.horizontalHeaderItem(5)
+        item.setText(_translate("KCTS", "Bit2"))
+        item = self.ou_analysis_table.horizontalHeaderItem(6)
+        item.setText(_translate("KCTS", "Bit1"))
+        item = self.ou_analysis_table.horizontalHeaderItem(7)
+        item.setText(_translate("KCTS", "Bit0"))
+        __sortingEnabled = self.ou_analysis_table.isSortingEnabled()
+        self.ou_analysis_table.setSortingEnabled(False)
+        self.ou_analysis_table.setSortingEnabled(__sortingEnabled)
         self.label_4.setText(_translate("KCTS", "这是OU模拟器的界面"))
         self.IOQuery_pushButton.setText(_translate("KCTS", "IO查询"))
         self.send_package_pushButton.setText(_translate("KCTS", "模拟发包"))

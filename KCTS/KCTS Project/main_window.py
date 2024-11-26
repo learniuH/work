@@ -1,5 +1,7 @@
+from csv import excel
+
 from PyQt5.QtCore import QSize, Qt, QSettings
-from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QListWidgetItem
+from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog
 
 from UI.main_window_ui import Ui_KCTS
 
@@ -7,9 +9,12 @@ from UI.main_window_ui import Ui_KCTS
 from config.validators import Validators
 from config.constants import QLabelStyleSheet, SendCycle
 from services.network import NetworkManager
+from services.read_excel import ExcelRead
 
 import sys
 import socket
+
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -28,7 +33,7 @@ class MainWindow(QMainWindow):
 
 
         self.setup_validators()     # 正则表达式匹配 IP 端口 信息
-        self.setup_connections()    # 信号连接绑定
+        self.setup_connections()    # pushButton 信号连接绑定
         self.signal_bind()          # pyqtSignal 信号绑定, 控件与线号连接
 
     def load_last_content(self):
@@ -57,9 +62,18 @@ class MainWindow(QMainWindow):
 
     def setup_connections(self):
         ''' 设置信号连接 '''
+        # 通过 QlistWidget 当前的 item 变化来切换 QStackedWidget 中的序号
+        self.main_window_ui.navigation_list.currentRowChanged.connect(self.switch_sub_interface_stacked_page)
+
         self.main_window_ui.apply_pushButton.clicked.connect(self.apply_current_configuration)
         self.main_window_ui.IOQuery_pushButton.clicked.connect(lambda: self.switch_ou_analysis_send_stacked_page(index=0))
         self.main_window_ui.send_package_pushButton.clicked.connect(lambda: self.switch_ou_analysis_send_stacked_page(index=1))
+
+        # 点击导入协议, 打开选择对话框
+        self.main_window_ui.import_protocol_pushButton.clicked.connect(self.open_file_dialog)
+
+        # comboBox 中 item 的 index 变化时, 调用 解析 Excel 的方法
+        self.main_window_ui.sheet_name_list_comboBox.currentIndexChanged.connect(self.parse_excel)
 
     def signal_bind(self):
         ''' 绑定 pyqtSignal 到对应事件与按键 '''
@@ -129,19 +143,7 @@ class MainWindow(QMainWindow):
         pwm_progressBar.setFormat(f'{pwm_num}: {value:.2f}V')
 
     def main_window_init(self):
-        ''' listWdiget items 创建, 获取电脑IP '''
-        # 导航栏初始化
-        # navigation_bar = NavigationBarItems.LIST    # listWidget items
-        # for index, page in enumerate(navigation_bar):
-        #     item = QListWidgetItem(page)
-        #     item.setSizeHint(QSize(180, 40))    # 设置项目高度
-        #     item.setTextAlignment(Qt.AlignCenter)   # 文字居中
-        #     self.main_window_ui.navigation_list.addItem(item)
-
-        # 通过 QlistWidget 当前的 item 变化来切换 QStackedWidget 中的序号
-        self.main_window_ui.navigation_list.currentRowChanged.connect(self.switch_sub_interface_stacked_page)
-
-        # 主程序启动时, 启动监听OU数据的线程
+        ''' 主程序启动时, 启动监听OU数据和TU数据的线程 '''
         self.listening_ou_thread_init()
         self.listening_tu_thread_init()
 
@@ -191,8 +193,6 @@ class MainWindow(QMainWindow):
             'kctu_recv_port': kctu_recv_port
         }
         return current_configuration
-
-
 
 
     def switch_sub_interface_stacked_page(self, index: int):
@@ -261,6 +261,23 @@ class MainWindow(QMainWindow):
             self.sending_mu_thread_init()
             self.main_window_ui.IOQuery_pushButton.setEnabled(True)
             self.main_window_ui.send_package_pushButton.setDisabled(True)
+
+    def open_file_dialog(self):
+        ''' 打开文件选择对话框, 只显示 EXcel 文件 '''
+        file_path, _ = QFileDialog.getOpenFileName(
+            self, '选择项目通信协议', '', 'Excel Files (*.xlsx *xls);;All Files (*)'
+        )
+        if file_path:
+            # 读取 Excel 中的所有表单显示在 comboBox 上
+            excel_reader = ExcelRead(file_path)
+            sheet_list = excel_reader.read_sheet_name()
+            # 添加excel里面的表单
+            self.main_window_ui.sheet_name_list_comboBox.addItems(sheet_list)
+
+    def parse_excel(self, index: int):
+        ''' comboBox 的 item 变化时, 会解析当前选择的表单 '''
+        print(index)
+
 
 
     def mousePressEvent(self, event):

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1221</width>
-    <height>690</height>
+    <width>1225</width>
+    <height>699</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -66,7 +66,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLabel" name="system_label">
+        <widget class="QLabel" name="system_name_label">
          <property name="minimumSize">
           <size>
            <width>100</width>
@@ -117,10 +117,56 @@
         </spacer>
        </item>
        <item>
+        <widget class="QComboBox" name="sheet_name_list_comboBox">
+         <property name="minimumSize">
+          <size>
+           <width>120</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>微软雅黑</family>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">/*QComboBox:hover {
+    border: 1px solid grey;
+}*/
+
+QComboBox {
+	color: white;
+	background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,
+                                      stop: 0 #404959, stop: 1 #f0f0f0);
+}
+
+QComboBox QAbstractItemView::item {
+	height: 50px;
+}
+
+QComboBox QAbstractItemView::item:hover {
+	color: #FFFFFF;
+	background-color: lightgreen;
+}
+
+QCombobox QAbstractScrollArea QScrollBar:vertical {
+	width: 10px;
+	background-color: #f0f0f0;
+}</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>选择OU-&gt;MU协议</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
         <widget class="QPushButton" name="import_protocol_pushButton">
          <property name="minimumSize">
           <size>
-           <width>80</width>
+           <width>84</width>
            <height>0</height>
           </size>
          </property>
@@ -132,7 +178,8 @@
          </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    border: 5px;
+    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
     border-radius: 10px;
     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                       stop: 0 #435068, stop: 1 #2a354e);
@@ -165,7 +212,7 @@ QPushButton:disabled {
         <widget class="QPushButton" name="pushButton_2">
          <property name="minimumSize">
           <size>
-           <width>80</width>
+           <width>84</width>
            <height>0</height>
           </size>
          </property>
@@ -177,7 +224,8 @@ QPushButton:disabled {
          </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    border: 5px;
+    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
     border-radius: 10px;
     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                       stop: 0 #435068, stop: 1 #2a354e);
@@ -210,7 +258,7 @@ QPushButton:disabled {
         <widget class="QPushButton" name="pushButton_3">
          <property name="minimumSize">
           <size>
-           <width>80</width>
+           <width>84</width>
            <height>0</height>
           </size>
          </property>
@@ -222,7 +270,8 @@ QPushButton:disabled {
          </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    border: 5px;
+    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
     border-radius: 10px;
     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                       stop: 0 #435068, stop: 1 #2a354e);
@@ -392,7 +441,7 @@ QListWidget::item:selected {
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="device_status_page">
           <layout class="QVBoxLayout" name="verticalLayout_5" stretch="2,5">
@@ -952,7 +1001,7 @@ QListWidget::item:selected {
                <widget class="QPushButton" name="apply_pushButton">
                 <property name="minimumSize">
                  <size>
-                  <width>80</width>
+                  <width>84</width>
                   <height>50</height>
                  </size>
                 </property>
@@ -964,7 +1013,8 @@ QListWidget::item:selected {
                 </property>
                 <property name="styleSheet">
                  <string notr="true">QPushButton {
-    border: 5px;
+    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
     border-radius: 15px;
     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                       stop: 0 #435068, stop: 1 #2a354e);
@@ -2809,6 +2859,30 @@ QProgressBar::chunk {
                      <property name="horizontalScrollBarPolicy">
                       <enum>Qt::ScrollBarAlwaysOff</enum>
                      </property>
+                     <property name="sizeAdjustPolicy">
+                      <enum>QAbstractScrollArea::AdjustIgnored</enum>
+                     </property>
+                     <property name="autoScroll">
+                      <bool>true</bool>
+                     </property>
+                     <property name="editTriggers">
+                      <set>QAbstractItemView::NoEditTriggers</set>
+                     </property>
+                     <property name="tabKeyNavigation">
+                      <bool>false</bool>
+                     </property>
+                     <property name="showDropIndicator" stdset="0">
+                      <bool>false</bool>
+                     </property>
+                     <property name="dragDropOverwriteMode">
+                      <bool>false</bool>
+                     </property>
+                     <property name="textElideMode">
+                      <enum>Qt::ElideLeft</enum>
+                     </property>
+                     <attribute name="horizontalHeaderMinimumSectionSize">
+                      <number>29</number>
+                     </attribute>
                      <row>
                       <property name="text">
                        <string>新建行</string>
@@ -2926,6 +3000,11 @@ QProgressBar::chunk {
                        <set>AlignCenter</set>
                       </property>
                      </column>
+                     <item row="0" column="0">
+                      <property name="flags">
+                       <set>ItemIsDragEnabled|ItemIsDropEnabled|ItemIsEnabled</set>
+                      </property>
+                     </item>
                     </widget>
                    </item>
                   </layout>
@@ -2956,7 +3035,7 @@ QProgressBar::chunk {
                    </property>
                    <property name="minimumSize">
                     <size>
-                     <width>80</width>
+                     <width>84</width>
                      <height>45</height>
                     </size>
                    </property>
@@ -2968,7 +3047,8 @@ QProgressBar::chunk {
                    </property>
                    <property name="styleSheet">
                     <string notr="true">QPushButton {
-    border: 5px;
+    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
     border-radius: 6px;
     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                       stop: 0 #435068, stop: 1 #2a354e);
@@ -3001,7 +3081,7 @@ QPushButton:disabled {
                   <widget class="QPushButton" name="send_package_pushButton">
                    <property name="minimumSize">
                     <size>
-                     <width>80</width>
+                     <width>84</width>
                      <height>45</height>
                     </size>
                    </property>
@@ -3013,7 +3093,8 @@ QPushButton:disabled {
                    </property>
                    <property name="styleSheet">
                     <string notr="true">QPushButton {
-    border: 5px;
+    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
     border-radius: 6px;
     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                       stop: 0 #435068, stop: 1 #2a354e);
