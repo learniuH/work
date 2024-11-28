@@ -30,8 +30,6 @@ class MainWindow(QMainWindow):
 
         self.main_window_init()     # 窗口界面初始化
 
-
-
         self.setup_validators()     # 正则表达式匹配 IP 端口 信息
         self.setup_connections()    # pushButton 信号连接绑定
         self.signal_bind()          # pyqtSignal 信号绑定, 控件与线号连接
@@ -72,8 +70,6 @@ class MainWindow(QMainWindow):
         # 点击导入协议, 打开选择对话框
         self.main_window_ui.import_protocol_pushButton.clicked.connect(self.open_file_dialog)
 
-        # comboBox 中 item 的 index 变化时, 调用 解析 Excel 的方法
-        self.main_window_ui.sheet_name_list_comboBox.currentIndexChanged.connect(self.parse_excel)
 
     def signal_bind(self):
         ''' 绑定 pyqtSignal 到对应事件与按键 '''
@@ -273,6 +269,9 @@ class MainWindow(QMainWindow):
             sheet_list = excel_reader.read_sheet_name()
             # 添加excel里面的表单
             self.main_window_ui.sheet_name_list_comboBox.addItems(sheet_list)
+
+            # 添加完表单后, 再绑定切换 item 的 index 来触发解析Excle文件的函数, 避免 listWdiget 一出现 item 就触发函数
+            self.main_window_ui.sheet_name_list_comboBox.currentIndexChanged.connect(self.parse_excel)
 
     def parse_excel(self, index: int):
         ''' comboBox 的 item 变化时, 会解析当前选择的表单 '''

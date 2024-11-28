@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1197</width>
-    <height>106</height>
+    <height>112</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -434,6 +434,9 @@ QComboBox::down-arrow:on { /* shift the arrow when popup is open */
      <width>83</width>
      <height>22</height>
     </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::DefaultContextMenu</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">QComboBox QAbstractItemView {

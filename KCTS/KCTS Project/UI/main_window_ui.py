@@ -59,31 +59,31 @@ class Ui_KCTS(object):
         font.setFamily("微软雅黑")
         font.setPointSize(9)
         self.sheet_name_list_comboBox.setFont(font)
-        self.sheet_name_list_comboBox.setStyleSheet("/*QComboBox:hover {\n"
-"    border: 1px solid grey;\n"
-"}*/\n"
+        self.sheet_name_list_comboBox.setStyleSheet("QComboBox QAbstractScrollArea QScrollBar:vertical {\n"
+"    width: 10px;\n"
+"    background-color: #d0d2d4;    /* 空白区域的背景色 */\n"
+"}\n"
 "\n"
-"QComboBox {\n"
+"QComboBox QAbstractScrollArea QScrollBar::handle:vertical {\n"
+"    border-radius: 5px;\n"
+"    background: rgb(160,160,160)    /* 小方块背景色深灰 */\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView {\n"
+"    outline: 0px solid gray;\n"
+"    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
 "    color: white;\n"
 "    background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,\n"
-"                                      stop: 0 #404959, stop: 1 #f0f0f0);\n"
+"                                      stop: 0 #404959, stop: 1 #989da5);\n"
+"    selection-background-color: #435068;\n"
 "}\n"
 "\n"
-"QComboBox QAbstractItemView::item {\n"
-"    height: 50px;\n"
-"}\n"
-"\n"
-"QComboBox QAbstractItemView::item:hover {\n"
-"    color: #FFFFFF;\n"
-"    background-color: lightgreen;\n"
-"}\n"
-"\n"
-"QCombobox QAbstractScrollArea QScrollBar:vertical {\n"
-"    width: 10px;\n"
-"    background-color: #f0f0f0;\n"
-"}")
+"")
+        self.sheet_name_list_comboBox.setMaxVisibleItems(5)
+        self.sheet_name_list_comboBox.setSizeAdjustPolicy(QtWidgets.QComboBox.AdjustToMinimumContentsLength)
+        self.sheet_name_list_comboBox.setMinimumContentsLength(14)
         self.sheet_name_list_comboBox.setObjectName("sheet_name_list_comboBox")
-        self.sheet_name_list_comboBox.addItem("")
         self.horizontalLayout.addWidget(self.sheet_name_list_comboBox)
         self.import_protocol_pushButton = QtWidgets.QPushButton(self.Menu)
         self.import_protocol_pushButton.setMinimumSize(QtCore.QSize(84, 0))
@@ -1611,7 +1611,6 @@ class Ui_KCTS(object):
         _translate = QtCore.QCoreApplication.translate
         KCTS.setWindowTitle(_translate("KCTS", "KCTS"))
         self.system_name_label.setText(_translate("KCTS", "宸控科技自动化测试软件"))
-        self.sheet_name_list_comboBox.setItemText(0, _translate("KCTS", "选择OU->MU协议"))
         self.import_protocol_pushButton.setText(_translate("KCTS", "导入协议"))
         self.pushButton_2.setText(_translate("KCTS", "生成报告"))
         self.pushButton_3.setText(_translate("KCTS", "……"))

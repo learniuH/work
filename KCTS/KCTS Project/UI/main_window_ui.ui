@@ -117,6 +117,77 @@
         </spacer>
        </item>
        <item>
+        <widget class="QComboBox" name="comboBox">
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox QAbstractItemView {
+	outline: 0px solid gray;
+	border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+	color: white;
+	background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,
+                                      stop: 0 #404959, stop: 1 #989da5);
+	selection-background-color: #435068;
+}
+
+QComboBox QAbstractScrollArea QScrollBar:vertical {
+	width: 5px;
+	background-color: #d0d2d4;	/* 空白区域的背景色 */
+}
+
+QComboBox QAbstractScrollArea QScrollBar::handle:vertical {
+	/* border-radius: 5px; */
+	background: rgb(160,160,160)	/* 小方块背景色深灰 */
+}</string>
+         </property>
+         <property name="maxVisibleItems">
+          <number>5</number>
+         </property>
+         <item>
+          <property name="text">
+           <string>新建项目</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>新建项目</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>新建项目</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>新建项目</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>新建项目</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>新建项目</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>新建项目</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>新建项目</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
         <widget class="QComboBox" name="sheet_name_list_comboBox">
          <property name="minimumSize">
           <size>
@@ -130,34 +201,77 @@
            <pointsize>9</pointsize>
           </font>
          </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
          <property name="styleSheet">
-          <string notr="true">/*QComboBox:hover {
-    border: 1px solid grey;
-}*/
-
-QComboBox {
+          <string notr="true">QComboBox QAbstractItemView {
+	outline: 0px solid gray;
+	border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
 	color: white;
 	background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,
-                                      stop: 0 #404959, stop: 1 #f0f0f0);
+                                      stop: 0 #404959, stop: 1 #989da5);
+	selection-background-color: #435068;
 }
 
-QComboBox QAbstractItemView::item {
-	height: 50px;
+QComboBox QAbstractScrollArea QScrollBar:vertical {
+	width: 5px;
+	background-color: #d0d2d4;	/* 空白区域的背景色 */
 }
 
-QComboBox QAbstractItemView::item:hover {
-	color: #FFFFFF;
-	background-color: lightgreen;
-}
-
-QCombobox QAbstractScrollArea QScrollBar:vertical {
-	width: 10px;
-	background-color: #f0f0f0;
+QComboBox QAbstractScrollArea QScrollBar::handle:vertical {
+	/* border-radius: 5px; */
+	background: rgb(160,160,160)	/* 小方块背景色深灰 */
 }</string>
+         </property>
+         <property name="maxVisibleItems">
+          <number>5</number>
+         </property>
+         <property name="sizeAdjustPolicy">
+          <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+         </property>
+         <property name="minimumContentsLength">
+          <number>14</number>
          </property>
          <item>
           <property name="text">
-           <string>选择OU-&gt;MU协议</string>
+           <string>新建项目</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>新建项目</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>新建项目</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>新建项目</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>新建项目</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>新建项目</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>新建项目</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>新建项目</string>
           </property>
          </item>
         </widget>
