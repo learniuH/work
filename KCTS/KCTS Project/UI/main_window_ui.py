@@ -57,16 +57,11 @@ class Ui_KCTS(object):
         self.sheet_name_list_comboBox.setMinimumSize(QtCore.QSize(120, 30))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
-        font.setPointSize(9)
         self.sheet_name_list_comboBox.setFont(font)
-        self.sheet_name_list_comboBox.setStyleSheet("QComboBox QAbstractScrollArea QScrollBar:vertical {\n"
-"    width: 10px;\n"
-"    background-color: #d0d2d4;    /* 空白区域的背景色 */\n"
-"}\n"
-"\n"
-"QComboBox QAbstractScrollArea QScrollBar::handle:vertical {\n"
-"    border-radius: 5px;\n"
-"    background: rgb(160,160,160)    /* 小方块背景色深灰 */\n"
+        self.sheet_name_list_comboBox.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.sheet_name_list_comboBox.setStyleSheet("QComboBox {\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: white;        /* 字体颜色 */\n"
 "}\n"
 "\n"
 "QComboBox QAbstractItemView {\n"
@@ -79,10 +74,21 @@ class Ui_KCTS(object):
 "    selection-background-color: #435068;\n"
 "}\n"
 "\n"
-"")
-        self.sheet_name_list_comboBox.setMaxVisibleItems(5)
+"QComboBox QAbstractItemView::item {\n"
+"    height: 22px;\n"
+"}\n"
+"/*\n"
+"QComboBox QAbstractScrollArea QScrollBar:vertical {\n"
+"    width: 8px;\n"
+"    background-color: #d0d2d4;    /* 空白区域的背景色 */\n"
+"\n"
+"/*\n"
+"QComboBox QAbstractScrollArea QScrollBar::handle:vertical {\n"
+"    /* border-radius: 5px; */\n"
+"    /*background: rgb(160,160,160)    /* 小方块背景色深灰 */")
+        self.sheet_name_list_comboBox.setMaxVisibleItems(10)
         self.sheet_name_list_comboBox.setSizeAdjustPolicy(QtWidgets.QComboBox.AdjustToMinimumContentsLength)
-        self.sheet_name_list_comboBox.setMinimumContentsLength(14)
+        self.sheet_name_list_comboBox.setMinimumContentsLength(16)
         self.sheet_name_list_comboBox.setObjectName("sheet_name_list_comboBox")
         self.horizontalLayout.addWidget(self.sheet_name_list_comboBox)
         self.import_protocol_pushButton = QtWidgets.QPushButton(self.Menu)

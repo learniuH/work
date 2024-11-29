@@ -1,7 +1,7 @@
 from csv import excel
 
 from PyQt5.QtCore import QSize, Qt, QSettings
-from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog
+from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog, QListView
 
 from UI.main_window_ui import Ui_KCTS
 
@@ -142,6 +142,9 @@ class MainWindow(QMainWindow):
         ''' 主程序启动时, 启动监听OU数据和TU数据的线程 '''
         self.listening_ou_thread_init()
         self.listening_tu_thread_init()
+
+        # comboBox 初始化
+        self.main_window_ui.sheet_name_list_comboBox.setView(QListView())
 
     def listening_ou_thread_init(self):
         # 启动监听OU数据的线程
