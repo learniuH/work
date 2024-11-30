@@ -451,7 +451,7 @@ QListWidget::item:selected {
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="device_status_page">
           <layout class="QVBoxLayout" name="verticalLayout_5" stretch="2,5">
@@ -2863,6 +2863,28 @@ QProgressBar::chunk {
                    </property>
                    <item>
                     <widget class="QTableWidget" name="ou_analysis_table">
+                     <property name="styleSheet">
+                      <string notr="true">/*表头背景颜色*/
+QHeaderView::section {
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+/*单元格背景颜色*/
+QTableWidget::item {
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #408a99, stop: 1 #dadbde);
+}
+/*选中单元格的背景颜色*/
+QTableWidget::item:selected {
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #408a99, stop: 1 #20505e);
+}
+/*设置字体*/
+QTableWidget::item {
+	font-size: 9pt;
+	font-family: &quot;微软雅黑&quot;;
+}</string>
+                     </property>
                      <property name="verticalScrollBarPolicy">
                       <enum>Qt::ScrollBarAlwaysOff</enum>
                      </property>

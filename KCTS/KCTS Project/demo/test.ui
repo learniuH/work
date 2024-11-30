@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1197</width>
-    <height>112</height>
+    <width>1213</width>
+    <height>322</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -227,136 +227,11 @@ QPushButton:pressed {
 }</string>
    </property>
   </widget>
-  <widget class="QWidget" name="widget" native="true">
-   <property name="geometry">
-    <rect>
-     <x>440</x>
-     <y>50</y>
-     <width>311</width>
-     <height>121</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QTableWidget" name="tableWidget">
-      <property name="styleSheet">
-       <string notr="true">QTableView {
-    selection-background-color: qlineargradient(x1: 0, y1: 0, x2: 0.5, y2: 0.5,
-                                stop: 0 #FF92BB, stop: 1 white);
-}
-
-QTableView::item {
-	outline: 0px;
-}
-
-QTableView QTableCornerButton::section {
-    background: red;
-    border: 2px outset red;
-}
-
-QTableView::indicator:unchecked {
-    background-color: #d7d6d5
-}</string>
-      </property>
-      <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
-      </property>
-      <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
-      </property>
-      <property name="autoScrollMargin">
-       <number>16</number>
-      </property>
-      <property name="editTriggers">
-       <set>QAbstractItemView::NoEditTriggers</set>
-      </property>
-      <property name="showGrid">
-       <bool>true</bool>
-      </property>
-      <property name="gridStyle">
-       <enum>Qt::SolidLine</enum>
-      </property>
-      <property name="sortingEnabled">
-       <bool>false</bool>
-      </property>
-      <property name="wordWrap">
-       <bool>true</bool>
-      </property>
-      <property name="cornerButtonEnabled">
-       <bool>true</bool>
-      </property>
-      <property name="rowCount">
-       <number>1</number>
-      </property>
-      <property name="columnCount">
-       <number>8</number>
-      </property>
-      <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>50</number>
-      </attribute>
-      <attribute name="verticalHeaderVisible">
-       <bool>true</bool>
-      </attribute>
-      <attribute name="verticalHeaderMinimumSectionSize">
-       <number>40</number>
-      </attribute>
-      <attribute name="verticalHeaderDefaultSectionSize">
-       <number>60</number>
-      </attribute>
-      <row>
-       <property name="text">
-        <string>OU ANAL</string>
-       </property>
-      </row>
-      <column>
-       <property name="text">
-        <string>bit7</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>bit6</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>bit5</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>bit4</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>bit3</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>bit2</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>bit1</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>bit0</string>
-       </property>
-      </column>
-     </widget>
-    </item>
-   </layout>
-  </widget>
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>500</x>
-     <y>210</y>
+     <x>1000</x>
+     <y>20</y>
      <width>131</width>
      <height>31</height>
     </rect>
@@ -479,6 +354,225 @@ QComboBox::down-arrow:on { /* shift the arrow when popup is open */
    <item>
     <property name="text">
      <string>1</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>350</y>
+     <width>289</width>
+     <height>99</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">    QHeaderView::section {
+            background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+    }
+QTableWidget::item {
+            background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #408a99, stop: 1 #dadbde);
+    }</string>
+   </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="autoScrollMargin">
+    <number>16</number>
+   </property>
+   <property name="editTriggers">
+    <set>QAbstractItemView::NoEditTriggers</set>
+   </property>
+   <property name="showGrid">
+    <bool>true</bool>
+   </property>
+   <property name="gridStyle">
+    <enum>Qt::SolidLine</enum>
+   </property>
+   <property name="sortingEnabled">
+    <bool>false</bool>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+   <property name="cornerButtonEnabled">
+    <bool>true</bool>
+   </property>
+   <property name="rowCount">
+    <number>1</number>
+   </property>
+   <property name="columnCount">
+    <number>8</number>
+   </property>
+   <attribute name="horizontalHeaderDefaultSectionSize">
+    <number>50</number>
+   </attribute>
+   <attribute name="verticalHeaderVisible">
+    <bool>true</bool>
+   </attribute>
+   <attribute name="verticalHeaderMinimumSectionSize">
+    <number>40</number>
+   </attribute>
+   <attribute name="verticalHeaderDefaultSectionSize">
+    <number>60</number>
+   </attribute>
+   <row>
+    <property name="text">
+     <string>OU ANAL</string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>bit7</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>bit6</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>bit5</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>bit4</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>bit3</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>bit2</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>bit1</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>bit0</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>60</y>
+     <width>701</width>
+     <height>261</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/*表头背景颜色*/
+QHeaderView::section {
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+/*单元格背景颜色*/
+QTableWidget::item {
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #408a99, stop: 1 #dadbde);
+}
+/*选中单元格的背景颜色*/
+QTableWidget::item:selected {
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #408a99, stop: 1 #20505e);
+}
+/*设置字体*/
+QTableWidget::item {
+	font-size: 12pt;
+	font-family: &quot;微软雅黑&quot;;
+}</string>
+   </property>
+   <row>
+    <property name="text">
+     <string>新建行</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>新建行</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>新建行</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>新建行</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>新建行</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>新建行</string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>新建列</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>新建列</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>新建列</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>新建列</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>新建列</string>
+    </property>
+   </column>
+   <item row="0" column="0">
+    <property name="text">
+     <string>niha9i</string>
+    </property>
+   </item>
+   <item row="1" column="1">
+    <property name="text">
+     <string>1</string>
+    </property>
+   </item>
+   <item row="2" column="2">
+    <property name="text">
+     <string>是的</string>
     </property>
    </item>
   </widget>

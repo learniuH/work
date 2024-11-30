@@ -292,13 +292,15 @@ class MainWindow(QMainWindow):
         # 将信号 PackageFromOU 解析后的包发出的 pyqtSignal 信号绑定到函数
         self.network_manager.ou_package_receiver.update_switch_signal.connect(self.update_ou_analysis_interface)
 
+        row_position = self.main_window_ui.ou_analysis_table.rowCount()
+        self.main_window_ui.ou_analysis_table.insertRow(row_position)
+
 
     def update_ou_analysis_interface(self, package_parsed):
         ''' 接收 pyqtSignal 信号, 对解析界面的 tableWidget 和 模拟量区域进行状态更新 '''
 
         pass
-        # row_position = self.main_window_ui.ou_analysis_table.rowCount()
-        # self.main_window_ui.ou_analysis_table.insertRow(row_position)
+
 
     def mousePressEvent(self, event):
         ''' 鼠标点击空白区域清除所有控件的焦点 '''

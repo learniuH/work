@@ -1446,6 +1446,26 @@ class Ui_KCTS(object):
         self.verticalLayout_6.setContentsMargins(0, -1, 0, -1)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
         self.ou_analysis_table = QtWidgets.QTableWidget(self.ou_analysis_page)
+        self.ou_analysis_table.setStyleSheet("/*表头背景颜色*/\n"
+"QHeaderView::section {\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"/*单元格背景颜色*/\n"
+"QTableWidget::item {\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #408a99, stop: 1 #dadbde);\n"
+"}\n"
+"/*选中单元格的背景颜色*/\n"
+"QTableWidget::item:selected {\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #408a99, stop: 1 #20505e);\n"
+"}\n"
+"/*设置字体*/\n"
+"QTableWidget::item {\n"
+"    font-size: 9pt;\n"
+"    font-family: \"微软雅黑\";\n"
+"}")
         self.ou_analysis_table.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.ou_analysis_table.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.ou_analysis_table.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustIgnored)
@@ -1629,7 +1649,7 @@ class Ui_KCTS(object):
         KCTS.setCentralWidget(self.Window)
 
         self.retranslateUi(KCTS)
-        self.sub_interface_stacked.setCurrentIndex(2)
+        self.sub_interface_stacked.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
         self.ou_analysis_send_stacked.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(KCTS)
