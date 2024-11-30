@@ -1,5 +1,6 @@
 import pandas as pd
-from typing import Union
+from typing import Union, Tuple
+
 
 class ExcelRead():
     def __init__(self, file_path: str):
@@ -14,12 +15,20 @@ class ExcelRead():
         return sheet_name
 
 
-    def read_file(self, sheet_name: str):
+    def read_file(self, sheet_name: str) -> Tuple[dict, int]:
+        '''解析Excel表单的内容, 生成协议的定义
+
+        Args:
+            sheet_name: 通过comboBox的item传入的表单名字
+
+        Returns:
+            返回生成的协议定义和协议的长度
+        '''
 
         protocol = {}   # 初始化协议字典
         switch_list = []    # 用于存储开关量的byte_num
 
-        df = pd.read_excel(file_path, sheet_name=sheet_name, header=None)
+        df = pd.read_excel(self.file_path, sheet_name=sheet_name, header=None)
 
 
 
@@ -35,7 +44,7 @@ class ExcelRead():
         row_index, col_index = df.stack()[df.stack() == '字节序号'].index[0]
         end_row_index, _ = df.stack()[df.stack() == 'CRC'].index[0]
 
-        # 通过 CRC的行号 和 字节序号列 获取协议长度
+        # 通过 CRC的行号 和 字节序号的列号 获取协议长度
         protocol_length = df.loc[end_row_index, col_index]
         protocol_length = ExcelRead.clean_number(protocol_length, 'byte')
 
@@ -107,9 +116,9 @@ class ExcelRead():
 
 
 if __name__ == '__main__':
-    file_path = "D:\LearniuH\Project\中测推土机\功能定义\推土机标准化内部通信协议-V1.0-202400918.xlsx"
-    # file_path = "C:\\Users\L\Desktop\自动化测试\推土机标准化内部通信协议-V1.0-202400918.xlsx"
+    # file_path = "D:\LearniuH\Project\中测推土机\功能定义\推土机标准化内部通信协议-V1.0-202400918.xlsx"
+    file_path = "C:\\Users\L\Desktop\自动化测试\推土机标准化内部通信协议-V1.0-202400918.xlsx"
     sheet_name = '（推土机-OU）->MU&OC'
     a = ExcelRead(file_path)
     a.read_sheet_name()
-    # a.read_file(sheet_name)
+    a.read_file(sheet_name)

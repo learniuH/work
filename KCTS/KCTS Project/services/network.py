@@ -5,7 +5,7 @@ import time
 from typing import Optional, Tuple
 
 from .package_send import QueryCollectionStatus as QueryStatus
-from .package_parse import PackageFromTU
+from .package_parse import PackageFromTU, PackageFromOU
 
 class NetworkManager:
     ''' 网络管理, 处理UDP通信 '''
@@ -26,13 +26,20 @@ class NetworkManager:
         self.is_sending_mu: bool = False
         self.is_receiving_ou: bool = False
         self.is_receiving_tu: bool = False
-        self.mu_package_send: Optional[bytearray] = None
-        self.tu_package_recv: Optional[bytearray] = None
-        self.ou_package_recv: Optional[bytearray] = None
+        self.mu_package_send: Optional[bytearray] = None                # OU模拟器给MU发送的包
+        self.tu_package_recv: Optional[bytearray] = None                # TU发给TS的所有类型包
+        self.ou_package_recv: Optional[bytearray] = None                # OU发给TS的包
+        self.ou_package_parsed: bool = False                            # OU的包是否被解析的标志位
         self.send_tu_addr: Optional[Tuple[str, int]] = None
         self.send_mu_addr: Optional[Tuple[str, int]] = None
 
         self.tu_package_receiver: Optional[PackageFromTU] = PackageFromTU()
+        self.ou_package_receiver: Optional[PackageFromOU] = None        # 主窗口发出Excel解析的信号才实例化
+
+    def ou_package_receiver_inst(self, protocol: dict):
+        ''' 接收到comboBox的index切换的信号就实例化 ou_package_receiver '''
+        self.ou_package_receiver = PackageFromOU(protocol)
+
 
     def start_receiving_ou(self, local_ip: str,
                            recv_ou_port: str,
@@ -80,6 +87,11 @@ class NetworkManager:
                 if '' not in self.send_mu_addr:
                     # 将OU的数据转发到MU
                     self.recv_ou_socket.sendto(self.ou_package_recv, self.send_mu_addr)
+
+                # 对接收到的数据进行解析
+                if self.ou_package_receiver is not None:
+                    pass
+
             except Exception as e:
                 break
 

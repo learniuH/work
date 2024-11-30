@@ -451,7 +451,7 @@ QListWidget::item:selected {
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="device_status_page">
           <layout class="QVBoxLayout" name="verticalLayout_5" stretch="2,5">
@@ -2854,7 +2854,7 @@ QProgressBar::chunk {
                   <number>0</number>
                  </property>
                  <widget class="QWidget" name="ou_analysis_page">
-                  <layout class="QVBoxLayout" name="verticalLayout_6">
+                  <layout class="QVBoxLayout" name="verticalLayout_6" stretch="3,2">
                    <property name="leftMargin">
                     <number>0</number>
                    </property>
@@ -2887,17 +2887,21 @@ QProgressBar::chunk {
                      <property name="dragDropOverwriteMode">
                       <bool>false</bool>
                      </property>
+                     <property name="selectionBehavior">
+                      <enum>QAbstractItemView::SelectItems</enum>
+                     </property>
                      <property name="textElideMode">
                       <enum>Qt::ElideLeft</enum>
                      </property>
+                     <property name="showGrid">
+                      <bool>true</bool>
+                     </property>
+                     <attribute name="horizontalHeaderCascadingSectionResizes">
+                      <bool>false</bool>
+                     </attribute>
                      <attribute name="horizontalHeaderMinimumSectionSize">
                       <number>29</number>
                      </attribute>
-                     <row>
-                      <property name="text">
-                       <string>新建行</string>
-                      </property>
-                     </row>
                      <column>
                       <property name="text">
                        <string>Bit7</string>
@@ -3010,12 +3014,44 @@ QProgressBar::chunk {
                        <set>AlignCenter</set>
                       </property>
                      </column>
-                     <item row="0" column="0">
-                      <property name="flags">
-                       <set>ItemIsDragEnabled|ItemIsDropEnabled|ItemIsEnabled</set>
-                      </property>
-                     </item>
                     </widget>
+                   </item>
+                   <item>
+                    <layout class="QGridLayout" name="gridLayout_4">
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label">
+                       <property name="styleSheet">
+                        <string notr="true">QLabel {
+	color: white;
+}</string>
+                       </property>
+                       <property name="text">
+                        <string>TextLabel</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="1">
+                      <widget class="QProgressBar" name="progressBar_2">
+                       <property name="value">
+                        <number>24</number>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="1">
+                      <widget class="QProgressBar" name="progressBar_3">
+                       <property name="value">
+                        <number>24</number>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QProgressBar" name="progressBar">
+                       <property name="value">
+                        <number>24</number>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
                    </item>
                   </layout>
                  </widget>

@@ -1,6 +1,7 @@
 
 
 class StatusFeedBack:
+    ''' 消息类型 0x02 的功能定义 '''
     data_field_protocol = {
         11: {
             0: 'DO1',

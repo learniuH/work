@@ -2,6 +2,10 @@ from PyQt5.QtCore import pyqtSignal, QObject
 
 from .tu_protocol import StatusFeedBack
 
+# class PackageProcess():
+#     ''' PackageFromTU 和 PackageFromOU 的父类 '''
+
+
 
 class PackageFromTU(QObject):
     ''' 处理来自TU的有效数据包 '''
@@ -137,11 +141,103 @@ class PackageFromTU(QObject):
                 self.define_message_type(self.package[7])
 
 
+class PackageFromOU(QObject):
+    ''' 通过 comboBox 选择的表单处理出来的协议, 解析来自OU的包 '''
+
+    # 将每一帧报文解析的结果发送到主窗口
+    update_switch_signal = pyqtSignal(dict)
+
+    def __init__(self, protocol: dict):
+        super().__init__()
+        self.protocol = protocol        # Excel表格解析出来的协议
+
+
+    def parse_ou_package(self, package: bytearray):
+        ''' 根据协议内容, 解析接收到的数据包 '''
+        package_parsed = {}
+        for byte_num in self.protocol:
+            if byte_num not in package_parsed:
+                package_parsed[byte_num] = {}
+            if isinstance(self.protocol.get(byte_num), dict):
+                # 遍历协议中所有的位索引
+                for bit_index, description in self.protocol.get(byte_num).items():
+                    if isinstance(bit_index, int):
+                        # 单个位作为一个开关
+                        if package[byte_num - 1] >> bit_index & 1:
+                            package_parsed[byte_num][bit_index] = protocol[byte_num][bit_index]
+
+                    else:
+                        # 多个位作为一个开关
+                        bit_index_start, bit_index_end = bit_index.split('-')
+                        index_start, index_end = int(bit_index_start), int(bit_index_end)
+                        # 遍历所有位, 全为1则存入字典
+                        for index in range(index_start, index_end + 1):
+                            if package[byte_num - 1] >> index & 1:
+                                if index == index_end:
+                                    package_parsed[byte_num][bit_index] = protocol[byte_num][bit_index]
+                                    '''
+                                        Excel 表示协议时, 需要将多位表示一个开关的情况按如下方式写 例如:
+                                        bit0: 正常
+                                        bit1: 异常
+                                        bit0-1: 测试模式
+                                    '''
+                                    # 将已存入字典的键值对移除, Excel解析出来的协议一定要上面的格式
+                                    for idx in range(index_start, index_end + 1):
+                                        package_parsed[byte_num].pop(idx)
+                            else:
+                                # 如果其中一位为0, 就不存入字典
+                                break
+            else:
+                # 处理模拟量
+                if isinstance(byte_num, int):
+                    # 单个字节模拟量
+                    if package[byte_num - 1]:
+                        package_parsed[byte_num] = [protocol[byte_num], package[byte_num - 1]]
+                else:
+                    # 多个字节模拟量
+                    byte_num_start, byte_num_end = byte_num.split('-')
+                    value = 0
+                    for byte_num_index in range(int(byte_num_start), int(byte_num_end) + 1):
+                        value = (value << 8) + package[byte_num_index - 1]
+                    if value:
+                        package_parsed[byte_num] = [protocol[byte_num], value]
+
+        # 每一帧报文解析的结果 以 pyqtSignal 信号发送到主窗口
+        self.update_switch_signal.emit(package_parsed)
+
+
 if __name__ == '__main__':
-    packagefromtu = PackageFromTU()
-    tu_package = bytearray([00, 00, 15, 00, 00,
-                            00, 00, 2, 00, 00,
-                            10, 1,  2,  00, 00,
-                            10, 22, 10])
-    tu_package.append(sum(tu_package) & 0xFF)   # 加上crc校验位
-    packagefromtu.parse_tu_package(tu_package)
+
+    # packagefromtu = PackageFromTU()
+    # tu_package = bytearray([00, 00, 15, 00, 00,
+    #                         00, 00, 2, 00, 00,
+    #                         10, 1,  2,  00, 00,
+    #                         10, 22, 10])
+    # tu_package.append(sum(tu_package) & 0xFF)   # 加上crc校验位
+    # packagefromtu.parse_tu_package(tu_package)
+
+    protocol = {
+        12: {
+            0: '前灯',
+            3: '后灯'
+        },
+        14: {
+            0: '正常',
+            1: '异常',
+            '0-1': '测试模式',
+            # '5-6': '校准模式'
+        },
+        24: '前进',
+        '28-30': '后退'
+    }
+    ou_package = bytearray([0x00, 0x00, 0x00, 0x00, 0x00,
+                            0x00, 0x00, 0x00, 0x00, 0x00,
+                            0x00, 0x09, 0x00, 0x63, 0x00,     # 前灯后灯 测试模式 校准模式
+                            0x00, 0x00, 0x00, 0x00, 0x00,
+                            0x00, 0x00, 0x00, 0x64, 0x00,     # 前进 100
+                            0x00, 0x00, 0x00, 0x64, 0x00,     # 后退 25600
+                            ])
+
+    package_from_ou = PackageFromOU(protocol)
+    package_from_ou.parse_ou_package(ou_package)
+    # print(result)

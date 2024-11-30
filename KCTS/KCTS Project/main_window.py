@@ -1,7 +1,7 @@
 from csv import excel
 
 from PyQt5.QtCore import QSize, Qt, QSettings
-from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog, QListView
+from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog, QListView, QHeaderView
 
 from UI.main_window_ui import Ui_KCTS
 
@@ -15,7 +15,6 @@ import sys
 import socket
 
 
-
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -27,6 +26,7 @@ class MainWindow(QMainWindow):
         self.network_manager = NetworkManager()     # 初始化网络管理器
 
         self.function_definition: dict = None       # 线号与UI控件绑定
+        self.excel_reader = None                    # 读取Excel文件实例
 
         self.main_window_init()     # 窗口界面初始化
 
@@ -143,8 +143,11 @@ class MainWindow(QMainWindow):
         self.listening_ou_thread_init()
         self.listening_tu_thread_init()
 
-        # comboBox 初始化
+        # comboBox 初始化 使QSS的配置生效
         self.main_window_ui.sheet_name_list_comboBox.setView(QListView())
+
+        # tableWidget item 宽度自适应窗口宽度
+        self.main_window_ui.ou_analysis_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
     def listening_ou_thread_init(self):
         # 启动监听OU数据的线程
@@ -268,8 +271,8 @@ class MainWindow(QMainWindow):
         )
         if file_path:
             # 读取 Excel 中的所有表单显示在 comboBox 上
-            excel_reader = ExcelRead(file_path)
-            sheet_list = excel_reader.read_sheet_name()
+            self.excel_reader = ExcelRead(file_path)
+            sheet_list = self.excel_reader.read_sheet_name()
             # 添加excel里面的表单
             self.main_window_ui.sheet_name_list_comboBox.addItems(sheet_list)
 
@@ -278,9 +281,24 @@ class MainWindow(QMainWindow):
 
     def parse_excel(self, index: int):
         ''' comboBox 的 item 变化时, 会解析当前选择的表单 '''
-        print(index)
+        # 获取所选择表单(comboBox item)的名字
+        sheet_name = self.main_window_ui.sheet_name_list_comboBox.currentText()
+        # 解析所选表单的Excel
+        protocol, protocol_length = self.excel_reader.read_file(sheet_name)
+
+        # 实例化解析OU包的类
+        self.network_manager.ou_package_receiver_inst(protocol)
+
+        # 将信号 PackageFromOU 解析后的包发出的 pyqtSignal 信号绑定到函数
+        self.network_manager.ou_package_receiver.update_switch_signal.connect(self.update_ou_analysis_interface)
 
 
+    def update_ou_analysis_interface(self, package_parsed):
+        ''' 接收 pyqtSignal 信号, 对解析界面的 tableWidget 和 模拟量区域进行状态更新 '''
+
+        pass
+        # row_position = self.main_window_ui.ou_analysis_table.rowCount()
+        # self.main_window_ui.ou_analysis_table.insertRow(row_position)
 
     def mousePressEvent(self, event):
         ''' 鼠标点击空白区域清除所有控件的焦点 '''
