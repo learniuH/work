@@ -1,10 +1,10 @@
-from csv import excel
+from operator import index
 
 from PyQt5.QtCore import QSize, Qt, QSettings
-from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog, QListView, QHeaderView
+from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog, QListView, QHeaderView, QTableWidgetItem, \
+    QProgressBar, QLabel
 
 from UI.main_window_ui import Ui_KCTS
-
 
 from config.validators import Validators
 from config.constants import QLabelStyleSheet, SendCycle
@@ -216,7 +216,6 @@ class MainWindow(QMainWindow):
             if self.network_manager.is_sending_mu:
                 self.network_manager.stop_sending_mu()
 
-
     def apply_current_configuration(self):
         ''' 点击应用, 停止所有收发的线程, 更新配置后重新启用 '''
         self.network_manager.stop_receiving_ou()
@@ -247,7 +246,7 @@ class MainWindow(QMainWindow):
                                               SendCycle.CYCLE
                                               )
 
-    def switch_ou_analysis_send_stacked_page(self, index):
+    def switch_ou_analysis_send_stacked_page(self, index: int):
         ''' 点击 pushButton 切换 ou 解析界面和发包界面 '''
         self.main_window_ui.ou_analysis_send_stacked.setCurrentIndex(index)
 
@@ -292,14 +291,92 @@ class MainWindow(QMainWindow):
         # 将信号 PackageFromOU 解析后的包发出的 pyqtSignal 信号绑定到函数
         self.network_manager.ou_package_receiver.update_switch_signal.connect(self.update_ou_analysis_interface)
 
-        row_position = self.main_window_ui.ou_analysis_table.rowCount()
-        self.main_window_ui.ou_analysis_table.insertRow(row_position)
-
-
-    def update_ou_analysis_interface(self, package_parsed):
+    def update_ou_analysis_interface(self, package_parsed: dict):
         ''' 接收 pyqtSignal 信号, 对解析界面的 tableWidget 和 模拟量区域进行状态更新 '''
+        self.main_window_ui.ou_analysis_table.setRowCount(0)   # 设置tableWidget行数为0 清空所有行
+        self.clear_analogGrid_layout()      # 清除模拟量解析区的所有控件
+        gridLayout_col = 0  # 模拟量解析区的列号
+        for byte_num in package_parsed:
+            # 如果字典的值是字典, 就是开关量, 更新tableWidget
+            if isinstance(package_parsed.get(byte_num), dict):
+                # 在tableWidget当前行后面添加一个空行, 垂直表头是 byte_num
+                row_position = self.main_window_ui.ou_analysis_table.rowCount()
+                self.main_window_ui.ou_analysis_table.insertRow(row_position)
+                self.main_window_ui.ou_analysis_table.setVerticalHeaderItem(row_position, QTableWidgetItem(f'Byte{byte_num}'))
 
-        pass
+                for bit_index in package_parsed[byte_num]:
+                    # bit_index 是数字, 就是一位为一个开关
+                    if isinstance(bit_index, int):
+                        # 将内容添加到当前行
+                        self.main_window_ui.ou_analysis_table.setItem(row_position, 7 - bit_index, QTableWidgetItem(
+                            package_parsed[byte_num][bit_index]))
+
+                    # bit_index 是字符串, 就是多位为一个开关
+                    else:
+                        bit_index_start, bit_index_end = bit_index.split('-')
+                        index_start, index_end = int(bit_index_start), int(bit_index_end)
+                        # 合并单元格: 四个参数 (起始行, 起始列, 行跨度, 列跨度)
+                        self.main_window_ui.ou_analysis_table.setSpan(row_position, 7 - index_end, 1, index_end - index_start + 1)
+                        # 填入内容
+                        self.main_window_ui.ou_analysis_table.setItem(row_position, 7 - index_end, QTableWidgetItem(
+                            package_parsed[byte_num][bit_index]))
+
+            # 如果字典的值是列表, 就是模拟量, 更新progressBar
+            else:
+                # 单个字节的模拟量
+                if isinstance(byte_num, int):
+                    # 创建垂直居中在gridLayout中的进度条
+                    progressBar = QProgressBar()
+                    progressBar.setOrientation(Qt.Vertical)
+                    progressBar.setValue(package_parsed[byte_num][1])   # 进度条范围默认0-100
+
+                    # 创建居中在gridLayout中的label
+                    label = QLabel(f'Byte{byte_num}: {package_parsed[byte_num][1]}\n{package_parsed[byte_num][0]}')
+                    label.setAlignment(Qt.AlignCenter)
+
+                    # 进度条居中放在gridLayout第一行
+                    self.main_window_ui.analog_gridlayout.addWidget(progressBar, 0, gridLayout_col,
+                                                                    alignment=Qt.AlignCenter)
+                    # 标签居中放在gridLayout第二行
+                    self.main_window_ui.analog_gridlayout.addWidget(label, 1, gridLayout_col, alignment=Qt.AlignCenter)
+
+                    # 列号每个字节结束加1
+                    gridLayout_col += 1
+                # 多个字节的模拟量
+                else:
+                    # 创建垂直居中在gridLayout的进度条
+                    progressBar = QProgressBar()
+                    progressBar.setOrientation(Qt.Vertical)
+                    start_byte, end_byte = byte_num.split('-')
+                    start_byte_num, end_byte_num = int(start_byte), int(end_byte)
+                    maximum = 0    # 进度条的最大值
+                    for i in range(0, end_byte_num - start_byte_num + 1):
+                        maximum = (maximum << 8) + 0xFF
+                    progressBar.setRange(0, maximum)
+                    progressBar.setValue(package_parsed[byte_num][1])
+
+                    # 创建居中在gridLayout中的label
+                    label = QLabel(f'Byte{byte_num}: {package_parsed[byte_num][1]}\n{package_parsed[byte_num][0]}')
+                    label.setAlignment(Qt.AlignCenter)
+
+                    # 进度条居中放在gridLayout第一行
+                    self.main_window_ui.analog_gridlayout.addWidget(progressBar, 0, gridLayout_col,
+                                                                    alignment=Qt.AlignCenter)
+                    # 标签居中放在gridLayout第二行
+                    self.main_window_ui.analog_gridlayout.addWidget(label, 1, gridLayout_col, alignment=Qt.AlignCenter)
+
+                    # 列号每个字节结束加1
+                    gridLayout_col += 1
+
+    def clear_analogGrid_layout(self):
+        ''' 删除解析界面的模拟量区的所有控件 '''
+        # 如果布局中还有控件
+        while self.main_window_ui.analog_gridlayout.count():
+            # 获取第一个控件项
+            item = self.main_window_ui.analog_gridlayout.takeAt(0)
+            widget = item.widget()      # 获取控件
+            if widget is not None:
+                widget.deleteLater()    # 删除控件
 
 
     def mousePressEvent(self, event):

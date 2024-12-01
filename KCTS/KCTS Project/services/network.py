@@ -90,7 +90,8 @@ class NetworkManager:
 
                 # 对接收到的数据进行解析
                 if self.ou_package_receiver is not None:
-                    pass
+                    # 每接收到一帧数据, 解析所有的字节
+                    self.ou_package_receiver.parse_ou_package(self.ou_package_recv)
 
             except Exception as e:
                 break

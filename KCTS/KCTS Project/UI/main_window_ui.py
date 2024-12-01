@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_KCTS(object):
     def setupUi(self, KCTS):
         KCTS.setObjectName("KCTS")
-        KCTS.resize(1225, 699)
+        KCTS.resize(1329, 768)
         self.Window = QtWidgets.QWidget(KCTS)
         self.Window.setObjectName("Window")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.Window)
@@ -195,6 +195,7 @@ class Ui_KCTS(object):
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.navigation_list = QtWidgets.QListWidget(self.Body)
         self.navigation_list.setMinimumSize(QtCore.QSize(120, 0))
+        self.navigation_list.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.navigation_list.setStyleSheet("QListWidget {\n"
 "    background: qlineargradient(\n"
 "        spread: pad,\n"
@@ -225,6 +226,7 @@ class Ui_KCTS(object):
 "\n"
 "")
         self.navigation_list.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.navigation_list.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.navigation_list.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.navigation_list.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.navigation_list.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContentsOnFirstShow)
@@ -1539,27 +1541,9 @@ class Ui_KCTS(object):
         self.ou_analysis_table.horizontalHeader().setCascadingSectionResizes(False)
         self.ou_analysis_table.horizontalHeader().setMinimumSectionSize(29)
         self.verticalLayout_6.addWidget(self.ou_analysis_table)
-        self.gridLayout_4 = QtWidgets.QGridLayout()
-        self.gridLayout_4.setObjectName("gridLayout_4")
-        self.label = QtWidgets.QLabel(self.ou_analysis_page)
-        self.label.setStyleSheet("QLabel {\n"
-"    color: white;\n"
-"}")
-        self.label.setObjectName("label")
-        self.gridLayout_4.addWidget(self.label, 0, 0, 1, 1)
-        self.progressBar_2 = QtWidgets.QProgressBar(self.ou_analysis_page)
-        self.progressBar_2.setProperty("value", 24)
-        self.progressBar_2.setObjectName("progressBar_2")
-        self.gridLayout_4.addWidget(self.progressBar_2, 1, 1, 1, 1)
-        self.progressBar_3 = QtWidgets.QProgressBar(self.ou_analysis_page)
-        self.progressBar_3.setProperty("value", 24)
-        self.progressBar_3.setObjectName("progressBar_3")
-        self.gridLayout_4.addWidget(self.progressBar_3, 2, 1, 1, 1)
-        self.progressBar = QtWidgets.QProgressBar(self.ou_analysis_page)
-        self.progressBar.setProperty("value", 24)
-        self.progressBar.setObjectName("progressBar")
-        self.gridLayout_4.addWidget(self.progressBar, 0, 1, 1, 1)
-        self.verticalLayout_6.addLayout(self.gridLayout_4)
+        self.analog_gridlayout = QtWidgets.QGridLayout()
+        self.analog_gridlayout.setObjectName("analog_gridlayout")
+        self.verticalLayout_6.addLayout(self.analog_gridlayout)
         self.verticalLayout_6.setStretch(0, 3)
         self.verticalLayout_6.setStretch(1, 2)
         self.ou_analysis_send_stacked.addWidget(self.ou_analysis_page)
@@ -1649,7 +1633,7 @@ class Ui_KCTS(object):
         KCTS.setCentralWidget(self.Window)
 
         self.retranslateUi(KCTS)
-        self.sub_interface_stacked.setCurrentIndex(0)
+        self.sub_interface_stacked.setCurrentIndex(2)
         self.tabWidget.setCurrentIndex(0)
         self.ou_analysis_send_stacked.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(KCTS)
@@ -1743,7 +1727,6 @@ class Ui_KCTS(object):
         item.setText(_translate("KCTS", "Bit1"))
         item = self.ou_analysis_table.horizontalHeaderItem(7)
         item.setText(_translate("KCTS", "Bit0"))
-        self.label.setText(_translate("KCTS", "TextLabel"))
         self.label_4.setText(_translate("KCTS", "这是OU模拟器的界面"))
         self.IOQuery_pushButton.setText(_translate("KCTS", "IO查询"))
         self.send_package_pushButton.setText(_translate("KCTS", "模拟发包"))

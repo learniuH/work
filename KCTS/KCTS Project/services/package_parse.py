@@ -131,7 +131,7 @@ class PackageFromTU(QObject):
             return False
 
 
-    def parse_tu_package(self, package: bytearray):
+    def parse_tu_package(self, package: bytes):
         ''' 对来自TU的数据包区分并解析 '''
         self.package = package
         if self.package[0] == 0x5A and self.crc_check():
@@ -152,19 +152,19 @@ class PackageFromOU(QObject):
         self.protocol = protocol        # Excel表格解析出来的协议
 
 
-    def parse_ou_package(self, package: bytearray):
+    def parse_ou_package(self, package: bytes):
         ''' 根据协议内容, 解析接收到的数据包 '''
         package_parsed = {}
         for byte_num in self.protocol:
-            if byte_num not in package_parsed:
-                package_parsed[byte_num] = {}
             if isinstance(self.protocol.get(byte_num), dict):
                 # 遍历协议中所有的位索引
                 for bit_index, description in self.protocol.get(byte_num).items():
                     if isinstance(bit_index, int):
                         # 单个位作为一个开关
                         if package[byte_num - 1] >> bit_index & 1:
-                            package_parsed[byte_num][bit_index] = protocol[byte_num][bit_index]
+                            if byte_num not in package_parsed:
+                                package_parsed[byte_num] = {}
+                            package_parsed[byte_num][bit_index] = self.protocol[byte_num][bit_index]
 
                     else:
                         # 多个位作为一个开关
@@ -174,7 +174,18 @@ class PackageFromOU(QObject):
                         for index in range(index_start, index_end + 1):
                             if package[byte_num - 1] >> index & 1:
                                 if index == index_end:
-                                    package_parsed[byte_num][bit_index] = protocol[byte_num][bit_index]
+                                    '''开关量存入字典的形式:{
+                                        13: {
+                                            0: '前灯'
+                                            1: '测试模式'
+                                            2: '正常模式'
+                                            '1-2': '校准模式'
+                                        }
+                                    }
+                                    '''
+                                    if byte_num not in package_parsed:
+                                        package_parsed[byte_num] = {}
+                                    package_parsed[byte_num][bit_index] = self.protocol[byte_num][bit_index]
                                     '''
                                         Excel 表示协议时, 需要将多位表示一个开关的情况按如下方式写 例如:
                                         bit0: 正常
@@ -192,7 +203,7 @@ class PackageFromOU(QObject):
                 if isinstance(byte_num, int):
                     # 单个字节模拟量
                     if package[byte_num - 1]:
-                        package_parsed[byte_num] = [protocol[byte_num], package[byte_num - 1]]
+                        package_parsed[byte_num] = [self.protocol[byte_num], package[byte_num - 1]]
                 else:
                     # 多个字节模拟量
                     byte_num_start, byte_num_end = byte_num.split('-')
@@ -200,7 +211,12 @@ class PackageFromOU(QObject):
                     for byte_num_index in range(int(byte_num_start), int(byte_num_end) + 1):
                         value = (value << 8) + package[byte_num_index - 1]
                     if value:
-                        package_parsed[byte_num] = [protocol[byte_num], value]
+                        '''模拟量开关存入字典的形式: {
+                            12: ['前进', 100]
+                            '14-15': ['后退', 25600]
+                        }
+                        '''
+                        package_parsed[byte_num] = [self.protocol[byte_num], value]
 
         # 每一帧报文解析的结果 以 pyqtSignal 信号发送到主窗口
         self.update_switch_signal.emit(package_parsed)
