@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog, QLi
 from UI.main_window_ui import Ui_KCTS
 
 from config.validators import Validators
-from config.constants import QLabelStyleSheet, SendCycle
+from config.constants import QLabelStyleSheet, SendCycle, AnalogStyleSheet
 from services.network import NetworkManager
 from services.read_excel import ExcelRead
 
@@ -329,10 +329,13 @@ class MainWindow(QMainWindow):
                     progressBar = QProgressBar()
                     progressBar.setOrientation(Qt.Vertical)
                     progressBar.setValue(package_parsed[byte_num][1])   # 进度条范围默认0-100
+                    progressBar.setTextVisible(False)
+                    progressBar.setStyleSheet(AnalogStyleSheet.ProgressBar_QSS)
 
                     # 创建居中在gridLayout中的label
                     label = QLabel(f'Byte{byte_num}: {package_parsed[byte_num][1]}\n{package_parsed[byte_num][0]}')
                     label.setAlignment(Qt.AlignCenter)
+                    label.setStyleSheet(AnalogStyleSheet.Label_QSS)
 
                     # 进度条居中放在gridLayout第一行
                     self.main_window_ui.analog_gridlayout.addWidget(progressBar, 0, gridLayout_col,
@@ -354,10 +357,13 @@ class MainWindow(QMainWindow):
                         maximum = (maximum << 8) + 0xFF
                     progressBar.setRange(0, maximum)
                     progressBar.setValue(package_parsed[byte_num][1])
+                    progressBar.setTextVisible(False)
+                    progressBar.setStyleSheet(AnalogStyleSheet.ProgressBar_QSS)
 
                     # 创建居中在gridLayout中的label
                     label = QLabel(f'Byte{byte_num}: {package_parsed[byte_num][1]}\n{package_parsed[byte_num][0]}')
                     label.setAlignment(Qt.AlignCenter)
+                    label.setStyleSheet(AnalogStyleSheet.Label_QSS)
 
                     # 进度条居中放在gridLayout第一行
                     self.main_window_ui.analog_gridlayout.addWidget(progressBar, 0, gridLayout_col,

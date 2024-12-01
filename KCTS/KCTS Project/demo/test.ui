@@ -77,8 +77,8 @@ QTabBar::tab:!selected {
   <widget class="QProgressBar" name="progressBar">
    <property name="geometry">
     <rect>
-     <x>520</x>
-     <y>10</y>
+     <x>460</x>
+     <y>0</y>
      <width>118</width>
      <height>23</height>
     </rect>
@@ -109,8 +109,8 @@ QProgressBar::chunk {
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>10</y>
+     <x>140</x>
+     <y>0</y>
      <width>91</width>
      <height>51</height>
     </rect>
@@ -130,8 +130,8 @@ QProgressBar::chunk {
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>10</y>
+     <x>240</x>
+     <y>0</y>
      <width>111</width>
      <height>51</height>
     </rect>
@@ -182,8 +182,8 @@ QTextEdit {
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>410</x>
-     <y>10</y>
+     <x>350</x>
+     <y>0</y>
      <width>93</width>
      <height>28</height>
     </rect>
@@ -213,8 +213,8 @@ QPushButton:pressed {
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>680</x>
-     <y>20</y>
+     <x>590</x>
+     <y>0</y>
      <width>113</width>
      <height>21</height>
     </rect>
@@ -575,6 +575,35 @@ QTableWidget::item {
      <string>是的</string>
     </property>
    </item>
+  </widget>
+  <widget class="QProgressBar" name="progressBar_2">
+   <property name="geometry">
+    <rect>
+     <x>740</x>
+     <y>20</y>
+     <width>118</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QProgressBar {
+    border: 3px solid grey;
+    border-radius: 10px;
+	text-align: center;
+	border-color: #44909f;
+	font: 9pt &quot;微软雅黑&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QProgressBar::chunk {
+    background-color: #f5c93d;
+    width: 20px;
+}</string>
+   </property>
+   <property name="value">
+    <number>24</number>
+   </property>
   </widget>
  </widget>
  <resources/>
