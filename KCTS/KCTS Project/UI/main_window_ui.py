@@ -1621,6 +1621,37 @@ class Ui_KCTS(object):
         self.tabWidget.addTab(self.real_time_analysis_tab, "")
         self.history_tab = QtWidgets.QWidget()
         self.history_tab.setObjectName("history_tab")
+        self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.history_tab)
+        self.verticalLayout_7.setObjectName("verticalLayout_7")
+        self.history_record_lineEdit = QtWidgets.QTextEdit(self.history_tab)
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        self.history_record_lineEdit.setFont(font)
+        self.history_record_lineEdit.setStyleSheet("QTextEdit {\n"
+"/*    border-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);*/\n"
+"    border-color: white;\n"
+"    background: transparent;\n"
+"    border-width: 3;\n"
+"    border-radius: 10px;\n"
+"    border-style: outset;\n"
+"}")
+        self.history_record_lineEdit.setReadOnly(True)
+        self.history_record_lineEdit.setObjectName("history_record_lineEdit")
+        self.verticalLayout_7.addWidget(self.history_record_lineEdit)
+        self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
+        self.history_query_pushButton = QtWidgets.QPushButton(self.history_tab)
+        self.history_query_pushButton.setMinimumSize(QtCore.QSize(84, 45))
+        self.history_query_pushButton.setMaximumSize(QtCore.QSize(95, 16777215))
+        self.history_query_pushButton.setObjectName("history_query_pushButton")
+        self.horizontalLayout_4.addWidget(self.history_query_pushButton)
+        self.clear_record_pushButton = QtWidgets.QPushButton(self.history_tab)
+        self.clear_record_pushButton.setMinimumSize(QtCore.QSize(84, 45))
+        self.clear_record_pushButton.setMaximumSize(QtCore.QSize(95, 16777215))
+        self.clear_record_pushButton.setObjectName("clear_record_pushButton")
+        self.horizontalLayout_4.addWidget(self.clear_record_pushButton)
+        self.verticalLayout_7.addLayout(self.horizontalLayout_4)
         self.tabWidget.addTab(self.history_tab, "")
         self.verticalLayout_2.addWidget(self.tabWidget)
         self.sub_interface_stacked.addWidget(self.analysis_page)
@@ -1634,7 +1665,7 @@ class Ui_KCTS(object):
 
         self.retranslateUi(KCTS)
         self.sub_interface_stacked.setCurrentIndex(2)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         self.ou_analysis_send_stacked.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(KCTS)
 
@@ -1731,4 +1762,6 @@ class Ui_KCTS(object):
         self.IOQuery_pushButton.setText(_translate("KCTS", "IO查询"))
         self.send_package_pushButton.setText(_translate("KCTS", "模拟发包"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.real_time_analysis_tab), _translate("KCTS", "实时解析"))
+        self.history_query_pushButton.setText(_translate("KCTS", "PushButton"))
+        self.clear_record_pushButton.setText(_translate("KCTS", "一键清除"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.history_tab), _translate("KCTS", "历史记录"))

@@ -129,7 +129,6 @@ class MainWindow(QMainWindow):
         else:
             do_label.setStyleSheet(QLabelStyleSheet.LABEL_QSS_NORMAL)
 
-
     def update_pwm_progressBar_status(self, pwm_num: str, pwm_value: int):
         ''' 接收来自 pyqtSignal 的信号, 更新 QLabel 状态 '''
         pwm_progressBar = self.function_definition[pwm_num]
@@ -291,6 +290,7 @@ class MainWindow(QMainWindow):
 
         # 将信号 PackageFromOU 解析后的包发出的 pyqtSignal 信号绑定到函数
         self.network_manager.ou_package_receiver.update_switch_signal.connect(self.update_ou_analysis_interface)
+        self.network_manager.ou_package_receiver.update_switch_signal.connect(self.update_history_record)   # 更新历史记录
 
     def update_ou_analysis_interface(self, package_parsed: dict):
         ''' 接收 pyqtSignal 信号, 对解析界面的 tableWidget 和 模拟量区域进行状态更新 '''
@@ -392,6 +392,26 @@ class MainWindow(QMainWindow):
             if widget is not None:
                 widget.deleteLater()    # 删除控件
 
+    def update_history_record(self, package_parsed: dict):
+        ''' OU包每一次解析完成后, 更新历史纪录 '''
+        # 先添加OU的包
+        ou_package = 'OU Data:' + f' '.join(f'{byte:02X}' for byte in self.network_manager.ou_package_recv)
+        self.main_window_ui.history_record_lineEdit.append(ou_package)      # 添加OU_package自动换行
+
+        # OU包解析结果
+        for byte_num in package_parsed:
+            self.main_window_ui.history_record_lineEdit.append(f'Byte{byte_num}: ')
+            # 字典就是开关量
+            if isinstance(package_parsed.get(byte_num), dict):
+                for bit_index in package_parsed[byte_num]:
+                    self.main_window_ui.history_record_lineEdit.insertPlainText(
+                        f'bit{bit_index}: {package_parsed[byte_num][bit_index]}')
+            # 列表就是模拟量
+            else:
+                self.main_window_ui.history_record_lineEdit.insertPlainText(
+                    f'{package_parsed[byte_num][0]} {package_parsed[byte_num][1]}')
+
+        self.main_window_ui.history_record_lineEdit.insertPlainText(f'\n')      # 每一包内容结束之后换行
 
     def mousePressEvent(self, event):
         ''' 鼠标点击空白区域清除所有控件的焦点 '''
