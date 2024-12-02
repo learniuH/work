@@ -395,7 +395,7 @@ class MainWindow(QMainWindow):
     def update_history_record(self, package_parsed: dict):
         ''' OU包每一次解析完成后, 更新历史纪录 '''
         # 先添加OU的包
-        ou_package = 'OU Data:' + f' '.join(f'{byte:02X}' for byte in self.network_manager.ou_package_recv)
+        ou_package = 'OU Data:' + f'  '.join(f'{byte:02X}' for byte in self.network_manager.ou_package_recv)
         self.main_window_ui.history_record_lineEdit.append(ou_package)      # 添加OU_package自动换行
 
         # OU包解析结果
