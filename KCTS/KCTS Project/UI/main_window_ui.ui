@@ -2860,7 +2860,7 @@ QProgressBar::chunk {
                   <number>0</number>
                  </property>
                  <widget class="QWidget" name="ou_analysis_page">
-                  <layout class="QVBoxLayout" name="verticalLayout_6" stretch="3,2">
+                  <layout class="QVBoxLayout" name="verticalLayout_6" stretch="2,1">
                    <property name="leftMargin">
                     <number>0</number>
                    </property>
@@ -3045,7 +3045,7 @@ QTableWidget::item {
                     </widget>
                    </item>
                    <item>
-                    <layout class="QGridLayout" name="analog_gridlayout"/>
+                    <layout class="QGridLayout" name="analog_gridlayout" rowstretch="0" columnstretch="0"/>
                    </item>
                   </layout>
                  </widget>

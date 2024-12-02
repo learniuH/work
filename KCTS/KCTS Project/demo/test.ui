@@ -597,7 +597,7 @@ QTableWidget::item {
 }
 
 QProgressBar::chunk {
-    background-color: #f5c93d;
+    background-color: #e77060;
     width: 20px;
 }</string>
    </property>

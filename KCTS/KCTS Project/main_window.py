@@ -2,7 +2,7 @@ from operator import index
 
 from PyQt5.QtCore import QSize, Qt, QSettings
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog, QListView, QHeaderView, QTableWidgetItem, \
-    QProgressBar, QLabel
+    QProgressBar, QLabel, QSpacerItem, QSizePolicy
 
 from UI.main_window_ui import Ui_KCTS
 
@@ -148,6 +148,7 @@ class MainWindow(QMainWindow):
 
         # tableWidget item 宽度自适应窗口宽度
         self.main_window_ui.ou_analysis_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+
 
     def listening_ou_thread_init(self):
         # 启动监听OU数据的线程
@@ -307,9 +308,10 @@ class MainWindow(QMainWindow):
                 for bit_index in package_parsed[byte_num]:
                     # bit_index 是数字, 就是一位为一个开关
                     if isinstance(bit_index, int):
-                        # 将内容添加到当前行
-                        self.main_window_ui.ou_analysis_table.setItem(row_position, 7 - bit_index, QTableWidgetItem(
-                            package_parsed[byte_num][bit_index]))
+                        # 将内容添加到当前行, 居中填充
+                        item = QTableWidgetItem(package_parsed[byte_num][bit_index])
+                        item.setTextAlignment(Qt.AlignCenter)
+                        self.main_window_ui.ou_analysis_table.setItem(row_position, 7 - bit_index, item)
 
                     # bit_index 是字符串, 就是多位为一个开关
                     else:
@@ -317,9 +319,10 @@ class MainWindow(QMainWindow):
                         index_start, index_end = int(bit_index_start), int(bit_index_end)
                         # 合并单元格: 四个参数 (起始行, 起始列, 行跨度, 列跨度)
                         self.main_window_ui.ou_analysis_table.setSpan(row_position, 7 - index_end, 1, index_end - index_start + 1)
-                        # 填入内容
-                        self.main_window_ui.ou_analysis_table.setItem(row_position, 7 - index_end, QTableWidgetItem(
-                            package_parsed[byte_num][bit_index]))
+                        # 居中填入内容
+                        item = QTableWidgetItem(package_parsed[byte_num][bit_index])
+                        item.setTextAlignment(Qt.AlignCenter)
+                        self.main_window_ui.ou_analysis_table.setItem(row_position, 7 - index_end, item)
 
             # 如果字典的值是列表, 就是模拟量, 更新progressBar
             else:
@@ -373,6 +376,11 @@ class MainWindow(QMainWindow):
 
                     # 列号每个字节结束加1
                     gridLayout_col += 1
+
+        # 所有数据添加到界面上后, 在gridLayout的两行加上两个水平弹簧
+        for row in range(0,2):
+            horizontal_spacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+            self.main_window_ui.analog_gridlayout.addItem(horizontal_spacer, row, gridLayout_col)
 
     def clear_analogGrid_layout(self):
         ''' 删除解析界面的模拟量区的所有控件 '''
