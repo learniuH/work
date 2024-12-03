@@ -3173,25 +3173,53 @@ QPushButton:disabled {
               </attribute>
               <layout class="QVBoxLayout" name="verticalLayout_7">
                <item>
-                <widget class="QTextEdit" name="history_record_lineEdit">
+                <widget class="QTextEdit" name="history_record_textEdit">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
                  <property name="font">
                   <font>
                    <family>微软雅黑</family>
                   </font>
+                 </property>
+                 <property name="mouseTracking">
+                  <bool>true</bool>
+                 </property>
+                 <property name="focusPolicy">
+                  <enum>Qt::NoFocus</enum>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">QTextEdit {
 /*	border-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,
                                       stop: 0 #f6f7fa, stop: 1 #dadbde);*/
 	border-color: white;
-	background-color: #435068;
+	background: qlineargradient(spread: pad,x1: 1, y1: 1, x2: 0, y2: 1,
+								stop: 0 #0d1117,  /* 起始颜色 */
+								stop: 1 #414a5a);   /* 结束颜色 */
 	border-width: 3;
-	border-radius: 10px;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
 	border-style: outset;
-}</string>
+	color: white;
+}
+
+QTextEdit QScrollBar::add-page,
+QTextEdit QScrollBar::sub-page {
+    background: transparent;
+}
+</string>
+                 </property>
+                 <property name="verticalScrollBarPolicy">
+                  <enum>Qt::ScrollBarAsNeeded</enum>
+                 </property>
+                 <property name="horizontalScrollBarPolicy">
+                  <enum>Qt::ScrollBarAlwaysOff</enum>
                  </property>
                  <property name="readOnly">
                   <bool>true</bool>
+                 </property>
+                 <property name="textInteractionFlags">
+                  <set>Qt::NoTextInteraction</set>
                  </property>
                 </widget>
                </item>
@@ -3229,6 +3257,33 @@ QPushButton:disabled {
                      <width>95</width>
                      <height>16777215</height>
                     </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton {
+    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+    border-radius: 6px;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #435068, stop: 1 #2a354e);
+    min-width: 80px;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+}
+
+QPushButton:hover {
+	background-color: #435068
+}
+
+QPushButton:pressed {
+    background-color: #2c3646
+}
+
+QPushButton:disabled {
+    background-color: #434b5d
+}
+
+
+</string>
                    </property>
                    <property name="text">
                     <string>一键清除</string>

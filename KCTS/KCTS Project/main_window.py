@@ -1,4 +1,3 @@
-from operator import index
 
 from PyQt5.QtCore import QSize, Qt, QSettings
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog, QListView, QHeaderView, QTableWidgetItem, \
@@ -13,6 +12,7 @@ from services.read_excel import ExcelRead
 
 import sys
 import socket
+from datetime import datetime
 
 
 class MainWindow(QMainWindow):
@@ -70,6 +70,7 @@ class MainWindow(QMainWindow):
         # 点击导入协议, 打开选择对话框
         self.main_window_ui.import_protocol_pushButton.clicked.connect(self.open_file_dialog)
 
+        self.main_window_ui.clear_record_pushButton.clicked.connect(self.clear_history_record)
 
     def signal_bind(self):
         ''' 绑定 pyqtSignal 到对应事件与按键 '''
@@ -394,24 +395,33 @@ class MainWindow(QMainWindow):
 
     def update_history_record(self, package_parsed: dict):
         ''' OU包每一次解析完成后, 更新历史纪录 '''
+        # 打印系统当前的时间, 2024-12-03 14:30:45.123, 精确到 ms
+        current_time = datetime.now()       # 获取系统当前的时间, ms精确到小数点后6位
+        self.main_window_ui.history_record_textEdit.append(current_time.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3])
+
         # 先添加OU的包
-        ou_package = 'OU Data:' + f'  '.join(f'{byte:02X}' for byte in self.network_manager.ou_package_recv)
-        self.main_window_ui.history_record_lineEdit.append(ou_package)      # 添加OU_package自动换行
+        ou_package = 'OU Data: ' + f'  '.join(f'{byte:02X}' for byte in self.network_manager.ou_package_recv)
+        self.main_window_ui.history_record_textEdit.append(ou_package)      # 添加OU_package自动换行
 
         # OU包解析结果
         for byte_num in package_parsed:
-            self.main_window_ui.history_record_lineEdit.append(f'Byte{byte_num}: ')
+            self.main_window_ui.history_record_textEdit.append(f'Byte{byte_num}: ')
             # 字典就是开关量
             if isinstance(package_parsed.get(byte_num), dict):
                 for bit_index in package_parsed[byte_num]:
-                    self.main_window_ui.history_record_lineEdit.insertPlainText(
-                        f'bit{bit_index}: {package_parsed[byte_num][bit_index]}')
+                    self.main_window_ui.history_record_textEdit.insertPlainText(
+                        f'bit{bit_index} - {package_parsed[byte_num][bit_index]}    ')
             # 列表就是模拟量
             else:
-                self.main_window_ui.history_record_lineEdit.insertPlainText(
-                    f'{package_parsed[byte_num][0]} {package_parsed[byte_num][1]}')
+                self.main_window_ui.history_record_textEdit.insertPlainText(
+                    f'{package_parsed[byte_num][0]}  {package_parsed[byte_num][1]}')
 
-        self.main_window_ui.history_record_lineEdit.insertPlainText(f'\n')      # 每一包内容结束之后换行
+        self.main_window_ui.history_record_textEdit.insertPlainText(f'\n')      # 每一包内容结束之后换行
+
+    def clear_history_record(self):
+        ''' 清除历史记录里所有内容 '''
+        self.main_window_ui.history_record_textEdit.clear()
+
 
     def mousePressEvent(self, event):
         ''' 鼠标点击空白区域清除所有控件的焦点 '''

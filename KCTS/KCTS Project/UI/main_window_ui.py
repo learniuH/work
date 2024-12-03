@@ -1623,22 +1623,38 @@ class Ui_KCTS(object):
         self.history_tab.setObjectName("history_tab")
         self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.history_tab)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
-        self.history_record_lineEdit = QtWidgets.QTextEdit(self.history_tab)
+        self.history_record_textEdit = QtWidgets.QTextEdit(self.history_tab)
+        self.history_record_textEdit.setEnabled(True)
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
-        self.history_record_lineEdit.setFont(font)
-        self.history_record_lineEdit.setStyleSheet("QTextEdit {\n"
+        self.history_record_textEdit.setFont(font)
+        self.history_record_textEdit.setMouseTracking(True)
+        self.history_record_textEdit.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.history_record_textEdit.setStyleSheet("QTextEdit {\n"
 "/*    border-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);*/\n"
 "    border-color: white;\n"
-"    background-color: #435068;\n"
+"    background: qlineargradient(spread: pad,x1: 1, y1: 1, x2: 0, y2: 1,\n"
+"                                stop: 0 #0d1117,  /* 起始颜色 */\n"
+"                                stop: 1 #414a5a);   /* 结束颜色 */\n"
 "    border-width: 3;\n"
-"    border-radius: 10px;\n"
+"    border-top-left-radius: 15px;\n"
+"    border-bottom-left-radius: 15px;\n"
 "    border-style: outset;\n"
-"}")
-        self.history_record_lineEdit.setReadOnly(True)
-        self.history_record_lineEdit.setObjectName("history_record_lineEdit")
-        self.verticalLayout_7.addWidget(self.history_record_lineEdit)
+"    color: white;\n"
+"}\n"
+"\n"
+"QTextEdit QScrollBar::add-page,\n"
+"QTextEdit QScrollBar::sub-page {\n"
+"    background: transparent;\n"
+"}\n"
+"")
+        self.history_record_textEdit.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
+        self.history_record_textEdit.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.history_record_textEdit.setReadOnly(True)
+        self.history_record_textEdit.setTextInteractionFlags(QtCore.Qt.NoTextInteraction)
+        self.history_record_textEdit.setObjectName("history_record_textEdit")
+        self.verticalLayout_7.addWidget(self.history_record_textEdit)
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.history_query_pushButton = QtWidgets.QPushButton(self.history_tab)
