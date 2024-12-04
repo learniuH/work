@@ -1665,6 +1665,31 @@ class Ui_KCTS(object):
         self.clear_record_pushButton = QtWidgets.QPushButton(self.history_tab)
         self.clear_record_pushButton.setMinimumSize(QtCore.QSize(84, 45))
         self.clear_record_pushButton.setMaximumSize(QtCore.QSize(95, 16777215))
+        self.clear_record_pushButton.setStyleSheet("QPushButton {\n"
+"    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"    border-radius: 6px;\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #435068, stop: 1 #2a354e);\n"
+"    min-width: 80px;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #435068\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2c3646\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: #434b5d\n"
+"}\n"
+"\n"
+"\n"
+"")
         self.clear_record_pushButton.setObjectName("clear_record_pushButton")
         self.horizontalLayout_4.addWidget(self.clear_record_pushButton)
         self.verticalLayout_7.addLayout(self.horizontalLayout_4)

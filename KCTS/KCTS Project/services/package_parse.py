@@ -6,13 +6,14 @@ from .tu_protocol import StatusFeedBack
 #     ''' PackageFromTU 和 PackageFromOU 的父类 '''
 
 
-
 class PackageFromTU(QObject):
     ''' 处理来自TU的有效数据包 '''
 
     # 当检测到 DO 置 1 或 PWM 非 0 时, 发出pyqtSignal信号到主窗口
     update_do_signal = pyqtSignal(str, bool)
     update_pwm_signal = pyqtSignal(str, int)
+
+    mu_output_record_signal = pyqtSignal(dict)      # 记录MU所有线号输出的信号
 
     # _instance = None
     #
@@ -27,6 +28,8 @@ class PackageFromTU(QObject):
         super().__init__()
         self.package: bytearray = None
         self.message_type: dict = None
+
+        self.mu_output_record: dict = {}
         self.previous_mu_status_package = None
 
 
@@ -64,9 +67,11 @@ class PackageFromTU(QObject):
                                 self.previous_mu_status_package[byte_num - 1] >> bit_index:
                         if self.package[byte_num - 1] >> bit_index & 1:
                             self.update_do_signal.emit(description, True)
+                            self.mu_output_record[description] = True       # 将DO的输出记录下
                             print(f'{description} emit True!')
                         else:
                             self.update_do_signal.emit(description, False)
+                            self.mu_output_record[description] = False      # 将DO的输出记录下
                             print(f'{description} emit False!')
 
             else:
@@ -84,10 +89,13 @@ class PackageFromTU(QObject):
                     # print(f'Byte{byte_num}  {current_pwm_value}')
                     # 发送PWM的线号str 和 值int
                     self.update_pwm_signal.emit(StatusFeedBack.data_field_protocol[byte_num], current_pwm_value)
+                    self.mu_output_record[StatusFeedBack.data_field_protocol[byte_num]] = current_pwm_value     # 将当前的PWM输出记录
                     print(f'{StatusFeedBack.data_field_protocol[byte_num]} emit {current_pwm_value}')
 
         # 更新previous包
         self.previous_mu_status_package = self.package
+        # 每次解析完成后, 将MU输出的记录发送到主窗口
+        self.mu_output_record_signal.emit(self.mu_output_record)
 
 
     def handle_tu_status(self):

@@ -74,8 +74,9 @@ class MainWindow(QMainWindow):
 
     def signal_bind(self):
         ''' 绑定 pyqtSignal 到对应事件与按键 '''
-        self.network_manager.tu_package_receiver.update_do_signal.connect(self.update_do_label_status)
-        self.network_manager.tu_package_receiver.update_pwm_signal.connect(self.update_pwm_progressBar_status)
+        self.network_manager.tu_package_receiver.update_do_signal.connect(self.update_do_label_status)  # 用于更新MU数据显示区
+        self.network_manager.tu_package_receiver.update_pwm_signal.connect(self.update_pwm_progressBar_status)  # 用于更新MU数据显示区
+        self.network_manager.tu_package_receiver.mu_output_record_signal.connect(self.update_mu_history_record) # 更新历史记录中MU的输出
 
         # 将 DO PWM 信号与UI控件绑定
         self.function_definition = {
@@ -137,6 +138,7 @@ class MainWindow(QMainWindow):
         # 进度条显示 PWM 值, 保留两位小数
         pwm_progressBar.setValue(value)
         pwm_progressBar.setFormat(f'{pwm_num}: {value:.2f}V')
+
 
     def main_window_init(self):
         ''' 主程序启动时, 启动监听OU数据和TU数据的线程 '''
@@ -290,7 +292,7 @@ class MainWindow(QMainWindow):
         self.network_manager.ou_package_receiver_inst(protocol)
 
         # 将信号 PackageFromOU 解析后的包发出的 pyqtSignal 信号绑定到函数
-        self.network_manager.ou_package_receiver.update_switch_signal.connect(self.update_ou_analysis_interface)
+        self.network_manager.ou_package_receiver.update_switch_signal.connect(self.update_ou_analysis_interface)    #
         self.network_manager.ou_package_receiver.update_switch_signal.connect(self.update_history_record)   # 更新历史记录
 
     def update_ou_analysis_interface(self, package_parsed: dict):
@@ -421,6 +423,26 @@ class MainWindow(QMainWindow):
     def clear_history_record(self):
         ''' 清除历史记录里所有内容 '''
         self.main_window_ui.history_record_textEdit.clear()
+
+    def update_mu_history_record(self, mu_output: dict):
+        ''' 历史记录中更新MU的输出 '''
+        # 显示当前系统时间
+        current_time = datetime.now()  # 获取系统当前的时间, ms精确到小数点后6位
+        self.main_window_ui.history_record_textEdit.append(current_time.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3])
+        self.main_window_ui.history_record_textEdit.append('MU Output:\n')
+
+        for line_num in mu_output:
+            # 开关量
+            if isinstance(mu_output[line_num], bool):
+                if mu_output[line_num] is True:
+                    self.main_window_ui.history_record_textEdit.insertPlainText(f'{line_num}:  1\t')
+                else:
+                    self.main_window_ui.history_record_textEdit.insertPlainTExt(f'{line_num}:  0\t')
+            # 模拟量: 字典的值是正数
+            else:
+                self.main_window_ui.history_record_textEdit.insertPlainText(f'{line_num}:  {mu_output[line_num] / 100}V\t')
+
+        self.main_window_ui.history_record_textEdit.insertPlainText(f'\n')  # 每一包内容结束之后换行
 
 
     def mousePressEvent(self, event):
