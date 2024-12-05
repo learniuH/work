@@ -30,8 +30,6 @@ class ExcelRead():
 
         df = pd.read_excel(self.file_path, sheet_name=sheet_name, header=None)
 
-
-
         # 获取 字节序号 所在的列索引
         # col_index = df.columns.get_loc(df.eq('字节序号').stack().idxmax()[1])
         ''' 
