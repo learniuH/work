@@ -366,24 +366,41 @@ class Ui_KCTS(object):
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_2.setSpacing(0)
         self.gridLayout_2.setObjectName("gridLayout_2")
-        self.kc_tu_ip_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
-        self.kc_tu_ip_lineEdit.setStyleSheet("QLineEdit {\n"
-"    background-color: transparent;\n"
-"    border-top: transparent;\n"
-"    border-left: transparent;\n"
-"    border-right: transparent;\n"
-"    border-bottom: 1px solid black;\n"
-"    font: 10pt \"微软雅黑\";\n"
-"    color: white;\n"
-"    min-width: 180px;\n"
-"    max-width: 180px;\n"
-"    height: 40px;\n"
+        self.kc_ts_recv_port_label = QtWidgets.QLabel(self.gridWidget1)
+        self.kc_ts_recv_port_label.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.kc_ts_recv_port_label.setStyleSheet("QLabel {\n"
+"    border: 0px; /* 无边框 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: white; /* 文本颜色 */\n"
+"    font: 11pt \"微软雅黑\";\n"
 "}")
-        self.kc_tu_ip_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
-        self.kc_tu_ip_lineEdit.setObjectName("kc_tu_ip_lineEdit")
-        self.gridLayout_2.addWidget(self.kc_tu_ip_lineEdit, 2, 4, 1, 1)
-        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_2.addItem(spacerItem3, 2, 5, 1, 1)
+        self.kc_ts_recv_port_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_ts_recv_port_label.setObjectName("kc_ts_recv_port_label")
+        self.gridLayout_2.addWidget(self.kc_ts_recv_port_label, 1, 1, 1, 1)
+        spacerItem3 = QtWidgets.QSpacerItem(55, 20, QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_2.addItem(spacerItem3, 2, 0, 1, 1)
+        self.kc_tu_recv_port_label = QtWidgets.QLabel(self.gridWidget1)
+        self.kc_tu_recv_port_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.kc_tu_recv_port_label.setStyleSheet("QLabel {\n"
+"    border: 0px; /* 无边框 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: white; /* 文本颜色 */\n"
+"    font: 11pt \"微软雅黑\";\n"
+"}")
+        self.kc_tu_recv_port_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_tu_recv_port_label.setObjectName("kc_tu_recv_port_label")
+        self.gridLayout_2.addWidget(self.kc_tu_recv_port_label, 3, 4, 1, 1)
+        self.kc_ts_send_tu_port_label = QtWidgets.QLabel(self.gridWidget1)
+        self.kc_ts_send_tu_port_label.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.kc_ts_send_tu_port_label.setStyleSheet("QLabel {\n"
+"    border: 0px; /* 无边框 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: white; /* 文本颜色 */\n"
+"    font: 11pt \"微软雅黑\";\n"
+"}")
+        self.kc_ts_send_tu_port_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_ts_send_tu_port_label.setObjectName("kc_ts_send_tu_port_label")
+        self.gridLayout_2.addWidget(self.kc_ts_send_tu_port_label, 3, 1, 1, 1)
         self.kc_ts_recv_ou_port_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
         self.kc_ts_recv_ou_port_lineEdit.setStyleSheet("QLineEdit {\n"
 "    background-color: transparent;\n"
@@ -400,33 +417,6 @@ class Ui_KCTS(object):
         self.kc_ts_recv_ou_port_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.kc_ts_recv_ou_port_lineEdit.setObjectName("kc_ts_recv_ou_port_lineEdit")
         self.gridLayout_2.addWidget(self.kc_ts_recv_ou_port_lineEdit, 2, 2, 1, 1)
-        self.kc_tu_recv_port_label = QtWidgets.QLabel(self.gridWidget1)
-        self.kc_tu_recv_port_label.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.kc_tu_recv_port_label.setStyleSheet("QLabel {\n"
-"    border: 0px; /* 无边框 */\n"
-"    background-color: ; /* 背景颜色 */\n"
-"    color: white; /* 文本颜色 */\n"
-"    font: 11pt \"微软雅黑\";\n"
-"}")
-        self.kc_tu_recv_port_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.kc_tu_recv_port_label.setObjectName("kc_tu_recv_port_label")
-        self.gridLayout_2.addWidget(self.kc_tu_recv_port_label, 3, 3, 1, 1)
-        self.kc_tu_recv_port_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
-        self.kc_tu_recv_port_lineEdit.setStyleSheet("QLineEdit {\n"
-"    background-color: transparent;\n"
-"    border-top: transparent;\n"
-"    border-left: transparent;\n"
-"    border-right: transparent;\n"
-"    border-bottom: 1px solid black;\n"
-"    font: 10pt \"微软雅黑\";\n"
-"    color: white;\n"
-"    min-width: 180px;\n"
-"    max-width: 180px;\n"
-"    height: 40px;\n"
-"}")
-        self.kc_tu_recv_port_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
-        self.kc_tu_recv_port_lineEdit.setObjectName("kc_tu_recv_port_lineEdit")
-        self.gridLayout_2.addWidget(self.kc_tu_recv_port_lineEdit, 3, 4, 1, 1)
         self.kc_ts_ip_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
         self.kc_ts_ip_lineEdit.setMinimumSize(QtCore.QSize(180, 40))
         self.kc_ts_ip_lineEdit.setMaximumSize(QtCore.QSize(180, 16777215))
@@ -446,17 +436,17 @@ class Ui_KCTS(object):
         self.kc_ts_ip_lineEdit.setReadOnly(True)
         self.kc_ts_ip_lineEdit.setObjectName("kc_ts_ip_lineEdit")
         self.gridLayout_2.addWidget(self.kc_ts_ip_lineEdit, 0, 2, 1, 1)
-        self.recv_ou_port_label = QtWidgets.QLabel(self.gridWidget1)
-        self.recv_ou_port_label.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.recv_ou_port_label.setStyleSheet("QLabel {\n"
+        self.kc_ts_ip_label = QtWidgets.QLabel(self.gridWidget1)
+        self.kc_ts_ip_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.kc_ts_ip_label.setStyleSheet("QLabel {\n"
 "    border: 0px; /* 无边框 */\n"
 "    background-color: ; /* 背景颜色 */\n"
 "    color: white; /* 文本颜色 */\n"
 "    font: 11pt \"微软雅黑\";\n"
 "}")
-        self.recv_ou_port_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.recv_ou_port_label.setObjectName("recv_ou_port_label")
-        self.gridLayout_2.addWidget(self.recv_ou_port_label, 2, 1, 1, 1)
+        self.kc_ts_ip_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_ts_ip_label.setObjectName("kc_ts_ip_label")
+        self.gridLayout_2.addWidget(self.kc_ts_ip_label, 0, 1, 1, 1)
         self.kc_tu_ip_label = QtWidgets.QLabel(self.gridWidget1)
         self.kc_tu_ip_label.setMaximumSize(QtCore.QSize(150, 16777215))
         self.kc_tu_ip_label.setStyleSheet("QLabel {\n"
@@ -467,23 +457,18 @@ class Ui_KCTS(object):
 "}")
         self.kc_tu_ip_label.setAlignment(QtCore.Qt.AlignCenter)
         self.kc_tu_ip_label.setObjectName("kc_tu_ip_label")
-        self.gridLayout_2.addWidget(self.kc_tu_ip_label, 2, 3, 1, 1)
-        self.mu_ip_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
-        self.mu_ip_lineEdit.setStyleSheet("QLineEdit {\n"
-"    background-color: transparent;\n"
-"    border-top: transparent;\n"
-"    border-left: transparent;\n"
-"    border-right: transparent;\n"
-"    border-bottom: 1px solid black;\n"
-"    font: 10pt \"微软雅黑\";\n"
-"    color: white;\n"
-"    min-width: 180px;\n"
-"    max-width: 180px;\n"
-"    height: 40px;\n"
+        self.gridLayout_2.addWidget(self.kc_tu_ip_label, 2, 4, 1, 1)
+        self.kc_ts_send_mu_port_label = QtWidgets.QLabel(self.gridWidget1)
+        self.kc_ts_send_mu_port_label.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.kc_ts_send_mu_port_label.setStyleSheet("QLabel {\n"
+"    border: 0px; /* 无边框 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: white; /* 文本颜色 */\n"
+"    font: 11pt \"微软雅黑\";\n"
 "}")
-        self.mu_ip_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
-        self.mu_ip_lineEdit.setObjectName("mu_ip_lineEdit")
-        self.gridLayout_2.addWidget(self.mu_ip_lineEdit, 0, 4, 1, 1)
+        self.kc_ts_send_mu_port_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_ts_send_mu_port_label.setObjectName("kc_ts_send_mu_port_label")
+        self.gridLayout_2.addWidget(self.kc_ts_send_mu_port_label, 4, 1, 1, 1)
         self.mu_ip_label = QtWidgets.QLabel(self.gridWidget1)
         self.mu_ip_label.setMaximumSize(QtCore.QSize(150, 16777215))
         self.mu_ip_label.setStyleSheet("QLabel {\n"
@@ -494,9 +479,9 @@ class Ui_KCTS(object):
 "}")
         self.mu_ip_label.setAlignment(QtCore.Qt.AlignCenter)
         self.mu_ip_label.setObjectName("mu_ip_label")
-        self.gridLayout_2.addWidget(self.mu_ip_label, 0, 3, 1, 1)
-        self.kc_ts_send_mu_port_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
-        self.kc_ts_send_mu_port_lineEdit.setStyleSheet("QLineEdit {\n"
+        self.gridLayout_2.addWidget(self.mu_ip_label, 0, 4, 1, 1)
+        self.kc_tu_ip_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
+        self.kc_tu_ip_lineEdit.setStyleSheet("QLineEdit {\n"
 "    background-color: transparent;\n"
 "    border-top: transparent;\n"
 "    border-left: transparent;\n"
@@ -508,20 +493,9 @@ class Ui_KCTS(object):
 "    max-width: 180px;\n"
 "    height: 40px;\n"
 "}")
-        self.kc_ts_send_mu_port_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
-        self.kc_ts_send_mu_port_lineEdit.setObjectName("kc_ts_send_mu_port_lineEdit")
-        self.gridLayout_2.addWidget(self.kc_ts_send_mu_port_lineEdit, 4, 2, 1, 1)
-        self.mu_recv_port_label = QtWidgets.QLabel(self.gridWidget1)
-        self.mu_recv_port_label.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.mu_recv_port_label.setStyleSheet("QLabel {\n"
-"    border: 0px; /* 无边框 */\n"
-"    background-color: ; /* 背景颜色 */\n"
-"    color: white; /* 文本颜色 */\n"
-"    font: 11pt \"微软雅黑\";\n"
-"}")
-        self.mu_recv_port_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.mu_recv_port_label.setObjectName("mu_recv_port_label")
-        self.gridLayout_2.addWidget(self.mu_recv_port_label, 1, 3, 1, 1)
+        self.kc_tu_ip_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_tu_ip_lineEdit.setObjectName("kc_tu_ip_lineEdit")
+        self.gridLayout_2.addWidget(self.kc_tu_ip_lineEdit, 2, 5, 1, 1)
         self.mu_recv_port_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
         self.mu_recv_port_lineEdit.setStyleSheet("QLineEdit {\n"
 "    background-color: transparent;\n"
@@ -537,7 +511,23 @@ class Ui_KCTS(object):
 "}")
         self.mu_recv_port_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.mu_recv_port_lineEdit.setObjectName("mu_recv_port_lineEdit")
-        self.gridLayout_2.addWidget(self.mu_recv_port_lineEdit, 1, 4, 1, 1)
+        self.gridLayout_2.addWidget(self.mu_recv_port_lineEdit, 1, 5, 1, 1)
+        self.mu_ip_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
+        self.mu_ip_lineEdit.setStyleSheet("QLineEdit {\n"
+"    background-color: transparent;\n"
+"    border-top: transparent;\n"
+"    border-left: transparent;\n"
+"    border-right: transparent;\n"
+"    border-bottom: 1px solid black;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"    min-width: 180px;\n"
+"    max-width: 180px;\n"
+"    height: 40px;\n"
+"}")
+        self.mu_ip_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.mu_ip_lineEdit.setObjectName("mu_ip_lineEdit")
+        self.gridLayout_2.addWidget(self.mu_ip_lineEdit, 0, 5, 1, 1)
         self.kc_ts_recv_tu_port_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
         self.kc_ts_recv_tu_port_lineEdit.setMinimumSize(QtCore.QSize(180, 40))
         self.kc_ts_recv_tu_port_lineEdit.setMaximumSize(QtCore.QSize(180, 16777215))
@@ -556,8 +546,8 @@ class Ui_KCTS(object):
         self.kc_ts_recv_tu_port_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.kc_ts_recv_tu_port_lineEdit.setObjectName("kc_ts_recv_tu_port_lineEdit")
         self.gridLayout_2.addWidget(self.kc_ts_recv_tu_port_lineEdit, 1, 2, 1, 1)
-        self.kc_ts_send_tu_port_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
-        self.kc_ts_send_tu_port_lineEdit.setStyleSheet("QLineEdit {\n"
+        self.kc_ts_send_mu_port_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
+        self.kc_ts_send_mu_port_lineEdit.setStyleSheet("QLineEdit {\n"
 "    background-color: transparent;\n"
 "    border-top: transparent;\n"
 "    border-left: transparent;\n"
@@ -569,20 +559,33 @@ class Ui_KCTS(object):
 "    max-width: 180px;\n"
 "    height: 40px;\n"
 "}")
-        self.kc_ts_send_tu_port_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
-        self.kc_ts_send_tu_port_lineEdit.setObjectName("kc_ts_send_tu_port_lineEdit")
-        self.gridLayout_2.addWidget(self.kc_ts_send_tu_port_lineEdit, 3, 2, 1, 1)
-        self.kc_ts_ip_label = QtWidgets.QLabel(self.gridWidget1)
-        self.kc_ts_ip_label.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.kc_ts_ip_label.setStyleSheet("QLabel {\n"
+        self.kc_ts_send_mu_port_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_ts_send_mu_port_lineEdit.setObjectName("kc_ts_send_mu_port_lineEdit")
+        self.gridLayout_2.addWidget(self.kc_ts_send_mu_port_lineEdit, 4, 2, 1, 1)
+        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_2.addItem(spacerItem4, 2, 6, 1, 1)
+        self.recv_ou_port_label = QtWidgets.QLabel(self.gridWidget1)
+        self.recv_ou_port_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.recv_ou_port_label.setStyleSheet("QLabel {\n"
 "    border: 0px; /* 无边框 */\n"
 "    background-color: ; /* 背景颜色 */\n"
 "    color: white; /* 文本颜色 */\n"
 "    font: 11pt \"微软雅黑\";\n"
 "}")
-        self.kc_ts_ip_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.kc_ts_ip_label.setObjectName("kc_ts_ip_label")
-        self.gridLayout_2.addWidget(self.kc_ts_ip_label, 0, 1, 1, 1)
+        self.recv_ou_port_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.recv_ou_port_label.setObjectName("recv_ou_port_label")
+        self.gridLayout_2.addWidget(self.recv_ou_port_label, 2, 1, 1, 1)
+        self.mu_recv_port_label = QtWidgets.QLabel(self.gridWidget1)
+        self.mu_recv_port_label.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.mu_recv_port_label.setStyleSheet("QLabel {\n"
+"    border: 0px; /* 无边框 */\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: white; /* 文本颜色 */\n"
+"    font: 11pt \"微软雅黑\";\n"
+"}")
+        self.mu_recv_port_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.mu_recv_port_label.setObjectName("mu_recv_port_label")
+        self.gridLayout_2.addWidget(self.mu_recv_port_label, 1, 4, 1, 1)
         self.apply_pushButton = QtWidgets.QPushButton(self.gridWidget1)
         self.apply_pushButton.setMinimumSize(QtCore.QSize(84, 50))
         self.apply_pushButton.setMaximumSize(QtCore.QSize(120, 70))
@@ -612,42 +615,41 @@ class Ui_KCTS(object):
 "\n"
 "")
         self.apply_pushButton.setObjectName("apply_pushButton")
-        self.gridLayout_2.addWidget(self.apply_pushButton, 4, 4, 1, 1)
-        self.kc_ts_send_tu_port_label = QtWidgets.QLabel(self.gridWidget1)
-        self.kc_ts_send_tu_port_label.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.kc_ts_send_tu_port_label.setStyleSheet("QLabel {\n"
-"    border: 0px; /* 无边框 */\n"
-"    background-color: ; /* 背景颜色 */\n"
-"    color: white; /* 文本颜色 */\n"
-"    font: 11pt \"微软雅黑\";\n"
+        self.gridLayout_2.addWidget(self.apply_pushButton, 4, 5, 1, 1)
+        self.kc_ts_send_tu_port_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
+        self.kc_ts_send_tu_port_lineEdit.setStyleSheet("QLineEdit {\n"
+"    background-color: transparent;\n"
+"    border-top: transparent;\n"
+"    border-left: transparent;\n"
+"    border-right: transparent;\n"
+"    border-bottom: 1px solid black;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"    min-width: 180px;\n"
+"    max-width: 180px;\n"
+"    height: 40px;\n"
 "}")
-        self.kc_ts_send_tu_port_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.kc_ts_send_tu_port_label.setObjectName("kc_ts_send_tu_port_label")
-        self.gridLayout_2.addWidget(self.kc_ts_send_tu_port_label, 3, 1, 1, 1)
-        self.kc_ts_send_mu_port_label = QtWidgets.QLabel(self.gridWidget1)
-        self.kc_ts_send_mu_port_label.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.kc_ts_send_mu_port_label.setStyleSheet("QLabel {\n"
-"    border: 0px; /* 无边框 */\n"
-"    background-color: ; /* 背景颜色 */\n"
-"    color: white; /* 文本颜色 */\n"
-"    font: 11pt \"微软雅黑\";\n"
+        self.kc_ts_send_tu_port_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_ts_send_tu_port_lineEdit.setObjectName("kc_ts_send_tu_port_lineEdit")
+        self.gridLayout_2.addWidget(self.kc_ts_send_tu_port_lineEdit, 3, 2, 1, 1)
+        self.kc_tu_recv_port_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
+        self.kc_tu_recv_port_lineEdit.setStyleSheet("QLineEdit {\n"
+"    background-color: transparent;\n"
+"    border-top: transparent;\n"
+"    border-left: transparent;\n"
+"    border-right: transparent;\n"
+"    border-bottom: 1px solid black;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"    min-width: 180px;\n"
+"    max-width: 180px;\n"
+"    height: 40px;\n"
 "}")
-        self.kc_ts_send_mu_port_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.kc_ts_send_mu_port_label.setObjectName("kc_ts_send_mu_port_label")
-        self.gridLayout_2.addWidget(self.kc_ts_send_mu_port_label, 4, 1, 1, 1)
-        self.kc_ts_recv_port_label = QtWidgets.QLabel(self.gridWidget1)
-        self.kc_ts_recv_port_label.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.kc_ts_recv_port_label.setStyleSheet("QLabel {\n"
-"    border: 0px; /* 无边框 */\n"
-"    background-color: ; /* 背景颜色 */\n"
-"    color: white; /* 文本颜色 */\n"
-"    font: 11pt \"微软雅黑\";\n"
-"}")
-        self.kc_ts_recv_port_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.kc_ts_recv_port_label.setObjectName("kc_ts_recv_port_label")
-        self.gridLayout_2.addWidget(self.kc_ts_recv_port_label, 1, 1, 1, 1)
-        spacerItem4 = QtWidgets.QSpacerItem(50, 20, QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_2.addItem(spacerItem4, 2, 0, 1, 1)
+        self.kc_tu_recv_port_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.kc_tu_recv_port_lineEdit.setObjectName("kc_tu_recv_port_lineEdit")
+        self.gridLayout_2.addWidget(self.kc_tu_recv_port_lineEdit, 3, 5, 1, 1)
+        spacerItem5 = QtWidgets.QSpacerItem(70, 20, QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_2.addItem(spacerItem5, 0, 3, 1, 1)
         self.verticalLayout_5.addWidget(self.gridWidget1)
         self.verticalLayout_5.setStretch(0, 2)
         self.verticalLayout_5.setStretch(1, 5)
@@ -1726,7 +1728,7 @@ class Ui_KCTS(object):
         KCTS.setCentralWidget(self.Window)
 
         self.retranslateUi(KCTS)
-        self.sub_interface_stacked.setCurrentIndex(2)
+        self.sub_interface_stacked.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
         self.ou_analysis_send_stacked.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(KCTS)
@@ -1753,16 +1755,16 @@ class Ui_KCTS(object):
         self.hardWare_version_text.setText(_translate("KCTS", " KC204-VCU-EU-2023-08-21"))
         self.status_label.setText(_translate("KCTS", "KC-TU运行状态 :"))
         self.status_text.setText(_translate("KCTS", " 正常"))
-        self.kc_tu_recv_port_label.setText(_translate("KCTS", "KC-TU recv_port :"))
-        self.recv_ou_port_label.setText(_translate("KCTS", "recv_OU_port :"))
-        self.kc_tu_ip_label.setText(_translate("KCTS", "KC-TU IP :"))
-        self.mu_ip_label.setText(_translate("KCTS", "MU IP :"))
-        self.mu_recv_port_label.setText(_translate("KCTS", "MU recv_port :"))
-        self.kc_ts_ip_label.setText(_translate("KCTS", "KC-TS IP :"))
-        self.apply_pushButton.setText(_translate("KCTS", "应用"))
-        self.kc_ts_send_tu_port_label.setText(_translate("KCTS", "send_TU_port :"))
-        self.kc_ts_send_mu_port_label.setText(_translate("KCTS", "send_MU_port :"))
         self.kc_ts_recv_port_label.setText(_translate("KCTS", "recv_TU_port :"))
+        self.kc_tu_recv_port_label.setText(_translate("KCTS", "KC-TU recv_port :"))
+        self.kc_ts_send_tu_port_label.setText(_translate("KCTS", "send_TU_port :"))
+        self.kc_ts_ip_label.setText(_translate("KCTS", "KC-TS IP :"))
+        self.kc_tu_ip_label.setText(_translate("KCTS", "KC-TU IP :"))
+        self.kc_ts_send_mu_port_label.setText(_translate("KCTS", "send_MU_port :"))
+        self.mu_ip_label.setText(_translate("KCTS", "MU IP :"))
+        self.recv_ou_port_label.setText(_translate("KCTS", "recv_OU_port :"))
+        self.mu_recv_port_label.setText(_translate("KCTS", "MU recv_port :"))
+        self.apply_pushButton.setText(_translate("KCTS", "应用"))
         self.label_2.setText(_translate("KCTS", "这是自动化测试界面"))
         self.PWM15_progressBar.setFormat(_translate("KCTS", "PWM15: %v.00V"))
         self.PWM7_progressBar.setFormat(_translate("KCTS", "PWM7: %v.00V"))

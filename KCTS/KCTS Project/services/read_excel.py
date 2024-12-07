@@ -48,12 +48,8 @@ class ExcelRead(QObject):
         '''
 
         # 获取 字节序号 和 CRC 所在单元格的 行列索引
-        # try:
         row_index, col_index = df.stack()[df.stack() == '字节序号'].index[0]
         end_row_index, _ = df.stack()[df.stack() == 'CRC'].index[0]
-        # except IndexError:
-        #     # 在表单中未找到 '字节序号' 和 'CRC' 单元格
-        #     return {}, 0
 
         # 通过 CRC的行号 和 字节序号的列号 获取协议长度
         protocol_length = df.loc[end_row_index, col_index]
@@ -74,7 +70,6 @@ class ExcelRead(QObject):
         # 记录所有重复的字节序号, 作为开关量
         for digital_switch in repeat_values.index:
             switch_list.append(digital_switch)
-
 
         # 删除 开关描述 中为 nan 或 有 预留 的单元格所在行
         target_cells = target_cells.iloc[:][~(target_cells.iloc[:]['开关描述'].isna() |

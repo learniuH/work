@@ -513,7 +513,7 @@ QListWidget::item:selected {
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="device_status_page">
           <layout class="QVBoxLayout" name="verticalLayout_5" stretch="2,5">
@@ -680,7 +680,7 @@ QListWidget::item:selected {
 	border-style: outset;
 }</string>
              </property>
-             <layout class="QGridLayout" name="gridLayout_2" rowminimumheight="0,0,0,0,0" columnminimumwidth="0,0,0,0,0,0">
+             <layout class="QGridLayout" name="gridLayout_2" rowminimumheight="0,0,0,0,0" columnminimumwidth="0,0,0,0,0,0,0">
               <property name="leftMargin">
                <number>0</number>
               </property>
@@ -696,62 +696,47 @@ QListWidget::item:selected {
               <property name="spacing">
                <number>0</number>
               </property>
-              <item row="2" column="4">
-               <widget class="QLineEdit" name="kc_tu_ip_lineEdit">
+              <item row="1" column="1">
+               <widget class="QLabel" name="kc_ts_recv_port_label">
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
                 <property name="styleSheet">
-                 <string notr="true">QLineEdit {
-	background-color: transparent;
-	border-top: transparent;
-	border-left: transparent;
-	border-right: transparent;
-	border-bottom: 1px solid black;
-	font: 10pt &quot;微软雅黑&quot;;
-	color: white;
-	min-width: 180px;
-	max-width: 180px;
-	height: 40px;
+                 <string notr="true">QLabel {
+	border: 0px; /* 无边框 */
+	background-color: ; /* 背景颜色 */
+	color: white; /* 文本颜色 */
+	font: 11pt &quot;微软雅黑&quot;;
 }</string>
+                </property>
+                <property name="text">
+                 <string>recv_TU_port :</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
-              <item row="2" column="5">
-               <spacer name="horizontalSpacer">
+              <item row="2" column="0">
+               <spacer name="horizontalSpacer_3">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Maximum</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
-                  <width>40</width>
+                  <width>55</width>
                   <height>20</height>
                  </size>
                 </property>
                </spacer>
               </item>
-              <item row="2" column="2">
-               <widget class="QLineEdit" name="kc_ts_recv_ou_port_lineEdit">
-                <property name="styleSheet">
-                 <string notr="true">QLineEdit {
-	background-color: transparent;
-	border-top: transparent;
-	border-left: transparent;
-	border-right: transparent;
-	border-bottom: 1px solid black;
-	font: 10pt &quot;微软雅黑&quot;;
-	color: white;
-	min-width: 180px;
-	max-width: 180px;
-	height: 40px;
-}</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="3">
+              <item row="3" column="4">
                <widget class="QLabel" name="kc_tu_recv_port_label">
                 <property name="maximumSize">
                  <size>
@@ -775,8 +760,32 @@ QListWidget::item:selected {
                 </property>
                </widget>
               </item>
-              <item row="3" column="4">
-               <widget class="QLineEdit" name="kc_tu_recv_port_lineEdit">
+              <item row="3" column="1">
+               <widget class="QLabel" name="kc_ts_send_tu_port_label">
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLabel {
+	border: 0px; /* 无边框 */
+	background-color: ; /* 背景颜色 */
+	color: white; /* 文本颜色 */
+	font: 11pt &quot;微软雅黑&quot;;
+}</string>
+                </property>
+                <property name="text">
+                 <string>send_TU_port :</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <widget class="QLineEdit" name="kc_ts_recv_ou_port_lineEdit">
                 <property name="styleSheet">
                  <string notr="true">QLineEdit {
 	background-color: transparent;
@@ -832,8 +841,8 @@ QListWidget::item:selected {
                 </property>
                </widget>
               </item>
-              <item row="2" column="1">
-               <widget class="QLabel" name="recv_ou_port_label">
+              <item row="0" column="1">
+               <widget class="QLabel" name="kc_ts_ip_label">
                 <property name="maximumSize">
                  <size>
                   <width>150</width>
@@ -849,14 +858,14 @@ QListWidget::item:selected {
 }</string>
                 </property>
                 <property name="text">
-                 <string>recv_OU_port :</string>
+                 <string>KC-TS IP :</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
-              <item row="2" column="3">
+              <item row="2" column="4">
                <widget class="QLabel" name="kc_tu_ip_label">
                 <property name="maximumSize">
                  <size>
@@ -880,28 +889,31 @@ QListWidget::item:selected {
                 </property>
                </widget>
               </item>
-              <item row="0" column="4">
-               <widget class="QLineEdit" name="mu_ip_lineEdit">
+              <item row="4" column="1">
+               <widget class="QLabel" name="kc_ts_send_mu_port_label">
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
                 <property name="styleSheet">
-                 <string notr="true">QLineEdit {
-	background-color: transparent;
-	border-top: transparent;
-	border-left: transparent;
-	border-right: transparent;
-	border-bottom: 1px solid black;
-	font: 10pt &quot;微软雅黑&quot;;
-	color: white;
-	min-width: 180px;
-	max-width: 180px;
-	height: 40px;
+                 <string notr="true">QLabel {
+	border: 0px; /* 无边框 */
+	background-color: ; /* 背景颜色 */
+	color: white; /* 文本颜色 */
+	font: 11pt &quot;微软雅黑&quot;;
 }</string>
+                </property>
+                <property name="text">
+                 <string>send_MU_port :</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
-              <item row="0" column="3">
+              <item row="0" column="4">
                <widget class="QLabel" name="mu_ip_label">
                 <property name="maximumSize">
                  <size>
@@ -925,8 +937,8 @@ QListWidget::item:selected {
                 </property>
                </widget>
               </item>
-              <item row="4" column="2">
-               <widget class="QLineEdit" name="kc_ts_send_mu_port_lineEdit">
+              <item row="2" column="5">
+               <widget class="QLineEdit" name="kc_tu_ip_lineEdit">
                 <property name="styleSheet">
                  <string notr="true">QLineEdit {
 	background-color: transparent;
@@ -946,32 +958,29 @@ QListWidget::item:selected {
                 </property>
                </widget>
               </item>
-              <item row="1" column="3">
-               <widget class="QLabel" name="mu_recv_port_label">
-                <property name="maximumSize">
-                 <size>
-                  <width>150</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
+              <item row="1" column="5">
+               <widget class="QLineEdit" name="mu_recv_port_lineEdit">
                 <property name="styleSheet">
-                 <string notr="true">QLabel {
-	border: 0px; /* 无边框 */
-	background-color: ; /* 背景颜色 */
-	color: white; /* 文本颜色 */
-	font: 11pt &quot;微软雅黑&quot;;
+                 <string notr="true">QLineEdit {
+	background-color: transparent;
+	border-top: transparent;
+	border-left: transparent;
+	border-right: transparent;
+	border-bottom: 1px solid black;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+	min-width: 180px;
+	max-width: 180px;
+	height: 40px;
 }</string>
-                </property>
-                <property name="text">
-                 <string>MU recv_port :</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
-              <item row="1" column="4">
-               <widget class="QLineEdit" name="mu_recv_port_lineEdit">
+              <item row="0" column="5">
+               <widget class="QLineEdit" name="mu_ip_lineEdit">
                 <property name="styleSheet">
                  <string notr="true">QLineEdit {
 	background-color: transparent;
@@ -1024,8 +1033,8 @@ QListWidget::item:selected {
                 </property>
                </widget>
               </item>
-              <item row="3" column="2">
-               <widget class="QLineEdit" name="kc_ts_send_tu_port_lineEdit">
+              <item row="4" column="2">
+               <widget class="QLineEdit" name="kc_ts_send_mu_port_lineEdit">
                 <property name="styleSheet">
                  <string notr="true">QLineEdit {
 	background-color: transparent;
@@ -1045,8 +1054,21 @@ QListWidget::item:selected {
                 </property>
                </widget>
               </item>
-              <item row="0" column="1">
-               <widget class="QLabel" name="kc_ts_ip_label">
+              <item row="2" column="6">
+               <spacer name="horizontalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLabel" name="recv_ou_port_label">
                 <property name="maximumSize">
                  <size>
                   <width>150</width>
@@ -1062,14 +1084,38 @@ QListWidget::item:selected {
 }</string>
                 </property>
                 <property name="text">
-                 <string>KC-TS IP :</string>
+                 <string>recv_OU_port :</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
-              <item row="4" column="4">
+              <item row="1" column="4">
+               <widget class="QLabel" name="mu_recv_port_label">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLabel {
+	border: 0px; /* 无边框 */
+	background-color: ; /* 背景颜色 */
+	color: white; /* 文本颜色 */
+	font: 11pt &quot;微软雅黑&quot;;
+}</string>
+                </property>
+                <property name="text">
+                 <string>MU recv_port :</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="5">
                <widget class="QPushButton" name="apply_pushButton">
                 <property name="minimumSize">
                  <size>
@@ -1115,80 +1161,50 @@ QPushButton:disabled {
                 </property>
                </widget>
               </item>
-              <item row="3" column="1">
-               <widget class="QLabel" name="kc_ts_send_tu_port_label">
-                <property name="maximumSize">
-                 <size>
-                  <width>200</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
+              <item row="3" column="2">
+               <widget class="QLineEdit" name="kc_ts_send_tu_port_lineEdit">
                 <property name="styleSheet">
-                 <string notr="true">QLabel {
-	border: 0px; /* 无边框 */
-	background-color: ; /* 背景颜色 */
-	color: white; /* 文本颜色 */
-	font: 11pt &quot;微软雅黑&quot;;
+                 <string notr="true">QLineEdit {
+	background-color: transparent;
+	border-top: transparent;
+	border-left: transparent;
+	border-right: transparent;
+	border-bottom: 1px solid black;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+	min-width: 180px;
+	max-width: 180px;
+	height: 40px;
 }</string>
-                </property>
-                <property name="text">
-                 <string>send_TU_port :</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
-              <item row="4" column="1">
-               <widget class="QLabel" name="kc_ts_send_mu_port_label">
-                <property name="maximumSize">
-                 <size>
-                  <width>200</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
+              <item row="3" column="5">
+               <widget class="QLineEdit" name="kc_tu_recv_port_lineEdit">
                 <property name="styleSheet">
-                 <string notr="true">QLabel {
-	border: 0px; /* 无边框 */
-	background-color: ; /* 背景颜色 */
-	color: white; /* 文本颜色 */
-	font: 11pt &quot;微软雅黑&quot;;
+                 <string notr="true">QLineEdit {
+	background-color: transparent;
+	border-top: transparent;
+	border-left: transparent;
+	border-right: transparent;
+	border-bottom: 1px solid black;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+	min-width: 180px;
+	max-width: 180px;
+	height: 40px;
 }</string>
-                </property>
-                <property name="text">
-                 <string>send_MU_port :</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
-              <item row="1" column="1">
-               <widget class="QLabel" name="kc_ts_recv_port_label">
-                <property name="maximumSize">
-                 <size>
-                  <width>200</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QLabel {
-	border: 0px; /* 无边框 */
-	background-color: ; /* 背景颜色 */
-	color: white; /* 文本颜色 */
-	font: 11pt &quot;微软雅黑&quot;;
-}</string>
-                </property>
-                <property name="text">
-                 <string>recv_TU_port :</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <spacer name="horizontalSpacer_3">
+              <item row="0" column="3">
+               <spacer name="horizontalSpacer_6">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -1197,7 +1213,7 @@ QPushButton:disabled {
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
-                  <width>50</width>
+                  <width>70</width>
                   <height>20</height>
                  </size>
                 </property>

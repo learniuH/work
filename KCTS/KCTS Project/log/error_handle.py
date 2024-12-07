@@ -3,18 +3,14 @@ import functools
 import logging
 from typing import Tuple, Dict, Any
 
-from PyQt5.QtCore import pyqtSignal, QObject
+
 from config.error_message import ErrorMessage
 
-class ExcelReaderExceptionHandle(QObject):
+class ExcelReaderExceptionHandle():
     '''
     处理Excel读取过程中异常的装饰器和异常处理类
     '''
 
-    # program_exception_signal = pyqtSignal(str)     # 程序报错的异常发送到主程序
-
-    def __init__(self):
-        super().__init__()
 
     @staticmethod
     def log_exception(e: Exception, method_name: str):
@@ -43,7 +39,7 @@ class ExcelReaderExceptionHandle(QObject):
                 cls.log_exception(Exception(f'没有权限访问文件 {self.file_path}'), func.__name__)
                 return {}, 0
             except pd.errors.EmptyDataError:
-                cls.log_exception(Exception(f'Excel表单 {sheet_name} 为空'), func.__name__)
+                self.program_exception_signal.emit(ErrorMessage.EMPTY_SHEET_ERROR)
                 return {}, 0
             except IndexError as e:
                 # 找不到 '字节序号' 和 'CRC' 单元格, 界面提示 '请选择正确的表单！！！'

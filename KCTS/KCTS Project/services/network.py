@@ -4,14 +4,19 @@ import time
 
 from typing import Optional, Tuple
 
+from PyQt5.QtCore import QObject, pyqtSignal
+
 from .package_send import QueryCollectionStatus as QueryStatus
 from .package_parse import PackageFromTU, PackageFromOU
+from config.error_message import ErrorMessage
 
-class NetworkManager:
+class NetworkManager(QObject):
     ''' 网络管理类, 处理UDP通信 '''
 
+    program_exception_signal = pyqtSignal(str)
 
     def __init__(self):
+        super().__init__()
         self.send_tu_socket: Optional[socket.socket] = None
         self.send_mu_socket: Optional[socket.socket] = None
         self.recv_tu_socket: Optional[socket.socket] = None
@@ -68,10 +73,11 @@ class NetworkManager:
 
         except ValueError as e:
             if 'invalid literal for int() with base 10' in str(e):
-                print('请输入接收OU的端口!')
+                self.program_exception_signal.emit(ErrorMessage.ENTER_RECV_PORT)
 
         except OSError as e:
-            print('端口可能被占用了')
+            # 端口被占用
+            self.program_exception_signal.emit(f'{recv_ou_port} {ErrorMessage.PORT_OCCUPIED}')
             return False
 
 
@@ -97,7 +103,7 @@ class NetworkManager:
     def stop_receiving_ou(self):
         ''' 停止OU数据接收 '''
         self.is_receiving_ou = False
-        if self.recv_ou_socket:     # and self.recv_ou_socket:
+        if self.recv_ou_socket:
             self.recv_ou_socket.close()
             self.recv_ou_socket = None
 
@@ -123,10 +129,11 @@ class NetworkManager:
 
         except ValueError as e:
             if 'invalid literal for int() with base 10' in str(e):
-                print('请输入接收TU的端口!')
+                self.program_exception_signal.emit(ErrorMessage.ENTER_RECV_TU_PORT)
 
         except OSError as e:
-            print('端口可能被占用了')
+            # 端口占用
+            self.program_exception_signal.emit(f'{recv_tu_port} {ErrorMessage.PORT_OCCUPIED}')
             return False
 
 
@@ -184,10 +191,12 @@ class NetworkManager:
 
         except ValueError as e:
             if 'invalid literal for int() with base 10' in str(e):
-                print('请输入接收给TU发送数据的端口!')
+                self.program_exception_signal.emit(ErrorMessage.ENTER_SEND_TU_PORT)
                 return False
 
         except OSError as e:
+            # 端口占用
+            self.program_exception_signal.emit(f'{send_tu_port} {ErrorMessage.PORT_OCCUPIED}')
             return False
 
     def sending_tu_loop(self, cycle_ms: int):
@@ -246,9 +255,10 @@ class NetworkManager:
 
         except ValueError as e:
             if 'invalid literal for int() with base 10' in str(e):
-                print('请输入给MU发送数据的端口!')
+                self.program_exception_signal.emit(ErrorMessage.ENTER_SEND_MU_PORT)
 
         except OSError as e:
+            self.program_exception_signal.emit(f'{send_mu_port} {ErrorMessage.PORT_OCCUPIED}')
             return False
 
     def sending_mu_loop(self, cycle_ms: int):
