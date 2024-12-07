@@ -8,9 +8,7 @@ from .package_send import QueryCollectionStatus as QueryStatus
 from .package_parse import PackageFromTU, PackageFromOU
 
 class NetworkManager:
-    ''' 网络管理, 处理UDP通信 '''
-
-    # 信号定义
+    ''' 网络管理类, 处理UDP通信 '''
 
 
     def __init__(self):

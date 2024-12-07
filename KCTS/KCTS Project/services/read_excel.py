@@ -1,9 +1,17 @@
 import pandas as pd
+from PyQt5.QtCore import pyqtSignal, QObject
+
+from log.error_handle import ExcelReaderExceptionHandle
+
 from typing import Union, Tuple
 
 
-class ExcelRead():
+class ExcelRead(QObject):
+
+    program_exception_signal = pyqtSignal(str)
+
     def __init__(self, file_path: str):
+        super().__init__()
         # 表单的名字
         self.file_path = file_path
 
@@ -15,6 +23,7 @@ class ExcelRead():
         return sheet_name
 
 
+    @ExcelReaderExceptionHandle.safe_excel_reader
     def read_file(self, sheet_name: str) -> Tuple[dict, int]:
         '''解析Excel表单的内容, 生成协议的定义
 
@@ -39,8 +48,12 @@ class ExcelRead():
         '''
 
         # 获取 字节序号 和 CRC 所在单元格的 行列索引
+        # try:
         row_index, col_index = df.stack()[df.stack() == '字节序号'].index[0]
         end_row_index, _ = df.stack()[df.stack() == 'CRC'].index[0]
+        # except IndexError:
+        #     # 在表单中未找到 '字节序号' 和 'CRC' 单元格
+        #     return {}, 0
 
         # 通过 CRC的行号 和 字节序号的列号 获取协议长度
         protocol_length = df.loc[end_row_index, col_index]

@@ -1,13 +1,14 @@
-from PyQt5.QtCore import QSize, Qt, QSettings
+from PyQt5.QtCore import QSize, Qt, QSettings, QTimer
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog, QListView, QHeaderView, QTableWidgetItem, \
     QProgressBar, QLabel, QSpacerItem, QSizePolicy
 
 from UI.main_window_ui import Ui_KCTS
 
 from config.validators import Validators
-from config.constants import QLabelStyleSheet, SendCycle, AnalogStyleSheet
+from config.qss import QLabelStyleSheet, SendCycle, AnalogStyleSheet
 from services.network import NetworkManager
 from services.read_excel import ExcelRead
+from log.error_handle import ExcelReaderExceptionHandle
 
 import sys
 import socket
@@ -68,6 +69,8 @@ class MainWindow(QMainWindow):
 
         # 点击导入协议, 打开选择对话框
         self.main_window_ui.import_protocol_pushButton.clicked.connect(self.open_file_dialog)
+        # comboBox 的 index 改变时, 解析表单
+        self.main_window_ui.sheet_name_list_comboBox.currentIndexChanged.connect(self.parse_excel)
 
         self.main_window_ui.clear_record_pushButton.clicked.connect(self.clear_history_record)
 
@@ -150,6 +153,8 @@ class MainWindow(QMainWindow):
         # tableWidget item 宽度自适应窗口宽度
         self.main_window_ui.ou_analysis_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
+        # 隐藏顶部的top hint 提示
+        self.main_window_ui.top_hint_label.setVisible(False)
 
     def listening_ou_thread_init(self):
         # 启动监听OU数据的线程
@@ -271,14 +276,21 @@ class MainWindow(QMainWindow):
             self, '选择项目通信协议', '', 'Excel Files (*.xlsx *xls);;All Files (*)'
         )
         if file_path:
+            # 暂时屏蔽信号, 避免清除 items 和 添加 items 的时候误触发函数
+            self.main_window_ui.sheet_name_list_comboBox.blockSignals(True)
+
+            self.main_window_ui.sheet_name_list_comboBox.clear()    # 清除所有items
             # 读取 Excel 中的所有表单显示在 comboBox 上
             self.excel_reader = ExcelRead(file_path)
+            # 绑定程序异常信号到函数, 用于显示错误提示信息
+            self.excel_reader.program_exception_signal.connect(self.top_hint_display)
+
             sheet_list = self.excel_reader.read_sheet_name()
             # 添加excel里面的表单
             self.main_window_ui.sheet_name_list_comboBox.addItems(sheet_list)
 
-            # 添加完表单后, 再绑定切换 item 的 index 来触发解析Excle文件的函数, 避免 listWdiget 一出现 item 就触发函数
-            self.main_window_ui.sheet_name_list_comboBox.currentIndexChanged.connect(self.parse_excel)
+            # 恢复信号
+            self.main_window_ui.sheet_name_list_comboBox.blockSignals(False)
 
     def parse_excel(self, index: int):
         ''' comboBox 的 item 变化时, 会解析当前选择的表单 '''
@@ -287,12 +299,23 @@ class MainWindow(QMainWindow):
         # 解析所选表单的Excel
         protocol, protocol_length = self.excel_reader.read_file(sheet_name)
 
-        # 实例化解析OU包的类
-        self.network_manager.ou_package_receiver_inst(protocol)
+        # 
+        if protocol != {}:
+            # 实例化解析OU包的类
+            self.network_manager.ou_package_receiver_inst(protocol)
 
-        # 将信号 PackageFromOU 解析后的包发出的 pyqtSignal 信号绑定到函数
-        self.network_manager.ou_package_receiver.update_switch_signal.connect(self.update_ou_analysis_interface)    #
-        self.network_manager.ou_package_receiver.update_switch_signal.connect(self.update_history_record)   # 更新历史记录
+            # 将信号 PackageFromOU 解析后的包发出的 pyqtSignal 信号绑定到函数
+            self.network_manager.ou_package_receiver.update_switch_signal.connect(self.update_ou_analysis_interface)    # 更新OU解析界面
+            self.network_manager.ou_package_receiver.update_switch_signal.connect(self.update_history_record)   # 更新历史记录
+
+    def top_hint_display(self, tips: str):
+        ''' 接收来自 read_file 函数(解析Excel表单) 的报错, 将提示信息在主界面显示2S '''
+        self.main_window_ui.top_hint_label.setVisible(True)
+        self.main_window_ui.top_hint_label.setText(tips)
+
+        # 2S后将提示信息隐藏
+        QTimer.singleShot(2000, lambda: self.main_window_ui.top_hint_label.setVisible(False))
+
 
     def update_ou_analysis_interface(self, package_parsed: dict):
         ''' 接收 pyqtSignal 信号, 对解析界面的 tableWidget 和 模拟量区域进行状态更新 '''

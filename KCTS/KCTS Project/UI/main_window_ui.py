@@ -53,6 +53,27 @@ class Ui_KCTS(object):
         self.horizontalLayout.addWidget(self.system_name_label)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem1)
+        self.top_hint_label = QtWidgets.QLabel(self.Menu)
+        self.top_hint_label.setMinimumSize(QtCore.QSize(210, 0))
+        self.top_hint_label.setMaximumSize(QtCore.QSize(16777215, 28))
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(10)
+        font.setBold(False)
+        font.setWeight(50)
+        self.top_hint_label.setFont(font)
+        self.top_hint_label.setStyleSheet("QLabel {\n"
+"    background-color: #e7f4a6;\n"
+"    color: green;\n"
+"    border-radius: 8px;\n"
+"}")
+        self.top_hint_label.setInputMethodHints(QtCore.Qt.ImhNone)
+        self.top_hint_label.setText("")
+        self.top_hint_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.top_hint_label.setObjectName("top_hint_label")
+        self.horizontalLayout.addWidget(self.top_hint_label)
+        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem2)
         self.sheet_name_list_comboBox = QtWidgets.QComboBox(self.Menu)
         self.sheet_name_list_comboBox.setMinimumSize(QtCore.QSize(120, 30))
         font = QtGui.QFont()
@@ -361,8 +382,8 @@ class Ui_KCTS(object):
         self.kc_tu_ip_lineEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.kc_tu_ip_lineEdit.setObjectName("kc_tu_ip_lineEdit")
         self.gridLayout_2.addWidget(self.kc_tu_ip_lineEdit, 2, 4, 1, 1)
-        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_2.addItem(spacerItem2, 2, 5, 1, 1)
+        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_2.addItem(spacerItem3, 2, 5, 1, 1)
         self.kc_ts_recv_ou_port_lineEdit = QtWidgets.QLineEdit(self.gridWidget1)
         self.kc_ts_recv_ou_port_lineEdit.setStyleSheet("QLineEdit {\n"
 "    background-color: transparent;\n"
@@ -625,8 +646,8 @@ class Ui_KCTS(object):
         self.kc_ts_recv_port_label.setAlignment(QtCore.Qt.AlignCenter)
         self.kc_ts_recv_port_label.setObjectName("kc_ts_recv_port_label")
         self.gridLayout_2.addWidget(self.kc_ts_recv_port_label, 1, 1, 1, 1)
-        spacerItem3 = QtWidgets.QSpacerItem(50, 20, QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_2.addItem(spacerItem3, 2, 0, 1, 1)
+        spacerItem4 = QtWidgets.QSpacerItem(50, 20, QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_2.addItem(spacerItem4, 2, 0, 1, 1)
         self.verticalLayout_5.addWidget(self.gridWidget1)
         self.verticalLayout_5.setStretch(0, 2)
         self.verticalLayout_5.setStretch(1, 5)
@@ -1706,7 +1727,7 @@ class Ui_KCTS(object):
 
         self.retranslateUi(KCTS)
         self.sub_interface_stacked.setCurrentIndex(2)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         self.ou_analysis_send_stacked.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(KCTS)
 
