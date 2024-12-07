@@ -1,4 +1,3 @@
-
 from PyQt5.QtCore import QSize, Qt, QSettings
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog, QListView, QHeaderView, QTableWidgetItem, \
     QProgressBar, QLabel, QSpacerItem, QSizePolicy
