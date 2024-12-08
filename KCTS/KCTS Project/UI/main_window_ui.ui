@@ -513,7 +513,7 @@ QListWidget::item:selected {
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="device_status_page">
           <layout class="QVBoxLayout" name="verticalLayout_5" stretch="2,5">
@@ -1292,7 +1292,7 @@ QTabBar::tab:!selected {
               <enum>QTabWidget::Rounded</enum>
              </property>
              <property name="currentIndex">
-              <number>0</number>
+              <number>1</number>
              </property>
              <widget class="QWidget" name="real_time_analysis_tab">
               <attribute name="title">
@@ -3157,6 +3157,15 @@ QTableWidget::item {
                      <height>16777215</height>
                     </size>
                    </property>
+                   <property name="font">
+                    <font>
+                     <family>微软雅黑</family>
+                     <pointsize>10</pointsize>
+                     <weight>50</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
                    <property name="styleSheet">
                     <string notr="true">QPushButton {
     border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -3203,6 +3212,15 @@ QPushButton:disabled {
                      <height>16777215</height>
                     </size>
                    </property>
+                   <property name="font">
+                    <font>
+                     <family>微软雅黑</family>
+                     <pointsize>10</pointsize>
+                     <weight>50</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
                    <property name="styleSheet">
                     <string notr="true">QPushButton {
     border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -3245,23 +3263,44 @@ QPushButton:disabled {
               </attribute>
               <layout class="QVBoxLayout" name="verticalLayout_7">
                <item>
-                <widget class="QTextEdit" name="history_record_textEdit">
-                 <property name="enabled">
-                  <bool>true</bool>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>微软雅黑</family>
-                  </font>
-                 </property>
-                 <property name="mouseTracking">
-                  <bool>true</bool>
-                 </property>
-                 <property name="focusPolicy">
-                  <enum>Qt::NoFocus</enum>
-                 </property>
+                <widget class="QStackedWidget" name="history_record_stacked">
                  <property name="styleSheet">
-                  <string notr="true">QTextEdit {
+                  <string notr="true">QWidget {
+	background-color: transparent;
+}</string>
+                 </property>
+                 <widget class="QWidget" name="all_data_page">
+                  <layout class="QVBoxLayout" name="verticalLayout_8">
+                   <property name="leftMargin">
+                    <number>6</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>1</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>8</number>
+                   </property>
+                   <item>
+                    <widget class="QTextEdit" name="history_record_textEdit">
+                     <property name="enabled">
+                      <bool>true</bool>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>微软雅黑</family>
+                      </font>
+                     </property>
+                     <property name="mouseTracking">
+                      <bool>true</bool>
+                     </property>
+                     <property name="focusPolicy">
+                      <enum>Qt::NoFocus</enum>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QTextEdit {
 /*	border-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,
                                       stop: 0 #f6f7fa, stop: 1 #dadbde);*/
 	border-color: white;
@@ -3280,28 +3319,99 @@ QTextEdit QScrollBar::sub-page {
     background: transparent;
 }
 </string>
-                 </property>
-                 <property name="verticalScrollBarPolicy">
-                  <enum>Qt::ScrollBarAsNeeded</enum>
-                 </property>
-                 <property name="horizontalScrollBarPolicy">
-                  <enum>Qt::ScrollBarAlwaysOff</enum>
-                 </property>
-                 <property name="readOnly">
-                  <bool>true</bool>
-                 </property>
-                 <property name="textInteractionFlags">
-                  <set>Qt::NoTextInteraction</set>
-                 </property>
+                     </property>
+                     <property name="verticalScrollBarPolicy">
+                      <enum>Qt::ScrollBarAsNeeded</enum>
+                     </property>
+                     <property name="horizontalScrollBarPolicy">
+                      <enum>Qt::ScrollBarAlwaysOff</enum>
+                     </property>
+                     <property name="readOnly">
+                      <bool>true</bool>
+                     </property>
+                     <property name="textInteractionFlags">
+                      <set>Qt::NoTextInteraction</set>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="deduplication_page">
+                  <layout class="QVBoxLayout" name="verticalLayout_9">
+                   <property name="leftMargin">
+                    <number>6</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>1</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>8</number>
+                   </property>
+                   <item>
+                    <widget class="QTextEdit" name="deduplication_textEdit">
+                     <property name="enabled">
+                      <bool>true</bool>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>微软雅黑</family>
+                      </font>
+                     </property>
+                     <property name="mouseTracking">
+                      <bool>true</bool>
+                     </property>
+                     <property name="focusPolicy">
+                      <enum>Qt::NoFocus</enum>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QTextEdit {
+/*	border-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);*/
+	border-color: white;
+	background: qlineargradient(spread: pad,x1: 1, y1: 1, x2: 0, y2: 1,
+								stop: 0 #0d1117,  /* 起始颜色 */
+								stop: 1 #414a5a);   /* 结束颜色 */
+	border-width: 3;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+	border-style: outset;
+	color: white;
+}
+
+QTextEdit QScrollBar::add-page,
+QTextEdit QScrollBar::sub-page {
+    background: transparent;
+}
+</string>
+                     </property>
+                     <property name="verticalScrollBarPolicy">
+                      <enum>Qt::ScrollBarAsNeeded</enum>
+                     </property>
+                     <property name="horizontalScrollBarPolicy">
+                      <enum>Qt::ScrollBarAlwaysOff</enum>
+                     </property>
+                     <property name="readOnly">
+                      <bool>true</bool>
+                     </property>
+                     <property name="textInteractionFlags">
+                      <set>Qt::NoTextInteraction</set>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
                 </widget>
                </item>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_4">
                  <item>
-                  <widget class="QPushButton" name="history_query_pushButton">
+                  <widget class="QCheckBox" name="deduplication_checkBox">
                    <property name="minimumSize">
                     <size>
-                     <width>84</width>
+                     <width>120</width>
                      <height>45</height>
                     </size>
                    </property>
@@ -3311,8 +3421,44 @@ QTextEdit QScrollBar::sub-page {
                      <height>16777215</height>
                     </size>
                    </property>
+                   <property name="font">
+                    <font>
+                     <family>微软雅黑</family>
+                     <pointsize>10</pointsize>
+                     <weight>50</weight>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QCheckBox::indicator {
+	width: 70px;
+	height: 35px;
+}
+
+QCheckBox::indicator:unckecked {
+	image: url(:/checkBox/img/toggle_switch_unchecked_0.png);
+}
+
+QCheckBox::indicator:checked {
+	image: url(:/checkBox/img/toggle_switch_checked_0.png);
+}
+
+QCheckBox {
+	color: white;
+	background-color: transparent;
+}</string>
+                   </property>
                    <property name="text">
-                    <string>PushButton</string>
+                    <string>去重</string>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>20</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                   <property name="checked">
+                    <bool>false</bool>
                    </property>
                   </widget>
                  </item>
@@ -3378,6 +3524,8 @@ QPushButton:disabled {
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

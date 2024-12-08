@@ -8,7 +8,6 @@ from config.validators import Validators
 from config.qss import QLabelStyleSheet, SendCycle, AnalogStyleSheet
 from services.network import NetworkManager
 from services.read_excel import ExcelRead
-from log.error_handle import ExcelReaderExceptionHandle
 
 import sys
 import socket
@@ -26,12 +25,15 @@ class MainWindow(QMainWindow):
         self.network_manager = NetworkManager()     # 初始化网络管理器
 
         self.function_definition: dict = None       # 线号与UI控件绑定
+        self.previous_ou_parsed: dict = None        # 记录上一帧OU解析的结果
+        self.previous_mu_parsed: dict = None        # 记录上一帧MU解析的结果
+
         self.excel_reader = None                    # 读取Excel文件实例
 
         self.main_window_init()     # 窗口界面初始化
 
         self.setup_validators()     # 正则表达式匹配 IP 端口 信息
-        self.setup_connections()    # pushButton 信号连接绑定
+        self.setup_connections()    # 控件信号连接绑定
         self.signal_bind()          # pyqtSignal 信号绑定, 控件与线号连接
 
     def load_last_content(self):
@@ -71,6 +73,9 @@ class MainWindow(QMainWindow):
         self.main_window_ui.import_protocol_pushButton.clicked.connect(self.open_file_dialog)
         # comboBox 的 index 改变时, 解析表单
         self.main_window_ui.sheet_name_list_comboBox.currentIndexChanged.connect(self.parse_excel)
+
+        # checkBox 的状态改变时, 切换去重和不去重两个界面
+        self.main_window_ui.deduplication_checkBox.stateChanged.connect(self.history_interface_switch)
 
         self.main_window_ui.clear_record_pushButton.clicked.connect(self.clear_history_record)
 
@@ -418,6 +423,18 @@ class MainWindow(QMainWindow):
             if widget is not None:
                 widget.deleteLater()    # 删除控件
 
+    def history_interface_switch(self, state):
+        ''' 点击 checkBox 时, 切换stacked界面 '''
+        if state == 2: # ckeckBox 选中时, state == 2
+            self.main_window_ui.history_record_stacked.setCurrentIndex(1)
+        else:
+            self.main_window_ui.history_record_stacked.setCurrentIndex(0)
+
+    # def insert_ou_parsed_result(self):
+    #     ''' 填入解析后的OU的数据到textEdit '''
+    #
+
+
     def update_history_record(self, package_parsed: dict):
         ''' OU包每一次解析完成后, 更新历史纪录 '''
         # 打印系统当前的时间, 2024-12-03 14:30:45.123, 精确到 ms
@@ -443,10 +460,6 @@ class MainWindow(QMainWindow):
 
         self.main_window_ui.history_record_textEdit.insertPlainText(f'\n')      # 每一包内容结束之后换行
 
-    def clear_history_record(self):
-        ''' 清除历史记录里所有内容 '''
-        self.main_window_ui.history_record_textEdit.clear()
-
     def update_mu_history_record(self, mu_output: dict):
         ''' 历史记录中更新MU的输出 '''
         # 显示当前系统时间
@@ -467,6 +480,10 @@ class MainWindow(QMainWindow):
 
         self.main_window_ui.history_record_textEdit.insertPlainText(f'\n')  # 每一包内容结束之后换行
 
+    def clear_history_record(self):
+        ''' 清除历史记录里所有内容 '''
+        self.main_window_ui.history_record_textEdit.clear()
+        self.main_window_ui.deduplication_textEdit.clear()
 
     def mousePressEvent(self, event):
         ''' 鼠标点击空白区域清除所有控件的焦点 '''

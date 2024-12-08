@@ -1583,6 +1583,13 @@ class Ui_KCTS(object):
         self.IOQuery_pushButton.setEnabled(False)
         self.IOQuery_pushButton.setMinimumSize(QtCore.QSize(84, 45))
         self.IOQuery_pushButton.setMaximumSize(QtCore.QSize(95, 16777215))
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(10)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
+        self.IOQuery_pushButton.setFont(font)
         self.IOQuery_pushButton.setStyleSheet("QPushButton {\n"
 "    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
@@ -1613,6 +1620,13 @@ class Ui_KCTS(object):
         self.send_package_pushButton = QtWidgets.QPushButton(self.real_time_analysis_tab)
         self.send_package_pushButton.setMinimumSize(QtCore.QSize(84, 45))
         self.send_package_pushButton.setMaximumSize(QtCore.QSize(95, 16777215))
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(10)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
+        self.send_package_pushButton.setFont(font)
         self.send_package_pushButton.setStyleSheet("QPushButton {\n"
 "    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
@@ -1646,7 +1660,17 @@ class Ui_KCTS(object):
         self.history_tab.setObjectName("history_tab")
         self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.history_tab)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
-        self.history_record_textEdit = QtWidgets.QTextEdit(self.history_tab)
+        self.history_record_stacked = QtWidgets.QStackedWidget(self.history_tab)
+        self.history_record_stacked.setStyleSheet("QWidget {\n"
+"    background-color: transparent;\n"
+"}")
+        self.history_record_stacked.setObjectName("history_record_stacked")
+        self.all_data_page = QtWidgets.QWidget()
+        self.all_data_page.setObjectName("all_data_page")
+        self.verticalLayout_8 = QtWidgets.QVBoxLayout(self.all_data_page)
+        self.verticalLayout_8.setContentsMargins(6, 1, 0, 8)
+        self.verticalLayout_8.setObjectName("verticalLayout_8")
+        self.history_record_textEdit = QtWidgets.QTextEdit(self.all_data_page)
         self.history_record_textEdit.setEnabled(True)
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
@@ -1677,14 +1701,79 @@ class Ui_KCTS(object):
         self.history_record_textEdit.setReadOnly(True)
         self.history_record_textEdit.setTextInteractionFlags(QtCore.Qt.NoTextInteraction)
         self.history_record_textEdit.setObjectName("history_record_textEdit")
-        self.verticalLayout_7.addWidget(self.history_record_textEdit)
+        self.verticalLayout_8.addWidget(self.history_record_textEdit)
+        self.history_record_stacked.addWidget(self.all_data_page)
+        self.deduplication_page = QtWidgets.QWidget()
+        self.deduplication_page.setObjectName("deduplication_page")
+        self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.deduplication_page)
+        self.verticalLayout_9.setContentsMargins(6, 1, 0, 8)
+        self.verticalLayout_9.setObjectName("verticalLayout_9")
+        self.deduplication_textEdit = QtWidgets.QTextEdit(self.deduplication_page)
+        self.deduplication_textEdit.setEnabled(True)
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        self.deduplication_textEdit.setFont(font)
+        self.deduplication_textEdit.setMouseTracking(True)
+        self.deduplication_textEdit.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.deduplication_textEdit.setStyleSheet("QTextEdit {\n"
+"/*    border-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);*/\n"
+"    border-color: white;\n"
+"    background: qlineargradient(spread: pad,x1: 1, y1: 1, x2: 0, y2: 1,\n"
+"                                stop: 0 #0d1117,  /* 起始颜色 */\n"
+"                                stop: 1 #414a5a);   /* 结束颜色 */\n"
+"    border-width: 3;\n"
+"    border-top-left-radius: 15px;\n"
+"    border-bottom-left-radius: 15px;\n"
+"    border-style: outset;\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"QTextEdit QScrollBar::add-page,\n"
+"QTextEdit QScrollBar::sub-page {\n"
+"    background: transparent;\n"
+"}\n"
+"")
+        self.deduplication_textEdit.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
+        self.deduplication_textEdit.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.deduplication_textEdit.setReadOnly(True)
+        self.deduplication_textEdit.setTextInteractionFlags(QtCore.Qt.NoTextInteraction)
+        self.deduplication_textEdit.setObjectName("deduplication_textEdit")
+        self.verticalLayout_9.addWidget(self.deduplication_textEdit)
+        self.history_record_stacked.addWidget(self.deduplication_page)
+        self.verticalLayout_7.addWidget(self.history_record_stacked)
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        self.history_query_pushButton = QtWidgets.QPushButton(self.history_tab)
-        self.history_query_pushButton.setMinimumSize(QtCore.QSize(84, 45))
-        self.history_query_pushButton.setMaximumSize(QtCore.QSize(95, 16777215))
-        self.history_query_pushButton.setObjectName("history_query_pushButton")
-        self.horizontalLayout_4.addWidget(self.history_query_pushButton)
+        self.deduplication_checkBox = QtWidgets.QCheckBox(self.history_tab)
+        self.deduplication_checkBox.setMinimumSize(QtCore.QSize(120, 45))
+        self.deduplication_checkBox.setMaximumSize(QtCore.QSize(95, 16777215))
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(10)
+        font.setBold(False)
+        font.setWeight(50)
+        self.deduplication_checkBox.setFont(font)
+        self.deduplication_checkBox.setStyleSheet("QCheckBox::indicator {\n"
+"    width: 70px;\n"
+"    height: 35px;\n"
+"}\n"
+"\n"
+"QCheckBox::indicator:unckecked {\n"
+"    image: url(:/checkBox/img/toggle_switch_unchecked_0.png);\n"
+"}\n"
+"\n"
+"QCheckBox::indicator:checked {\n"
+"    image: url(:/checkBox/img/toggle_switch_checked_0.png);\n"
+"}\n"
+"\n"
+"QCheckBox {\n"
+"    color: white;\n"
+"    background-color: transparent;\n"
+"}")
+        self.deduplication_checkBox.setIconSize(QtCore.QSize(20, 20))
+        self.deduplication_checkBox.setChecked(False)
+        self.deduplication_checkBox.setObjectName("deduplication_checkBox")
+        self.horizontalLayout_4.addWidget(self.deduplication_checkBox)
         self.clear_record_pushButton = QtWidgets.QPushButton(self.history_tab)
         self.clear_record_pushButton.setMinimumSize(QtCore.QSize(84, 45))
         self.clear_record_pushButton.setMaximumSize(QtCore.QSize(95, 16777215))
@@ -1728,8 +1817,8 @@ class Ui_KCTS(object):
         KCTS.setCentralWidget(self.Window)
 
         self.retranslateUi(KCTS)
-        self.sub_interface_stacked.setCurrentIndex(0)
-        self.tabWidget.setCurrentIndex(0)
+        self.sub_interface_stacked.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(1)
         self.ou_analysis_send_stacked.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(KCTS)
 
@@ -1826,6 +1915,7 @@ class Ui_KCTS(object):
         self.IOQuery_pushButton.setText(_translate("KCTS", "IO查询"))
         self.send_package_pushButton.setText(_translate("KCTS", "模拟发包"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.real_time_analysis_tab), _translate("KCTS", "实时解析"))
-        self.history_query_pushButton.setText(_translate("KCTS", "PushButton"))
+        self.deduplication_checkBox.setText(_translate("KCTS", "去重"))
         self.clear_record_pushButton.setText(_translate("KCTS", "一键清除"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.history_tab), _translate("KCTS", "历史记录"))
+# import resource_rc

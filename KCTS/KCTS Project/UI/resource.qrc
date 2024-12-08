@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="checkBox">
+    <file>img/toggle_switch_unchecked_0.png</file>
+    <file>img/toggle_switch_checked_0.png</file>
+  </qresource>
+</RCC>

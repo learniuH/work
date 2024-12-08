@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1213</width>
-    <height>322</height>
+    <height>190</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -478,8 +478,8 @@ QTableWidget::item {
     <rect>
      <x>450</x>
      <y>60</y>
-     <width>701</width>
-     <height>261</height>
+     <width>311</width>
+     <height>111</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -515,26 +515,6 @@ QTableWidget::item {
      <string>新建行</string>
     </property>
    </row>
-   <row>
-    <property name="text">
-     <string>新建行</string>
-    </property>
-   </row>
-   <row>
-    <property name="text">
-     <string>新建行</string>
-    </property>
-   </row>
-   <row>
-    <property name="text">
-     <string>新建行</string>
-    </property>
-   </row>
-   <row>
-    <property name="text">
-     <string>新建行</string>
-    </property>
-   </row>
    <column>
     <property name="text">
      <string>新建列</string>
@@ -545,36 +525,6 @@ QTableWidget::item {
      <string>新建列</string>
     </property>
    </column>
-   <column>
-    <property name="text">
-     <string>新建列</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>新建列</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>新建列</string>
-    </property>
-   </column>
-   <item row="0" column="0">
-    <property name="text">
-     <string>niha9i</string>
-    </property>
-   </item>
-   <item row="1" column="1">
-    <property name="text">
-     <string>1</string>
-    </property>
-   </item>
-   <item row="2" column="2">
-    <property name="text">
-     <string>是的</string>
-    </property>
-   </item>
   </widget>
   <widget class="QProgressBar" name="progressBar_2">
    <property name="geometry">
