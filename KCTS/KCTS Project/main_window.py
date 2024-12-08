@@ -1,6 +1,6 @@
 from PyQt5.QtCore import QSize, Qt, QSettings, QTimer
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog, QListView, QHeaderView, QTableWidgetItem, \
-    QProgressBar, QLabel, QSpacerItem, QSizePolicy
+    QProgressBar, QLabel, QSpacerItem, QSizePolicy, QTextEdit
 
 from UI.main_window_ui import Ui_KCTS
 
@@ -11,6 +11,7 @@ from services.read_excel import ExcelRead
 
 import sys
 import socket
+import copy
 from datetime import datetime
 
 
@@ -430,55 +431,70 @@ class MainWindow(QMainWindow):
         else:
             self.main_window_ui.history_record_stacked.setCurrentIndex(0)
 
-    # def insert_ou_parsed_result(self):
-    #     ''' 填入解析后的OU的数据到textEdit '''
-    #
-
-
-    def update_history_record(self, package_parsed: dict):
-        ''' OU包每一次解析完成后, 更新历史纪录 '''
+    def insert_ou_parsed_result(self, textEdit: QTextEdit, package_parsed: dict):
+        ''' 填入解析后的OU的数据到textEdit '''
         # 打印系统当前的时间, 2024-12-03 14:30:45.123, 精确到 ms
-        current_time = datetime.now()       # 获取系统当前的时间, ms精确到小数点后6位
-        self.main_window_ui.history_record_textEdit.append(current_time.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3])
+        current_time = datetime.now()  # 获取系统当前的时间, ms精确到小数点后6位
+        textEdit.append(current_time.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3])
 
         # 先添加OU的包
         ou_package = 'OU Data: ' + f'  '.join(f'{byte:02X}' for byte in self.network_manager.ou_package_recv)
-        self.main_window_ui.history_record_textEdit.append(ou_package)      # 添加OU_package自动换行
+        textEdit.append(ou_package)  # 添加OU_package自动换行
 
         # OU包解析结果
         for byte_num in package_parsed:
-            self.main_window_ui.history_record_textEdit.append(f'Byte{byte_num}: ')
+            textEdit.append(f'Byte{byte_num}: ')
             # 字典就是开关量
             if isinstance(package_parsed.get(byte_num), dict):
                 for bit_index in package_parsed[byte_num]:
-                    self.main_window_ui.history_record_textEdit.insertPlainText(
+                    textEdit.insertPlainText(
                         f'bit{bit_index} - {package_parsed[byte_num][bit_index]}    ')
             # 列表就是模拟量
             else:
-                self.main_window_ui.history_record_textEdit.insertPlainText(
+                textEdit.insertPlainText(
                     f'{package_parsed[byte_num][0]}  {package_parsed[byte_num][1]}')
 
-        self.main_window_ui.history_record_textEdit.insertPlainText(f'\n')      # 每一包内容结束之后换行
+        textEdit.insertPlainText(f'\n')  # 每一包内容结束之后换行
 
-    def update_mu_history_record(self, mu_output: dict):
-        ''' 历史记录中更新MU的输出 '''
+    def update_history_record(self, package_parsed: dict):
+        ''' OU包每一次解析完成后, 更新历史纪录, 并将不同的解析结果, 添加到去重界面 '''
+        self.insert_ou_parsed_result(self.main_window_ui.history_record_textEdit, package_parsed)
+        # 与上一帧不同时, 添加到去重界面
+        if package_parsed != self.previous_ou_parsed:
+            self.insert_ou_parsed_result(self.main_window_ui.deduplication_textEdit, package_parsed)
+
+            # 更新上一帧解析的结果
+            self.previous_ou_parsed = package_parsed    # package_parsed 会在解析OU包的类里重新赋值(指向新的字典)
+
+    def insert_mu_parsed_result(self, textEdit: QTextEdit, mu_output: dict):
+        ''' 填入解析后的MU数据到textEdit '''
         # 显示当前系统时间
         current_time = datetime.now()  # 获取系统当前的时间, ms精确到小数点后6位
-        self.main_window_ui.history_record_textEdit.append(current_time.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3])
-        self.main_window_ui.history_record_textEdit.append('MU Output:\n')
+        textEdit.append(current_time.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3])
+        textEdit.append('MU Output:\n')
 
         for line_num in mu_output:
             # 开关量
             if isinstance(mu_output[line_num], bool):
                 if mu_output[line_num] is True:
-                    self.main_window_ui.history_record_textEdit.insertPlainText(f'{line_num}:  1\t')
+                    textEdit.insertPlainText(f'{line_num}:  1\t')
                 else:
-                    self.main_window_ui.history_record_textEdit.insertPlainTExt(f'{line_num}:  0\t')
+                    textEdit.insertPlainText(f'{line_num}:  0\t')
             # 模拟量: 字典的值是正数
             else:
-                self.main_window_ui.history_record_textEdit.insertPlainText(f'{line_num}:  {mu_output[line_num] / 100}V\t')
+                textEdit.insertPlainText(f'{line_num}:  {mu_output[line_num] / 100}V\t')
 
-        self.main_window_ui.history_record_textEdit.insertPlainText(f'\n')  # 每一包内容结束之后换行
+        textEdit.insertPlainText(f'\n')  # 每一包内容结束之后换行
+
+    def update_mu_history_record(self, mu_output: dict):
+        ''' 历史记录中更新MU的输出 '''
+        self.insert_mu_parsed_result(self.main_window_ui.history_record_textEdit, mu_output)
+        # 与上一帧不同时, 添加到去重界面
+        if mu_output != self.previous_mu_parsed:
+            self.insert_mu_parsed_result(self.main_window_ui.deduplication_textEdit, mu_output)
+
+            # 更新上一帧解析的结果, 使用深拷贝, 创建新的对象副本
+            self.previous_mu_parsed = copy.deepcopy(mu_output)      # mu_output 的修改不影响 previous_mu_parsed, 与OU的insert写法不同, 引以为戒
 
     def clear_history_record(self):
         ''' 清除历史记录里所有内容 '''

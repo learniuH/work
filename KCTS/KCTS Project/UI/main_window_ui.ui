@@ -513,7 +513,7 @@ QListWidget::item:selected {
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="device_status_page">
           <layout class="QVBoxLayout" name="verticalLayout_5" stretch="2,5">
@@ -3269,6 +3269,9 @@ QPushButton:disabled {
 	background-color: transparent;
 }</string>
                  </property>
+                 <property name="currentIndex">
+                  <number>1</number>
+                 </property>
                  <widget class="QWidget" name="all_data_page">
                   <layout class="QVBoxLayout" name="verticalLayout_8">
                    <property name="leftMargin">
@@ -3458,7 +3461,7 @@ QCheckBox {
                     </size>
                    </property>
                    <property name="checked">
-                    <bool>false</bool>
+                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>

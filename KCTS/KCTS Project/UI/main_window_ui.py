@@ -1771,7 +1771,7 @@ class Ui_KCTS(object):
 "    background-color: transparent;\n"
 "}")
         self.deduplication_checkBox.setIconSize(QtCore.QSize(20, 20))
-        self.deduplication_checkBox.setChecked(False)
+        self.deduplication_checkBox.setChecked(True)
         self.deduplication_checkBox.setObjectName("deduplication_checkBox")
         self.horizontalLayout_4.addWidget(self.deduplication_checkBox)
         self.clear_record_pushButton = QtWidgets.QPushButton(self.history_tab)
@@ -1817,9 +1817,10 @@ class Ui_KCTS(object):
         KCTS.setCentralWidget(self.Window)
 
         self.retranslateUi(KCTS)
-        self.sub_interface_stacked.setCurrentIndex(2)
+        self.sub_interface_stacked.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(1)
         self.ou_analysis_send_stacked.setCurrentIndex(0)
+        self.history_record_stacked.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(KCTS)
 
     def retranslateUi(self, KCTS):
