@@ -558,8 +558,8 @@ QProgressBar::chunk {
   <widget class="QCheckBox" name="checkBox">
    <property name="geometry">
     <rect>
-     <x>760</x>
-     <y>210</y>
+     <x>450</x>
+     <y>180</y>
      <width>171</width>
      <height>61</height>
     </rect>
@@ -581,6 +581,62 @@ QCheckBox::indicator:checked {
    </property>
    <property name="text">
     <string>去重</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_2">
+   <property name="geometry">
+    <rect>
+     <x>810</x>
+     <y>230</y>
+     <width>51</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox::indicator {
+	width: 70px;
+	height: 35px;
+}
+
+QCheckBox::indicator:unckecked {
+	image: url(:/checkBox/img/unlocked.png);
+}
+
+
+QCheckBox::indicator:checked {
+	image: url(:/checkBox/img/unlock.png);
+}</string>
+   </property>
+   <property name="text">
+    <string notr="true"/>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_3">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>240</y>
+     <width>231</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox::indicator {
+	width: 85px;
+	height: 45px;
+}
+
+QCheckBox::indicator:unckecked {
+	image: url(:/checkBox/img/padlock.png);
+}
+
+
+QCheckBox::indicator:checked {
+	image: url(:/checkBox/img/padlock (1).png);
+}</string>
+   </property>
+   <property name="text">
+    <string>CheckBox</string>
    </property>
   </widget>
  </widget>
