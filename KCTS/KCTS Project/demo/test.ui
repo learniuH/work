@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1213</width>
-    <height>190</height>
+    <height>407</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -555,7 +555,37 @@ QProgressBar::chunk {
     <number>24</number>
    </property>
   </widget>
+  <widget class="QCheckBox" name="checkBox">
+   <property name="geometry">
+    <rect>
+     <x>760</x>
+     <y>210</y>
+     <width>171</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox::indicator {
+	width: 85px;
+	height: 45px;
+}
+
+QCheckBox::indicator:unckecked {
+	image: url(:/checkBox/img/toggle_switch_unchecked.png);
+}
+
+
+QCheckBox::indicator:checked {
+	image: url(:/checkBox/img/toggle_switch_checked.png);
+}</string>
+   </property>
+   <property name="text">
+    <string>去重</string>
+   </property>
+  </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -3,8 +3,8 @@ import functools
 import logging
 from typing import Tuple, Dict, Any
 
-
 from config.error_message import ErrorMessage
+
 
 class ExcelReaderExceptionHandle():
     '''
