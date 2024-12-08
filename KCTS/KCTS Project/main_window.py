@@ -1,4 +1,4 @@
-from PyQt5.QtCore import QSize, Qt, QSettings, QTimer
+from PyQt5.QtCore import Qt, QSettings, QTimer
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog, QListView, QHeaderView, QTableWidgetItem, \
     QProgressBar, QLabel, QSpacerItem, QSizePolicy, QTextEdit
 
@@ -494,7 +494,7 @@ class MainWindow(QMainWindow):
             self.insert_mu_parsed_result(self.main_window_ui.deduplication_textEdit, mu_output)
 
             # 更新上一帧解析的结果, 使用深拷贝, 创建新的对象副本
-            self.previous_mu_parsed = copy.deepcopy(mu_output)      # mu_output 的修改不影响 previous_mu_parsed, 与OU的insert写法不同, 引以为戒
+            self.previous_mu_parsed = copy.deepcopy(mu_output)      # mu_output 的修改不影响 previous_mu_parsed, 与OU的insert写法不同, 值得思考
 
     def clear_history_record(self):
         ''' 清除历史记录里所有内容 '''

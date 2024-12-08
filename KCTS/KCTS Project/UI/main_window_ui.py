@@ -231,7 +231,6 @@ class Ui_KCTS(object):
 "\n"
 "QListWidget::item{\n"
 "    height: 60px;\n"
-"\n"
 "    font: 10pt \"微软雅黑\";\n"
 "    color: white;\n"
 "}\n"
@@ -1745,7 +1744,7 @@ class Ui_KCTS(object):
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.deduplication_checkBox = QtWidgets.QCheckBox(self.history_tab)
-        self.deduplication_checkBox.setMinimumSize(QtCore.QSize(120, 45))
+        self.deduplication_checkBox.setMinimumSize(QtCore.QSize(95, 45))
         self.deduplication_checkBox.setMaximumSize(QtCore.QSize(95, 16777215))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
@@ -1754,8 +1753,8 @@ class Ui_KCTS(object):
         font.setWeight(50)
         self.deduplication_checkBox.setFont(font)
         self.deduplication_checkBox.setStyleSheet("QCheckBox::indicator {\n"
-"    width: 70px;\n"
-"    height: 35px;\n"
+"    width: 54px;\n"
+"    height: 30px;\n"
 "}\n"
 "\n"
 "QCheckBox::indicator:unckecked {\n"

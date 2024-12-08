@@ -420,7 +420,6 @@ QWidget {
 
 QListWidget::item{
 	height: 60px;
-
 	font: 10pt &quot;微软雅黑&quot;;
 	color: white;
 }
@@ -3414,7 +3413,7 @@ QTextEdit QScrollBar::sub-page {
                   <widget class="QCheckBox" name="deduplication_checkBox">
                    <property name="minimumSize">
                     <size>
-                     <width>120</width>
+                     <width>95</width>
                      <height>45</height>
                     </size>
                    </property>
@@ -3434,8 +3433,8 @@ QTextEdit QScrollBar::sub-page {
                    </property>
                    <property name="styleSheet">
                     <string notr="true">QCheckBox::indicator {
-	width: 70px;
-	height: 35px;
+	width: 54px;
+	height: 30px;
 }
 
 QCheckBox::indicator:unckecked {
