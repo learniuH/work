@@ -130,7 +130,7 @@ QProgressBar::chunk {
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>240</x>
+     <x>250</x>
      <y>0</y>
      <width>111</width>
      <height>51</height>
@@ -143,6 +143,8 @@ QProgressBar::chunk {
     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                       stop: 0 #f6f7fa, stop: 1 #dadbde);
     min-width: 80px;
+	
+	font: 9pt &quot;幼圆&quot;;
 }
 
 QPushButton:pressed {
@@ -182,8 +184,8 @@ QTextEdit {
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>350</x>
-     <y>0</y>
+     <x>370</x>
+     <y>20</y>
      <width>93</width>
      <height>28</height>
     </rect>

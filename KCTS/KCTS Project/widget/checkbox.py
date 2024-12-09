@@ -1,11 +1,20 @@
-from PyQt5.QtWidgets import QCheckBox, QApplication, QWidget, QHBoxLayout
+from typing import Union
+
+from PyQt5.QtWidgets import QCheckBox
+
 
 class LearniuHCheckBox(QCheckBox):
     ''' 自定义的 checkBox '''
-    def __init__(self, objectName: str, parent=None):
-        super().__init__(parent)
-        self.setObjectName(f'{objectName}_checkBox')    # 对象的名字是 xx_checkBox
-        self.setText('')                                # 去除文本
+    def __init__(self, byte_num: Union[int, str], bit_index: Union[int, str]=None):
+        '''
+            byte_num:   checkBox 的字节序号属性
+            bit_index:  checkBox 的位索引属性, 默认是 None
+        '''
+        super().__init__()
+        self.byte_num = byte_num
+        self.bit_index = bit_index
+
+        self.setText('')        # 不显示文本
 
         self.custom_styles()
 
@@ -27,21 +36,3 @@ class LearniuHCheckBox(QCheckBox):
         ''')
 
 
-
-class MainWindow(QWidget):
-    ''' 窗口显示类 '''
-    def __init__(self):
-        super().__init__()
-        self.layout = QHBoxLayout(self)
-
-        # 创建自定义 checkBox
-        checkBox = LearniuHCheckBox('byte')
-
-        self.layout.addWidget(checkBox)
-
-
-if __name__ == '__main__':
-    app = QApplication([])
-    window = MainWindow()
-    window.show()
-    app.exec_()
