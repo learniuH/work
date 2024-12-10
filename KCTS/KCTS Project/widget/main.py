@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QGridLayout, QProgressBar, QSpacerItem, QSizePolicy
 from checkbox import LearniuHCheckBox
 from pushbutton import LearniuHPushButton
 
@@ -6,10 +6,14 @@ class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.layout = QVBoxLayout(self)
+        self.layout = QGridLayout(self)
         checkBox = LearniuHCheckBox(12)
-        button = LearniuHPushButton('nihao',12)
-        self.layout.addWidget(button)
+        button = LearniuHPushButton('急停',12)
+        self.layout.addWidget(checkBox, 0, 0)
+        self.layout.addWidget(button, 0, 1)
+
+        horizontal_spacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.layout.addItem(horizontal_spacer, 0, 2)
 
 
 

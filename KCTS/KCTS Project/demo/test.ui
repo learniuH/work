@@ -61,7 +61,7 @@ QTabBar::tab:!selected {
 }</string>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -585,47 +585,19 @@ QCheckBox::indicator:checked {
     <string>去重</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox_2">
-   <property name="geometry">
-    <rect>
-     <x>810</x>
-     <y>230</y>
-     <width>51</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QCheckBox::indicator {
-	width: 70px;
-	height: 35px;
-}
-
-QCheckBox::indicator:unckecked {
-	image: url(:/checkBox/img/unlocked.png);
-}
-
-
-QCheckBox::indicator:checked {
-	image: url(:/checkBox/img/unlock.png);
-}</string>
-   </property>
-   <property name="text">
-    <string notr="true"/>
-   </property>
-  </widget>
   <widget class="QCheckBox" name="checkBox_3">
    <property name="geometry">
     <rect>
-     <x>450</x>
+     <x>460</x>
      <y>240</y>
-     <width>231</width>
+     <width>221</width>
      <height>71</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">QCheckBox::indicator {
 	width: 85px;
-	height: 45px;
+	height: 35px;
 }
 
 QCheckBox::indicator:unckecked {
@@ -638,7 +610,7 @@ QCheckBox::indicator:checked {
 }</string>
    </property>
    <property name="text">
-    <string>CheckBox</string>
+    <string>checkBox</string>
    </property>
   </widget>
  </widget>

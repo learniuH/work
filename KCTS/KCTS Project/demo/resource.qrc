@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="checkBox">
+    <file>img/locked_1.png</file>
+    <file>img/unlock_1.png</file>
     <file>img/unlocked.png</file>
     <file>img/padlock (1).png</file>
     <file>img/padlock.png</file>

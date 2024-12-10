@@ -22,16 +22,17 @@ class LearniuHCheckBox(QCheckBox):
         ''' 自定义QSS样式 '''
         self.setStyleSheet('''
             QCheckBox::indicator {
-                width: 45px;
+                /* 设置图片的宽度 高度 */
+                width: 15px;
                 height: 20px;
             }
             
             QCheckBox::indicator:unchecked {
-                image: url(./img/unlock.png);
+                image: url(./img/unlock_1.png);
             }
 
             QCheckBox::indicator:checked {
-                image: url(./img/locked.png);
+                image: url(./img/locked_1.png);
             }
         ''')
 
