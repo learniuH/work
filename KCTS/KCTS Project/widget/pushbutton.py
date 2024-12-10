@@ -22,16 +22,25 @@ class LearniuHPushButton(QPushButton):
         ''' 自定义QSS样式 '''
         self.setStyleSheet('''
             QPushButton {
-                border: 2px solid #cbcbcb;
+                border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                                  stop: 0 #f6f7fa, stop: 1 #dadbde);
                 border-radius: 5px;
                 background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                                   stop: 0 #f6f7fa, stop: 1 #dadbde);
                 font: 9pt '幼圆';
-                height: 20px;
+                height: 22px;
             }
             
             QPushButton:pressed {
+                background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                                  stop: 0 #dadbde, stop: 1 #f6f7fa);
                 padding-top: 1px;
-                padding-left: 2px;
+                padding-left: 1px;
+            }
+            
+            QPushButton:hover {
+                background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                                  stop: 0 #fafafa, stop: 0.4 #f4f4f4,
+                                                  stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);
             }
         ''')

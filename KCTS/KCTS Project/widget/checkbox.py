@@ -1,7 +1,9 @@
+from idlelib.pyparse import C_NONE
 from typing import Union
 
 from PyQt5.QtWidgets import QCheckBox
 
+from constant import ConstantText
 
 class LearniuHCheckBox(QCheckBox):
     ''' 自定义的 checkBox '''
@@ -14,7 +16,7 @@ class LearniuHCheckBox(QCheckBox):
         self.byte_num = byte_num
         self.bit_index = bit_index
 
-        self.setText('')        # 不显示文本
+        self.setText(ConstantText.BLANKTEXT)        # 空白文本
 
         self.custom_styles()
 
