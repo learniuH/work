@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1213</width>
-    <height>407</height>
+    <width>1211</width>
+    <height>485</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -77,23 +77,22 @@ QTabBar::tab:!selected {
   <widget class="QProgressBar" name="progressBar">
    <property name="geometry">
     <rect>
-     <x>460</x>
-     <y>0</y>
+     <x>680</x>
+     <y>300</y>
      <width>118</width>
      <height>23</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">QProgressBar {
-    border: 2px solid grey;
+    border: 2px solid #204789;
     border-radius: 5px;
 	text-align: center;
-	border-color: #204789;
 }
 
 QProgressBar::chunk {
     background-color: #05B8CC;
-    width: 20px;
+    width: 100px;
 }</string>
    </property>
    <property name="maximum">
@@ -102,8 +101,11 @@ QProgressBar::chunk {
    <property name="value">
     <number>23</number>
    </property>
+   <property name="textVisible">
+    <bool>true</bool>
+   </property>
    <property name="format">
-    <string/>
+    <string>%v%</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -616,11 +618,51 @@ QCheckBox::indicator:checked {
   <widget class="QLineEdit" name="lineEdit_2">
    <property name="geometry">
     <rect>
-     <x>720</x>
-     <y>220</y>
+     <x>620</x>
+     <y>200</y>
      <width>113</width>
      <height>20</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QSlider" name="horizontalSlider">
+   <property name="geometry">
+    <rect>
+     <x>890</x>
+     <y>270</y>
+     <width>160</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QSlider::groove:horizontal {
+    background: transparent;
+}
+
+QSlider::handle:horizontal {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,
+                                stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);
+    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+	border-radius: 5px;
+    width: 18px;
+    margin: -2px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */
+    border-radius: 3px;
+}
+
+QSlider::add-page:horizontal {
+    background: transparent;
+}
+
+QSlider::sub-page:horizontal {
+	border: 2px solid;
+	border-radius: 5px;
+    background: pink;
+}</string>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
    </property>
   </widget>
  </widget>
