@@ -1,9 +1,11 @@
-from idlelib.pyparse import C_NONE
 from typing import Union
 
 from PyQt5.QtWidgets import QCheckBox
 
-from constant import ConstantText
+try:
+    from .constant import ConstantText
+except ImportError:
+    from constant import ConstantText
 
 class LearniuHCheckBox(QCheckBox):
     ''' 自定义的 checkBox '''
@@ -30,11 +32,11 @@ class LearniuHCheckBox(QCheckBox):
             }
             
             QCheckBox::indicator:unchecked {
-                image: url(./img/unlock_1.png);
+                image: url(./widget/img/unlock_1.png);
             }
 
             QCheckBox::indicator:checked {
-                image: url(./img/locked_1.png);
+                image: url(./widget/img/locked_1.png);
             }
         ''')
 

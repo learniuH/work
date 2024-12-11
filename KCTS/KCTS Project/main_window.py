@@ -9,10 +9,15 @@ from config.qss import QLabelStyleSheet, SendCycle, AnalogStyleSheet
 from services.network import NetworkManager
 from services.read_excel import ExcelRead
 
+from widget.checkbox import LearniuHCheckBox
+from widget.pushbutton import LearniuHPushButton
+from widget.lineedit import LearniuHLineEdit
+
 import sys
 import socket
 import copy
 from datetime import datetime
+from typing import Union
 
 
 class MainWindow(QMainWindow):
@@ -311,9 +316,42 @@ class MainWindow(QMainWindow):
             # 实例化解析OU包的类
             self.network_manager.ou_package_receiver_inst(protocol)
 
+            # 更新 OU 模拟器
+            self.update_ou_simulator(protocol)
+
             # 将信号 PackageFromOU 解析后的包发出的 pyqtSignal 信号绑定到函数
             self.network_manager.ou_package_receiver.update_switch_signal.connect(self.update_ou_analysis_interface)    # 更新OU解析界面
             self.network_manager.ou_package_receiver.update_switch_signal.connect(self.update_history_record)   # 更新历史记录
+
+    def switch_quantity_generation(self, byte_num: int, bit_index: Union[int, str], description: str, row: int):
+        ''' 开关量区域: checkBox pushButton lineEdit '''
+        col = 0
+        if row > 9:     # 每列最多放10个开关
+            row, col = row - 10, 3
+        checkBox = LearniuHCheckBox(byte_num, bit_index)
+        self.main_window_ui.gridLayout_switch.addWidget(checkBox, row, col)
+        pushButton = LearniuHPushButton(description, byte_num, bit_index)
+        self.main_window_ui.gridLayout_switch.addWidget(pushButton, row, col + 1)
+        lineEdit = LearniuHLineEdit(byte_num, bit_index)
+        self.main_window_ui.gridLayout_switch.addWidget(lineEdit, row, col + 2)
+
+    def analog_quantity_generation(self, byte_num: Union[int, str], description: str, row: int):
+        pass
+
+    def update_ou_simulator(self, protocol: dict):
+        ''' 更新 OU 模拟器的 UI '''
+        row = 0  # 在 gridLayout 中的行号
+        for byte_num in protocol:
+            # 开关量
+            if isinstance(protocol[byte_num], dict):
+                for bit_index, description in protocol[byte_num].items():
+                    # 生成自定义控件
+                    self.switch_quantity_generation(byte_num, bit_index, description, row)
+                    row += 1
+            # 模拟量
+            else:
+                self.analog_quantity_generation(byte_num, protocol[byte_num], row)
+                row += 1
 
     def top_hint_display(self, tips: str):
         ''' 接收来自 read_file 函数(解析Excel表单) 的报错, 将提示信息在主界面显示2S '''

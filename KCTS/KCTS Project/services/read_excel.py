@@ -91,6 +91,16 @@ class ExcelRead(QObject):
             else:
                 protocol[byte_num] = row_index['开关描述']
 
+        '''
+           protocol = {
+                10: {
+                    0: 'light',
+                    '1-2': 'horn',
+                },
+                12: 'go head',
+                '13-14': 'back'
+           } 
+        '''
         return protocol, protocol_length
 
     @staticmethod

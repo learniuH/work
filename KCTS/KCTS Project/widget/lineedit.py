@@ -3,7 +3,10 @@ from PyQt5.QtCore import Qt
 
 from typing import Union
 
-from constant import ConstantText
+try:
+    from .constant import ConstantText
+except ImportError:
+    from constant import ConstantText
 
 class LearniuHLineEdit(QLineEdit):
     ''' 自定义 LineEdit '''

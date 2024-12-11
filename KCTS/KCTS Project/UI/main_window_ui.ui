@@ -512,7 +512,7 @@ QListWidget::item:selected {
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="device_status_page">
           <layout class="QVBoxLayout" name="verticalLayout_5" stretch="2,5">
@@ -2928,7 +2928,7 @@ QProgressBar::chunk {
 </string>
                  </property>
                  <property name="currentIndex">
-                  <number>0</number>
+                  <number>1</number>
                  </property>
                  <widget class="QWidget" name="ou_analysis_page">
                   <layout class="QVBoxLayout" name="verticalLayout_6" stretch="2,1">
@@ -3121,19 +3121,37 @@ QTableWidget::item {
                   </layout>
                  </widget>
                  <widget class="QWidget" name="ou_simulator_page">
-                  <widget class="QLabel" name="label_4">
-                   <property name="geometry">
-                    <rect>
-                     <x>320</x>
-                     <y>150</y>
-                     <width>331</width>
-                     <height>101</height>
-                    </rect>
+                  <layout class="QHBoxLayout" name="horizontalLayout_5">
+                   <property name="spacing">
+                    <number>7</number>
                    </property>
-                   <property name="text">
-                    <string>这是OU模拟器的界面</string>
+                   <property name="leftMargin">
+                    <number>0</number>
                    </property>
-                  </widget>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <layout class="QGridLayout" name="gridLayout_switch">
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                    </layout>
+                   </item>
+                   <item>
+                    <layout class="QGridLayout" name="gridLayout_analog">
+                     <property name="horizontalSpacing">
+                      <number>7</number>
+                     </property>
+                    </layout>
+                   </item>
+                  </layout>
                  </widget>
                 </widget>
                </item>
