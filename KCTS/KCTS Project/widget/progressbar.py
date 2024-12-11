@@ -30,7 +30,7 @@ class LearniuHProgressBar(QProgressBar):
                 text-align: center;
                 font: 10pt '幼圆';
                 height: 20px;
-                max-width: 105px;
+                max-width: 75px;
             }
             
             QProgressBar::chunk {
