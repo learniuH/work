@@ -1,6 +1,6 @@
 from PyQt5.QtCore import Qt, QSettings, QTimer
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog, QListView, QHeaderView, QTableWidgetItem, \
-    QProgressBar, QLabel, QSpacerItem, QSizePolicy, QTextEdit
+    QProgressBar, QLabel, QSpacerItem, QSizePolicy, QTextEdit, QGridLayout
 
 from UI.main_window_ui import Ui_KCTS
 
@@ -326,8 +326,9 @@ class MainWindow(QMainWindow):
     def switch_quantity_generation(self, byte_num: int, bit_index: Union[int, str], description: str, row: int):
         ''' 开关量区域: checkBox pushButton lineEdit '''
         col = 0
-        if row > 9:     # 每列最多放10个开关
-            row, col = row - 10, 3
+        if row // 15 >= 1:      # 每列最多 15 个开关
+            col += row // 15 * 3
+        row %= 15
         checkBox = LearniuHCheckBox(byte_num, bit_index)
         self.main_window_ui.gridLayout_switch.addWidget(checkBox, row, col)
         pushButton = LearniuHPushButton(description, byte_num, bit_index)
@@ -340,18 +341,19 @@ class MainWindow(QMainWindow):
 
     def update_ou_simulator(self, protocol: dict):
         ''' 更新 OU 模拟器的 UI '''
-        row = 0  # 在 gridLayout 中的行号
+        self.clear_analogGrid_layout(self.main_window_ui.gridLayout_switch)
+        switch_row, analog_row = 0, 0  # 在 gridLayout 中的行号
         for byte_num in protocol:
             # 开关量
             if isinstance(protocol[byte_num], dict):
                 for bit_index, description in protocol[byte_num].items():
                     # 生成自定义控件
-                    self.switch_quantity_generation(byte_num, bit_index, description, row)
-                    row += 1
+                    self.switch_quantity_generation(byte_num, bit_index, description, switch_row)
+                    switch_row += 1
             # 模拟量
             else:
-                self.analog_quantity_generation(byte_num, protocol[byte_num], row)
-                row += 1
+                self.analog_quantity_generation(byte_num, protocol[byte_num], analog_row)
+                analog_row += 1
 
     def top_hint_display(self, tips: str):
         ''' 接收来自 read_file 函数(解析Excel表单) 的报错, 将提示信息在主界面显示2S '''
@@ -365,7 +367,7 @@ class MainWindow(QMainWindow):
     def update_ou_analysis_interface(self, package_parsed: dict):
         ''' 接收 pyqtSignal 信号, 对解析界面的 tableWidget 和 模拟量区域进行状态更新 '''
         self.main_window_ui.ou_analysis_table.setRowCount(0)   # 设置tableWidget行数为0 清空所有行
-        self.clear_analogGrid_layout()      # 清除模拟量解析区的所有控件
+        self.clear_analogGrid_layout(self.main_window_ui.analog_gridlayout)      # 清除模拟量解析区的所有控件
         gridLayout_col = 0  # 模拟量解析区的列号
         for byte_num in package_parsed:
             # 如果字典的值是字典, 就是开关量, 更新tableWidget
@@ -452,12 +454,12 @@ class MainWindow(QMainWindow):
             horizontal_spacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
             self.main_window_ui.analog_gridlayout.addItem(horizontal_spacer, row, gridLayout_col)
 
-    def clear_analogGrid_layout(self):
-        ''' 删除解析界面的模拟量区的所有控件 '''
+    def clear_analogGrid_layout(self, grid_layout: QGridLayout):
+        ''' 删除 gridLayout 里的所有控件 '''
         # 如果布局中还有控件
-        while self.main_window_ui.analog_gridlayout.count():
+        while grid_layout.count():
             # 获取第一个控件项
-            item = self.main_window_ui.analog_gridlayout.takeAt(0)
+            item = grid_layout.takeAt(0)
             widget = item.widget()      # 获取控件
             if widget is not None:
                 widget.deleteLater()    # 删除控件

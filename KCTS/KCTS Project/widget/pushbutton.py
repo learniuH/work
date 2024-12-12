@@ -23,12 +23,13 @@ class LearniuHPushButton(QPushButton):
         self.setStyleSheet('''
             QPushButton {
                 border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                                  stop: 0 #f6f7fa, stop: 1 #dadbde);
+                                                  stop: 0 #e7e8eb, stop: 1 #e1e3e6);
                 border-radius: 5px;
                 background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                                   stop: 0 #f6f7fa, stop: 1 #dadbde);
-                font: 9pt '幼圆';
+                font: 9pt '微软雅黑';
                 height: 22px;
+                max-width: 160px;
             }
         
             QPushButton:hover {

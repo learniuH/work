@@ -25,10 +25,9 @@ class LearniuHCheckBox(QCheckBox):
     def custom_styles(self):
         ''' 自定义QSS样式 '''
         self.setStyleSheet('''
-            QCheckBox::indicator {
-                /* 设置图片的宽度 高度 */
-                width: 15px;
-                height: 20px;
+            QCheckBox {
+                spacing: 0;     /* 去除 indicator 和 文字间的间隔 */
+                max-width: 15px;    /* 整个控件的大小就是 indicator 的大小 */
             }
             
             QCheckBox::indicator:unchecked {
@@ -37,6 +36,12 @@ class LearniuHCheckBox(QCheckBox):
 
             QCheckBox::indicator:checked {
                 image: url(./widget/img/locked_1.png);
+            }
+            
+            QCheckBox::indicator {
+                /* 设置图片的宽度 高度 */
+                width: 15px;
+                height: 20px;
             }
         ''')
 

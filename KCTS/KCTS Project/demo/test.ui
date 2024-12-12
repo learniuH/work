@@ -597,7 +597,11 @@ QCheckBox::indicator:checked {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QCheckBox::indicator {
+    <string notr="true">QCheckBox {
+	spacing: 0px;
+}
+
+QCheckBox::indicator {
 	width: 85px;
 	height: 35px;
 }

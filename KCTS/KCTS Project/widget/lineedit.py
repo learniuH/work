@@ -32,7 +32,7 @@ class LearniuHLineEdit(QLineEdit):
                 border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                                   stop: 0 #f6f7fa, stop: 1 #dadbde);
                 border-radius: 5px;
-                font: 11pt '幼圆';
+                font: 9pt '微软雅黑';
                 color: #ff55ff;
                 background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                                   stop: 0 #f6f7fa, stop: 1 #dadbde);
