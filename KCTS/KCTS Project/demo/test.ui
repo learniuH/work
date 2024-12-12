@@ -632,7 +632,7 @@ QCheckBox::indicator:checked {
   <widget class="QSlider" name="horizontalSlider">
    <property name="geometry">
     <rect>
-     <x>960</x>
+     <x>870</x>
      <y>240</y>
      <width>160</width>
      <height>22</height>
@@ -650,9 +650,9 @@ QSlider::handle:horizontal {
     border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                       stop: 0 #f6f7fa, stop: 1 #dadbde);
 	border-radius: 5px;
-    width: 18px;
+    width: 2px;
     margin: -2px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */
-    border-radius: 3px;
+
 }
 
 QSlider::add-page:horizontal {
@@ -660,8 +660,10 @@ QSlider::add-page:horizontal {
 }
 
 QSlider::sub-page:horizontal {
+	border: 1px solid #204789;
 	border-radius: 5px;
-    background: pink;
+    background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,
+                                      stop: 0 #05b8cc, stop: 1 #06dcf4);
 }</string>
    </property>
    <property name="sliderPosition">

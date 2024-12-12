@@ -38,5 +38,6 @@ class LearniuHLineEdit(QLineEdit):
                                                   stop: 0 #f6f7fa, stop: 1 #dadbde);
                 height: 22px;
                 max-width: 35px;
+                min-width: 30px;
             }
         ''')

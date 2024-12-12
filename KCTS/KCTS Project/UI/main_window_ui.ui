@@ -3121,7 +3121,7 @@ QTableWidget::item {
                   </layout>
                  </widget>
                  <widget class="QWidget" name="ou_simulator_page">
-                  <layout class="QHBoxLayout" name="horizontalLayout_5">
+                  <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="3,2">
                    <property name="spacing">
                     <number>7</number>
                    </property>
@@ -3129,13 +3129,13 @@ QTableWidget::item {
                     <number>0</number>
                    </property>
                    <property name="topMargin">
-                    <number>0</number>
+                    <number>10</number>
                    </property>
                    <property name="rightMargin">
                     <number>0</number>
                    </property>
                    <property name="bottomMargin">
-                    <number>0</number>
+                    <number>10</number>
                    </property>
                    <item>
                     <layout class="QGridLayout" name="gridLayout_switch">

@@ -29,7 +29,7 @@ class LearniuHPushButton(QPushButton):
                                                   stop: 0 #f6f7fa, stop: 1 #dadbde);
                 font: 9pt '微软雅黑';
                 height: 22px;
-                max-width: 160px;
+                max-width: 210px;
             }
         
             QPushButton:hover {

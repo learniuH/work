@@ -1,6 +1,6 @@
 from PyQt5.QtCore import Qt, QSettings, QTimer
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog, QListView, QHeaderView, QTableWidgetItem, \
-    QProgressBar, QLabel, QSpacerItem, QSizePolicy, QTextEdit, QGridLayout
+    QProgressBar, QLabel, QSpacerItem, QSizePolicy, QTextEdit, QGridLayout, QSlider
 
 from UI.main_window_ui import Ui_KCTS
 
@@ -12,6 +12,7 @@ from services.read_excel import ExcelRead
 from widget.checkbox import LearniuHCheckBox
 from widget.pushbutton import LearniuHPushButton
 from widget.lineedit import LearniuHLineEdit
+from widget.slider import LearniuHSlider
 
 import sys
 import socket
@@ -337,7 +338,17 @@ class MainWindow(QMainWindow):
         self.main_window_ui.gridLayout_switch.addWidget(lineEdit, row, col + 2)
 
     def analog_quantity_generation(self, byte_num: Union[int, str], description: str, row: int):
-        pass
+        col = 0
+        if row // 15 >= 1:      # 每列最多 15 个开关
+            col += row // 15 * 3
+        row %= 15
+        pushButton = LearniuHPushButton(description, byte_num)
+        self.main_window_ui.gridLayout_analog.addWidget(pushButton, row, col)
+        lineEdit = LearniuHLineEdit(byte_num)
+        self.main_window_ui.gridLayout_analog.addWidget(lineEdit, row, col + 1)
+        slider = LearniuHSlider(byte_num)
+        self.main_window_ui.gridLayout_analog.addWidget(slider, row, col + 2)
+
 
     def update_ou_simulator(self, protocol: dict):
         ''' 更新 OU 模拟器的 UI '''
