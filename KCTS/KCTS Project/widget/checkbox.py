@@ -18,7 +18,7 @@ class LearniuHCheckBox(QCheckBox):
         self.byte_num = byte_num
         self.bit_index = bit_index
 
-        self.setText(ConstantText.BLANKTEXT)        # 空白文本
+        self.setText(ConstantText.BLANK_TEXT)        # 空白文本
 
         self.custom_styles()
 

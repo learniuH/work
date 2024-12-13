@@ -4,6 +4,7 @@ from pushbutton import LearniuHPushButton
 from lineedit import LearniuHLineEdit
 from progressbar import LearniuHProgressBar
 from slider import LearniuHSlider
+from spacer import LearniuHSpacer
 
 class MainWindow(QWidget):
     def __init__(self):
@@ -15,15 +16,17 @@ class MainWindow(QWidget):
         lineedit = LearniuHLineEdit(12)
         progressbar = LearniuHProgressBar(12)
         slider = LearniuHSlider(12)
+        spacer = LearniuHSpacer()
 
         self.layout.addWidget(checkBox, 0, 0)
         self.layout.addWidget(button, 0, 1)
         self.layout.addWidget(lineedit, 0, 2)
-        self.layout.addWidget(progressbar, 0, 3)
-        self.layout.addWidget(slider, 0, 4)
+        self.layout.addItem(spacer, 0, 3)
+        self.layout.addWidget(progressbar, 0, 4)
+        self.layout.addWidget(slider, 0, 5)
 
         horizontal_spacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-        self.layout.addItem(horizontal_spacer, 0, 5)
+        self.layout.addItem(horizontal_spacer, 0, 6)
 
 
 

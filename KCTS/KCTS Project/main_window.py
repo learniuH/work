@@ -13,6 +13,8 @@ from widget.checkbox import LearniuHCheckBox
 from widget.pushbutton import LearniuHPushButton
 from widget.lineedit import LearniuHLineEdit
 from widget.slider import LearniuHSlider
+from widget.spacer import LearniuHSpacer
+from widget.constant import ConstantText
 
 import sys
 import socket
@@ -327,9 +329,14 @@ class MainWindow(QMainWindow):
     def switch_quantity_generation(self, byte_num: int, bit_index: Union[int, str], description: str, row: int):
         ''' 开关量区域: checkBox pushButton lineEdit '''
         col = 0
-        if row // 13 >= 1:      # 每列最多 13 个开关
-            col += row // 13 * 3
-        row %= 13
+        if row // ConstantText.WIDGET_PER_COL >= 1:  # 每列最多 13 个开关
+            col += (row // ConstantText.WIDGET_PER_COL) * (3 + 1)
+            if row % ConstantText.WIDGET_PER_COL == 0:
+                # 换行时, 在换行的左边一列的首行添加 spacer 作为间隔
+                spacer = LearniuHSpacer()
+                self.main_window_ui.gridLayout_switch.addItem(spacer, row % ConstantText.WIDGET_PER_COL, col - 1)
+        row %= ConstantText.WIDGET_PER_COL
+
         checkBox = LearniuHCheckBox(byte_num, bit_index)
         self.main_window_ui.gridLayout_switch.addWidget(checkBox, row, col)
         pushButton = LearniuHPushButton(description, byte_num, bit_index)
@@ -338,10 +345,16 @@ class MainWindow(QMainWindow):
         self.main_window_ui.gridLayout_switch.addWidget(lineEdit, row, col + 2)
 
     def analog_quantity_generation(self, byte_num: Union[int, str], description: str, row: int):
+        ''' 模拟量区域: pushButton lineEdit slider '''
         col = 0
-        if row // 13 >= 1:      # 每列最多 13 个开关
-            col += row // 13 * 3
-        row %= 13
+        if row // ConstantText.WIDGET_PER_COL >= 1:      # 每列最多 13 个开关
+            col += (row // ConstantText.WIDGET_PER_COL) * (3 + 1)
+            if row % ConstantText.WIDGET_PER_COL == 0:
+                # 换行时, 在换行的左边一列的首行添加 spacer 作为间隔
+                spacer = LearniuHSpacer()
+                self.main_window_ui.gridLayout_analog.addItem(spacer, row % ConstantText.WIDGET_PER_COL, col - 1)
+        row %= ConstantText.WIDGET_PER_COL
+
         pushButton = LearniuHPushButton(description, byte_num)
         self.main_window_ui.gridLayout_analog.addWidget(pushButton, row, col)
         lineEdit = LearniuHLineEdit(byte_num)

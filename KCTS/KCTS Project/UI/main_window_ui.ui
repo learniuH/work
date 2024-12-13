@@ -3121,7 +3121,7 @@ QTableWidget::item {
                   </layout>
                  </widget>
                  <widget class="QWidget" name="ou_simulator_page">
-                  <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="3,2">
+                  <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="3,0,2">
                    <property name="spacing">
                     <number>7</number>
                    </property>
@@ -3149,6 +3149,22 @@ QTableWidget::item {
                       <number>8</number>
                      </property>
                     </layout>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_7">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeType">
+                      <enum>QSizePolicy::Fixed</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>25</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                    </spacer>
                    </item>
                    <item>
                     <layout class="QGridLayout" name="gridLayout_analog">
