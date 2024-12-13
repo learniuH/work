@@ -1,3 +1,4 @@
+from PyQt5.QtGui import QPainter, QFont
 from PyQt5.QtWidgets import QSlider
 from PyQt5.Qt import Qt
 
@@ -56,3 +57,33 @@ class LearniuHSlider(QSlider):
                                             stop: 0 #05b8cc, stop: 1 #06dcf4);
             }
         ''')
+
+    def paintEvent(self, event):
+        super().paintEvent(event)
+
+        # 创建绘制器
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.Antialiasing)
+
+        # 设置字体
+        font = QFont("微软雅黑", 10)
+        painter.setFont(font)
+
+        # 获取滑块的当前值
+        value = self.value()
+
+        # 获取滑块的几何位置和大小
+        rect = self.geometry()
+        slider_width = self.width()
+        slider_height = self.height()
+
+        # 计算文字位置（居中显示）
+        text = str(value)
+        text_width = painter.fontMetrics().width(text)
+        text_height = painter.fontMetrics().height()
+        x = (slider_width - text_width) / 2
+        y = (slider_height + text_height) / 2 - 4
+
+        # 绘制文字
+        painter.drawText(int(x), int(y), text)
+        painter.end()
