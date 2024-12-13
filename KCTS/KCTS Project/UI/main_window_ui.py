@@ -1581,7 +1581,7 @@ class Ui_KCTS(object):
         self.gridLayout_switch.setVerticalSpacing(8)
         self.gridLayout_switch.setObjectName("gridLayout_switch")
         self.horizontalLayout_5.addLayout(self.gridLayout_switch)
-        spacerItem6 = QtWidgets.QSpacerItem(25, 0, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        spacerItem6 = QtWidgets.QSpacerItem(30, 0, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_5.addItem(spacerItem6)
         self.gridLayout_analog = QtWidgets.QGridLayout()
         self.gridLayout_analog.setHorizontalSpacing(7)

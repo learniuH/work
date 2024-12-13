@@ -31,17 +31,17 @@ class LearniuHCheckBox(QCheckBox):
             }
             
             QCheckBox::indicator:unchecked {
-                image: url(./widget/img/unlock_1.png);
+                image: url(./widget/img/unlocked.png);
             }
 
             QCheckBox::indicator:checked {
-                image: url(./widget/img/locked_1.png);
+                image: url(./widget/img/locked.png);
             }
             
             QCheckBox::indicator {
                 /* 设置图片的宽度 高度 */
                 width: 15px;
-                height: 20px;
+                height: 28px;
             }
         ''')
 

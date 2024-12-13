@@ -20,6 +20,7 @@ class LearniuHSlider(QSlider):
     def costom_style(self):
         self.setStyleSheet('''
             QSlider {
+                max-height: 28px;
                 max-width: 100px;
                 min-width: 100px;
             }
@@ -29,19 +30,23 @@ class LearniuHSlider(QSlider):
             }
             
             QSlider::handle:horizontal {
+                border-radius: 5px;
+                width: 6px;
                 background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                             stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,
                                             stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);
                 border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                                   stop: 0 #f6f7fa, stop: 1 #dadbde);
-                border-radius: 5px;
-                width: 4px;
+                
                 margin: -2px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */
             
             }
             
             QSlider::add-page:horizontal {
-                background: transparent;
+                border: 1px solid #204789;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+                background: white;
             }
             
             QSlider::sub-page:horizontal {

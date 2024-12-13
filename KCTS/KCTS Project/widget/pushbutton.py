@@ -29,9 +29,7 @@ class LearniuHPushButton(QPushButton):
                                                   stop: 0 #f6f7fa, stop: 1 #dadbde);
                 font: 9pt '微软雅黑';
                 
-                max-height: 30px;
-                
-                
+                max-height: 28px;
                 max-width: 200px;
             }
         
