@@ -327,9 +327,9 @@ class MainWindow(QMainWindow):
     def switch_quantity_generation(self, byte_num: int, bit_index: Union[int, str], description: str, row: int):
         ''' 开关量区域: checkBox pushButton lineEdit '''
         col = 0
-        if row // 15 >= 1:      # 每列最多 15 个开关
-            col += row // 15 * 3
-        row %= 15
+        if row // 13 >= 1:      # 每列最多 13 个开关
+            col += row // 13 * 3
+        row %= 13
         checkBox = LearniuHCheckBox(byte_num, bit_index)
         self.main_window_ui.gridLayout_switch.addWidget(checkBox, row, col)
         pushButton = LearniuHPushButton(description, byte_num, bit_index)
@@ -339,9 +339,9 @@ class MainWindow(QMainWindow):
 
     def analog_quantity_generation(self, byte_num: Union[int, str], description: str, row: int):
         col = 0
-        if row // 15 >= 1:      # 每列最多 15 个开关
-            col += row // 15 * 3
-        row %= 15
+        if row // 13 >= 1:      # 每列最多 13 个开关
+            col += row // 13 * 3
+        row %= 13
         pushButton = LearniuHPushButton(description, byte_num)
         self.main_window_ui.gridLayout_analog.addWidget(pushButton, row, col)
         lineEdit = LearniuHLineEdit(byte_num)

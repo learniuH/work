@@ -28,8 +28,10 @@ class LearniuHPushButton(QPushButton):
                 background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                                   stop: 0 #f6f7fa, stop: 1 #dadbde);
                 font: 9pt '微软雅黑';
-                height: 22px;
+                min-height: 25px;
+                max-height: 30px;
                 max-width: 210px;
+                min-width: 110px;
             }
         
             QPushButton:hover {

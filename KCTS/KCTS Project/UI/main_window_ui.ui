@@ -3142,12 +3142,21 @@ QTableWidget::item {
                      <property name="rightMargin">
                       <number>0</number>
                      </property>
+                     <property name="horizontalSpacing">
+                      <number>7</number>
+                     </property>
+                     <property name="verticalSpacing">
+                      <number>8</number>
+                     </property>
                     </layout>
                    </item>
                    <item>
                     <layout class="QGridLayout" name="gridLayout_analog">
                      <property name="horizontalSpacing">
                       <number>7</number>
+                     </property>
+                     <property name="verticalSpacing">
+                      <number>8</number>
                      </property>
                     </layout>
                    </item>
