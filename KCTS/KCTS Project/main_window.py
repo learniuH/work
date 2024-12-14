@@ -8,6 +8,7 @@ from config.validators import Validators
 from config.qss import QLabelStyleSheet, SendCycle, AnalogStyleSheet
 from services.network import NetworkManager
 from services.read_excel import ExcelRead
+from services.ou_simulator import OUSimulator
 
 from widget.checkbox import LearniuHCheckBox
 from widget.pushbutton import LearniuHPushButton
@@ -339,10 +340,21 @@ class MainWindow(QMainWindow):
 
         checkBox = LearniuHCheckBox(byte_num, bit_index)
         self.main_window_ui.gridLayout_switch.addWidget(checkBox, row, col)
+
         pushButton = LearniuHPushButton(description, byte_num, bit_index)
         self.main_window_ui.gridLayout_switch.addWidget(pushButton, row, col + 1)
+
         lineEdit = LearniuHLineEdit(byte_num, bit_index)
         self.main_window_ui.gridLayout_switch.addWidget(lineEdit, row, col + 2)
+
+
+        # 控件绑定事件函数
+        checkBox.stateChanged.connect(lambda: OUSimulator.checkBox_status_changed(checkBox, pushButton, lineEdit))
+
+        pushButton.pressed.connect(lambda: OUSimulator.switch_pushButton_pressed(pushButton))
+        pushButton.released.connect(lambda: OUSimulator.switch_pushButton_released(pushButton))
+
+        lineEdit.setValidator(Validators.get_key_validator())
 
     def analog_quantity_generation(self, byte_num: Union[int, str], description: str, row: int):
         ''' 模拟量区域: pushButton lineEdit slider '''
@@ -357,16 +369,26 @@ class MainWindow(QMainWindow):
 
         pushButton = LearniuHPushButton(description, byte_num)
         self.main_window_ui.gridLayout_analog.addWidget(pushButton, row, col)
+
         lineEdit = LearniuHLineEdit(byte_num)
         self.main_window_ui.gridLayout_analog.addWidget(lineEdit, row, col + 1)
+
         slider = LearniuHSlider(byte_num)
         self.main_window_ui.gridLayout_analog.addWidget(slider, row, col + 2)
 
+        # 将控件绑定事件函数
+        pushButton.pressed.connect(lambda: OUSimulator.analog_pushButton_pressed(pushButton))
+        pushButton.released.connect(lambda: OUSimulator.analog_pushButton_released(pushButton))
+
+        lineEdit.setValidator(Validators.get_key_validator())
+
+        slider.valueChanged.connect(lambda: OUSimulator.slider_value_changed(slider))
 
     def update_ou_simulator(self, protocol: dict):
         ''' 更新 OU 模拟器的 UI '''
         self.clear_analogGrid_layout(self.main_window_ui.gridLayout_switch)
-        switch_row, analog_row = 0, 0  # 在 gridLayout 中的行号
+        self.clear_analogGrid_layout(self.main_window_ui.gridLayout_analog)
+        switch_row, analog_row = 0, 0   # 在 gridLayout 中的行号
         for byte_num in protocol:
             # 开关量
             if isinstance(protocol[byte_num], dict):
@@ -564,6 +586,14 @@ class MainWindow(QMainWindow):
         ''' 清除历史记录里所有内容 '''
         self.main_window_ui.history_record_textEdit.clear()
         self.main_window_ui.deduplication_textEdit.clear()
+
+    def keyPressEvent(self, event):
+        ''' 重写该方法, 用于处理键盘按下时, OU模拟器的按键触发 '''
+        pass
+
+    def keyReleaseEvent(self, event):
+        ''' 重写该方法, 用于处理键盘释放时, OU模拟器的按键释放 '''
+        pass
 
     def mousePressEvent(self, event):
         ''' 鼠标点击空白区域清除所有控件的焦点 '''

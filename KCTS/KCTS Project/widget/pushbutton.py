@@ -45,4 +45,8 @@ class LearniuHPushButton(QPushButton):
                 padding-top: 1px;
                 padding-left: 1px;
             }
+                      
+            QPushButton:disabled {
+                background-color: #fcd97f;
+            }
         ''')
