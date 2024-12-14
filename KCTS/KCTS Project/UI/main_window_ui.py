@@ -216,6 +216,7 @@ class Ui_KCTS(object):
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.navigation_list = QtWidgets.QListWidget(self.Body)
         self.navigation_list.setMinimumSize(QtCore.QSize(120, 0))
+        self.navigation_list.setFocusPolicy(QtCore.Qt.NoFocus)
         self.navigation_list.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.navigation_list.setStyleSheet("QListWidget {\n"
 "    background: qlineargradient(\n"
