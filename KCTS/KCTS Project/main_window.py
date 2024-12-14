@@ -1,6 +1,6 @@
 from PyQt5.QtCore import Qt, QSettings, QTimer
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog, QListView, QHeaderView, QTableWidgetItem, \
-    QProgressBar, QLabel, QSpacerItem, QSizePolicy, QTextEdit, QGridLayout, QSlider
+    QProgressBar, QLabel, QSpacerItem, QSizePolicy, QTextEdit, QGridLayout, QSlider, QLineEdit
 
 from UI.main_window_ui import Ui_KCTS
 
@@ -322,6 +322,7 @@ class MainWindow(QMainWindow):
 
             # 更新 OU 模拟器
             self.update_ou_simulator(protocol)
+            OUSimulator.key_button = {}
 
             # 将信号 PackageFromOU 解析后的包发出的 pyqtSignal 信号绑定到函数
             self.network_manager.ou_package_receiver.update_switch_signal.connect(self.update_ou_analysis_interface)    # 更新OU解析界面
@@ -355,6 +356,7 @@ class MainWindow(QMainWindow):
         pushButton.released.connect(lambda: OUSimulator.switch_pushButton_released(pushButton))
 
         lineEdit.setValidator(Validators.get_key_validator())
+        lineEdit.textChanged.connect(lambda: OUSimulator.lineEdit_text_changed(lineEdit, pushButton, checkBox))
 
     def analog_quantity_generation(self, byte_num: Union[int, str], description: str, row: int):
         ''' 模拟量区域: pushButton lineEdit slider '''
@@ -381,6 +383,7 @@ class MainWindow(QMainWindow):
         pushButton.released.connect(lambda: OUSimulator.analog_pushButton_released(pushButton))
 
         lineEdit.setValidator(Validators.get_key_validator())
+        lineEdit.textChanged.connect(lambda: OUSimulator.lineEdit_text_changed(lineEdit, pushButton))
 
         slider.valueChanged.connect(lambda: OUSimulator.slider_value_changed(slider))
 
@@ -589,11 +592,77 @@ class MainWindow(QMainWindow):
 
     def keyPressEvent(self, event):
         ''' 重写该方法, 用于处理键盘按下时, OU模拟器的按键触发 '''
-        pass
+        key = event.text().upper()
+
+        # 在 OU 模拟器界面上
+        if self.main_window_ui.sub_interface_stacked.currentIndex() == 2 \
+            and self.main_window_ui.tabWidget.currentIndex() == 0 \
+            and self.main_window_ui.ou_analysis_send_stacked.currentIndex() == 1:
+
+            # OU模拟器控件已经生成; 过滤长按键盘重复触发的 keyPressEvent 和 keyReleaseEvent
+            if (self.main_window_ui.gridLayout_switch.count() or self.main_window_ui.gridLayout_analog.count()) \
+                and not event.isAutoRepeat() and key.isalpha():
+                # 遍历已填写字母的 lineEdit
+                for lineEdit, key_widget in OUSimulator.key_button.items():
+                    if lineEdit.bit_index is not None:
+                        # 开关量: 按键与 lineEdit 字母一致; checkBox 没有 checked; pushButton 没有被鼠标点击
+                        if key in key_widget \
+                            and not key_widget[key][1].isChecked() \
+                            and not key_widget[key][0].isDown():
+
+                            OUSimulator.switch_pushButton_pressed(key_widget[key][0])
+                            key_widget[key][0].setDisabled(True)
+                            lineEdit.setReadOnly(True)
+                        else:
+                            continue
+
+                    else:
+                        # 模拟量: 按键与 lineEdit 字母一致; checkBox 没有 checked
+                        if key in key_widget and not key_widget[key].isDown():
+
+                            OUSimulator.analog_pushButton_pressed(key_widget[key])
+                            key_widget[key].setDisabled(True)
+                            lineEdit.setReadOnly(True)
+                        else:
+                            continue
+
 
     def keyReleaseEvent(self, event):
         ''' 重写该方法, 用于处理键盘释放时, OU模拟器的按键释放 '''
-        pass
+        key = event.text().upper()
+        focused_widget = QApplication.focusWidget()
+
+        # 在 OU 模拟器界面上
+        if self.main_window_ui.sub_interface_stacked.currentIndex() == 2 \
+            and self.main_window_ui.tabWidget.currentIndex() == 0 \
+            and self.main_window_ui.ou_analysis_send_stacked.currentIndex() == 1:
+
+            # OU模拟器控件已经生成; 过滤长按键盘重复触发的 keyPressEvent 和 keyReleaseEvent; lineEdit 获得焦点不做处理
+            if (self.main_window_ui.gridLayout_switch.count() or self.main_window_ui.gridLayout_analog.count()) \
+                and not event.isAutoRepeat() and key.isalpha() and not isinstance(focused_widget, QLineEdit):
+                # 遍历已填写字母的 lineEdit
+                for lineEdit, key_widget in OUSimulator.key_button.items():
+                    if lineEdit.bit_index is not None:
+                        # 开关量: 按键与 lineEdit 字母一致; checkBox 没有 checked
+                        if key in key_widget \
+                            and not key_widget[key][1].isChecked() \
+                            and not key_widget[key][0].isDown():
+
+                            OUSimulator.switch_pushButton_released(key_widget[key][0])
+                            key_widget[key][0].setEnabled(True)
+                            lineEdit.setReadOnly(False)
+                        else:
+                            continue
+                    else:
+                        # 模拟量: 按键与 lineEdit 字母一致; pushButton 没有被按下
+                        if key in key_widget and not key_widget[key].isDown():
+
+                            OUSimulator.analog_pushButton_released(key_widget[key])
+                            key_widget[key].setEnabled(True)
+                            lineEdit.setReadOnly(False)
+                        else:
+                            continue
+
 
     def mousePressEvent(self, event):
         ''' 鼠标点击空白区域清除所有控件的焦点 '''
