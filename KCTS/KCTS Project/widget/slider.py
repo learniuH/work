@@ -4,6 +4,12 @@ from PyQt5.Qt import Qt
 
 from typing import Union
 
+
+try:
+    from constant import ConstantText
+except ImportError:
+    from .constant import ConstantText
+
 class LearniuHSlider(QSlider):
     ''' 自定义 Slider '''
 
@@ -16,13 +22,27 @@ class LearniuHSlider(QSlider):
         self.byte_num = byte_num
         self.bit_index = bit_index
 
+        if isinstance(byte_num, int):
+            # 单字节的模拟量取值范围
+            self.setMinimum(0)      # 设置 slider 最小值
+            self.setMaximum(100)       # 设置 slider 最大值
+        else:
+            # 多字节模拟量取值范围
+            maximum = 0xFF
+            value_range = ConstantText.value_range(byte_num)
+            for i in range(value_range[1] - value_range[0]):
+                maximum = maximum << 8 | 0xFF
+
+            self.setMinimum(0)
+            self.setMaximum(maximum)
+
         self.costom_style()
 
     def costom_style(self):
         self.setStyleSheet('''
             QSlider {
                 max-height: 28px;
-                max-width: 100px;
+                max-width: 150px;
                 min-width: 100px;
             }
         
@@ -78,7 +98,7 @@ class LearniuHSlider(QSlider):
         slider_height = self.height()
 
         # 计算文字位置（居中显示）
-        text = str(value)
+        text = f'0x{value:X}'
         text_width = painter.fontMetrics().width(text)
         text_height = painter.fontMetrics().height()
         x = (slider_width - text_width) / 2
