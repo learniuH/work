@@ -33,12 +33,13 @@ class Validators:
 
     @staticmethod
     def get_hex_validator() -> QRegExpValidator:
-        """获取十六进制验证器
+        """获取十六进制验证器, 允许输入一位或两位十六进制数字和空格的组合
 
         Returns:
             十六进制验证器
         """
-        hex_regex = QRegExp('^(([A-Fa-f0-9]{2} ){0,9}[A-Fa-f0-9]{2})?$')
+        # hex_regex = QRegExp('^(([A-Fa-f0-9]{2} ){0,9}[A-Fa-f0-9]{2})?$')
+        hex_regex = QRegExp('^([0-9A-Fa-f]{1,2}(\s+[0-9A-Fa-f]{1,2})*\s*)?$')
         return QRegExpValidator(hex_regex)
 
     @staticmethod

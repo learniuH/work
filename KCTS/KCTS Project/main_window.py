@@ -9,6 +9,7 @@ from config.qss import QLabelStyleSheet, SendCycle, AnalogStyleSheet
 from services.network import NetworkManager
 from services.read_excel import ExcelRead
 from services.ou_simulator import OUSimulator
+from services.package_send import PackageToMu
 
 from widget.checkbox import LearniuHCheckBox
 from widget.pushbutton import LearniuHPushButton
@@ -69,6 +70,7 @@ class MainWindow(QMainWindow):
         self.main_window_ui.mu_recv_port_lineEdit.setValidator(Validators.get_port_validator())     # MU 接收端口验证器
         self.main_window_ui.kc_tu_ip_lineEdit.setValidator(Validators.get_ipv4_validator())         # KCTU IP 验证器
         self.main_window_ui.kc_tu_recv_port_lineEdit.setValidator(Validators.get_port_validator())  # KCTU 接收端口验证器
+        self.main_window_ui.lineEdit_package_header.setValidator(Validators.get_hex_validator())    # 十六进制组合验证器
 
     def setup_connections(self):
         ''' 设置信号连接 '''
@@ -83,6 +85,9 @@ class MainWindow(QMainWindow):
         self.main_window_ui.import_protocol_pushButton.clicked.connect(self.open_file_dialog)
         # comboBox 的 index 改变时, 解析表单
         self.main_window_ui.sheet_name_list_comboBox.currentIndexChanged.connect(self.parse_excel)
+
+        # header lineEdit 改变时, 改变发给MU包的包头
+        self.main_window_ui.lineEdit_package_header.textChanged.connect(lambda: PackageToMu.update_package_header(self.main_window_ui.lineEdit_package_header))
 
         # checkBox 的状态改变时, 切换去重和不去重两个界面
         self.main_window_ui.deduplication_checkBox.stateChanged.connect(self.history_interface_switch)
@@ -281,12 +286,15 @@ class MainWindow(QMainWindow):
             self.listening_ou_thread_init()
             self.main_window_ui.IOQuery_pushButton.setDisabled(True)
             self.main_window_ui.send_package_pushButton.setEnabled(True)
+            self.main_window_ui.lineEdit_package_header.setVisible(False)
+
         # 模拟发包界面, IO查询使能, 模拟发包禁用, 关闭接收OU数据的线程, 启动往MU发包线程
         elif index == 1:# and not self.network_manager.is_sending_mu:
             self.network_manager.stop_receiving_ou()
             self.sending_mu_thread_init()
             self.main_window_ui.IOQuery_pushButton.setEnabled(True)
             self.main_window_ui.send_package_pushButton.setDisabled(True)
+            self.main_window_ui.lineEdit_package_header.setVisible(True)
 
     def open_file_dialog(self):
         ''' 打开文件选择对话框, 只显示 Excel 文件 '''
@@ -322,13 +330,18 @@ class MainWindow(QMainWindow):
             # 实例化解析OU包的类
             self.network_manager.ou_package_receiver_inst(protocol)
 
-            # 更新 OU 模拟器
-            self.update_ou_simulator(protocol)
-            OUSimulator.key_button = {}
-
             # 将信号 PackageFromOU 解析后的包发出的 pyqtSignal 信号绑定到函数
             self.network_manager.ou_package_receiver.update_switch_signal.connect(self.update_ou_analysis_interface)    # 更新OU解析界面
             self.network_manager.ou_package_receiver.update_switch_signal.connect(self.update_history_record)   # 更新历史记录
+
+
+            # 表单解析完成后 模拟器按钮使能
+            self.main_window_ui.send_package_pushButton.setEnabled(True)
+            # 更新 OU 模拟器 UI
+            self.update_ou_simulator(protocol)
+            OUSimulator.key_button = {}
+            # OU模拟器组包
+            PackageToMu.generate_package(protocol_length)
 
     def switch_quantity_generation(self, byte_num: int, bit_index: Union[int, str], description: str, row: int):
         ''' 开关量区域: checkBox pushButton lineEdit '''

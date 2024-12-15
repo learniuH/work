@@ -1,3 +1,7 @@
+import re
+
+from PyQt5.QtWidgets import QLineEdit
+
 
 class QueryCollectionStatus:
     ''' 构造采集状态的UDP包 '''
@@ -52,6 +56,32 @@ class QueryCollectionStatus:
         cls.sequence_num += 1
         return package
 
+class PackageToMu:
+    ''' OU模拟器给MU发的包 '''
+    package: bytearray = None           # 要发送的数据包
+    package_header_len: int = 0         # 数据包的包头长度
+
+    @classmethod
+    def generate_package(cls, package_length: int):
+        ''' 主界面的 comboBox indexchanged 后, 生成一个包长确定的包 '''
+        cls.package = bytearray(package_length)
+
+    @classmethod
+    def update_package_header(cls, lineEdit: QLineEdit):
+        ''' 获取主界面 header lineEdit 的文本, 转换为字节值存入数据包 '''
+        lineEdit_text = lineEdit.text()
+        header_array = re.findall(r'[0-9A-Fa-f]+', lineEdit_text)
+
+        if len(header_array) < cls.package_header_len:
+            # 将数据包包头变短部分的数置0
+            cls.package[len(header_array): cls.package_header_len] = [0] * (cls.package_header_len - len(header_array))
+
+        # 更新包头的长度
+        cls.package_header_len = len(header_array)
+        # 更新发送的数据包的包头
+        for i, element in enumerate(header_array):
+            cls.package[i] = int(element, 16)
+        print(' '.join(f'{byte:02X}' for byte in cls.package))
 
 if __name__ == '__main__':
     while True:

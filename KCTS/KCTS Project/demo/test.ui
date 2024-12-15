@@ -632,8 +632,8 @@ QCheckBox::indicator:checked {
   <widget class="QSlider" name="horizontalSlider">
    <property name="geometry">
     <rect>
-     <x>870</x>
-     <y>240</y>
+     <x>460</x>
+     <y>330</y>
      <width>160</width>
      <height>22</height>
     </rect>
@@ -722,8 +722,8 @@ QSlider::sub-page:horizontal {
   <widget class="QSlider" name="horizontalSlider_2">
    <property name="geometry">
     <rect>
-     <x>470</x>
-     <y>370</y>
+     <x>460</x>
+     <y>300</y>
      <width>160</width>
      <height>20</height>
     </rect>

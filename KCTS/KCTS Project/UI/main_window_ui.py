@@ -1634,6 +1634,7 @@ class Ui_KCTS(object):
         self.IOQuery_pushButton.setObjectName("IOQuery_pushButton")
         self.horizontalLayout_3.addWidget(self.IOQuery_pushButton)
         self.send_package_pushButton = QtWidgets.QPushButton(self.real_time_analysis_tab)
+        self.send_package_pushButton.setEnabled(False)
         self.send_package_pushButton.setMinimumSize(QtCore.QSize(84, 45))
         self.send_package_pushButton.setMaximumSize(QtCore.QSize(95, 16777215))
         font = QtGui.QFont()
@@ -1670,6 +1671,22 @@ class Ui_KCTS(object):
 "")
         self.send_package_pushButton.setObjectName("send_package_pushButton")
         self.horizontalLayout_3.addWidget(self.send_package_pushButton)
+        self.lineEdit_package_header = QtWidgets.QLineEdit(self.real_time_analysis_tab)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lineEdit_package_header.sizePolicy().hasHeightForWidth())
+        self.lineEdit_package_header.setSizePolicy(sizePolicy)
+        self.lineEdit_package_header.setMinimumSize(QtCore.QSize(260, 30))
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        self.lineEdit_package_header.setFont(font)
+        self.lineEdit_package_header.setStyleSheet("QLineEdit {\n"
+"    color: white;\n"
+"    \n"
+"}")
+        self.lineEdit_package_header.setObjectName("lineEdit_package_header")
+        self.horizontalLayout_3.addWidget(self.lineEdit_package_header)
         self.verticalLayout_4.addLayout(self.horizontalLayout_3)
         self.tabWidget.addTab(self.real_time_analysis_tab, "")
         self.history_tab = QtWidgets.QWidget()
@@ -1934,4 +1951,4 @@ class Ui_KCTS(object):
         self.deduplication_checkBox.setText(_translate("KCTS", "去重"))
         self.clear_record_pushButton.setText(_translate("KCTS", "一键清除"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.history_tab), _translate("KCTS", "历史记录"))
-from . import resource_rc
+import resource_rc

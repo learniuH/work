@@ -3245,6 +3245,9 @@ QPushButton:disabled {
                  </item>
                  <item>
                   <widget class="QPushButton" name="send_package_pushButton">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
                    <property name="minimumSize">
                     <size>
                      <width>84</width>
@@ -3295,6 +3298,33 @@ QPushButton:disabled {
                    </property>
                    <property name="text">
                     <string>模拟发包</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit_package_header">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>260</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>微软雅黑</family>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QLineEdit {
+	color: white;
+	
+}</string>
                    </property>
                   </widget>
                  </item>

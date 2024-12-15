@@ -6,7 +6,7 @@ except ImportError:
     from .constant import ConstantText
 
 class LearniuHSpacer(QSpacerItem):
-    ''' 自定义 width 15px 的 spacer '''
+    ''' 自定义 width 的 spacer '''
     def __init__(self):
         super().__init__(ConstantText.SPACER_WIDTH, 10, QSizePolicy.Fixed, QSizePolicy.Minimum)
 

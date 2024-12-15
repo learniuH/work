@@ -5,6 +5,7 @@ import time
 from typing import Optional, Tuple
 
 from PyQt5.QtCore import QObject, pyqtSignal
+from PyQt5.QtWidgets import QLineEdit
 
 from .package_send import QueryCollectionStatus as QueryStatus
 from .package_parse import PackageFromTU, PackageFromOU
