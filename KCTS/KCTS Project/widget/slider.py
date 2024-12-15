@@ -88,7 +88,7 @@ class LearniuHSlider(QSlider):
         painter.setRenderHint(QPainter.Antialiasing)
 
         # 设置字体
-        font = QFont("微软雅黑", 10)
+        font = QFont("微软雅黑", 9)
         painter.setFont(font)
 
         # 获取滑块的当前值

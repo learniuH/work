@@ -228,16 +228,18 @@ class MainWindow(QMainWindow):
         if index == 2:
             self.sending_tu_thread_init()   # 开始往TU发包
 
-            # 同时在模拟发包界面, 开启往MU发包线程
+            # 同时在OU模拟器界面, 暂停接收OU的数据, 开启往MU发包
             if self.main_window_ui.ou_analysis_send_stacked.currentIndex() == 1:
+                self.network_manager.stop_receiving_ou()
                 self.sending_mu_thread_init()
 
-        # 切换到非输出查询界面, 关闭给TU发送数据的线程
+        # 切换到非输出查询界面, 停止给TU发包
         else:
             self.network_manager.stop_sending_tu()
-            # 如果同时在主动给MU发包, 就关闭给MU发数据的线程
+            # 如果同时在主动给MU发包, 就关闭给MU发数据的线程, 恢复监听OU的线程
             if self.network_manager.is_sending_mu:
                 self.network_manager.stop_sending_mu()
+                self.listening_ou_thread_init()
 
     def apply_current_configuration(self):
         ''' 点击应用, 停止所有收发的线程, 更新配置后重新启用 '''
@@ -270,7 +272,7 @@ class MainWindow(QMainWindow):
                                               )
 
     def switch_ou_analysis_send_stacked_page(self, index: int):
-        ''' 点击 pushButton 切换 ou 解析界面和发包界面 '''
+        ''' 点击 pushButton 切换 OU 解析界面和发包界面 '''
         self.main_window_ui.ou_analysis_send_stacked.setCurrentIndex(index)
 
         # OU 解析界面, IO查询禁用, 模拟发包使能, 关闭往MU发包的线程, 启动接收OU数据线程
@@ -280,14 +282,14 @@ class MainWindow(QMainWindow):
             self.main_window_ui.IOQuery_pushButton.setDisabled(True)
             self.main_window_ui.send_package_pushButton.setEnabled(True)
         # 模拟发包界面, IO查询使能, 模拟发包禁用, 关闭接收OU数据的线程, 启动往MU发包线程
-        elif index == 1 and not self.network_manager.is_sending_mu:
+        elif index == 1:# and not self.network_manager.is_sending_mu:
             self.network_manager.stop_receiving_ou()
             self.sending_mu_thread_init()
             self.main_window_ui.IOQuery_pushButton.setEnabled(True)
             self.main_window_ui.send_package_pushButton.setDisabled(True)
 
     def open_file_dialog(self):
-        ''' 打开文件选择对话框, 只显示 EXcel 文件 '''
+        ''' 打开文件选择对话框, 只显示 Excel 文件 '''
         file_path, _ = QFileDialog.getOpenFileName(
             self, '选择项目通信协议', '', 'Excel Files (*.xlsx *xls);;All Files (*)'
         )

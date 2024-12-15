@@ -15,12 +15,10 @@ class OUSimulator:
             # cheBox checked 时, 禁用 pushButton, 触发 pressed 函数
             pushButton.setDisabled(True)
             OUSimulator.switch_pushButton_pressed(pushButton)
-            print(f'byte_num:{checkBox.byte_num} bit_index:{checkBox.bit_index} is checked')
 
         else:
             pushButton.setEnabled(True)
             OUSimulator.switch_pushButton_released(pushButton)
-            print(f'byte_num:{checkBox.byte_num} bit_index:{checkBox.bit_index} is unchecking')
 
     @staticmethod
     def switch_pushButton_pressed(pushButton: QPushButton):
@@ -38,15 +36,11 @@ class OUSimulator:
         pushButton.timer_decrease.stop()
         pushButton.timer_increase.start(ConstantText.TIMER_PERIOD)
 
-        print(f'byte_num:{pushButton.byte_num} bit_index:{pushButton.bit_index} pressed')
-
     @staticmethod
     def analog_pushButton_released(pushButton: QPushButton):
         ''' 模拟量区的按键释放, 启动使 slider value 减少的定时器(同时关闭增加的定时器) '''
         pushButton.timer_increase.stop()
         pushButton.timer_decrease.start(ConstantText.TIMER_PERIOD)
-
-        print(f'byte_num:{pushButton.byte_num} bit_index:{pushButton.bit_index} released')
 
     @staticmethod
     def slider_value_increase(timer_increase: QTimer, slider: QSlider):
@@ -54,7 +48,6 @@ class OUSimulator:
         # 鼠标拖动滑块的优先级最高, 鼠标点击时 将定时器关闭
         if not slider.isSliderDown() and slider.value() < slider.maximum():
             slider.setValue(slider.value() + 1)
-            print(f'byte_num:{slider.byte_num} bit_index:{slider.bit_index} slider value increase')
         else:
             # slider 到达最大值后, 停止 increase 定时器, 停止继续增加
             timer_increase.stop()
@@ -65,7 +58,6 @@ class OUSimulator:
         # 鼠标拖动滑块的优先级最高, 鼠标点击时 将定时器关闭
         if not slider.isSliderDown() and slider.value() > slider.minimum():
             slider.setValue(slider.value() - 1)
-            print(f'byte_num:{slider.byte_num} bit_index:{slider.bit_index} slider value decrease')
         else:
             # slider 到达最小值后, 停止 decrease 定时器, 停止继续减少
             timer_decrease.stop()
@@ -79,7 +71,6 @@ class OUSimulator:
     @staticmethod
     def lineEdit_text_changed(lineEdit: QLineEdit, pushButton: QPushButton, checkBox: QCheckBox=None, slider: QSlider=None):
         ''' lineEdit text 改变时, 将 lineEdit: {key: pushButton} 存入字典 '''
-        print(f'byte_num: {lineEdit.byte_num} bit_index: {lineEdit.bit_index} text: {lineEdit.text()}')
         if lineEdit not in OUSimulator.key_button:
             # 将 字母 与 pushButton 绑定
             if lineEdit.bit_index is not None:

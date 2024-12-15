@@ -1833,9 +1833,9 @@ class Ui_KCTS(object):
         KCTS.setCentralWidget(self.Window)
 
         self.retranslateUi(KCTS)
-        self.sub_interface_stacked.setCurrentIndex(2)
+        self.sub_interface_stacked.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
-        self.ou_analysis_send_stacked.setCurrentIndex(1)
+        self.ou_analysis_send_stacked.setCurrentIndex(0)
         self.history_record_stacked.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(KCTS)
 

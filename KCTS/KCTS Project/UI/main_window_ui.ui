@@ -515,7 +515,7 @@ QListWidget::item:selected {
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="device_status_page">
           <layout class="QVBoxLayout" name="verticalLayout_5" stretch="2,5">
@@ -2931,7 +2931,7 @@ QProgressBar::chunk {
 </string>
                  </property>
                  <property name="currentIndex">
-                  <number>1</number>
+                  <number>0</number>
                  </property>
                  <widget class="QWidget" name="ou_analysis_page">
                   <layout class="QVBoxLayout" name="verticalLayout_6" stretch="2,1">
