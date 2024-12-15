@@ -64,14 +64,16 @@ class LearniuHSlider(QSlider):
             }
             
             QSlider::add-page:horizontal {
-                border: 1px solid #204789;
+                border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                                  stop: 0 #e7e8eb, stop: 1 #e1e3e6);
                 border-top-right-radius: 5px;
                 border-bottom-right-radius: 5px;
                 background: white;
             }
             
             QSlider::sub-page:horizontal {
-                border: 1px solid #204789;
+                border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                                  stop: 0 #e7e8eb, stop: 1 #e1e3e6);
                 border-radius: 5px;
                 background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,
                                             stop: 0 #05b8cc, stop: 1 #06dcf4);

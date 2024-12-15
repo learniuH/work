@@ -16,7 +16,6 @@ class LearniuHPushButton(QPushButton):
         self.bit_index = bit_index
 
         self.setText(text)
-        self.setFocusPolicy(Qt.NoFocus)     # 默认焦点策略, 焦点不会自动转移到其他控件
 
         self.custom_style()
 

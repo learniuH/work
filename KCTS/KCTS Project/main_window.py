@@ -611,8 +611,12 @@ class MainWindow(QMainWindow):
                             and not key_widget[key][0].isDown():
 
                             OUSimulator.switch_pushButton_pressed(key_widget[key][0])
+                            # 禁用 pushButton
                             key_widget[key][0].setDisabled(True)
-                            lineEdit.setReadOnly(True)
+                            # 禁用 checkBox
+                            key_widget[key][1].setDisabled(True)
+                            # 禁用 lineEdit
+                            lineEdit.setDisabled(True)
                         else:
                             continue
 
@@ -621,8 +625,10 @@ class MainWindow(QMainWindow):
                         if key in key_widget and not key_widget[key].isDown():
 
                             OUSimulator.analog_pushButton_pressed(key_widget[key])
+                            # 禁用 pushButton
                             key_widget[key].setDisabled(True)
-                            lineEdit.setReadOnly(True)
+                            # 禁用 lineEdit
+                            lineEdit.setDisabled(True)
                         else:
                             continue
 
@@ -649,8 +655,12 @@ class MainWindow(QMainWindow):
                             and not key_widget[key][0].isDown():
 
                             OUSimulator.switch_pushButton_released(key_widget[key][0])
+                            # pushButton 使能
                             key_widget[key][0].setEnabled(True)
-                            lineEdit.setReadOnly(False)
+                            # checkBox 使能
+                            key_widget[key][1].setEnabled(True)
+                            # lineEdit 使能
+                            lineEdit.setEnabled(True)
                         else:
                             continue
                     else:
@@ -658,8 +668,10 @@ class MainWindow(QMainWindow):
                         if key in key_widget and not key_widget[key].isDown():
 
                             OUSimulator.analog_pushButton_released(key_widget[key])
+                            # pushButton 使能
                             key_widget[key].setEnabled(True)
-                            lineEdit.setReadOnly(False)
+                            # lineEdit 使能
+                            lineEdit.setEnabled(True)
                         else:
                             continue
 

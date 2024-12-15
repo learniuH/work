@@ -20,7 +20,9 @@ class LearniuHLineEdit(QLineEdit):
         self.byte_num = byte_num
         self.bit_index = bit_index
 
-        self.setPlaceholderText(ConstantText.LINEEDIT_TEXT)      # 提示的文本 key
+        self.setFocusPolicy(Qt.ClickFocus)                      # 只能通过点击获得焦点
+
+        self.setPlaceholderText(ConstantText.LINEEDIT_TEXT)     # 提示的文本 key
         self.setAlignment(Qt.AlignCenter)                       # 文本 placeholderText 居中显示
 
         self.custom_style()
