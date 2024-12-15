@@ -1,6 +1,6 @@
 from typing import Union
 
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QPushButton
 
 class LearniuHPushButton(QPushButton):
@@ -16,6 +16,11 @@ class LearniuHPushButton(QPushButton):
         self.bit_index = bit_index
 
         self.setText(text)
+
+        # 模拟量的 pushButton: 与定时器进行绑定
+        if bit_index is None:
+            self.timer_increase = QTimer(self)
+            self.timer_decrease = QTimer(self)
 
         self.custom_style()
 
@@ -48,6 +53,7 @@ class LearniuHPushButton(QPushButton):
             }
                       
             QPushButton:disabled {
+                color: black;
                 background-color: #fcd97f;
             }
         ''')
