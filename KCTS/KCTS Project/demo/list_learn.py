@@ -20,7 +20,6 @@ def extract_numbers(s: str) -> list:
     # return [int(num) for num in re.findall(r'\d+', s)]
     print(re.findall(r'\d+', s))
 
-s = 'byte01-bit2'
-# print(extract_numbers(s)`)
-# extract_numbers(s)
-print(int([1]))
+
+for i, a in enumerate(range(5, -1, -1)):
+    print(i, a)

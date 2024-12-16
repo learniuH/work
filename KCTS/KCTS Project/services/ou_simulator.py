@@ -2,6 +2,7 @@ from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QCheckBox, QPushButton, QSlider, QLineEdit
 
 from widget.constant import ConstantText
+from .package_send import PackageToMu
 
 class OUSimulator:
     ''' OU 模拟器相关控件的函数 '''
@@ -23,12 +24,14 @@ class OUSimulator:
     @staticmethod
     def switch_pushButton_pressed(pushButton: QPushButton):
         ''' 开关量区的按键按下时, 改变报文对应位的值 '''
-        print(f'byte_num:{pushButton.byte_num} bit_index:{pushButton.bit_index} pressed')
+        PackageToMu.update_data_field(pushButton.byte_num, 1, pushButton.bit_index)
+        # print(f'byte_num:{pushButton.byte_num} bit_index:{pushButton.bit_index} pressed')
 
     @staticmethod
     def switch_pushButton_released(pushButton: QPushButton):
         ''' 开关量区的按键释放时, 改变报文对应位的值 '''
-        print(f'byte_num:{pushButton.byte_num} bit_index:{pushButton.bit_index} released')
+        PackageToMu.update_data_field(pushButton.byte_num, 0, pushButton.bit_index)
+        # print(f'byte_num:{pushButton.byte_num} bit_index:{pushButton.bit_index} released')
 
     @staticmethod
     def analog_pushButton_pressed(pushButton: QPushButton):
@@ -65,8 +68,8 @@ class OUSimulator:
     @staticmethod
     def slider_value_changed(slider: QSlider):
         ''' slider 的值变化时, 改变对应报文的值 '''
-
-        print(f'byte_num: {slider.byte_num} bit_index: {slider.bit_index} value changed')
+        PackageToMu.update_data_field(slider.byte_num, slider.value())
+        # print(f'byte_num: {slider.byte_num} bit_index: {slider.bit_index} value changed')
 
     @staticmethod
     def lineEdit_text_changed(lineEdit: QLineEdit, pushButton: QPushButton, checkBox: QCheckBox=None, slider: QSlider=None):
@@ -94,7 +97,3 @@ class OUSimulator:
             else:
                 # 将 lineEdit 从字典里移除
                 OUSimulator.key_button.pop(lineEdit)
-
-
-
-

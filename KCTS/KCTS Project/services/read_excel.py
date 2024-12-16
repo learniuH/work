@@ -55,7 +55,7 @@ class ExcelRead(QObject):
 
         # 通过 CRC的行号 和 字节序号的列号 获取协议长度
         protocol_length = df.loc[end_row_index, col_index]
-        protocol_length = self.clean_number(protocol_length, 'byte')
+        protocol_length = self.clean_number(protocol_length)
 
 
         # 选取列范围, 从 字节序号 所在的列开始 往右取两列
@@ -80,7 +80,7 @@ class ExcelRead(QObject):
         # 行遍历获取的单元格 更新 协议内容
         for _, row_index in target_cells.iterrows():
             byte_num_raw = row_index['字节序号']
-            byte_num = self.clean_number(byte_num_raw, 'byte')
+            byte_num = self.clean_number(byte_num_raw)
 
             if byte_num not in protocol:
                 if byte_num is None:
@@ -90,7 +90,7 @@ class ExcelRead(QObject):
 
             # 更新开关量
             if byte_num_raw in switch_list:
-                bit_index = self.clean_number(row_index['内容'], 'bit')
+                bit_index = self.clean_number(row_index['内容'])
                 if bit_index is None:
                     # 位索引里面解析出三个数字时, 这个开关不进行解析, 生成
                     continue
@@ -112,15 +112,14 @@ class ExcelRead(QObject):
         '''
         return protocol, protocol_length
 
-    def clean_number(self, value: Union[str, int, float], prefix: str) -> Union[int, str]:
+    def clean_number(self, value: Union[str, int, float]) -> Union[int, str, None]:
         '''提取字节序号列下面各个单元格的数字
 
         Args:
             value: 要清理的值
-            prefix: 前缀(bit或byte)
 
         Returns:
-            清理后的数字或范围字符串
+            清理后的数字或范围字符串, 如果清理后有两个以上数字, 返回 None, 将该开关丢弃
         '''
         if isinstance(value, (int, float)):
             return int(value)

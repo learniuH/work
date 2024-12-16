@@ -1,4 +1,5 @@
 import re
+from typing import Union
 
 from PyQt5.QtWidgets import QLineEdit
 
@@ -68,7 +69,7 @@ class PackageToMu:
 
     @classmethod
     def update_package_header(cls, lineEdit: QLineEdit):
-        ''' 获取主界面 header lineEdit 的文本, 转换为字节值存入数据包 '''
+        ''' 获取主界面 header lineEdit 的文本, 转换为字节值存入数据包包头 '''
         lineEdit_text = lineEdit.text()
         header_array = re.findall(r'[0-9A-Fa-f]+', lineEdit_text)
 
@@ -81,10 +82,58 @@ class PackageToMu:
         # 更新发送的数据包的包头
         for i, element in enumerate(header_array):
             cls.package[i] = int(element, 16)
+        # print(' '.join(f'{byte:02X}' for byte in cls.package))
+
+    @classmethod
+    def update_data_field(cls, byte_num: Union[int, str], value: int, bit_index: Union[int, str]=None):
+        ''' 更新数据包的数据域部分
+        Args:
+            byte_num : 字节序号
+            value    : 如果是开关量, 取 0 1, 如果是模拟量, 取 实际的 value 直接赋值
+            bit_index: 位索引, 模拟量默认为 None
+        '''
+        if bit_index is not None:
+            # 开关量, byte_num: int
+            if isinstance(bit_index, int):
+                # 单位开关量
+                if value == 0:
+                    # 对应位赋 0
+                    cls.package[byte_num - 1] &= ~(1 << bit_index)
+                else:
+                    # 对应位赋 1
+                    cls.package[byte_num - 1] |= (1 << bit_index)
+
+            else:
+                # 多位开关量
+                bit_index_range = cls.extract_num(bit_index)
+                for index in range(bit_index_range[0], bit_index_range[1] + 1):
+                    if value == 0:
+                        cls.package[byte_num - 1] &= ~(1 << index)
+                    else:
+                        cls.package[byte_num - 1] |= (1 << index)
+
+        else:
+            if isinstance(byte_num, int):
+                # 单字节模拟量
+                cls.package[byte_num - 1] = value
+            else:
+                # 多字节模拟量
+                byte_num_range = cls.extract_num(byte_num)
+                for i, num in enumerate(range(byte_num_range[1], byte_num_range[0] - 1, -1)):
+                    # 倒序遍历多字节序号
+                    cls.package[num - 1] = ((value >> (i * 8)) & 0xFF)
+
         print(' '.join(f'{byte:02X}' for byte in cls.package))
 
+    @classmethod
+    def extract_num(cls, value: str) -> list:
+        ''' 提取字符串的数字, 返回列表 '''
+        return [int(num) for num in value.split('-')]
+
 if __name__ == '__main__':
-    while True:
-        package = QueryCollectionStatus.package_send()
-        package = ' '.join(f'{byte:02x}' for byte in package)
-        print(package)
+    # while True:
+    #     package = QueryCollectionStatus.package_send()
+    #     package = ' '.join(f'{byte:02x}' for byte in package)
+    #     print(package)
+    value = '15-23'
+    print(PackageToMu.extract_num(value))
