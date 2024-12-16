@@ -1,6 +1,8 @@
 import pandas as pd
+import re
 from PyQt5.QtCore import pyqtSignal, QObject
 
+from config.error_message import ErrorMessage
 from log.error_handle import ExcelReaderExceptionHandle
 
 from typing import Union, Tuple
@@ -105,7 +107,7 @@ class ExcelRead(QObject):
 
     @staticmethod
     def clean_number(value: Union[str, int, float], prefix: str) -> Union[int, str]:
-        '''清理 字节序号 位索引
+        '''提取字节序号列下面各个单元格的数字
 
         Args:
             value: 要清理的值
@@ -117,23 +119,36 @@ class ExcelRead(QObject):
         if isinstance(value, (int, float)):
             return int(value)
 
-        value_lower = value.lower()
-        if prefix in value_lower:
-            value_lower = value_lower.replace(prefix, '')
+        result = []
+        for num in re.findall(r'\d+', value):
+            result.append(int(num))
 
-            if value_lower.isdigit():
-                return int(value_lower)
+        if len(result) == 1:
+            return result[0]
+        elif len(result) == 2:
+            return f'{result[0]}-{result[1]}'
+        else:
+            ExcelRead.program_exception_signal.emit(ErrorMessage.EXCEL_PARSE_ERROR)
 
-            if '-' in value_lower:
-                return value_lower.replace(' ', '')
 
-        return value
+
+        # value_lower = value.lower()
+        # if prefix in value_lower:
+        #     value_lower = value_lower.replace(prefix, '')
+        #
+        #     if value_lower.isdigit():
+        #         return int(value_lower)
+        #
+        #     if '-' in value_lower:
+        #         return value_lower.replace(' ', '')
+        #
+        # return value
 
 
 
 if __name__ == '__main__':
-    # file_path = "D:\LearniuH\Project\中测推土机\功能定义\推土机标准化内部通信协议-V1.0-202400918.xlsx"
-    file_path = "C:\\Users\L\Desktop\自动化测试\推土机标准化内部通信协议-V1.0-202400918.xlsx"
+    file_path = "D:\LearniuH\Project\中测推土机\功能定义\推土机标准化内部通信协议-V1.0-202400918.xlsx"
+    # file_path = "C:\\Users\L\Desktop\自动化测试\推土机标准化内部通信协议-V1.0-202400918.xlsx"
     sheet_name = '（推土机-OU）->MU&OC'
     a = ExcelRead(file_path)
     a.read_sheet_name()

@@ -174,6 +174,9 @@ class MainWindow(QMainWindow):
         # tableWidget item 宽度自适应窗口宽度
         self.main_window_ui.ou_analysis_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
+        # 隐藏包头的 lineEdit, 只有在 OU 模拟器界面才会显示
+        self.main_window_ui.lineEdit_package_header.setVisible(False)
+
         # 隐藏顶部的top hint 提示
         self.main_window_ui.top_hint_label.setVisible(False)
 
@@ -403,6 +406,8 @@ class MainWindow(QMainWindow):
         lineEdit.textChanged.connect(lambda: OUSimulator.lineEdit_text_changed(lineEdit, pushButton,slider=slider))
 
         slider.valueChanged.connect(lambda: OUSimulator.slider_value_changed(slider))
+
+        # slider.slider_overflow_signal.connect(self.top_hint_display)
 
     def update_ou_simulator(self, protocol: dict):
         ''' 更新 OU 模拟器的 UI '''
