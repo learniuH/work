@@ -82,6 +82,10 @@ class PackageToMu:
         # 更新发送的数据包的包头
         for i, element in enumerate(header_array):
             cls.package[i] = int(element, 16)
+
+        # 当数据包发生改变时, 计算 CRC
+        cls.package[-1] = sum(cls.package[:-1]) & 0xFF
+
         # print(' '.join(f'{byte:02X}' for byte in cls.package))
 
     @classmethod
@@ -123,7 +127,10 @@ class PackageToMu:
                     # 倒序遍历多字节序号
                     cls.package[num - 1] = ((value >> (i * 8)) & 0xFF)
 
-        print(' '.join(f'{byte:02X}' for byte in cls.package))
+        # 当数据包发生改变时, 计算 CRC
+        cls.package[-1] = sum(cls.package[:-1]) & 0xFF
+
+        # print(' '.join(f'{byte:02X}' for byte in cls.package))
 
     @classmethod
     def extract_num(cls, value: str) -> list:

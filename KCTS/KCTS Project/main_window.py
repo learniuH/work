@@ -275,7 +275,6 @@ class MainWindow(QMainWindow):
                                               current_configuration['send_mu_port'],
                                               current_configuration['mu_ip'],
                                               current_configuration['mu_recv_port'],
-                                              bytearray(56),
                                               SendCycle.CYCLE
                                               )
 

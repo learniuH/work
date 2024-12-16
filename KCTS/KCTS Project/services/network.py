@@ -5,9 +5,8 @@ import time
 from typing import Optional, Tuple
 
 from PyQt5.QtCore import QObject, pyqtSignal
-from PyQt5.QtWidgets import QLineEdit
 
-from .package_send import QueryCollectionStatus as QueryStatus
+from .package_send import QueryCollectionStatus, PackageToMu
 from .package_parse import PackageFromTU, PackageFromOU
 from config.error_message import ErrorMessage
 
@@ -30,7 +29,6 @@ class NetworkManager(QObject):
         self.is_sending_mu: bool = False
         self.is_receiving_ou: bool = False
         self.is_receiving_tu: bool = False
-        self.mu_package_send: Optional[bytearray] = None                # OU模拟器给MU发送的包
         self.tu_package_recv: Optional[bytearray] = None                # TU发给TS的所有类型包
         self.ou_package_recv: Optional[bytearray] = None                # OU发给TS的包
         self.ou_package_parsed: bool = False                            # OU的包是否被解析的标志位
@@ -205,7 +203,7 @@ class NetworkManager(QObject):
         '''
         while self.is_sending_tu and self.send_tu_socket:
             try:
-                self.send_tu_socket.sendto(QueryStatus.package_send(), self.send_tu_addr)
+                self.send_tu_socket.sendto(QueryCollectionStatus.package_send(), self.send_tu_addr)
 
                 time.sleep(cycle_ms / 1000)
             except Exception as e:
@@ -220,8 +218,7 @@ class NetworkManager(QObject):
 
 
     def start_sending_mu(self, local_ip: str, send_mu_port: str,
-                      mu_ip: str, mu_recv_port: int,
-                      package_to_mu: bytearray, cycle_ms: int) -> bool:
+                      mu_ip: str, mu_recv_port: int, cycle_ms: int) -> bool:
         ''' 开始发送数据
 
         Args:
@@ -229,7 +226,6 @@ class NetworkManager(QObject):
             send_mu_port: 给MU发送数据的端口
             mu_ip: MU IP地址
             mu_recv_port: MU接收端口
-            package_to_mu: 要发送给MU的数据包
             cycle_ms: 发送周期(毫秒)
 
         Returns:
@@ -239,7 +235,7 @@ class NetworkManager(QObject):
             self.send_mu_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             self.send_mu_socket.bind((local_ip, int(send_mu_port)))
 
-            self.mu_package_send = package_to_mu
+            # self.mu_package_send = package_to_mu
             self.send_mu_addr = (mu_ip, int(mu_recv_port))
             self.is_sending_mu = True
 
@@ -265,9 +261,9 @@ class NetworkManager(QObject):
         Args:
             cycle_ms: 发送周期(毫秒)
         '''
-        while self.is_sending_mu and self.send_mu_socket and self.mu_package_send:
+        while self.is_sending_mu and self.send_mu_socket: # and self.mu_package_send:
             try:
-                self.send_mu_socket.sendto(self.mu_package_send, self.send_mu_addr)
+                self.send_mu_socket.sendto(PackageToMu.package, self.send_mu_addr)
 
                 time.sleep(cycle_ms / 1000)
             except Exception as e:
