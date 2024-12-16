@@ -176,6 +176,7 @@ class MainWindow(QMainWindow):
 
         # 隐藏包头的 lineEdit, 只有在 OU 模拟器界面才会显示
         self.main_window_ui.lineEdit_package_header.setVisible(False)
+        self.main_window_ui.label_invisible.setVisible(False)
 
         # 隐藏顶部的top hint 提示
         self.main_window_ui.top_hint_label.setVisible(False)
@@ -289,6 +290,8 @@ class MainWindow(QMainWindow):
             self.main_window_ui.IOQuery_pushButton.setDisabled(True)
             self.main_window_ui.send_package_pushButton.setEnabled(True)
             self.main_window_ui.lineEdit_package_header.setVisible(False)
+            self.main_window_ui.label_invisible.setVisible(False)
+
 
         # 模拟发包界面, IO查询使能, 模拟发包禁用, 关闭接收OU数据的线程, 启动往MU发包线程
         elif index == 1:# and not self.network_manager.is_sending_mu:
@@ -297,6 +300,7 @@ class MainWindow(QMainWindow):
             self.main_window_ui.IOQuery_pushButton.setEnabled(True)
             self.main_window_ui.send_package_pushButton.setDisabled(True)
             self.main_window_ui.lineEdit_package_header.setVisible(True)
+            self.main_window_ui.label_invisible.setVisible(True)
 
     def open_file_dialog(self):
         ''' 打开文件选择对话框, 只显示 Excel 文件 '''

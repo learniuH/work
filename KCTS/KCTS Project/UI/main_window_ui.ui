@@ -2938,6 +2938,9 @@ QProgressBar::chunk {
                    <property name="leftMargin">
                     <number>0</number>
                    </property>
+                   <property name="topMargin">
+                    <number>18</number>
+                   </property>
                    <property name="rightMargin">
                     <number>0</number>
                    </property>
@@ -3186,6 +3189,37 @@ QTableWidget::item {
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_3">
                  <item>
+                  <widget class="QLabel" name="label_invisible">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>240</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>240</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QLabel {
+	border: 0px;
+	background-color: transparent;
+}</string>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
                   <widget class="QPushButton" name="IOQuery_pushButton">
                    <property name="enabled">
                     <bool>false</bool>
@@ -3242,6 +3276,22 @@ QPushButton:disabled {
                     <string>IO查询</string>
                    </property>
                   </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_8">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Fixed</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
                  </item>
                  <item>
                   <widget class="QPushButton" name="send_package_pushButton">
@@ -3304,15 +3354,21 @@ QPushButton:disabled {
                  <item>
                   <widget class="QLineEdit" name="lineEdit_package_header">
                    <property name="sizePolicy">
-                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
                    </property>
                    <property name="minimumSize">
                     <size>
-                     <width>260</width>
+                     <width>240</width>
                      <height>30</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>240</width>
+                     <height>16777215</height>
                     </size>
                    </property>
                    <property name="font">
@@ -3325,6 +3381,9 @@ QPushButton:disabled {
 	color: white;
 	
 }</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string> 自定义包头</string>
                    </property>
                   </widget>
                  </item>
