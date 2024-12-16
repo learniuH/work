@@ -55,7 +55,7 @@ class ExcelRead(QObject):
 
         # 通过 CRC的行号 和 字节序号的列号 获取协议长度
         protocol_length = df.loc[end_row_index, col_index]
-        protocol_length = ExcelRead.clean_number(protocol_length, 'byte')
+        protocol_length = self.clean_number(protocol_length, 'byte')
 
 
         # 选取列范围, 从 字节序号 所在的列开始 往右取两列
@@ -80,14 +80,21 @@ class ExcelRead(QObject):
         # 行遍历获取的单元格 更新 协议内容
         for _, row_index in target_cells.iterrows():
             byte_num_raw = row_index['字节序号']
-            byte_num = ExcelRead.clean_number(byte_num_raw, 'byte')
+            byte_num = self.clean_number(byte_num_raw, 'byte')
 
             if byte_num not in protocol:
+                if byte_num is None:
+                    # 字节序号里面解析出三个数字时, 这个开关不进行解析, 生成
+                    continue
                 protocol[byte_num] = {}
 
             # 更新开关量
             if byte_num_raw in switch_list:
-                bit_index = ExcelRead.clean_number(row_index['内容'], 'bit')
+                bit_index = self.clean_number(row_index['内容'], 'bit')
+                if bit_index is None:
+                    # 位索引里面解析出三个数字时, 这个开关不进行解析, 生成
+                    continue
+
                 protocol[byte_num][bit_index] = row_index['开关描述']
             # 更新模拟量
             else:
@@ -105,8 +112,7 @@ class ExcelRead(QObject):
         '''
         return protocol, protocol_length
 
-    @staticmethod
-    def clean_number(value: Union[str, int, float], prefix: str) -> Union[int, str]:
+    def clean_number(self, value: Union[str, int, float], prefix: str) -> Union[int, str]:
         '''提取字节序号列下面各个单元格的数字
 
         Args:
@@ -124,12 +130,15 @@ class ExcelRead(QObject):
             result.append(int(num))
 
         if len(result) == 1:
+            # 字符串里只有一个数字, 直接返回整型
             return result[0]
         elif len(result) == 2:
+            # 字符串里有两个数字, 返回 str, 后期需要优化, 改为返回 list, 便于代码
             return f'{result[0]}-{result[1]}'
         else:
-            ExcelRead.program_exception_signal.emit(ErrorMessage.EXCEL_PARSE_ERROR)
-
+            # 字符串里出现两个以上的数字, 返回 None, 将该开关删除
+            self.program_exception_signal.emit(ErrorMessage.EXCEL_PARSE_ERROR)
+            return None
 
 
         # value_lower = value.lower()
