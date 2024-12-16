@@ -15,6 +15,12 @@ class People:
 # for i, element in enumerate(a):
 #     print(i, int(element, 16))
 
-a = [1,2,3,4]
-a[1:3] = [0] * (3 - 1)
-print(a)
+def extract_numbers(s: str) -> list:
+    # 使用正则表达式提取数字
+    # return [int(num) for num in re.findall(r'\d+', s)]
+    print(re.findall(r'\d+', s))
+
+s = 'byte01-bit2'
+# print(extract_numbers(s)`)
+# extract_numbers(s)
+print(int([1]))

@@ -1,9 +1,11 @@
+from PyQt5.QtCore import QObject, pyqtSignal
 from PyQt5.QtGui import QPainter, QFont
 from PyQt5.QtWidgets import QSlider
 from PyQt5.Qt import Qt
 
 from typing import Union
 
+from config.error_message import ErrorMessage
 
 try:
     from constant import ConstantText
@@ -12,6 +14,8 @@ except ImportError:
 
 class LearniuHSlider(QSlider):
     ''' 自定义 Slider '''
+
+    # slider_overflow_signal = pyqtSignal(str)
 
     def __init__(self, byte_num: Union[int, str], bit_index: Union[int, str] = None):
         '''
@@ -33,8 +37,13 @@ class LearniuHSlider(QSlider):
             for i in range(value_range[1] - value_range[0]):
                 maximum = maximum << 8 | 0xFF
 
-            self.setMinimum(0)
-            self.setMaximum(maximum)
+            try:
+                self.setMinimum(0)
+                self.setMaximum(maximum)
+            except OverflowError:
+                # setMaximum 数据超过 0x7F FF FF FF 范围, 也就是超过三个字节
+                # self.slider_overflow_signal.emit(ErrorMessage.SLIDER_OVERFLOW)
+                pass
 
         self.costom_style()
 
