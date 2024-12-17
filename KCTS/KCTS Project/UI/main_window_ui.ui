@@ -3198,13 +3198,13 @@ QTableWidget::item {
                    </property>
                    <property name="minimumSize">
                     <size>
-                     <width>240</width>
+                     <width>280</width>
                      <height>0</height>
                     </size>
                    </property>
                    <property name="maximumSize">
                     <size>
-                     <width>240</width>
+                     <width>280</width>
                      <height>16777215</height>
                     </size>
                    </property>
@@ -3287,7 +3287,7 @@ QPushButton:disabled {
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
-                     <width>40</width>
+                     <width>90</width>
                      <height>20</height>
                     </size>
                    </property>
@@ -3353,6 +3353,9 @@ QPushButton:disabled {
                  </item>
                  <item>
                   <widget class="QLineEdit" name="lineEdit_package_header">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                      <horstretch>0</horstretch>
@@ -3361,13 +3364,13 @@ QPushButton:disabled {
                    </property>
                    <property name="minimumSize">
                     <size>
-                     <width>240</width>
+                     <width>280</width>
                      <height>30</height>
                     </size>
                    </property>
                    <property name="maximumSize">
                     <size>
-                     <width>240</width>
+                     <width>280</width>
                      <height>16777215</height>
                     </size>
                    </property>
@@ -3378,12 +3381,13 @@ QPushButton:disabled {
                    </property>
                    <property name="styleSheet">
                     <string notr="true">QLineEdit {
-	color: white;
-	
-}</string>
+	border: 0px;
+	background-color: transparent;
+}
+</string>
                    </property>
                    <property name="placeholderText">
-                    <string> 自定义包头</string>
+                    <string/>
                    </property>
                   </widget>
                  </item>

@@ -1,25 +1,22 @@
-import re
+from PyQt5.QtWidgets import QApplication, QLineEdit, QVBoxLayout, QWidget
+from PyQt5.QtGui import QPalette
+from PyQt5.QtCore import Qt
 
-class People:
-    height = 100
-    def __init__(self):
-        self.weight = 200
-        People.value_change()
+app = QApplication([])
 
-    @classmethod
-    def value_change(cls):
-        cls.height = 20
+window = QWidget()
+layout = QVBoxLayout()
 
-# package = '10 A 89 1       '
-# a = re.findall(r'[0-9A-Fa-f]+', package)
-# for i, element in enumerate(a):
-#     print(i, int(element, 16))
+lineEdit = QLineEdit()
+lineEdit.setPlaceholderText("请输入内容")
 
-def extract_numbers(s: str) -> list:
-    # 使用正则表达式提取数字
-    # return [int(num) for num in re.findall(r'\d+', s)]
-    print(re.findall(r'\d+', s))
+# 使用 QPalette 设置 placeholderText 的颜色
+palette = lineEdit.palette()
+palette.setColor(QPalette.PlaceholderText, Qt.black)
+lineEdit.setPalette(palette)
 
+layout.addWidget(lineEdit)
+window.setLayout(layout)
+window.show()
 
-for i, a in enumerate(range(5, -1, -1)):
-    print(i, a)
+app.exec()

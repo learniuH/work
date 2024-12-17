@@ -1601,8 +1601,8 @@ class Ui_KCTS(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_invisible.sizePolicy().hasHeightForWidth())
         self.label_invisible.setSizePolicy(sizePolicy)
-        self.label_invisible.setMinimumSize(QtCore.QSize(240, 0))
-        self.label_invisible.setMaximumSize(QtCore.QSize(240, 16777215))
+        self.label_invisible.setMinimumSize(QtCore.QSize(280, 0))
+        self.label_invisible.setMaximumSize(QtCore.QSize(280, 16777215))
         self.label_invisible.setStyleSheet("QLabel {\n"
 "    border: 0px;\n"
 "    background-color: transparent;\n"
@@ -1648,7 +1648,7 @@ class Ui_KCTS(object):
 "")
         self.IOQuery_pushButton.setObjectName("IOQuery_pushButton")
         self.horizontalLayout_3.addWidget(self.IOQuery_pushButton)
-        spacerItem7 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        spacerItem7 = QtWidgets.QSpacerItem(90, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem7)
         self.send_package_pushButton = QtWidgets.QPushButton(self.real_time_analysis_tab)
         self.send_package_pushButton.setEnabled(False)
@@ -1689,20 +1689,23 @@ class Ui_KCTS(object):
         self.send_package_pushButton.setObjectName("send_package_pushButton")
         self.horizontalLayout_3.addWidget(self.send_package_pushButton)
         self.lineEdit_package_header = QtWidgets.QLineEdit(self.real_time_analysis_tab)
+        self.lineEdit_package_header.setEnabled(False)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lineEdit_package_header.sizePolicy().hasHeightForWidth())
         self.lineEdit_package_header.setSizePolicy(sizePolicy)
-        self.lineEdit_package_header.setMinimumSize(QtCore.QSize(240, 30))
-        self.lineEdit_package_header.setMaximumSize(QtCore.QSize(240, 16777215))
+        self.lineEdit_package_header.setMinimumSize(QtCore.QSize(280, 30))
+        self.lineEdit_package_header.setMaximumSize(QtCore.QSize(280, 16777215))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         self.lineEdit_package_header.setFont(font)
         self.lineEdit_package_header.setStyleSheet("QLineEdit {\n"
-"    color: white;\n"
-"    \n"
-"}")
+"    border: 0px;\n"
+"    background-color: transparent;\n"
+"}\n"
+"")
+        self.lineEdit_package_header.setPlaceholderText("")
         self.lineEdit_package_header.setObjectName("lineEdit_package_header")
         self.horizontalLayout_3.addWidget(self.lineEdit_package_header)
         self.verticalLayout_4.addLayout(self.horizontalLayout_3)
@@ -1965,7 +1968,6 @@ class Ui_KCTS(object):
         item.setText(_translate("KCTS", "Bit0"))
         self.IOQuery_pushButton.setText(_translate("KCTS", "IO查询"))
         self.send_package_pushButton.setText(_translate("KCTS", "模拟发包"))
-        self.lineEdit_package_header.setPlaceholderText(_translate("KCTS", " 自定义包头"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.real_time_analysis_tab), _translate("KCTS", "实时解析"))
         self.deduplication_checkBox.setText(_translate("KCTS", "去重"))
         self.clear_record_pushButton.setText(_translate("KCTS", "一键清除"))

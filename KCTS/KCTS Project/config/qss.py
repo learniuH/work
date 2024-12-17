@@ -38,5 +38,22 @@ class AnalogStyleSheet():
                        '}'
                        'QProgressBar::chunk {'
                        '    border-radius: 5px;'
-                       '    background-color: #e77060;'
+                       '    background-color: #e77060;' 
                        '}')
+
+class OUSimulatorStyleSheet():
+    ''' OU 解析界面的包头的 lineEdit 样式'''
+    LineEdit_PackHeader_Hidden = ('''
+        QLineEdit {
+            border: 0px;
+            background-color: transparent;
+            color: transparent;
+        }
+    ''')
+
+    LineEdit_PackHeader_Visible = ('''
+        QLineEdit {
+            border: 2px solid gray;
+            background-color: white;
+        }
+    ''')

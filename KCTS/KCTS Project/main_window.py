@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog, QLi
 from UI.main_window_ui import Ui_KCTS
 
 from config.validators import Validators
-from config.qss import QLabelStyleSheet, SendCycle, AnalogStyleSheet
+from config.qss import QLabelStyleSheet, SendCycle, AnalogStyleSheet, OUSimulatorStyleSheet
 from services.network import NetworkManager
 from services.read_excel import ExcelRead
 from services.ou_simulator import OUSimulator
@@ -175,8 +175,7 @@ class MainWindow(QMainWindow):
         self.main_window_ui.ou_analysis_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
         # 隐藏包头的 lineEdit, 只有在 OU 模拟器界面才会显示
-        self.main_window_ui.lineEdit_package_header.setVisible(False)
-        self.main_window_ui.label_invisible.setVisible(False)
+        self.main_window_ui.lineEdit_package_header.setStyleSheet(OUSimulatorStyleSheet.LineEdit_PackHeader_Hidden)
 
         # 隐藏顶部的top hint 提示
         self.main_window_ui.top_hint_label.setVisible(False)
@@ -289,8 +288,9 @@ class MainWindow(QMainWindow):
             self.listening_ou_thread_init()
             self.main_window_ui.IOQuery_pushButton.setDisabled(True)
             self.main_window_ui.send_package_pushButton.setEnabled(True)
-            self.main_window_ui.lineEdit_package_header.setVisible(False)
-            self.main_window_ui.label_invisible.setVisible(False)
+            # 隐藏 OU 模拟器的包头 lineEdit
+            self.main_window_ui.lineEdit_package_header.setStyleSheet(OUSimulatorStyleSheet.LineEdit_PackHeader_Hidden)
+            self.main_window_ui.lineEdit_package_header.setDisabled(True)
 
 
         # 模拟发包界面, IO查询使能, 模拟发包禁用, 关闭接收OU数据的线程, 启动往MU发包线程
@@ -299,8 +299,9 @@ class MainWindow(QMainWindow):
             self.sending_mu_thread_init()
             self.main_window_ui.IOQuery_pushButton.setEnabled(True)
             self.main_window_ui.send_package_pushButton.setDisabled(True)
-            self.main_window_ui.lineEdit_package_header.setVisible(True)
-            self.main_window_ui.label_invisible.setVisible(True)
+            # 展示 OU 模拟器的包头 lineEdit
+            self.main_window_ui.lineEdit_package_header.setStyleSheet(OUSimulatorStyleSheet.LineEdit_PackHeader_Visible)
+            self.main_window_ui.lineEdit_package_header.setEnabled(True)
 
     def open_file_dialog(self):
         ''' 打开文件选择对话框, 只显示 Excel 文件 '''
