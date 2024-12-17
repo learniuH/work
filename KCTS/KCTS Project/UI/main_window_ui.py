@@ -1710,8 +1710,14 @@ class Ui_KCTS(object):
         self.lineEdit_package_header.setFont(font)
         self.lineEdit_package_header.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.lineEdit_package_header.setStyleSheet("QLineEdit {\n"
+"    border: 2px solid gray;\n"
+"    background-color: white;\n"
+"}\n"
+"\n"
+"QLineEdit:disabled {\n"
 "    border: 0px;\n"
 "    background-color: transparent;\n"
+"    color: transparent;\n"
 "}\n"
 "")
         self.lineEdit_package_header.setPlaceholderText("")

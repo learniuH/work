@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog, QLi
 from UI.main_window_ui import Ui_KCTS
 
 from config.validators import Validators
-from config.qss import QLabelStyleSheet, SendCycle, AnalogStyleSheet, OUSimulatorStyleSheet
+from config.qss import QLabelStyleSheet, SendCycle, AnalogStyleSheet
 from services.network import NetworkManager
 from services.read_excel import ExcelRead
 from services.ou_simulator import OUSimulator
@@ -289,7 +289,6 @@ class MainWindow(QMainWindow):
             self.main_window_ui.IOQuery_pushButton.setDisabled(True)
             self.main_window_ui.send_package_pushButton.setEnabled(True)
             # 隐藏 OU 模拟器的包头 lineEdit
-            self.main_window_ui.lineEdit_package_header.setStyleSheet(OUSimulatorStyleSheet.LineEdit_PackHeader_Hidden)
             self.main_window_ui.lineEdit_package_header.setDisabled(True)
 
 
@@ -300,7 +299,6 @@ class MainWindow(QMainWindow):
             self.main_window_ui.IOQuery_pushButton.setEnabled(True)
             self.main_window_ui.send_package_pushButton.setDisabled(True)
             # 展示 OU 模拟器的包头 lineEdit
-            self.main_window_ui.lineEdit_package_header.setStyleSheet(OUSimulatorStyleSheet.LineEdit_PackHeader_Visible)
             self.main_window_ui.lineEdit_package_header.setEnabled(True)
 
     def open_file_dialog(self):

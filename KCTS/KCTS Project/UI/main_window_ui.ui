@@ -3408,8 +3408,14 @@ QPushButton:disabled {
                    </property>
                    <property name="styleSheet">
                     <string notr="true">QLineEdit {
+	border: 2px solid gray;
+	background-color: white;
+}
+
+QLineEdit:disabled {
 	border: 0px;
 	background-color: transparent;
+	color: transparent;
 }
 </string>
                    </property>
