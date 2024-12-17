@@ -242,6 +242,9 @@ QComboBox QAbstractScrollArea QScrollBar::handle:vertical {
            <height>40</height>
           </size>
          </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {
     border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -288,6 +291,9 @@ QPushButton:disabled {
            <height>40</height>
           </size>
          </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {
     border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -333,6 +339,9 @@ QPushButton:disabled {
            <width>40</width>
            <height>40</height>
           </size>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
          </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {
@@ -1131,6 +1140,9 @@ QListWidget::item:selected {
                   <height>70</height>
                  </size>
                 </property>
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="styleSheet">
                  <string notr="true">QPushButton {
     border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -1250,6 +1262,9 @@ QPushButton:disabled {
                <width>1079</width>
                <height>613</height>
               </size>
+             </property>
+             <property name="focusPolicy">
+              <enum>Qt::NoFocus</enum>
              </property>
              <property name="styleSheet">
               <string notr="true">QTabWidget::pane { /* The tab widget frame */
@@ -2946,6 +2961,9 @@ QProgressBar::chunk {
                    </property>
                    <item>
                     <widget class="QTableWidget" name="ou_analysis_table">
+                     <property name="focusPolicy">
+                      <enum>Qt::ClickFocus</enum>
+                     </property>
                      <property name="styleSheet">
                       <string notr="true">/*表头背景颜色*/
 QHeaderView::section {
@@ -3245,6 +3263,9 @@ QTableWidget::item {
                      <bold>false</bold>
                     </font>
                    </property>
+                   <property name="focusPolicy">
+                    <enum>Qt::NoFocus</enum>
+                   </property>
                    <property name="styleSheet">
                     <string notr="true">QPushButton {
     border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -3319,6 +3340,9 @@ QPushButton:disabled {
                      <bold>false</bold>
                     </font>
                    </property>
+                   <property name="focusPolicy">
+                    <enum>Qt::NoFocus</enum>
+                   </property>
                    <property name="styleSheet">
                     <string notr="true">QPushButton {
     border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -3378,6 +3402,9 @@ QPushButton:disabled {
                     <font>
                      <family>微软雅黑</family>
                     </font>
+                   </property>
+                   <property name="focusPolicy">
+                    <enum>Qt::ClickFocus</enum>
                    </property>
                    <property name="styleSheet">
                     <string notr="true">QLineEdit {
@@ -3570,6 +3597,9 @@ QTextEdit QScrollBar::sub-page {
                      <bold>false</bold>
                     </font>
                    </property>
+                   <property name="focusPolicy">
+                    <enum>Qt::NoFocus</enum>
+                   </property>
                    <property name="styleSheet">
                     <string notr="true">QCheckBox::indicator {
 	width: 54px;
@@ -3616,6 +3646,9 @@ QCheckBox {
                      <width>95</width>
                      <height>16777215</height>
                     </size>
+                   </property>
+                   <property name="focusPolicy">
+                    <enum>Qt::NoFocus</enum>
                    </property>
                    <property name="styleSheet">
                     <string notr="true">QPushButton {
@@ -3665,6 +3698,28 @@ QPushButton:disabled {
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>kc_ts_ip_lineEdit</tabstop>
+  <tabstop>kc_ts_recv_tu_port_lineEdit</tabstop>
+  <tabstop>kc_ts_recv_ou_port_lineEdit</tabstop>
+  <tabstop>kc_ts_send_tu_port_lineEdit</tabstop>
+  <tabstop>kc_ts_send_mu_port_lineEdit</tabstop>
+  <tabstop>mu_ip_lineEdit</tabstop>
+  <tabstop>mu_recv_port_lineEdit</tabstop>
+  <tabstop>kc_tu_ip_lineEdit</tabstop>
+  <tabstop>kc_tu_recv_port_lineEdit</tabstop>
+  <tabstop>apply_pushButton</tabstop>
+  <tabstop>import_protocol_pushButton</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>pushButton_3</tabstop>
+  <tabstop>IOQuery_pushButton</tabstop>
+  <tabstop>send_package_pushButton</tabstop>
+  <tabstop>lineEdit_package_header</tabstop>
+  <tabstop>deduplication_checkBox</tabstop>
+  <tabstop>clear_record_pushButton</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>ou_analysis_table</tabstop>
+ </tabstops>
  <resources>
   <include location="resource.qrc"/>
  </resources>

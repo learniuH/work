@@ -115,6 +115,7 @@ class Ui_KCTS(object):
         self.import_protocol_pushButton = QtWidgets.QPushButton(self.Menu)
         self.import_protocol_pushButton.setMinimumSize(QtCore.QSize(84, 0))
         self.import_protocol_pushButton.setMaximumSize(QtCore.QSize(100, 40))
+        self.import_protocol_pushButton.setFocusPolicy(QtCore.Qt.NoFocus)
         self.import_protocol_pushButton.setStyleSheet("QPushButton {\n"
 "    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
@@ -145,6 +146,7 @@ class Ui_KCTS(object):
         self.pushButton_2 = QtWidgets.QPushButton(self.Menu)
         self.pushButton_2.setMinimumSize(QtCore.QSize(84, 0))
         self.pushButton_2.setMaximumSize(QtCore.QSize(100, 40))
+        self.pushButton_2.setFocusPolicy(QtCore.Qt.NoFocus)
         self.pushButton_2.setStyleSheet("QPushButton {\n"
 "    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
@@ -175,6 +177,7 @@ class Ui_KCTS(object):
         self.pushButton_3 = QtWidgets.QPushButton(self.Menu)
         self.pushButton_3.setMinimumSize(QtCore.QSize(84, 0))
         self.pushButton_3.setMaximumSize(QtCore.QSize(40, 40))
+        self.pushButton_3.setFocusPolicy(QtCore.Qt.NoFocus)
         self.pushButton_3.setStyleSheet("QPushButton {\n"
 "    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
@@ -589,6 +592,7 @@ class Ui_KCTS(object):
         self.apply_pushButton = QtWidgets.QPushButton(self.gridWidget1)
         self.apply_pushButton.setMinimumSize(QtCore.QSize(84, 50))
         self.apply_pushButton.setMaximumSize(QtCore.QSize(120, 70))
+        self.apply_pushButton.setFocusPolicy(QtCore.Qt.NoFocus)
         self.apply_pushButton.setStyleSheet("QPushButton {\n"
 "    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
@@ -666,6 +670,7 @@ class Ui_KCTS(object):
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.tabWidget = QtWidgets.QTabWidget(self.analysis_page)
         self.tabWidget.setMinimumSize(QtCore.QSize(1079, 613))
+        self.tabWidget.setFocusPolicy(QtCore.Qt.NoFocus)
         self.tabWidget.setStyleSheet("QTabWidget::pane { /* The tab widget frame */\n"
 "    border-top: 2px solid #C2C7CB;\n"
 "}\n"
@@ -1471,6 +1476,7 @@ class Ui_KCTS(object):
         self.verticalLayout_6.setContentsMargins(0, 18, 0, -1)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
         self.ou_analysis_table = QtWidgets.QTableWidget(self.ou_analysis_page)
+        self.ou_analysis_table.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.ou_analysis_table.setStyleSheet("/*表头背景颜色*/\n"
 "QHeaderView::section {\n"
 "    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
@@ -1621,6 +1627,7 @@ class Ui_KCTS(object):
         font.setItalic(False)
         font.setWeight(50)
         self.IOQuery_pushButton.setFont(font)
+        self.IOQuery_pushButton.setFocusPolicy(QtCore.Qt.NoFocus)
         self.IOQuery_pushButton.setStyleSheet("QPushButton {\n"
 "    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
@@ -1661,6 +1668,7 @@ class Ui_KCTS(object):
         font.setItalic(False)
         font.setWeight(50)
         self.send_package_pushButton.setFont(font)
+        self.send_package_pushButton.setFocusPolicy(QtCore.Qt.NoFocus)
         self.send_package_pushButton.setStyleSheet("QPushButton {\n"
 "    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
@@ -1700,6 +1708,7 @@ class Ui_KCTS(object):
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         self.lineEdit_package_header.setFont(font)
+        self.lineEdit_package_header.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.lineEdit_package_header.setStyleSheet("QLineEdit {\n"
 "    border: 0px;\n"
 "    background-color: transparent;\n"
@@ -1807,6 +1816,7 @@ class Ui_KCTS(object):
         font.setBold(False)
         font.setWeight(50)
         self.deduplication_checkBox.setFont(font)
+        self.deduplication_checkBox.setFocusPolicy(QtCore.Qt.NoFocus)
         self.deduplication_checkBox.setStyleSheet("QCheckBox::indicator {\n"
 "    width: 54px;\n"
 "    height: 30px;\n"
@@ -1831,6 +1841,7 @@ class Ui_KCTS(object):
         self.clear_record_pushButton = QtWidgets.QPushButton(self.history_tab)
         self.clear_record_pushButton.setMinimumSize(QtCore.QSize(84, 45))
         self.clear_record_pushButton.setMaximumSize(QtCore.QSize(95, 16777215))
+        self.clear_record_pushButton.setFocusPolicy(QtCore.Qt.NoFocus)
         self.clear_record_pushButton.setStyleSheet("QPushButton {\n"
 "    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
@@ -1876,6 +1887,25 @@ class Ui_KCTS(object):
         self.ou_analysis_send_stacked.setCurrentIndex(0)
         self.history_record_stacked.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(KCTS)
+        KCTS.setTabOrder(self.kc_ts_ip_lineEdit, self.kc_ts_recv_tu_port_lineEdit)
+        KCTS.setTabOrder(self.kc_ts_recv_tu_port_lineEdit, self.kc_ts_recv_ou_port_lineEdit)
+        KCTS.setTabOrder(self.kc_ts_recv_ou_port_lineEdit, self.kc_ts_send_tu_port_lineEdit)
+        KCTS.setTabOrder(self.kc_ts_send_tu_port_lineEdit, self.kc_ts_send_mu_port_lineEdit)
+        KCTS.setTabOrder(self.kc_ts_send_mu_port_lineEdit, self.mu_ip_lineEdit)
+        KCTS.setTabOrder(self.mu_ip_lineEdit, self.mu_recv_port_lineEdit)
+        KCTS.setTabOrder(self.mu_recv_port_lineEdit, self.kc_tu_ip_lineEdit)
+        KCTS.setTabOrder(self.kc_tu_ip_lineEdit, self.kc_tu_recv_port_lineEdit)
+        KCTS.setTabOrder(self.kc_tu_recv_port_lineEdit, self.apply_pushButton)
+        KCTS.setTabOrder(self.apply_pushButton, self.import_protocol_pushButton)
+        KCTS.setTabOrder(self.import_protocol_pushButton, self.pushButton_2)
+        KCTS.setTabOrder(self.pushButton_2, self.pushButton_3)
+        KCTS.setTabOrder(self.pushButton_3, self.IOQuery_pushButton)
+        KCTS.setTabOrder(self.IOQuery_pushButton, self.send_package_pushButton)
+        KCTS.setTabOrder(self.send_package_pushButton, self.lineEdit_package_header)
+        KCTS.setTabOrder(self.lineEdit_package_header, self.deduplication_checkBox)
+        KCTS.setTabOrder(self.deduplication_checkBox, self.clear_record_pushButton)
+        KCTS.setTabOrder(self.clear_record_pushButton, self.tabWidget)
+        KCTS.setTabOrder(self.tabWidget, self.ou_analysis_table)
 
     def retranslateUi(self, KCTS):
         _translate = QtCore.QCoreApplication.translate
