@@ -174,8 +174,8 @@ class MainWindow(QMainWindow):
         # tableWidget item 宽度自适应窗口宽度
         self.main_window_ui.ou_analysis_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
-        # 隐藏包头的 lineEdit, 只有在 OU 模拟器界面才会显示
-        self.main_window_ui.lineEdit_package_header.setStyleSheet(OUSimulatorStyleSheet.LineEdit_PackHeader_Hidden)
+        # 禁用中文输入法, 解决点击 lineEdit 为中文输入法的问题
+        self.main_window_ui.lineEdit_package_header.setAttribute(Qt.WA_InputMethodEnabled, False)
 
         # 隐藏顶部的top hint 提示
         self.main_window_ui.top_hint_label.setVisible(False)
@@ -369,6 +369,7 @@ class MainWindow(QMainWindow):
 
         lineEdit = LearniuHLineEdit(byte_num, bit_index)
         self.main_window_ui.gridLayout_switch.addWidget(lineEdit, row, col + 2)
+        lineEdit.setAttribute(Qt.WA_InputMethodEnabled, False)      # 禁用中文输入法
 
         # 控件绑定事件函数
         checkBox.stateChanged.connect(lambda: OUSimulator.checkBox_status_changed(checkBox, pushButton))
@@ -395,6 +396,7 @@ class MainWindow(QMainWindow):
 
         lineEdit = LearniuHLineEdit(byte_num)
         self.main_window_ui.gridLayout_analog.addWidget(lineEdit, row, col + 1)
+        lineEdit.setAttribute(Qt.WA_InputMethodEnabled, False)
 
         slider = LearniuHSlider(byte_num)
         self.main_window_ui.gridLayout_analog.addWidget(slider, row, col + 2)
