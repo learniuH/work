@@ -308,9 +308,9 @@ QComboBox::down-arrow:on { /* shift the arrow when popup is open */
   <widget class="QComboBox" name="comboBox_2">
    <property name="geometry">
     <rect>
-     <x>890</x>
-     <y>20</y>
-     <width>83</width>
+     <x>820</x>
+     <y>80</y>
+     <width>111</width>
      <height>22</height>
     </rect>
    </property>
@@ -620,6 +620,9 @@ QCheckBox::indicator:checked {
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_2">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>620</x>
@@ -627,6 +630,18 @@ QCheckBox::indicator:checked {
      <width>113</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+        font-size: 16px;          /* 正常状态下的字体大小 */
+        color: black;             /* 正常状态下输入文本的颜色 */
+        background-color: white;  /* 正常状态下的背景颜色 */
+    }
+    QLineEdit:disabled {
+        color: gray;              /* 禁用状态下的文本颜色 */
+        background-color: #f0f0f0; /* 禁用状态下的背景颜色 */
+        border: 1px solid #d3d3d3; /* 禁用状态下的边框样式 */
+    }</string>
    </property>
   </widget>
   <widget class="QSlider" name="horizontalSlider">
