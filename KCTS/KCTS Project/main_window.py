@@ -10,6 +10,7 @@ from services.network import NetworkManager
 from services.read_excel import ExcelRead
 from services.ou_simulator import OUSimulator
 from services.package_send import PackageToMu
+from services.serial_port_assistant import SerialPortAsst
 
 from widget.checkbox import LearniuHCheckBox
 from widget.pushbutton import LearniuHPushButton
@@ -93,6 +94,9 @@ class MainWindow(QMainWindow):
         self.main_window_ui.deduplication_checkBox.stateChanged.connect(self.history_interface_switch)
 
         self.main_window_ui.clear_record_pushButton.clicked.connect(self.clear_history_record)
+
+        # 点击串口助手界面的 comboBox
+        # self.main_window_ui.comboBox_serial_port.showPopup.connect(lambda: SerialPortAsst.port_query(self.main_window_ui.comboBox_serial_port))
 
     def signal_bind(self):
         ''' 绑定 pyqtSignal 到对应事件与按键 '''
