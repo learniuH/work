@@ -516,6 +516,20 @@ QListWidget::item:selected {
            <set>AlignCenter</set>
           </property>
          </item>
+         <item>
+          <property name="text">
+           <string>串口助手</string>
+          </property>
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignCenter</set>
+          </property>
+         </item>
         </widget>
        </item>
        <item>
@@ -524,7 +538,7 @@ QListWidget::item:selected {
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="device_status_page">
           <layout class="QVBoxLayout" name="verticalLayout_5" stretch="2,5">
@@ -3695,6 +3709,41 @@ QPushButton:disabled {
             </widget>
            </item>
           </layout>
+         </widget>
+         <widget class="QWidget" name="serial_port_page">
+          <widget class="QComboBox" name="comboBox">
+           <property name="geometry">
+            <rect>
+             <x>450</x>
+             <y>210</y>
+             <width>87</width>
+             <height>22</height>
+            </rect>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::NoFocus</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+	background-color: ; /* 背景颜色 */
+	color: white;		/* 字体颜色 */
+}
+
+QComboBox QAbstractItemView {
+	outline: 0px solid gray;
+	border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+	color: white;
+	background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,
+                                      stop: 0 #404959, stop: 1 #989da5);
+	selection-background-color: #435068;
+}
+
+QComboBox QAbstractItemView::item {
+	height: 22px;
+}</string>
+           </property>
+          </widget>
          </widget>
         </widget>
        </item>

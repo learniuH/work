@@ -276,6 +276,13 @@ class Ui_KCTS(object):
         font.setPointSize(11)
         item.setFont(font)
         self.navigation_list.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(11)
+        item.setFont(font)
+        self.navigation_list.addItem(item)
         self.horizontalLayout_2.addWidget(self.navigation_list)
         self.sub_interface_stacked = QtWidgets.QStackedWidget(self.Body)
         self.sub_interface_stacked.setStyleSheet("")
@@ -1879,6 +1886,31 @@ class Ui_KCTS(object):
         self.tabWidget.addTab(self.history_tab, "")
         self.verticalLayout_2.addWidget(self.tabWidget)
         self.sub_interface_stacked.addWidget(self.analysis_page)
+        self.serial_port_page = QtWidgets.QWidget()
+        self.serial_port_page.setObjectName("serial_port_page")
+        self.comboBox = QtWidgets.QComboBox(self.serial_port_page)
+        self.comboBox.setGeometry(QtCore.QRect(450, 210, 87, 22))
+        self.comboBox.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.comboBox.setStyleSheet("QComboBox {\n"
+"    background-color: ; /* 背景颜色 */\n"
+"    color: white;        /* 字体颜色 */\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView {\n"
+"    outline: 0px solid gray;\n"
+"    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"    color: white;\n"
+"    background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,\n"
+"                                      stop: 0 #404959, stop: 1 #989da5);\n"
+"    selection-background-color: #435068;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item {\n"
+"    height: 22px;\n"
+"}")
+        self.comboBox.setObjectName("comboBox")
+        self.sub_interface_stacked.addWidget(self.serial_port_page)
         self.horizontalLayout_2.addWidget(self.sub_interface_stacked)
         self.horizontalLayout_2.setStretch(0, 1)
         self.horizontalLayout_2.setStretch(1, 15)
@@ -1888,7 +1920,7 @@ class Ui_KCTS(object):
         KCTS.setCentralWidget(self.Window)
 
         self.retranslateUi(KCTS)
-        self.sub_interface_stacked.setCurrentIndex(0)
+        self.sub_interface_stacked.setCurrentIndex(3)
         self.tabWidget.setCurrentIndex(0)
         self.ou_analysis_send_stacked.setCurrentIndex(0)
         self.history_record_stacked.setCurrentIndex(1)
@@ -1928,6 +1960,8 @@ class Ui_KCTS(object):
         item.setText(_translate("KCTS", "MU功能测试"))
         item = self.navigation_list.item(2)
         item.setText(_translate("KCTS", "输出查询"))
+        item = self.navigation_list.item(3)
+        item.setText(_translate("KCTS", "串口助手"))
         self.navigation_list.setSortingEnabled(__sortingEnabled)
         self.softWare_version_text.setText(_translate("KCTS", " KC-TU-V1.0.0"))
         self.hardWare_version_label.setText(_translate("KCTS", "KC-TU硬件版本 :"))
