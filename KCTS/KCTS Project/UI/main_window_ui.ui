@@ -3799,10 +3799,10 @@ QPushButton:disabled {
           <widget class="QWidget" name="gridLayoutWidget">
            <property name="geometry">
             <rect>
-             <x>320</x>
-             <y>530</y>
-             <width>160</width>
-             <height>80</height>
+             <x>70</x>
+             <y>500</y>
+             <width>1111</width>
+             <height>181</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_serial_port_info"/>
