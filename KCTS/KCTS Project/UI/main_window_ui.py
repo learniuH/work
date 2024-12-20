@@ -1888,10 +1888,10 @@ class Ui_KCTS(object):
         self.sub_interface_stacked.addWidget(self.analysis_page)
         self.serial_port_page = QtWidgets.QWidget()
         self.serial_port_page.setObjectName("serial_port_page")
-        self.comboBox = QtWidgets.QComboBox(self.serial_port_page)
-        self.comboBox.setGeometry(QtCore.QRect(450, 210, 87, 22))
-        self.comboBox.setFocusPolicy(QtCore.Qt.NoFocus)
-        self.comboBox.setStyleSheet("QComboBox {\n"
+        self.comboBox_serial_port = QtWidgets.QComboBox(self.serial_port_page)
+        self.comboBox_serial_port.setGeometry(QtCore.QRect(200, 100, 87, 22))
+        self.comboBox_serial_port.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.comboBox_serial_port.setStyleSheet("QComboBox {\n"
 "    background-color: ; /* 背景颜色 */\n"
 "    color: white;        /* 字体颜色 */\n"
 "}\n"
@@ -1909,7 +1909,47 @@ class Ui_KCTS(object):
 "QComboBox QAbstractItemView::item {\n"
 "    height: 22px;\n"
 "}")
-        self.comboBox.setObjectName("comboBox")
+        self.comboBox_serial_port.setObjectName("comboBox_serial_port")
+        self.pushButton = QtWidgets.QPushButton(self.serial_port_page)
+        self.pushButton.setGeometry(QtCore.QRect(310, 90, 121, 41))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
+        self.pushButton.setSizePolicy(sizePolicy)
+        self.pushButton.setMinimumSize(QtCore.QSize(82, 0))
+        self.pushButton.setStyleSheet("QPushButton {\n"
+"    border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"    border-radius: 10px;\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #435068, stop: 1 #2a354e);\n"
+"    min-width: 80px;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #435068\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2c3646\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: #434b5d\n"
+"}\n"
+"\n"
+"\n"
+"")
+        self.pushButton.setObjectName("pushButton")
+        self.gridLayoutWidget = QtWidgets.QWidget(self.serial_port_page)
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(320, 530, 160, 80))
+        self.gridLayoutWidget.setObjectName("gridLayoutWidget")
+        self.gridLayout_serial_port_info = QtWidgets.QGridLayout(self.gridLayoutWidget)
+        self.gridLayout_serial_port_info.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_serial_port_info.setObjectName("gridLayout_serial_port_info")
         self.sub_interface_stacked.addWidget(self.serial_port_page)
         self.horizontalLayout_2.addWidget(self.sub_interface_stacked)
         self.horizontalLayout_2.setStretch(0, 1)
@@ -2042,4 +2082,5 @@ class Ui_KCTS(object):
         self.deduplication_checkBox.setText(_translate("KCTS", "去重"))
         self.clear_record_pushButton.setText(_translate("KCTS", "一键清除"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.history_tab), _translate("KCTS", "历史记录"))
+        self.pushButton.setText(_translate("KCTS", "打开串口"))
 from . import resource_rc

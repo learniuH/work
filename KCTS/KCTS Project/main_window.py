@@ -13,6 +13,7 @@ from services.package_send import PackageToMu
 from services.serial_port_assistant import SerialPortAsst
 
 from widget.checkbox import LearniuHCheckBox
+from widget.combobox import LearniuHComboBox
 from widget.pushbutton import LearniuHPushButton
 from widget.lineedit import LearniuHLineEdit
 from widget.slider import LearniuHSlider
@@ -94,9 +95,6 @@ class MainWindow(QMainWindow):
         self.main_window_ui.deduplication_checkBox.stateChanged.connect(self.history_interface_switch)
 
         self.main_window_ui.clear_record_pushButton.clicked.connect(self.clear_history_record)
-
-        # 点击串口助手界面的 comboBox
-        # self.main_window_ui.comboBox_serial_port.showPopup.connect(lambda: SerialPortAsst.port_query(self.main_window_ui.comboBox_serial_port))
 
     def signal_bind(self):
         ''' 绑定 pyqtSignal 到对应事件与按键 '''
@@ -180,6 +178,9 @@ class MainWindow(QMainWindow):
 
         # 禁用中文输入法, 解决点击 lineEdit 为中文输入法的问题
         self.main_window_ui.lineEdit_package_header.setAttribute(Qt.WA_InputMethodEnabled, False)
+
+        # 更新串口助手界面的 comboBox
+        self.update_serial_port_ui()
 
         # 隐藏顶部的top hint 提示
         self.main_window_ui.top_hint_label.setVisible(False)
@@ -619,6 +620,11 @@ class MainWindow(QMainWindow):
         ''' 清除历史记录里所有内容 '''
         self.main_window_ui.history_record_textEdit.clear()
         self.main_window_ui.deduplication_textEdit.clear()
+
+    def update_serial_port_ui(self):
+        ''' 用于更新串口助手的 comboBox UI'''
+        comboBox = LearniuHComboBox()
+        self.main_window_ui.gridLayout_serial_port_info.addWidget(comboBox, 0, 0)
 
     def keyPressEvent(self, event):
         ''' 重写该方法, 用于处理键盘按下时, OU模拟器的按键触发 '''

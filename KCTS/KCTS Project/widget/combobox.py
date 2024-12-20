@@ -1,9 +1,14 @@
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QComboBox
 
+from services.serial_port_assistant import SerialPortAsst
+
 class LearniuHComboBox(QComboBox):
-    ''' 自定义 comboBox 重写 Popup 方法 '''
+    ''' 自定义 comboBox 重写 showPopup 方法 '''
     def __init__(self):
         super().__init__()
+
+        self.setFocusPolicy(Qt.NoFocus)
 
         self.custom_style()
 
@@ -13,6 +18,7 @@ class LearniuHComboBox(QComboBox):
             QComboBox {
                 background-color: ; /* 背景颜色 */
                 color: white;		/* 字体颜色 */
+                font: 9pt "微软雅黑";
             }
             
             QComboBox QAbstractItemView {
@@ -29,3 +35,9 @@ class LearniuHComboBox(QComboBox):
                 height: 22px;
             }
         ''')
+
+    def showPopup(self):
+        ''' 重写 showPopup 在comboBox 下拉框出现时, 更新可用串口号 '''
+        SerialPortAsst.update_com_ports(self)
+        # 调用父类的 showPopup 方法以显示下拉框
+        super().showPopup()

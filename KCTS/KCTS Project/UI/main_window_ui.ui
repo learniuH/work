@@ -3711,11 +3711,11 @@ QPushButton:disabled {
           </layout>
          </widget>
          <widget class="QWidget" name="serial_port_page">
-          <widget class="QComboBox" name="comboBox">
+          <widget class="QComboBox" name="comboBox_serial_port">
            <property name="geometry">
             <rect>
-             <x>450</x>
-             <y>210</y>
+             <x>200</x>
+             <y>100</y>
              <width>87</width>
              <height>22</height>
             </rect>
@@ -3743,6 +3743,69 @@ QComboBox QAbstractItemView::item {
 	height: 22px;
 }</string>
            </property>
+          </widget>
+          <widget class="QPushButton" name="pushButton">
+           <property name="geometry">
+            <rect>
+             <x>310</x>
+             <y>90</y>
+             <width>121</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>82</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+    border-radius: 10px;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #435068, stop: 1 #2a354e);
+    min-width: 80px;
+	font: 9pt &quot;微软雅黑&quot;;
+	color: white;
+}
+
+QPushButton:hover {
+	background-color: #435068
+}
+
+QPushButton:pressed {
+    background-color: #2c3646
+}
+
+QPushButton:disabled {
+    background-color: #434b5d
+}
+
+
+</string>
+           </property>
+           <property name="text">
+            <string>打开串口</string>
+           </property>
+          </widget>
+          <widget class="QWidget" name="gridLayoutWidget">
+           <property name="geometry">
+            <rect>
+             <x>320</x>
+             <y>530</y>
+             <width>160</width>
+             <height>80</height>
+            </rect>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_serial_port_info"/>
           </widget>
          </widget>
         </widget>
