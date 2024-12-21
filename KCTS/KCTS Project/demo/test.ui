@@ -310,7 +310,7 @@ QComboBox::down-arrow:on { /* shift the arrow when popup is open */
     <rect>
      <x>820</x>
      <y>80</y>
-     <width>111</width>
+     <width>102</width>
      <height>22</height>
     </rect>
    </property>
@@ -318,21 +318,69 @@ QComboBox::down-arrow:on { /* shift the arrow when popup is open */
     <enum>Qt::DefaultContextMenu</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">QComboBox QAbstractItemView {
-	outline: 0px solid gray;
-	border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
-	color: white;
-	background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,
-                                      stop: 0 #404959, stop: 1 #989da5);
-	selection-background-color: #435068;
+    <string notr="true">/* 设置滚动条整体样式 */
+QComboBox QScrollBar:vertical {
+    border: 1px solid #dcdcdc; /* 滚动条边框颜色 */
+    background: #f5f5f5;       /* 滚动条背景颜色 */
+    width: 12px;               /* 滚动条宽度 */
 }
 
+/* 设置滚动条滑块样式 */
+QComboBox QScrollBar::handle:vertical {
+    background: #cccccc;       /* 滑块颜色 */
+    border-radius: 6px;        /* 滑块圆角 */
+    min-height: 20px;          /* 滑块最小高度 */
+}
+
+/* 设置滑块在鼠标悬停时的样式 */
+QComboBox QScrollBar::handle:vertical:hover {
+    background: #aaaaaa;       /* 滑块悬停颜色 */
+}
+
+/* 设置滚动条上箭头和下箭头按钮样式 */
+QComboBox QScrollBar::sub-line,
+QComboBox QScrollBar::add-line {
+    border: 1px solid #dcdcdc; /* 按钮边框颜色 */
+    background: #f5f5f5;       /* 按钮背景颜色 */
+    height: 12px;              /* 按钮高度 */
+    subcontrol-origin: margin; /* 按钮对齐方式 */
+}
+
+
+
+/* 设置滚动条轨道样式 */
+QComboBox QScrollBar::add-page,
+QComboBox QScrollBar::sub-page {
+    background: #eaeaea; /* 滚动条轨道颜色 */
+}
 </string>
+   </property>
+   <property name="maxVisibleItems">
+    <number>5</number>
    </property>
    <item>
     <property name="text">
      <string>1</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>新建项目</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>新建项目</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>新建项目</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>新建项目</string>
     </property>
    </item>
    <item>

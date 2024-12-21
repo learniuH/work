@@ -16,9 +16,15 @@ class LearniuHComboBox(QComboBox):
         ''' 自定义 QSS '''
         self.setStyleSheet('''
             QComboBox {
-                background-color: ; /* 背景颜色 */
+                border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                                  stop: 0 #f6f7fa, stop: 1 #dadbde);
+                background-color: qlineargradient(spread: pad, x1: 1, y1: 0, x2: 0, y2: 1,
+		                                          stop: 0 #0d1117,  /* 起始颜色 */
+		                                          stop: 1 #414a5a   /* 结束颜色 */ ); /* 背景颜色 */
                 color: white;		/* 字体颜色 */
                 font: 9pt "微软雅黑";
+                height: 22px;
+                max-width: 100px;
             }
             
             QComboBox QAbstractItemView {

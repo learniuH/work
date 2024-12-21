@@ -1887,17 +1887,22 @@ class Ui_KCTS(object):
         self.verticalLayout_2.addWidget(self.tabWidget)
         self.sub_interface_stacked.addWidget(self.analysis_page)
         self.serial_port_page = QtWidgets.QWidget()
+        self.serial_port_page.setStyleSheet("QWidget {\n"
+"    background-color: transparent;\n"
+"}")
         self.serial_port_page.setObjectName("serial_port_page")
         self.comboBox_serial_port = QtWidgets.QComboBox(self.serial_port_page)
         self.comboBox_serial_port.setGeometry(QtCore.QRect(200, 100, 87, 22))
         self.comboBox_serial_port.setFocusPolicy(QtCore.Qt.NoFocus)
         self.comboBox_serial_port.setStyleSheet("QComboBox {\n"
+"    border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
 "    background-color: ; /* 背景颜色 */\n"
 "    color: white;        /* 字体颜色 */\n"
 "}\n"
 "\n"
 "QComboBox QAbstractItemView {\n"
-"    outline: 0px solid gray;\n"
+"    outline: 0px;\n"
 "    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
 "    color: white;\n"
@@ -1910,6 +1915,9 @@ class Ui_KCTS(object):
 "    height: 22px;\n"
 "}")
         self.comboBox_serial_port.setObjectName("comboBox_serial_port")
+        self.comboBox_serial_port.addItem("")
+        self.comboBox_serial_port.addItem("")
+        self.comboBox_serial_port.addItem("")
         self.pushButton = QtWidgets.QPushButton(self.serial_port_page)
         self.pushButton.setGeometry(QtCore.QRect(310, 90, 121, 41))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
@@ -1945,7 +1953,7 @@ class Ui_KCTS(object):
 "")
         self.pushButton.setObjectName("pushButton")
         self.gridLayoutWidget = QtWidgets.QWidget(self.serial_port_page)
-        self.gridLayoutWidget.setGeometry(QtCore.QRect(320, 530, 160, 80))
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(70, 500, 1111, 181))
         self.gridLayoutWidget.setObjectName("gridLayoutWidget")
         self.gridLayout_serial_port_info = QtWidgets.QGridLayout(self.gridLayoutWidget)
         self.gridLayout_serial_port_info.setContentsMargins(0, 0, 0, 0)
@@ -2082,5 +2090,8 @@ class Ui_KCTS(object):
         self.deduplication_checkBox.setText(_translate("KCTS", "去重"))
         self.clear_record_pushButton.setText(_translate("KCTS", "一键清除"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.history_tab), _translate("KCTS", "历史记录"))
+        self.comboBox_serial_port.setItemText(0, _translate("KCTS", "新建项目"))
+        self.comboBox_serial_port.setItemText(1, _translate("KCTS", "新建项目"))
+        self.comboBox_serial_port.setItemText(2, _translate("KCTS", "新建项目"))
         self.pushButton.setText(_translate("KCTS", "打开串口"))
 from . import resource_rc

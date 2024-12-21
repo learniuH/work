@@ -3711,6 +3711,11 @@ QPushButton:disabled {
           </layout>
          </widget>
          <widget class="QWidget" name="serial_port_page">
+          <property name="styleSheet">
+           <string notr="true">QWidget {
+	background-color: transparent;
+}</string>
+          </property>
           <widget class="QComboBox" name="comboBox_serial_port">
            <property name="geometry">
             <rect>
@@ -3725,12 +3730,14 @@ QPushButton:disabled {
            </property>
            <property name="styleSheet">
             <string notr="true">QComboBox {
+	border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
 	background-color: ; /* 背景颜色 */
 	color: white;		/* 字体颜色 */
 }
 
 QComboBox QAbstractItemView {
-	outline: 0px solid gray;
+	outline: 0px;
 	border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                       stop: 0 #f6f7fa, stop: 1 #dadbde);
 	color: white;
@@ -3743,6 +3750,21 @@ QComboBox QAbstractItemView::item {
 	height: 22px;
 }</string>
            </property>
+           <item>
+            <property name="text">
+             <string>新建项目</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>新建项目</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>新建项目</string>
+            </property>
+           </item>
           </widget>
           <widget class="QPushButton" name="pushButton">
            <property name="geometry">
@@ -3805,7 +3827,141 @@ QPushButton:disabled {
              <height>181</height>
             </rect>
            </property>
-           <layout class="QGridLayout" name="gridLayout_serial_port_info"/>
+           <layout class="QGridLayout" name="gridLayout_serial_port_info">
+            <item row="0" column="0">
+             <widget class="QComboBox" name="comboBox">
+              <property name="styleSheet">
+               <string notr="true">QComboBox {
+	border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+	background-color: qlineargradient(spread: pad, x1: 1, y1: 0, x2: 0, y2: 1,
+		                              stop: 0 #0d1117,  /* 起始颜色 */
+		                              stop: 1 #414a5a   /* 结束颜色 */ ); /* 背景颜色 */
+	color: white;		/* 字体颜色 */
+	font: 9pt &quot;微软雅黑&quot;;
+	height: 22px;
+	max-width: 100px;
+}
+
+QComboBox::drop-down {
+	width: 18px;
+}
+
+QComboBox QAbstractItemView {
+	outline: 0px solid gray;
+	border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+	color: white;
+	background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,
+                                      stop: 0 #404959, stop: 1 #989da5);
+	selection-background-color: #435068;
+}
+
+QComboBox QAbstractItemView::item {
+	height: 22px;
+}
+
+/* 滚动条的宽度 */
+QComboBox QScrollBar:vertical {
+	width: 10px;
+}
+
+QComboBox QScrollBar::handle:vertical {
+	min-height: 20px; /* 滑块最小高度 */
+}
+
+/* 滚动条悬停颜色 */
+QComboBox QScrollBar::handle:vertical:hover {
+	border: 1px solid white;
+	background-color: #3c485d;
+}
+
+/* 隐藏上下箭头 */
+QComboBox QScrollBar::sub-line:disabled,
+QComboBox QScrollBar::add-line:disabled {
+	background: none;
+}
+
+QComboBox QScrollBar::add-page,
+QComboBox QScrollBar::sub-page {
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>110</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>300</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>600</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>1200</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>2400</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>4800</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>9600</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>14400</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>19200</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>38400</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>57600</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>115200</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>128000</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>256000</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </widget>
         </widget>
