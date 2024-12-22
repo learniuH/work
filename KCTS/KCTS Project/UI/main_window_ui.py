@@ -1953,11 +1953,357 @@ class Ui_KCTS(object):
 "")
         self.pushButton.setObjectName("pushButton")
         self.gridLayoutWidget = QtWidgets.QWidget(self.serial_port_page)
-        self.gridLayoutWidget.setGeometry(QtCore.QRect(70, 500, 1111, 181))
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(40, 430, 1001, 201))
         self.gridLayoutWidget.setObjectName("gridLayoutWidget")
         self.gridLayout_serial_port_info = QtWidgets.QGridLayout(self.gridLayoutWidget)
         self.gridLayout_serial_port_info.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_serial_port_info.setObjectName("gridLayout_serial_port_info")
+        self.label_3 = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.label_3.setStyleSheet("QLabel {\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    color: white;\n"
+"    max-width: 100px;\n"
+"}")
+        self.label_3.setObjectName("label_3")
+        self.gridLayout_serial_port_info.addWidget(self.label_3, 0, 0, 1, 1)
+        self.label = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.label.setMinimumSize(QtCore.QSize(0, 0))
+        self.label.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.label.setStyleSheet("QLabel {\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    max-width: 100px;\n"
+"    color: white;\n"
+"}")
+        self.label.setObjectName("label")
+        self.gridLayout_serial_port_info.addWidget(self.label, 1, 0, 1, 1)
+        self.comboBox_stop_bits = QtWidgets.QComboBox(self.gridLayoutWidget)
+        self.comboBox_stop_bits.setStyleSheet("QComboBox {\n"
+"    border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"    background-color: qlineargradient(spread: pad, x1: 1, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #0d1117,  /* 起始颜色 */\n"
+"                                      stop: 1 #414a5a   /* 结束颜色 */ ); /* 背景颜色 */\n"
+"    color: white;        /* 字体颜色 */\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    height: 22px;\n"
+"    min-width: 80px;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"    width: 18px;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView {\n"
+"    outline: 0px solid gray;\n"
+"    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"    color: white;\n"
+"    background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,\n"
+"                                      stop: 0 #989da5, stop: 1 #404959);\n"
+"    selection-background-color: #435068;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item {\n"
+"    height: 22px;\n"
+"}\n"
+"\n"
+"/* 滚动条的宽度 */\n"
+"QComboBox QScrollBar:vertical {\n"
+"\n"
+"    width: 10px;\n"
+"}\n"
+"\n"
+"QComboBox QScrollBar::handle:vertical {\n"
+"    min-height: 20px; /* 滑块最小高度 */\n"
+"}\n"
+"\n"
+"/* 滚动条悬停颜色 */\n"
+"QComboBox QScrollBar::handle:vertical:hover {\n"
+"    border: 1px solid white;        /* 滚动条的边框颜色 */\n"
+"    background-color: #3c485d;\n"
+"}\n"
+"\n"
+"/* 始终隐藏上下箭头 */\n"
+"QComboBox QScrollBar::sub-line,\n"
+"QComboBox QScrollBar::add-line {\n"
+"    background: none;\n"
+"}\n"
+"\n"
+"QComboBox QScrollBar::add-page,\n"
+"QComboBox QScrollBar::sub-page {\n"
+"    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"")
+        self.comboBox_stop_bits.setObjectName("comboBox_stop_bits")
+        self.comboBox_stop_bits.addItem("")
+        self.comboBox_stop_bits.addItem("")
+        self.comboBox_stop_bits.addItem("")
+        self.gridLayout_serial_port_info.addWidget(self.comboBox_stop_bits, 2, 1, 1, 1)
+        self.label_6 = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.label_6.setStyleSheet("QLabel {\n"
+"    max-width: 100px;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    color: white;\n"
+"}")
+        self.label_6.setObjectName("label_6")
+        self.gridLayout_serial_port_info.addWidget(self.label_6, 4, 0, 1, 1)
+        self.label_4 = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.label_4.setStyleSheet("QLabel {\n"
+"    max-width: 100px;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    color: white;\n"
+"}")
+        self.label_4.setObjectName("label_4")
+        self.gridLayout_serial_port_info.addWidget(self.label_4, 2, 0, 1, 1)
+        self.comboBox_data_bits = QtWidgets.QComboBox(self.gridLayoutWidget)
+        self.comboBox_data_bits.setStyleSheet("QComboBox {\n"
+"    border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"    background-color: qlineargradient(spread: pad, x1: 1, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #0d1117,  /* 起始颜色 */\n"
+"                                      stop: 1 #414a5a   /* 结束颜色 */ ); /* 背景颜色 */\n"
+"    color: white;        /* 字体颜色 */\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    height: 22px;\n"
+"    min-width: 80px;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"    width: 18px;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView {\n"
+"    outline: 0px solid gray;\n"
+"    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"    color: white;\n"
+"    background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,\n"
+"                                      stop: 0 #989da5, stop: 1 #404959);\n"
+"    selection-background-color: #435068;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item {\n"
+"    height: 22px;\n"
+"}\n"
+"\n"
+"/* 滚动条的宽度 */\n"
+"QComboBox QScrollBar:vertical {\n"
+"\n"
+"    width: 10px;\n"
+"}\n"
+"\n"
+"QComboBox QScrollBar::handle:vertical {\n"
+"    min-height: 20px; /* 滑块最小高度 */\n"
+"}\n"
+"\n"
+"/* 滚动条悬停颜色 */\n"
+"QComboBox QScrollBar::handle:vertical:hover {\n"
+"    border: 1px solid white;        /* 滚动条的边框颜色 */\n"
+"    background-color: #3c485d;\n"
+"}\n"
+"\n"
+"/* 始终隐藏上下箭头 */\n"
+"QComboBox QScrollBar::sub-line,\n"
+"QComboBox QScrollBar::add-line {\n"
+"    background: none;\n"
+"}\n"
+"\n"
+"QComboBox QScrollBar::add-page,\n"
+"QComboBox QScrollBar::sub-page {\n"
+"    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"")
+        self.comboBox_data_bits.setObjectName("comboBox_data_bits")
+        self.comboBox_data_bits.addItem("")
+        self.comboBox_data_bits.addItem("")
+        self.comboBox_data_bits.addItem("")
+        self.comboBox_data_bits.addItem("")
+        self.gridLayout_serial_port_info.addWidget(self.comboBox_data_bits, 3, 1, 1, 1)
+        self.comboBox_parity = QtWidgets.QComboBox(self.gridLayoutWidget)
+        self.comboBox_parity.setStyleSheet("QComboBox {\n"
+"    border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"    background-color: qlineargradient(spread: pad, x1: 1, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #0d1117,  /* 起始颜色 */\n"
+"                                      stop: 1 #414a5a   /* 结束颜色 */ ); /* 背景颜色 */\n"
+"    color: white;        /* 字体颜色 */\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    height: 22px;\n"
+"    min-width: 80px;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"    width: 18px;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView {\n"
+"    outline: 0px solid gray;\n"
+"    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"    color: white;\n"
+"    background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,\n"
+"                                      stop: 0 #989da5, stop: 1 #404959);\n"
+"    selection-background-color: #435068;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item {\n"
+"    height: 22px;\n"
+"}\n"
+"\n"
+"/* 滚动条的宽度 */\n"
+"QComboBox QScrollBar:vertical {\n"
+"\n"
+"    width: 10px;\n"
+"}\n"
+"\n"
+"QComboBox QScrollBar::handle:vertical {\n"
+"    min-height: 20px; /* 滑块最小高度 */\n"
+"}\n"
+"\n"
+"/* 滚动条悬停颜色 */\n"
+"QComboBox QScrollBar::handle:vertical:hover {\n"
+"    border: 1px solid white;        /* 滚动条的边框颜色 */\n"
+"    background-color: #3c485d;\n"
+"}\n"
+"\n"
+"/* 始终隐藏上下箭头 */\n"
+"QComboBox QScrollBar::sub-line,\n"
+"QComboBox QScrollBar::add-line {\n"
+"    background: none;\n"
+"}\n"
+"\n"
+"QComboBox QScrollBar::add-page,\n"
+"QComboBox QScrollBar::sub-page {\n"
+"    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"")
+        self.comboBox_parity.setObjectName("comboBox_parity")
+        self.comboBox_parity.addItem("")
+        self.comboBox_parity.addItem("")
+        self.comboBox_parity.addItem("")
+        self.gridLayout_serial_port_info.addWidget(self.comboBox_parity, 4, 1, 1, 1)
+        self.comboBox_baud_rate = QtWidgets.QComboBox(self.gridLayoutWidget)
+        self.comboBox_baud_rate.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.comboBox_baud_rate.setStyleSheet("QComboBox {\n"
+"    border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"    background-color: qlineargradient(spread: pad, x1: 1, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #0d1117,  /* 起始颜色 */\n"
+"                                      stop: 1 #414a5a   /* 结束颜色 */ ); /* 背景颜色 */\n"
+"    color: white;        /* 字体颜色 */\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    height: 22px;\n"
+"    min-width: 80px;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"    width: 18px;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView {\n"
+"    outline: 0px solid gray;\n"
+"    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"    color: white;\n"
+"    background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,\n"
+"                                      stop: 0 #989da5, stop: 1 #404959);\n"
+"    selection-background-color: #435068;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item {\n"
+"    height: 22px;\n"
+"}\n"
+"\n"
+"/* 滚动条的宽度 */\n"
+"QComboBox QScrollBar:vertical {\n"
+"\n"
+"    width: 10px;\n"
+"}\n"
+"\n"
+"QComboBox QScrollBar::handle:vertical {\n"
+"    min-height: 20px; /* 滑块最小高度 */\n"
+"}\n"
+"\n"
+"/* 滚动条悬停颜色 */\n"
+"QComboBox QScrollBar::handle:vertical:hover {\n"
+"    border: 1px solid white;        /* 滚动条的边框颜色 */\n"
+"    background-color: #3c485d;\n"
+"}\n"
+"\n"
+"/* 始终隐藏上下箭头 */\n"
+"QComboBox QScrollBar::sub-line,\n"
+"QComboBox QScrollBar::add-line {\n"
+"    background: none;\n"
+"}\n"
+"\n"
+"QComboBox QScrollBar::add-page,\n"
+"QComboBox QScrollBar::sub-page {\n"
+"    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"")
+        self.comboBox_baud_rate.setObjectName("comboBox_baud_rate")
+        self.comboBox_baud_rate.addItem("")
+        self.comboBox_baud_rate.addItem("")
+        self.comboBox_baud_rate.addItem("")
+        self.comboBox_baud_rate.addItem("")
+        self.comboBox_baud_rate.addItem("")
+        self.comboBox_baud_rate.addItem("")
+        self.comboBox_baud_rate.addItem("")
+        self.comboBox_baud_rate.addItem("")
+        self.comboBox_baud_rate.addItem("")
+        self.comboBox_baud_rate.addItem("")
+        self.comboBox_baud_rate.addItem("")
+        self.comboBox_baud_rate.addItem("")
+        self.comboBox_baud_rate.addItem("")
+        self.comboBox_baud_rate.addItem("")
+        self.gridLayout_serial_port_info.addWidget(self.comboBox_baud_rate, 1, 1, 1, 1)
+        self.label_5 = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.label_5.setStyleSheet("QLabel {\n"
+"    max-width: 100px;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    color: white;\n"
+"}")
+        self.label_5.setObjectName("label_5")
+        self.gridLayout_serial_port_info.addWidget(self.label_5, 3, 0, 1, 1)
+        spacerItem8 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_serial_port_info.addItem(spacerItem8, 1, 2, 1, 1)
+        self.pushButton_open_serial_port = QtWidgets.QPushButton(self.gridLayoutWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton_open_serial_port.sizePolicy().hasHeightForWidth())
+        self.pushButton_open_serial_port.setSizePolicy(sizePolicy)
+        self.pushButton_open_serial_port.setStyleSheet("QPushButton {\n"
+"    border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #435068, stop: 1 #2a354e);\n"
+"    width: 80px;\n"
+"    height: 22px;\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #435068\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2c3646\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: #434b5d\n"
+"}\n"
+"\n"
+"\n"
+"")
+        self.pushButton_open_serial_port.setObjectName("pushButton_open_serial_port")
+        self.gridLayout_serial_port_info.addWidget(self.pushButton_open_serial_port, 0, 2, 1, 1)
         self.sub_interface_stacked.addWidget(self.serial_port_page)
         self.horizontalLayout_2.addWidget(self.sub_interface_stacked)
         self.horizontalLayout_2.setStretch(0, 1)
@@ -1972,6 +2318,8 @@ class Ui_KCTS(object):
         self.tabWidget.setCurrentIndex(0)
         self.ou_analysis_send_stacked.setCurrentIndex(0)
         self.history_record_stacked.setCurrentIndex(1)
+        self.comboBox_data_bits.setCurrentIndex(3)
+        self.comboBox_baud_rate.setCurrentIndex(6)
         QtCore.QMetaObject.connectSlotsByName(KCTS)
         KCTS.setTabOrder(self.kc_ts_ip_lineEdit, self.kc_ts_recv_tu_port_lineEdit)
         KCTS.setTabOrder(self.kc_ts_recv_tu_port_lineEdit, self.kc_ts_recv_ou_port_lineEdit)
@@ -2094,4 +2442,34 @@ class Ui_KCTS(object):
         self.comboBox_serial_port.setItemText(1, _translate("KCTS", "新建项目"))
         self.comboBox_serial_port.setItemText(2, _translate("KCTS", "新建项目"))
         self.pushButton.setText(_translate("KCTS", "打开串口"))
+        self.label_3.setText(_translate("KCTS", "选择串口 :"))
+        self.label.setText(_translate("KCTS", "波特率 :"))
+        self.comboBox_stop_bits.setItemText(0, _translate("KCTS", "1"))
+        self.comboBox_stop_bits.setItemText(1, _translate("KCTS", "1.5"))
+        self.comboBox_stop_bits.setItemText(2, _translate("KCTS", "2"))
+        self.label_6.setText(_translate("KCTS", "奇偶校验 :"))
+        self.label_4.setText(_translate("KCTS", "停止位 :"))
+        self.comboBox_data_bits.setItemText(0, _translate("KCTS", "5"))
+        self.comboBox_data_bits.setItemText(1, _translate("KCTS", "6"))
+        self.comboBox_data_bits.setItemText(2, _translate("KCTS", "7"))
+        self.comboBox_data_bits.setItemText(3, _translate("KCTS", "8"))
+        self.comboBox_parity.setItemText(0, _translate("KCTS", "无"))
+        self.comboBox_parity.setItemText(1, _translate("KCTS", "奇校验"))
+        self.comboBox_parity.setItemText(2, _translate("KCTS", "偶校验"))
+        self.comboBox_baud_rate.setItemText(0, _translate("KCTS", "110"))
+        self.comboBox_baud_rate.setItemText(1, _translate("KCTS", "300"))
+        self.comboBox_baud_rate.setItemText(2, _translate("KCTS", "600"))
+        self.comboBox_baud_rate.setItemText(3, _translate("KCTS", "1200"))
+        self.comboBox_baud_rate.setItemText(4, _translate("KCTS", "2400"))
+        self.comboBox_baud_rate.setItemText(5, _translate("KCTS", "4800"))
+        self.comboBox_baud_rate.setItemText(6, _translate("KCTS", "9600"))
+        self.comboBox_baud_rate.setItemText(7, _translate("KCTS", "14400"))
+        self.comboBox_baud_rate.setItemText(8, _translate("KCTS", "19200"))
+        self.comboBox_baud_rate.setItemText(9, _translate("KCTS", "38400"))
+        self.comboBox_baud_rate.setItemText(10, _translate("KCTS", "57600"))
+        self.comboBox_baud_rate.setItemText(11, _translate("KCTS", "115200"))
+        self.comboBox_baud_rate.setItemText(12, _translate("KCTS", "128000"))
+        self.comboBox_baud_rate.setItemText(13, _translate("KCTS", "256000"))
+        self.label_5.setText(_translate("KCTS", "数据位 :"))
+        self.pushButton_open_serial_port.setText(_translate("KCTS", "打开串口"))
 from . import resource_rc

@@ -33,7 +33,7 @@ class MainWindow(QMainWindow):
         self.main_window_ui = Ui_KCTS()     # 主界面的 UI 实例
         self.main_window_ui.setupUi(self)   # 将 UI 加载到 MainWindow 上
 
-        self.load_last_content()  # 加载上一次运行时的配置
+        self.load_last_content()            # 加载上一次运行时的配置
 
         self.network_manager = NetworkManager()     # 初始化网络管理器
 
@@ -42,8 +42,10 @@ class MainWindow(QMainWindow):
         self.previous_mu_parsed: dict = None        # 记录上一帧MU解析的结果
 
         self.excel_reader = None                    # 读取Excel文件实例
+        self.serial_port_asst = None                # 串口助手
 
         self.main_window_init()     # 窗口界面初始化
+        self.serial_port_init()     # 初始化串口助手
 
         self.setup_validators()     # 正则表达式匹配 IP 端口 信息
         self.setup_connections()    # 控件信号连接绑定
@@ -95,6 +97,7 @@ class MainWindow(QMainWindow):
         self.main_window_ui.deduplication_checkBox.stateChanged.connect(self.history_interface_switch)
 
         self.main_window_ui.clear_record_pushButton.clicked.connect(self.clear_history_record)
+
 
     def signal_bind(self):
         ''' 绑定 pyqtSignal 到对应事件与按键 '''
@@ -178,9 +181,6 @@ class MainWindow(QMainWindow):
 
         # 禁用中文输入法, 解决点击 lineEdit 为中文输入法的问题
         self.main_window_ui.lineEdit_package_header.setAttribute(Qt.WA_InputMethodEnabled, False)
-
-        # 更新串口助手界面的 comboBox
-        self.update_serial_port_ui()
 
         # 隐藏顶部的top hint 提示
         self.main_window_ui.top_hint_label.setVisible(False)
@@ -621,10 +621,21 @@ class MainWindow(QMainWindow):
         self.main_window_ui.history_record_textEdit.clear()
         self.main_window_ui.deduplication_textEdit.clear()
 
-    def update_serial_port_ui(self):
-        ''' 用于更新串口助手的 comboBox UI'''
-        comboBox = LearniuHComboBox()
-        self.main_window_ui.gridLayout_serial_port_info.addWidget(comboBox, 0, 0)
+    def serial_port_init(self):
+        ''' UI界面添加串口 comboBox 创建串口助手对象 '''
+        com_comboBox = LearniuHComboBox()
+        self.main_window_ui.gridLayout_serial_port_info.addWidget(com_comboBox, 0, 1)
+
+        # 实例化串口助手对象
+        self.serial_port_asst = SerialPortAsst(com_comboBox,                                    # 选择串口 comboBox
+                                               self.main_window_ui.comboBox_baud_rate,          # 波特率 comboBox
+                                               self.main_window_ui.comboBox_data_bits,          # 数据位 comboBox
+                                               self.main_window_ui.comboBox_parity,             # 奇偶校验 comboBox
+                                               self.main_window_ui.comboBox_stop_bits,          # 停止位 comboBox
+                                               self.main_window_ui.pushButton_open_serial_port) # 串口打开/关闭 pushButton
+
+        # 点击串口助手中的 "打开串口"
+        self.main_window_ui.pushButton_open_serial_port.clicked.connect(self.serial_port_asst.open_serial_port)
 
     def keyPressEvent(self, event):
         ''' 重写该方法, 用于处理键盘按下时, OU模拟器的按键触发 '''

@@ -3821,15 +3821,104 @@ QPushButton:disabled {
           <widget class="QWidget" name="gridLayoutWidget">
            <property name="geometry">
             <rect>
-             <x>70</x>
-             <y>500</y>
-             <width>1111</width>
-             <height>181</height>
+             <x>40</x>
+             <y>430</y>
+             <width>1001</width>
+             <height>201</height>
             </rect>
            </property>
-           <layout class="QGridLayout" name="gridLayout_serial_port_info">
+           <layout class="QGridLayout" name="gridLayout_serial_port_info" rowstretch="0,0,0,0,0,0">
             <item row="0" column="0">
-             <widget class="QComboBox" name="comboBox">
+             <widget class="QLabel" name="label_3">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+	font: 9pt &quot;微软雅黑&quot;;
+	color: white;
+	max-width: 100px;
+}</string>
+              </property>
+              <property name="text">
+               <string>选择串口 :</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>100</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+	font: 9pt &quot;微软雅黑&quot;;
+	max-width: 100px;
+	color: white;
+}</string>
+              </property>
+              <property name="text">
+               <string>波特率 :</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QPushButton" name="pushButton_open_serial_port">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+    border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #435068, stop: 1 #2a354e);
+    width: 80px;
+	height: 22px;
+	font: 9pt &quot;微软雅黑&quot;;
+	color: white;
+}
+
+QPushButton:hover {
+	background-color: #435068
+}
+
+QPushButton:pressed {
+    background-color: #2c3646
+}
+
+QPushButton:disabled {
+    background-color: #434b5d
+}
+
+
+</string>
+              </property>
+              <property name="text">
+               <string>打开串口</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QComboBox" name="comboBox_baud_rate">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>16777215</height>
+               </size>
+              </property>
               <property name="styleSheet">
                <string notr="true">QComboBox {
 	border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -3840,7 +3929,7 @@ QPushButton:disabled {
 	color: white;		/* 字体颜色 */
 	font: 9pt &quot;微软雅黑&quot;;
 	height: 22px;
-	max-width: 100px;
+	min-width: 80px;
 }
 
 QComboBox::drop-down {
@@ -3853,7 +3942,7 @@ QComboBox QAbstractItemView {
                                       stop: 0 #f6f7fa, stop: 1 #dadbde);
 	color: white;
 	background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,
-                                      stop: 0 #404959, stop: 1 #989da5);
+                                      stop: 0 #989da5, stop: 1 #404959);
 	selection-background-color: #435068;
 }
 
@@ -3863,6 +3952,7 @@ QComboBox QAbstractItemView::item {
 
 /* 滚动条的宽度 */
 QComboBox QScrollBar:vertical {
+
 	width: 10px;
 }
 
@@ -3872,13 +3962,13 @@ QComboBox QScrollBar::handle:vertical {
 
 /* 滚动条悬停颜色 */
 QComboBox QScrollBar::handle:vertical:hover {
-	border: 1px solid white;
+	border: 1px solid white;		/* 滚动条的边框颜色 */
 	background-color: #3c485d;
 }
 
-/* 隐藏上下箭头 */
-QComboBox QScrollBar::sub-line:disabled,
-QComboBox QScrollBar::add-line:disabled {
+/* 始终隐藏上下箭头 */
+QComboBox QScrollBar::sub-line,
+QComboBox QScrollBar::add-line {
 	background: none;
 }
 
@@ -3888,6 +3978,9 @@ QComboBox QScrollBar::sub-page {
                                 stop: 0 #f6f7fa, stop: 1 #dadbde);
 }
 </string>
+              </property>
+              <property name="currentIndex">
+               <number>6</number>
               </property>
               <item>
                <property name="text">
@@ -3957,6 +4050,306 @@ QComboBox QScrollBar::sub-page {
               <item>
                <property name="text">
                 <string>256000</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <spacer name="horizontalSpacer_9">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_5">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+	max-width: 100px;
+	font: 9pt &quot;微软雅黑&quot;;
+	color: white;
+}</string>
+              </property>
+              <property name="text">
+               <string>数据位 :</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QComboBox" name="comboBox_data_bits">
+              <property name="styleSheet">
+               <string notr="true">QComboBox {
+	border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+	background-color: qlineargradient(spread: pad, x1: 1, y1: 0, x2: 0, y2: 1,
+		                              stop: 0 #0d1117,  /* 起始颜色 */
+		                              stop: 1 #414a5a   /* 结束颜色 */ ); /* 背景颜色 */
+	color: white;		/* 字体颜色 */
+	font: 9pt &quot;微软雅黑&quot;;
+	height: 22px;
+	min-width: 80px;
+}
+
+QComboBox::drop-down {
+	width: 18px;
+}
+
+QComboBox QAbstractItemView {
+	outline: 0px solid gray;
+	border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+	color: white;
+	background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,
+                                      stop: 0 #989da5, stop: 1 #404959);
+	selection-background-color: #435068;
+}
+
+QComboBox QAbstractItemView::item {
+	height: 22px;
+}
+
+/* 滚动条的宽度 */
+QComboBox QScrollBar:vertical {
+
+	width: 10px;
+}
+
+QComboBox QScrollBar::handle:vertical {
+	min-height: 20px; /* 滑块最小高度 */
+}
+
+/* 滚动条悬停颜色 */
+QComboBox QScrollBar::handle:vertical:hover {
+	border: 1px solid white;		/* 滚动条的边框颜色 */
+	background-color: #3c485d;
+}
+
+/* 始终隐藏上下箭头 */
+QComboBox QScrollBar::sub-line,
+QComboBox QScrollBar::add-line {
+	background: none;
+}
+
+QComboBox QScrollBar::add-page,
+QComboBox QScrollBar::sub-page {
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+</string>
+              </property>
+              <property name="currentIndex">
+               <number>3</number>
+              </property>
+              <item>
+               <property name="text">
+                <string>5</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>6</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>7</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>8</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_6">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+	max-width: 100px;
+	font: 9pt &quot;微软雅黑&quot;;
+	color: white;
+}</string>
+              </property>
+              <property name="text">
+               <string>奇偶校验 :</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QComboBox" name="comboBox_parity">
+              <property name="styleSheet">
+               <string notr="true">QComboBox {
+	border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+	background-color: qlineargradient(spread: pad, x1: 1, y1: 0, x2: 0, y2: 1,
+		                              stop: 0 #0d1117,  /* 起始颜色 */
+		                              stop: 1 #414a5a   /* 结束颜色 */ ); /* 背景颜色 */
+	color: white;		/* 字体颜色 */
+	font: 9pt &quot;微软雅黑&quot;;
+	height: 22px;
+	min-width: 80px;
+}
+
+QComboBox::drop-down {
+	width: 18px;
+}
+
+QComboBox QAbstractItemView {
+	outline: 0px solid gray;
+	border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+	color: white;
+	background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,
+                                      stop: 0 #989da5, stop: 1 #404959);
+	selection-background-color: #435068;
+}
+
+QComboBox QAbstractItemView::item {
+	height: 22px;
+}
+
+/* 滚动条的宽度 */
+QComboBox QScrollBar:vertical {
+
+	width: 10px;
+}
+
+QComboBox QScrollBar::handle:vertical {
+	min-height: 20px; /* 滑块最小高度 */
+}
+
+/* 滚动条悬停颜色 */
+QComboBox QScrollBar::handle:vertical:hover {
+	border: 1px solid white;		/* 滚动条的边框颜色 */
+	background-color: #3c485d;
+}
+
+/* 始终隐藏上下箭头 */
+QComboBox QScrollBar::sub-line,
+QComboBox QScrollBar::add-line {
+	background: none;
+}
+
+QComboBox QScrollBar::add-page,
+QComboBox QScrollBar::sub-page {
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>无</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>奇校验</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>偶校验</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="label_4">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+	max-width: 100px;
+	font: 9pt &quot;微软雅黑&quot;;
+	color: white;
+}</string>
+              </property>
+              <property name="text">
+               <string>停止位 :</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QComboBox" name="comboBox_stop_bits">
+              <property name="styleSheet">
+               <string notr="true">QComboBox {
+	border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+	background-color: qlineargradient(spread: pad, x1: 1, y1: 0, x2: 0, y2: 1,
+		                              stop: 0 #0d1117,  /* 起始颜色 */
+		                              stop: 1 #414a5a   /* 结束颜色 */ ); /* 背景颜色 */
+	color: white;		/* 字体颜色 */
+	font: 9pt &quot;微软雅黑&quot;;
+	height: 22px;
+	min-width: 80px;
+}
+
+QComboBox::drop-down {
+	width: 18px;
+}
+
+QComboBox QAbstractItemView {
+	outline: 0px solid gray;
+	border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+	color: white;
+	background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,
+                                      stop: 0 #989da5, stop: 1 #404959);
+	selection-background-color: #435068;
+}
+
+QComboBox QAbstractItemView::item {
+	height: 22px;
+}
+
+/* 滚动条的宽度 */
+QComboBox QScrollBar:vertical {
+
+	width: 10px;
+}
+
+QComboBox QScrollBar::handle:vertical {
+	min-height: 20px; /* 滑块最小高度 */
+}
+
+/* 滚动条悬停颜色 */
+QComboBox QScrollBar::handle:vertical:hover {
+	border: 1px solid white;		/* 滚动条的边框颜色 */
+	background-color: #3c485d;
+}
+
+/* 始终隐藏上下箭头 */
+QComboBox QScrollBar::sub-line,
+QComboBox QScrollBar::add-line {
+	background: none;
+}
+
+QComboBox QScrollBar::add-page,
+QComboBox QScrollBar::sub-page {
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>1</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>1.5</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>2</string>
                </property>
               </item>
              </widget>
