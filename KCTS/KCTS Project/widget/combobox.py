@@ -27,6 +27,22 @@ class LearniuHComboBox(QComboBox):
                 max-width: 100px;
             }
             
+            QComboBox:disabled {
+                border: 1px solid #808080; /* 禁用状态下的边框颜色 */
+                background-color: #333333; /* 禁用状态下的背景颜色 */
+                color: #808080; /* 禁用状态下的字体颜色 */
+            }
+            
+            QComboBox::drop-down {
+                width: 18px; /* 保持 drop-down 的宽度一致 */
+            }
+            
+            QComboBox::drop-down:disabled {
+                width: 16px; /* 禁用状态下确保宽度一致，避免位移 */
+                border: 1px solid #808080; /* 去掉边框 */
+                background-color: #333333; /* 禁用状态下的背景颜色 */
+            }
+            
             QComboBox QAbstractItemView {
                 outline: 0px solid gray;
                 border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,

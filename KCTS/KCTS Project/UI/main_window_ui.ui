@@ -3717,6 +3717,9 @@ QPushButton:disabled {
 }</string>
           </property>
           <widget class="QComboBox" name="comboBox_serial_port">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="geometry">
             <rect>
              <x>200</x>
@@ -3730,25 +3733,47 @@ QPushButton:disabled {
            </property>
            <property name="styleSheet">
             <string notr="true">QComboBox {
-	border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+    border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                       stop: 0 #f6f7fa, stop: 1 #dadbde);
-	background-color: ; /* 背景颜色 */
-	color: white;		/* 字体颜色 */
+    background-color: qlineargradient(spread: pad, x1: 1, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #0d1117,  /* 起始颜色 */
+                                      stop: 1 #414a5a   /* 结束颜色 */ ); /* 背景颜色 */
+    color: white;		/* 字体颜色 */
+    font: 9pt &quot;微软雅黑&quot;;
+    height: 22px;
+    max-width: 100px;
 }
 
-QComboBox QAbstractItemView {
-	outline: 0px;
-	border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
-	color: white;
-	background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,
-                                      stop: 0 #404959, stop: 1 #989da5);
-	selection-background-color: #435068;
+QComboBox:disabled {
+    border: 1px solid #808080; /* 禁用状态下的边框颜色 */
+    background-color: #333333; /* 禁用状态下的背景颜色 */
+    color: #808080; /* 禁用状态下的字体颜色 */
 }
 
-QComboBox QAbstractItemView::item {
-	height: 22px;
-}</string>
+QComboBox::drop-down {
+    width: 18px; /* 保持 drop-down 的宽度一致 */
+    subcontrol-origin: padding;
+    subcontrol-position: top right; /* 确保箭头在右侧 */
+    border: none;
+    background-color: transparent; /* 透明背景 */
+}
+
+QComboBox::drop-down:disabled {
+    width: 18px; /* 禁用状态下确保宽度一致 */
+    border: none; /* 去掉边框 */
+    background-color: transparent; /* 禁用状态下透明背景 */
+}
+
+QComboBox::down-arrow {
+    width: 10px; /* 箭头宽度 */
+    height: 10px; /* 箭头高度 */
+}
+
+QComboBox::down-arrow:disabled {
+    width: 10px; /* 箭头宽度 */
+    height: 10px; /* 箭头高度 */
+}
+</string>
            </property>
            <item>
             <property name="text">
@@ -3827,7 +3852,7 @@ QPushButton:disabled {
              <height>201</height>
             </rect>
            </property>
-           <layout class="QGridLayout" name="gridLayout_serial_port_info" rowstretch="0,0,0,0,0,0">
+           <layout class="QGridLayout" name="gridLayout_serial_port_info" rowstretch="0,0,0,0,0">
             <item row="0" column="0">
              <widget class="QLabel" name="label_3">
               <property name="styleSheet">
@@ -3932,8 +3957,20 @@ QPushButton:disabled {
 	min-width: 80px;
 }
 
+QComboBox:disabled {
+    border: 1px solid #808080; /* 禁用状态下的边框颜色 */
+    background-color: #333333; /* 禁用状态下的背景颜色 */
+    color: #808080; /* 禁用状态下的字体颜色 */
+}
+
 QComboBox::drop-down {
-	width: 18px;
+    width: 18px; /* 保持 drop-down 的宽度一致 */
+}
+
+QComboBox::drop-down:disabled {
+    width: 16px; /* 禁用状态下确保宽度一致，避免位移 */
+    border: 1px solid #808080; /* 去掉边框 */
+    background-color: #333333; /* 禁用状态下的背景颜色 */
 }
 
 QComboBox QAbstractItemView {
