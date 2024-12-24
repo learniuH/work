@@ -29,7 +29,7 @@ class LearniuHComboBox(QComboBox):
             
             QComboBox:disabled {
                 border: 1px solid #808080; /* 禁用状态下的边框颜色 */
-                background-color: #333333; /* 禁用状态下的背景颜色 */
+                background-color: #4a4a4a; /* 禁用状态下的背景颜色 */
                 color: #808080; /* 禁用状态下的字体颜色 */
             }
             
