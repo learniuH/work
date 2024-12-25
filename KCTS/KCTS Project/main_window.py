@@ -624,18 +624,24 @@ class MainWindow(QMainWindow):
     def serial_port_init(self):
         ''' UI界面添加串口 comboBox 创建串口助手对象 '''
         com_comboBox = LearniuHComboBox()
-        self.main_window_ui.gridLayout_serial_port_info.addWidget(com_comboBox, 0, 1)
+        self.main_window_ui.gridLayout_serial_port_info.addWidget(com_comboBox, 1, 2)
 
         # 实例化串口助手对象
-        self.serial_port_asst = SerialPortAsst(com_comboBox,                                    # 选择串口 comboBox
+        self.serial_port_asst = SerialPortAsst(self.main_window_ui.radioButton_ashining,        # 泽耀 Lora
+                                               self.main_window_ui.radioButton_ebyte,           # 亿佰特 Lora
+                                               com_comboBox,                                    # 选择串口 comboBox
                                                self.main_window_ui.comboBox_baud_rate,          # 波特率 comboBox
                                                self.main_window_ui.comboBox_data_bits,          # 数据位 comboBox
                                                self.main_window_ui.comboBox_parity,             # 奇偶校验 comboBox
                                                self.main_window_ui.comboBox_stop_bits,          # 停止位 comboBox
-                                               self.main_window_ui.pushButton_open_serial_port) # 串口打开/关闭 pushButton
+                                               self.main_window_ui.pushButton_open_serial_port, # 串口打开/关闭 pushButton
+                                               self.main_window_ui.stackedWidget_serial_asst    # stackedWidget
+                                               )
 
         # 点击串口助手中的 "打开串口"
         self.main_window_ui.pushButton_open_serial_port.clicked.connect(self.serial_port_asst.open_serial_port)
+        # 点击串口助手中的 "Lora配置"
+        self.main_window_ui.pushButton_lora_config.clicked.connect(self.serial_port_asst.lora_config)
 
     def keyPressEvent(self, event):
         ''' 重写该方法, 用于处理键盘按下时, OU模拟器的按键触发 '''

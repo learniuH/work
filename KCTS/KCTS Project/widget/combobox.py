@@ -24,7 +24,7 @@ class LearniuHComboBox(QComboBox):
                 color: white;		/* 字体颜色 */
                 font: 9pt "微软雅黑";
                 height: 22px;
-                max-width: 100px;
+                min-width: 62px;
             }
             
             QComboBox:disabled {
