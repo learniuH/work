@@ -3,6 +3,7 @@ import serial.tools.list_ports
 
 from PyQt5.QtWidgets import QComboBox, QPushButton, QRadioButton, QStackedWidget
 
+from widget.constant import ConstantText
 
 class SerialPortAsst:
     ''' 串口助手 '''
@@ -40,6 +41,8 @@ class SerialPortAsst:
 
     def open_serial_port(self):
         ''' 点击打开串口 '''
+        if self.stackedWidget.currentIndex() != ConstantText.SERIAL_ASST_PAGE:
+            self.stackedWidget.setCurrentIndex(ConstantText.SERIAL_ASST_PAGE)
         if self.com_port_open_pushButton.text() == '打开串口':
             self.com_comboBox.setDisabled(True)
             self.com_port_open_pushButton.setText('关闭串口')
@@ -49,6 +52,11 @@ class SerialPortAsst:
             self.com_port_open_pushButton.setText('打开串口')
 
     def lora_config(self):
-        ''' 点击 Lora 配置 '''
-        pass
+        ''' 点击 Lora 配置, 切换到相应的 Lora 型号配置界面 '''
+
+        # 根据 radio button, 切换到相应的 Lora 配置界面
+        if self.ashining_radiobutton.isChecked() and self.stackedWidget.currentIndex() != ConstantText.ASHING_CONFIG_PAGE:
+            self.stackedWidget.setCurrentIndex(ConstantText.ASHING_CONFIG_PAGE)
+        if self.ebyte_radiobutton.isChecked() and self.stackedWidget.currentIndex() != ConstantText.EBYTE_CONFIG_PAGE:
+            self.stackedWidget.setCurrentIndex(ConstantText.EBYTE_CONFIG_PAGE)
 

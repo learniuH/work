@@ -5,6 +5,9 @@ class ConstantText:
     SPACER_WIDTH = 20               # OU模拟器每列之间的弹簧宽度
     WIDGET_PER_COL = 13             # OU模拟器每列13个控件
     TIMER_PERIOD = 6                # OU模拟器模拟量定时器的周期
+    SERIAL_ASST_PAGE = 0            # 串口助手 stackedWidget 索引
+    ASHING_CONFIG_PAGE = 1               # 串口助手 泽耀Lora 配置界面索引
+    EBYTE_CONFIG_PAGE = 2                # 串口助手 亿佰特Lora 配置界面索引
 
     @staticmethod
     def value_range(byte_num: str) -> list:

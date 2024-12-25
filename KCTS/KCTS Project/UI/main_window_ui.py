@@ -2029,6 +2029,7 @@ class Ui_KCTS(object):
 "                                stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
 "}\n"
 "")
+        self.comboBox_baud_rate.setMaxVisibleItems(7)
         self.comboBox_baud_rate.setObjectName("comboBox_baud_rate")
         self.comboBox_baud_rate.addItem("")
         self.comboBox_baud_rate.addItem("")
