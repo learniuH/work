@@ -53,10 +53,23 @@ class SerialPortAsst:
     def open_serial_port(self):
         ''' 点击打开串口 '''
 
+        # if True:
+        #     print()
+        #     break
+
         # 切换到串口助手主界面
         if self.stackedWidget.currentIndex() != SerialAsstConstant.SERIAL_ASST_PAGE:
             self.stackedWidget.setCurrentIndex(SerialAsstConstant.SERIAL_ASST_PAGE)
+            # 不要
+
         if self.com_port_open_pushButton.text() == '打开串口':
+            # 根据各参数的 comboBox 打开串口
+            ser = serial.Serial(port=self.com_comboBox.currentText(),
+                                baudrate=SerialAsstConstant.BAUD_RATE[self.baud_rate_comboBox.currentIndex()],
+                                bytesize=SerialAsstConstant.DATA_BIT[self.data_bits_comboBox.currentIndex()],
+                                parity=SerialAsstConstant.PARITY[self.parity_comboBox.currentIndex()],
+                                stopbits=SerialAsstConstant.STOP_BIT[self.stop_bits_comboBox.currentIndex()],
+                                )
             self.com_comboBox.setDisabled(True)                 # 禁用端口选择的 comboBox
             self.lora_config_pushButton.setEnabled(True)        # Lora 配置的按键使能
             self.com_port_open_pushButton.setText('关闭串口')

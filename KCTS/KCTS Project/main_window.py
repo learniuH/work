@@ -62,6 +62,7 @@ class MainWindow(QMainWindow):
         self.main_window_ui.mu_recv_port_lineEdit.setText(settings.value('MU_recv_port_content', ''))
         self.main_window_ui.kc_tu_ip_lineEdit.setText(settings.value('KCTU_IP_content', ''))
         self.main_window_ui.kc_tu_recv_port_lineEdit.setText(settings.value('KCTU_recv_port_content', ''))
+        self.main_window_ui.lineEdit_package_header.setText(settings.value('OU_simulator_package_head', ''))
 
     def setup_validators(self):
         ''' 设置输入验证器 '''
@@ -749,6 +750,7 @@ class MainWindow(QMainWindow):
         settings.setValue('MU_recv_port_content', self.main_window_ui.mu_recv_port_lineEdit.text())
         settings.setValue('KCTU_IP_content', self.main_window_ui.kc_tu_ip_lineEdit.text())
         settings.setValue('KCTU_recv_port_content', self.main_window_ui.kc_tu_recv_port_lineEdit.text())
+        settings.setValue('OU_simulator_package_head', self.main_window_ui.lineEdit_package_header.text())
         super().closeEvent(event)
 
 if __name__ == '__main__':
