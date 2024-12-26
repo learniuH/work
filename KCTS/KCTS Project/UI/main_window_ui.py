@@ -1892,10 +1892,23 @@ class Ui_KCTS(object):
 "}")
         self.serial_port_page.setObjectName("serial_port_page")
         self.verticalLayout_10 = QtWidgets.QVBoxLayout(self.serial_port_page)
-        self.verticalLayout_10.setContentsMargins(0, 0, 0, 10)
+        self.verticalLayout_10.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_10.setSpacing(0)
         self.verticalLayout_10.setObjectName("verticalLayout_10")
         self.stackedWidget_serial_asst = QtWidgets.QStackedWidget(self.serial_port_page)
+        self.stackedWidget_serial_asst.setStyleSheet("QLabel {\n"
+"    color: white;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
+"    border-top: transparent;\n"
+"    border-left: transparent;\n"
+"    border-right: transparent;\n"
+"    border-bottom: 1px solid white;\n"
+"    color: white;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"}")
         self.stackedWidget_serial_asst.setObjectName("stackedWidget_serial_asst")
         self.page_serial_asst_mainwindow = QtWidgets.QWidget()
         self.page_serial_asst_mainwindow.setObjectName("page_serial_asst_mainwindow")
@@ -1912,15 +1925,29 @@ class Ui_KCTS(object):
         self.page_ebyte_config = QtWidgets.QWidget()
         self.page_ebyte_config.setObjectName("page_ebyte_config")
         self.label_4 = QtWidgets.QLabel(self.page_ebyte_config)
-        self.label_4.setGeometry(QtCore.QRect(380, 200, 231, 16))
+        self.label_4.setGeometry(QtCore.QRect(110, 60, 231, 16))
         self.label_4.setObjectName("label_4")
+        self.label_5 = QtWidgets.QLabel(self.page_ebyte_config)
+        self.label_5.setGeometry(QtCore.QRect(100, 270, 61, 41))
+        self.label_5.setObjectName("label_5")
+        self.lineEdit_ebyte_channel = QtWidgets.QLineEdit(self.page_ebyte_config)
+        self.lineEdit_ebyte_channel.setGeometry(QtCore.QRect(160, 280, 113, 21))
+        self.lineEdit_ebyte_channel.setFocusPolicy(QtCore.Qt.ClickFocus)
+        self.lineEdit_ebyte_channel.setAlignment(QtCore.Qt.AlignCenter)
+        self.lineEdit_ebyte_channel.setObjectName("lineEdit_ebyte_channel")
         self.stackedWidget_serial_asst.addWidget(self.page_ebyte_config)
         self.verticalLayout_10.addWidget(self.stackedWidget_serial_asst)
+        self.widget_2 = QtWidgets.QWidget(self.serial_port_page)
+        self.widget_2.setObjectName("widget_2")
+        self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.widget_2)
+        self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_6.setSpacing(0)
+        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
         self.gridLayout_serial_port_info = QtWidgets.QGridLayout()
         self.gridLayout_serial_port_info.setHorizontalSpacing(10)
         self.gridLayout_serial_port_info.setVerticalSpacing(8)
         self.gridLayout_serial_port_info.setObjectName("gridLayout_serial_port_info")
-        self.label_com_select = QtWidgets.QLabel(self.serial_port_page)
+        self.label_com_select = QtWidgets.QLabel(self.widget_2)
         self.label_com_select.setStyleSheet("QLabel {\n"
 "    font: 9pt \"微软雅黑\";\n"
 "    color: white;\n"
@@ -1928,7 +1955,7 @@ class Ui_KCTS(object):
 "}")
         self.label_com_select.setObjectName("label_com_select")
         self.gridLayout_serial_port_info.addWidget(self.label_com_select, 1, 1, 1, 1)
-        self.label_baud_rate = QtWidgets.QLabel(self.serial_port_page)
+        self.label_baud_rate = QtWidgets.QLabel(self.widget_2)
         self.label_baud_rate.setMinimumSize(QtCore.QSize(0, 0))
         self.label_baud_rate.setMaximumSize(QtCore.QSize(100, 16777215))
         self.label_baud_rate.setStyleSheet("QLabel {\n"
@@ -1938,7 +1965,7 @@ class Ui_KCTS(object):
 "}")
         self.label_baud_rate.setObjectName("label_baud_rate")
         self.gridLayout_serial_port_info.addWidget(self.label_baud_rate, 0, 5, 1, 1)
-        self.label_data_bits = QtWidgets.QLabel(self.serial_port_page)
+        self.label_data_bits = QtWidgets.QLabel(self.widget_2)
         self.label_data_bits.setStyleSheet("QLabel {\n"
 "    max-width: 100px;\n"
 "    font: 9pt \"微软雅黑\";\n"
@@ -1948,7 +1975,7 @@ class Ui_KCTS(object):
         self.gridLayout_serial_port_info.addWidget(self.label_data_bits, 1, 5, 1, 1)
         spacerItem8 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout_serial_port_info.addItem(spacerItem8, 0, 4, 1, 1)
-        self.label_stop_bit = QtWidgets.QLabel(self.serial_port_page)
+        self.label_stop_bit = QtWidgets.QLabel(self.widget_2)
         self.label_stop_bit.setStyleSheet("QLabel {\n"
 "    max-width: 100px;\n"
 "    font: 9pt \"微软雅黑\";\n"
@@ -1956,7 +1983,7 @@ class Ui_KCTS(object):
 "}")
         self.label_stop_bit.setObjectName("label_stop_bit")
         self.gridLayout_serial_port_info.addWidget(self.label_stop_bit, 3, 5, 1, 1)
-        self.comboBox_baud_rate = QtWidgets.QComboBox(self.serial_port_page)
+        self.comboBox_baud_rate = QtWidgets.QComboBox(self.widget_2)
         self.comboBox_baud_rate.setEnabled(True)
         self.comboBox_baud_rate.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.comboBox_baud_rate.setStyleSheet("QComboBox {\n"
@@ -2046,7 +2073,7 @@ class Ui_KCTS(object):
         self.comboBox_baud_rate.addItem("")
         self.comboBox_baud_rate.addItem("")
         self.gridLayout_serial_port_info.addWidget(self.comboBox_baud_rate, 0, 6, 1, 1)
-        self.comboBox_data_bits = QtWidgets.QComboBox(self.serial_port_page)
+        self.comboBox_data_bits = QtWidgets.QComboBox(self.widget_2)
         self.comboBox_data_bits.setStyleSheet("QComboBox {\n"
 "    border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
@@ -2111,7 +2138,7 @@ class Ui_KCTS(object):
         self.comboBox_data_bits.addItem("")
         self.comboBox_data_bits.addItem("")
         self.gridLayout_serial_port_info.addWidget(self.comboBox_data_bits, 1, 6, 1, 1)
-        self.comboBox_stop_bits = QtWidgets.QComboBox(self.serial_port_page)
+        self.comboBox_stop_bits = QtWidgets.QComboBox(self.widget_2)
         self.comboBox_stop_bits.setStyleSheet("QComboBox {\n"
 "    border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
@@ -2175,7 +2202,8 @@ class Ui_KCTS(object):
         self.comboBox_stop_bits.addItem("")
         self.comboBox_stop_bits.addItem("")
         self.gridLayout_serial_port_info.addWidget(self.comboBox_stop_bits, 3, 6, 1, 1)
-        self.radioButton_ebyte = QtWidgets.QRadioButton(self.serial_port_page)
+        self.radioButton_ebyte = QtWidgets.QRadioButton(self.widget_2)
+        self.radioButton_ebyte.setFocusPolicy(QtCore.Qt.NoFocus)
         self.radioButton_ebyte.setStyleSheet("QRadioButton {\n"
 "    font: 9pt \"微软雅黑\";\n"
 "    color: white;\n"
@@ -2201,7 +2229,8 @@ class Ui_KCTS(object):
 "")
         self.radioButton_ebyte.setObjectName("radioButton_ebyte")
         self.gridLayout_serial_port_info.addWidget(self.radioButton_ebyte, 0, 2, 1, 1)
-        self.radioButton_ashining = QtWidgets.QRadioButton(self.serial_port_page)
+        self.radioButton_ashining = QtWidgets.QRadioButton(self.widget_2)
+        self.radioButton_ashining.setFocusPolicy(QtCore.Qt.NoFocus)
         self.radioButton_ashining.setStyleSheet("QRadioButton {\n"
 "    font: 9pt \"微软雅黑\";\n"
 "    color: white;\n"
@@ -2230,12 +2259,14 @@ class Ui_KCTS(object):
         self.gridLayout_serial_port_info.addWidget(self.radioButton_ashining, 0, 1, 1, 1)
         spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout_serial_port_info.addItem(spacerItem9, 0, 7, 1, 1)
-        self.pushButton_lora_config = QtWidgets.QPushButton(self.serial_port_page)
+        self.pushButton_lora_config = QtWidgets.QPushButton(self.widget_2)
+        self.pushButton_lora_config.setEnabled(False)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.pushButton_lora_config.sizePolicy().hasHeightForWidth())
         self.pushButton_lora_config.setSizePolicy(sizePolicy)
+        self.pushButton_lora_config.setFocusPolicy(QtCore.Qt.NoFocus)
         self.pushButton_lora_config.setStyleSheet("QPushButton {\n"
 "    border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
@@ -2263,7 +2294,7 @@ class Ui_KCTS(object):
 "")
         self.pushButton_lora_config.setObjectName("pushButton_lora_config")
         self.gridLayout_serial_port_info.addWidget(self.pushButton_lora_config, 0, 3, 1, 1)
-        self.comboBox_parity = QtWidgets.QComboBox(self.serial_port_page)
+        self.comboBox_parity = QtWidgets.QComboBox(self.widget_2)
         self.comboBox_parity.setStyleSheet("QComboBox {\n"
 "    border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
@@ -2327,7 +2358,7 @@ class Ui_KCTS(object):
         self.comboBox_parity.addItem("")
         self.comboBox_parity.addItem("")
         self.gridLayout_serial_port_info.addWidget(self.comboBox_parity, 2, 6, 1, 1)
-        self.label_parity = QtWidgets.QLabel(self.serial_port_page)
+        self.label_parity = QtWidgets.QLabel(self.widget_2)
         self.label_parity.setStyleSheet("QLabel {\n"
 "    max-width: 100px;\n"
 "    font: 9pt \"微软雅黑\";\n"
@@ -2335,12 +2366,13 @@ class Ui_KCTS(object):
 "}")
         self.label_parity.setObjectName("label_parity")
         self.gridLayout_serial_port_info.addWidget(self.label_parity, 2, 5, 1, 1)
-        self.pushButton_open_serial_port = QtWidgets.QPushButton(self.serial_port_page)
+        self.pushButton_open_serial_port = QtWidgets.QPushButton(self.widget_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.pushButton_open_serial_port.sizePolicy().hasHeightForWidth())
         self.pushButton_open_serial_port.setSizePolicy(sizePolicy)
+        self.pushButton_open_serial_port.setFocusPolicy(QtCore.Qt.NoFocus)
         self.pushButton_open_serial_port.setStyleSheet("QPushButton {\n"
 "    border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
@@ -2370,7 +2402,10 @@ class Ui_KCTS(object):
         self.gridLayout_serial_port_info.addWidget(self.pushButton_open_serial_port, 1, 3, 1, 1)
         spacerItem10 = QtWidgets.QSpacerItem(10, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout_serial_port_info.addItem(spacerItem10, 0, 0, 1, 1)
-        self.verticalLayout_10.addLayout(self.gridLayout_serial_port_info)
+        self.horizontalLayout_6.addLayout(self.gridLayout_serial_port_info)
+        self.verticalLayout_10.addWidget(self.widget_2)
+        self.verticalLayout_10.setStretch(0, 4)
+        self.verticalLayout_10.setStretch(1, 1)
         self.sub_interface_stacked.addWidget(self.serial_port_page)
         self.horizontalLayout_2.addWidget(self.sub_interface_stacked)
         self.horizontalLayout_2.setStretch(0, 1)
@@ -2385,6 +2420,7 @@ class Ui_KCTS(object):
         self.tabWidget.setCurrentIndex(0)
         self.ou_analysis_send_stacked.setCurrentIndex(0)
         self.history_record_stacked.setCurrentIndex(1)
+        self.stackedWidget_serial_asst.setCurrentIndex(2)
         self.comboBox_baud_rate.setCurrentIndex(6)
         self.comboBox_data_bits.setCurrentIndex(3)
         QtCore.QMetaObject.connectSlotsByName(KCTS)
@@ -2508,6 +2544,7 @@ class Ui_KCTS(object):
         self.label.setText(_translate("KCTS", "串口助手主界面"))
         self.label_3.setText(_translate("KCTS", "这是泽耀配置界面"))
         self.label_4.setText(_translate("KCTS", "这是ebyte配置界面"))
+        self.label_5.setText(_translate("KCTS", "信道 :"))
         self.label_com_select.setText(_translate("KCTS", "选择串口 :"))
         self.label_baud_rate.setText(_translate("KCTS", "波特率 :"))
         self.label_data_bits.setText(_translate("KCTS", "数据位 :"))

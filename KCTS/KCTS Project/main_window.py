@@ -627,15 +627,17 @@ class MainWindow(QMainWindow):
         self.main_window_ui.gridLayout_serial_port_info.addWidget(com_comboBox, 1, 2)
 
         # 实例化串口助手对象
-        self.serial_port_asst = SerialPortAsst(self.main_window_ui.radioButton_ashining,        # 泽耀 Lora
-                                               self.main_window_ui.radioButton_ebyte,           # 亿佰特 Lora
+        self.serial_port_asst = SerialPortAsst(self.main_window_ui.radioButton_ashining,        # 泽耀 Lora radioButton
+                                               self.main_window_ui.radioButton_ebyte,           # 亿佰特 Lora radioButton
+                                               self.main_window_ui.pushButton_lora_config,      # Lora 配置 pushButton
                                                com_comboBox,                                    # 选择串口 comboBox
                                                self.main_window_ui.comboBox_baud_rate,          # 波特率 comboBox
                                                self.main_window_ui.comboBox_data_bits,          # 数据位 comboBox
                                                self.main_window_ui.comboBox_parity,             # 奇偶校验 comboBox
                                                self.main_window_ui.comboBox_stop_bits,          # 停止位 comboBox
                                                self.main_window_ui.pushButton_open_serial_port, # 串口打开/关闭 pushButton
-                                               self.main_window_ui.stackedWidget_serial_asst    # stackedWidget
+                                               self.main_window_ui.stackedWidget_serial_asst,   # stackedWidget
+                                               self.main_window_ui.lineEdit_ebyte_channel,      # 亿佰特 信道 lineEdit
                                                )
 
         # 点击串口助手中的 "打开串口"

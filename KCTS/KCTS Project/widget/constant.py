@@ -1,3 +1,5 @@
+import serial
+
 class ConstantText:
     ''' 自定义控件的文本 '''
     BLANK_TEXT = ''                 # checkBox 空白文本
@@ -5,9 +7,7 @@ class ConstantText:
     SPACER_WIDTH = 20               # OU模拟器每列之间的弹簧宽度
     WIDGET_PER_COL = 13             # OU模拟器每列13个控件
     TIMER_PERIOD = 6                # OU模拟器模拟量定时器的周期
-    SERIAL_ASST_PAGE = 0            # 串口助手 stackedWidget 索引
-    ASHING_CONFIG_PAGE = 1               # 串口助手 泽耀Lora 配置界面索引
-    EBYTE_CONFIG_PAGE = 2                # 串口助手 亿佰特Lora 配置界面索引
+
 
     @staticmethod
     def value_range(byte_num: str) -> list:
@@ -20,5 +20,20 @@ class ConstantText:
         '''
         return [int(byte) for byte in byte_num.split('-')]
 
-# if __name__ == '__main__':
-#     print(ConstantText.value_range('15-16'))
+class SerialAsstConstant:
+    ''' 串口助手界面的配置项 '''
+    SERIAL_ASST_PAGE    = 0         # 串口助手 stackedWidget 索引
+    ASHING_CONFIG_PAGE  = 1         # 串口助手 泽耀Lora 配置界面索引
+    EBYTE_CONFIG_PAGE   = 2         # 串口助手 亿佰特Lora 配置界面索引
+
+    # 串口助手 波特率 comboBox 索引 对应以下元素
+    BAUD_RATE = (110, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200, 128000, 256000)
+
+    # 串口助手 数据位 comboBox 索引 对应以下元素
+    DATA_BIT = (serial.EIGHTBITS, serial.SIXBITS, serial.SEVENBITS, serial.EIGHTBITS)
+
+    # 串口助手 奇偶校验 comboBox 索引 对应以下元素
+    PARITY = (serial.PARITY_NONE, serial.PARITY_ODD, serial.PARITY_EVEN)
+
+    # 串口助手 停止位 comboBox 索引 对应以下元素
+    STOP_BIT = (serial.STOPBITS_ONE, serial.STOPBITS_ONE_POINT_FIVE, serial.STOPBITS_TWO)

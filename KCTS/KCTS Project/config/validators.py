@@ -53,14 +53,11 @@ class Validators:
         return QRegExpValidator(key_regex)
 
     @staticmethod
-    def validate_protocol_header(header: str) -> bool:
-        """验证协议头格式
-
-        Args:
-            header: 协议头字符串
+    def ebyte_channel_validator() ->QRegExpValidator:
+        ''' 获取亿佰特信道验证器, 0-83
 
         Returns:
-            是否有效
-        """
-        parts = header.split(' ')
-        return len(parts) == 10 and all(len(p) == 2 for p in parts)
+            按键验证器
+        '''
+        channel_regex = QRegExp('^([0-9]|[1-7][0-9]|8[0-3])$')
+        return QRegExpValidator(channel_regex)
