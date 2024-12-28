@@ -3768,35 +3768,73 @@ QLineEdit {
               </widget>
              </widget>
              <widget class="QWidget" name="page_ashining_config">
-              <widget class="QLabel" name="label_3">
+              <widget class="QLabel" name="label_1">
                <property name="geometry">
                 <rect>
-                 <x>330</x>
-                 <y>180</y>
+                 <x>320</x>
+                 <y>60</y>
                  <width>241</width>
-                 <height>16</height>
+                 <height>61</height>
                 </rect>
                </property>
                <property name="text">
                 <string>这是泽耀配置界面</string>
                </property>
               </widget>
-             </widget>
-             <widget class="QWidget" name="page_ebyte_config">
-              <widget class="QLabel" name="label_4">
+              <widget class="QPushButton" name="pushButton_back_to_serial_mainwindow_1">
                <property name="geometry">
                 <rect>
-                 <x>110</x>
+                 <x>80</x>
                  <y>60</y>
+                 <width>51</width>
+                 <height>31</height>
+                </rect>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+	border-top-right-radius: 20px;
+	
+	image: url(:/checkBox/img/arrow-left.png);
+}
+
+
+QPushButton:pressed {
+	padding: 2px;
+}
+</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QWidget" name="page_ebyte_config">
+              <widget class="QLabel" name="label_ebyte_config">
+               <property name="geometry">
+                <rect>
+                 <x>480</x>
+                 <y>40</y>
                  <width>231</width>
-                 <height>16</height>
+                 <height>41</height>
                 </rect>
                </property>
                <property name="text">
-                <string>这是ebyte配置界面</string>
+                <string>亿佰特 Lora 配置管理</string>
                </property>
               </widget>
-              <widget class="QLabel" name="label_5">
+              <widget class="QLabel" name="label_ebyte_channel">
                <property name="geometry">
                 <rect>
                  <x>100</x>
@@ -3823,6 +3861,44 @@ QLineEdit {
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="pushButton_back_to_serial_mainwindow">
+               <property name="geometry">
+                <rect>
+                 <x>30</x>
+                 <y>30</y>
+                 <width>51</width>
+                 <height>31</height>
+                </rect>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+	border-top-right-radius: 20px;
+	
+	image: url(:/checkBox/img/arrow-left.png);
+}
+
+
+QPushButton:pressed {
+	padding: 2px;
+}
+</string>
+               </property>
+               <property name="text">
+                <string/>
                </property>
               </widget>
              </widget>

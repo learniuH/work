@@ -1918,23 +1918,65 @@ class Ui_KCTS(object):
         self.stackedWidget_serial_asst.addWidget(self.page_serial_asst_mainwindow)
         self.page_ashining_config = QtWidgets.QWidget()
         self.page_ashining_config.setObjectName("page_ashining_config")
-        self.label_3 = QtWidgets.QLabel(self.page_ashining_config)
-        self.label_3.setGeometry(QtCore.QRect(330, 180, 241, 16))
-        self.label_3.setObjectName("label_3")
+        self.label_1 = QtWidgets.QLabel(self.page_ashining_config)
+        self.label_1.setGeometry(QtCore.QRect(320, 60, 241, 61))
+        self.label_1.setObjectName("label_1")
+        self.pushButton_back_to_serial_mainwindow_1 = QtWidgets.QPushButton(self.page_ashining_config)
+        self.pushButton_back_to_serial_mainwindow_1.setGeometry(QtCore.QRect(80, 60, 51, 31))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton_back_to_serial_mainwindow_1.sizePolicy().hasHeightForWidth())
+        self.pushButton_back_to_serial_mainwindow_1.setSizePolicy(sizePolicy)
+        self.pushButton_back_to_serial_mainwindow_1.setMinimumSize(QtCore.QSize(0, 0))
+        self.pushButton_back_to_serial_mainwindow_1.setStyleSheet("QPushButton {\n"
+"    border-top-right-radius: 20px;\n"
+"    \n"
+"    image: url(:/checkBox/img/arrow-left.png);\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton:pressed {\n"
+"    padding: 2px;\n"
+"}\n"
+"")
+        self.pushButton_back_to_serial_mainwindow_1.setText("")
+        self.pushButton_back_to_serial_mainwindow_1.setObjectName("pushButton_back_to_serial_mainwindow_1")
         self.stackedWidget_serial_asst.addWidget(self.page_ashining_config)
         self.page_ebyte_config = QtWidgets.QWidget()
         self.page_ebyte_config.setObjectName("page_ebyte_config")
-        self.label_4 = QtWidgets.QLabel(self.page_ebyte_config)
-        self.label_4.setGeometry(QtCore.QRect(110, 60, 231, 16))
-        self.label_4.setObjectName("label_4")
-        self.label_5 = QtWidgets.QLabel(self.page_ebyte_config)
-        self.label_5.setGeometry(QtCore.QRect(100, 270, 61, 41))
-        self.label_5.setObjectName("label_5")
+        self.label_ebyte_config = QtWidgets.QLabel(self.page_ebyte_config)
+        self.label_ebyte_config.setGeometry(QtCore.QRect(480, 40, 231, 41))
+        self.label_ebyte_config.setObjectName("label_ebyte_config")
+        self.label_ebyte_channel = QtWidgets.QLabel(self.page_ebyte_config)
+        self.label_ebyte_channel.setGeometry(QtCore.QRect(100, 270, 61, 41))
+        self.label_ebyte_channel.setObjectName("label_ebyte_channel")
         self.lineEdit_ebyte_channel = QtWidgets.QLineEdit(self.page_ebyte_config)
         self.lineEdit_ebyte_channel.setGeometry(QtCore.QRect(160, 280, 113, 21))
         self.lineEdit_ebyte_channel.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.lineEdit_ebyte_channel.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEdit_ebyte_channel.setObjectName("lineEdit_ebyte_channel")
+        self.pushButton_back_to_serial_mainwindow = QtWidgets.QPushButton(self.page_ebyte_config)
+        self.pushButton_back_to_serial_mainwindow.setGeometry(QtCore.QRect(30, 30, 51, 31))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton_back_to_serial_mainwindow.sizePolicy().hasHeightForWidth())
+        self.pushButton_back_to_serial_mainwindow.setSizePolicy(sizePolicy)
+        self.pushButton_back_to_serial_mainwindow.setMinimumSize(QtCore.QSize(0, 0))
+        self.pushButton_back_to_serial_mainwindow.setStyleSheet("QPushButton {\n"
+"    border-top-right-radius: 20px;\n"
+"    \n"
+"    image: url(:/checkBox/img/arrow-left.png);\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton:pressed {\n"
+"    padding: 2px;\n"
+"}\n"
+"")
+        self.pushButton_back_to_serial_mainwindow.setText("")
+        self.pushButton_back_to_serial_mainwindow.setObjectName("pushButton_back_to_serial_mainwindow")
         self.stackedWidget_serial_asst.addWidget(self.page_ebyte_config)
         self.verticalLayout_10.addWidget(self.stackedWidget_serial_asst)
         self.widget_2 = QtWidgets.QWidget(self.serial_port_page)
@@ -2418,7 +2460,7 @@ class Ui_KCTS(object):
         self.retranslateUi(KCTS)
         self.sub_interface_stacked.setCurrentIndex(3)
         self.tabWidget.setCurrentIndex(0)
-        self.ou_analysis_send_stacked.setCurrentIndex(0)
+        self.ou_analysis_send_stacked.setCurrentIndex(1)
         self.history_record_stacked.setCurrentIndex(1)
         self.stackedWidget_serial_asst.setCurrentIndex(2)
         self.comboBox_baud_rate.setCurrentIndex(6)
@@ -2542,9 +2584,9 @@ class Ui_KCTS(object):
         self.clear_record_pushButton.setText(_translate("KCTS", "一键清除"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.history_tab), _translate("KCTS", "历史记录"))
         self.label.setText(_translate("KCTS", "串口助手主界面"))
-        self.label_3.setText(_translate("KCTS", "这是泽耀配置界面"))
-        self.label_4.setText(_translate("KCTS", "这是ebyte配置界面"))
-        self.label_5.setText(_translate("KCTS", "信道 :"))
+        self.label_1.setText(_translate("KCTS", "这是泽耀配置界面"))
+        self.label_ebyte_config.setText(_translate("KCTS", "亿佰特 Lora 配置管理"))
+        self.label_ebyte_channel.setText(_translate("KCTS", "信道 :"))
         self.label_com_select.setText(_translate("KCTS", "选择串口 :"))
         self.label_baud_rate.setText(_translate("KCTS", "波特率 :"))
         self.label_data_bits.setText(_translate("KCTS", "数据位 :"))
