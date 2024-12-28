@@ -137,10 +137,30 @@ class PackageToMu:
         ''' 提取字符串的数字, 返回列表 '''
         return [int(num) for num in value.split('-')]
 
+
+class PackageToLora:
+    ''' 通过串口发送的数据 '''
+    EBYTE_CHANNEL = None
+    EBYTE_CHANNEL_AT_COMMAND = [0xC0, 0x05, 0x01, EBYTE_CHANNEL]           # 设置寄存器的AT指令
+
+
+    @classmethod
+    def update_ebyte_channel(cls, channel: str):
+        ''' lineEdit 文本变化时, 发送更新信道的AT指令 '''
+        if channel != '':
+            cls.EBYTE_CHANNEL_AT_COMMAND[3] = int(channel)          # lineEdit 写十进制的数, AT 指令显示的是 十六进制
+        else:
+            cls.EBYTE_CHANNEL_AT_COMMAND[3] = 0                     # lineEdit 为空, channel 设置为 0
+
+
+
+
+
+
+
 if __name__ == '__main__':
     # while True:
     #     package = QueryCollectionStatus.package_send()
     #     package = ' '.join(f'{byte:02x}' for byte in package)
     #     print(package)
-    value = '15-23'
-    print(PackageToMu.extract_num(value))
+    pass

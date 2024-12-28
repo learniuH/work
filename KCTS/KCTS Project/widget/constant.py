@@ -26,6 +26,8 @@ class SerialAsstConstant:
     ASHING_CONFIG_PAGE  = 1         # 串口助手 泽耀Lora 配置界面索引
     EBYTE_CONFIG_PAGE   = 2         # 串口助手 亿佰特Lora 配置界面索引
 
+    BAUD_RATE_9600_INDEX = 6        # 波特率 9600 索引
+
     # 串口助手 波特率 comboBox 索引 对应以下元素
     BAUD_RATE = (110, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200, 128000, 256000)
 

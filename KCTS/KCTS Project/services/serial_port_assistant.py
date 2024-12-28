@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QComboBox, QPushButton, QRadioButton, QStackedWidget
 from widget.constant import SerialAsstConstant
 from config.validators import Validators
 from services.network import  SerialAssistant
+from services.package_send import PackageToLora
 
 class SerialPortAsst:
     ''' 串口助手 '''
@@ -59,7 +60,6 @@ class SerialPortAsst:
         if self.com_comboBox.currentText() == '':
             return
 
-
         if self.com_port_open_pushButton.text() == '打开串口':
             # 打开串口, 启动接收数据线程
             self.serial_asst_manager.start_recv_serial(port=self.com_comboBox.currentText(),
@@ -68,12 +68,13 @@ class SerialPortAsst:
                                                        parity=SerialAsstConstant.PARITY[self.parity_comboBox.currentIndex()],
                                                        stopbits=SerialAsstConstant.STOP_BIT[self.stop_bits_comboBox.currentIndex()],
                                                        )
+            if self.serial_asst_manager.serial:         # 串口对象创建成功
+                # 禁用端口选择的 comboBox
+                self.com_comboBox.setDisabled(True)
+                # Lora 配置的按键使能
+                self.lora_config_pushButton.setEnabled(True)
+                self.com_port_open_pushButton.setText('关闭串口')
 
-            # 禁用端口选择的 comboBox
-            self.com_comboBox.setDisabled(True)
-            # Lora 配置的按键使能
-            self.lora_config_pushButton.setEnabled(True)
-            self.com_port_open_pushButton.setText('关闭串口')
         else:
             # 关闭串口, 停止发送数据线程
             self.serial_asst_manager.stop_receiving_serial()
@@ -94,14 +95,14 @@ class SerialPortAsst:
             self.stackedWidget.setCurrentIndex(SerialAsstConstant.EBYTE_CONFIG_PAGE)
 
             # 修改 serial 波特率为 9600 (EByte Lora 修改配置参数的波特率为 9600)
-            self.serial_asst_manager.recv_serial.baudrate = SerialAsstConstant.BAUD_RATE_EBYTE_CONFIG
+            self.serial_asst_manager.serial.baudrate = SerialAsstConstant.BAUD_RATE_EBYTE_CONFIG
+            self.baud_rate_comboBox.setCurrentIndex(SerialAsstConstant.BAUD_RATE_9600_INDEX)
 
     def update_ebyte_channel(self):
-        ''' 信道的 lineEdit text changed 时, 修改 Lora 信道 '''
-        print(f'当前的信道是{self.ebyte_channel_lineEdit.text()}')
-
-
-
-
-
+        ''' 信道的 lineEdit text changed 时, 修改 Lora 信道, 发送 AT 指令 '''
+        # print(f'当前的信道是{self.ebyte_channel_lineEdit.text()}')
+        # 修改信道
+        PackageToLora.update_ebyte_channel(self.ebyte_channel_lineEdit.text())
+        # 发动 AT 指令
+        self.serial_asst_manager.serial.write(PackageToLora.EBYTE_CHANNEL_AT_COMMAND)
 

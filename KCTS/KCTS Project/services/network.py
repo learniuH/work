@@ -282,7 +282,7 @@ class NetworkManager(QObject):
 class SerialAssistant:
     ''' 串口助手的线程管理器 '''
     def __init__(self):
-        self.recv_serial: Optional[serial.Serial] = None                        # 接收串口数据的对象
+        self.serial: Optional[serial.Serial] = None                        # 接收串口数据的对象
         self.recv_serial_port_thread: Optional[threading.Thread] = None         # 接收串口数据的线程
         self.is_receiving_serial: bool = False
 
@@ -301,7 +301,7 @@ class SerialAssistant:
         :return:
         '''
         try:
-            self.recv_serial = serial.Serial(port=port, baudrate=baudrate, bytesize=bytesize, parity=parity, stopbits=stopbits)
+            self.serial = serial.Serial(port=port, baudrate=baudrate, bytesize=bytesize, parity=parity, stopbits=stopbits)
 
             self.is_receiving_serial = True
 
@@ -314,16 +314,16 @@ class SerialAssistant:
 
     def receiving_serial_loop(self):
         ''' 接收串口数据的线程 '''
-        while self.is_receiving_serial and self.recv_serial:
+        while self.is_receiving_serial and self.serial:
             # 检查是否有数据等待接收
-            if self.recv_serial.in_waiting:
-                serial_port_data = self.recv_serial.read(self.recv_serial.in_waiting)
+            if self.serial.in_waiting:
+                serial_port_data = self.serial.read(self.serial.in_waiting)
                 print(f'串口Rx:' + ' '.join(f'{byte:02X}' for byte in serial_port_data))
 
     def stop_receiving_serial(self):
         ''' 停止接收串口数据的线程 '''
         self.is_receiving_serial = False
-        if self.recv_serial:
-            self.recv_serial.close()
-            self.recv_serial = None
+        if self.serial:
+            self.serial.close()
+            self.serial = None
 
