@@ -2960,7 +2960,7 @@ QProgressBar::chunk {
 </string>
                  </property>
                  <property name="currentIndex">
-                  <number>0</number>
+                  <number>1</number>
                  </property>
                  <widget class="QWidget" name="ou_analysis_page">
                   <layout class="QVBoxLayout" name="verticalLayout_6" stretch="2,1">

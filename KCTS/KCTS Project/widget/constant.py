@@ -37,3 +37,6 @@ class SerialAsstConstant:
 
     # 串口助手 停止位 comboBox 索引 对应以下元素
     STOP_BIT = (serial.STOPBITS_ONE, serial.STOPBITS_ONE_POINT_FIVE, serial.STOPBITS_TWO)
+
+    # 串口助手 亿佰特Lora 配置的波特率
+    BAUD_RATE_EBYTE_CONFIG = 9600

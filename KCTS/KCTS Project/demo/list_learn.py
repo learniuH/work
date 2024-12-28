@@ -1,35 +1,44 @@
-from PyQt5.QtWidgets import QApplication, QLineEdit, QVBoxLayout, QWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget, QRadioButton, QPushButton
 
-app = QApplication([])
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
 
-# 主窗口
-window = QWidget()
-layout = QVBoxLayout(window)
+        # 创建主窗口
+        self.setWindowTitle("RadioButton Example")
+        self.setGeometry(100, 100, 300, 200)
 
-# QLineEdit 控件
-lineEdit = QLineEdit()
-lineEdit.setPlaceholderText("请输入内容...")
-lineEdit.setDisabled(True)  # 设置为 disabled 状态
+        # 创建中央小部件和布局
+        central_widget = QWidget(self)
+        layout = QVBoxLayout(central_widget)
 
-# 设置 QSS 样式
-lineEdit.setStyleSheet("""
-    QLineEdit {
-        font-size: 16px;          /* 正常状态下的字体大小 */
-        color: black;             /* 正常状态下输入文本的颜色 */
-        background-color: white;  /* 正常状态下的背景颜色 */
-    }
-    QLineEdit:disabled {
-        color: gray;              /* 禁用状态下的文本颜色 */
-        background-color: #f0f0f0; /* 禁用状态下的背景颜色 */
-        border: 1px solid #d3d3d3; /* 禁用状态下的边框样式 */
-    }
-    QLineEdit::placeholderText:disabled {
-        color: red;         /* 禁用状态下的 placeholder 颜色 */
-    }
-""")
+        # 创建两个 RadioButton
+        self.radio_button1 = QRadioButton("Option 1", self)
+        self.radio_button2 = QRadioButton("Option 2", self)
 
-layout.addWidget(lineEdit)
-window.setLayout(layout)
-window.show()
+        # 创建按钮
+        self.button = QPushButton("Print Value", self)
+        self.button.clicked.connect(self.print_value)
 
-app.exec()
+        # 添加控件到布局
+        layout.addWidget(self.radio_button1)
+        layout.addWidget(self.radio_button2)
+        layout.addWidget(self.button)
+
+        # 设置中央小部件
+        self.setCentralWidget(central_widget)
+
+    def print_value(self):
+        # 判断哪个 RadioButton 被选中
+        if self.radio_button1.isChecked():
+            print(1)
+        elif self.radio_button2.isChecked():
+            print(2)
+        else:
+            print("No option selected")
+
+if __name__ == "__main__":
+    app = QApplication([])
+    window = MainWindow()
+    window.show()
+    app.exec_()

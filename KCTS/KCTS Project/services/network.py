@@ -1,10 +1,12 @@
 import socket
+import serial
 import threading
 import time
 
-from typing import Optional, Tuple
+from typing import Optional, Tuple, Literal
 
 from PyQt5.QtCore import QObject, pyqtSignal
+from PyQt5.QtWidgets import QLineEdit
 
 from .package_send import QueryCollectionStatus, PackageToMu
 from .package_parse import PackageFromTU, PackageFromOU
@@ -38,10 +40,10 @@ class NetworkManager(QObject):
         self.tu_package_receiver: Optional[PackageFromTU] = PackageFromTU()
         self.ou_package_receiver: Optional[PackageFromOU] = None        # 主窗口发出Excel解析的信号才实例化
 
+
     def ou_package_receiver_inst(self, protocol: dict):
         ''' 接收到comboBox的index切换的信号就实例化 ou_package_receiver '''
         self.ou_package_receiver = PackageFromOU(protocol)
-
 
     def start_receiving_ou(self, local_ip: str,
                            recv_ou_port: str,
@@ -141,7 +143,6 @@ class NetworkManager(QObject):
         while self.is_receiving_tu and self.recv_tu_socket:   # and self.package_recv:
             try:
                 self.tu_package_recv, tu_addr = self.recv_tu_socket.recvfrom(1024)
-                # print(f'{tu_addr}',end='')
                 print(f'Rx: {tu_addr}' + ' '.join(f'{byte: 02X}' for byte in self.tu_package_recv))
                 # 处理来自TU的数据包
                 self.tu_package_receiver.parse_tu_package(self.tu_package_recv)
@@ -276,3 +277,53 @@ class NetworkManager(QObject):
         if self.send_mu_socket:
             self.send_mu_socket.close()
             self.send_mu_socket = None
+
+
+class SerialAssistant:
+    ''' 串口助手的线程管理器 '''
+    def __init__(self):
+        self.recv_serial: Optional[serial.Serial] = None                        # 接收串口数据的对象
+        self.recv_serial_port_thread: Optional[threading.Thread] = None         # 接收串口数据的线程
+        self.is_receiving_serial: bool = False
+
+    def start_recv_serial(self, port: str, baudrate: int,
+                          bytesize: Literal[serial.FIVEBITS, serial.SIXBITS, serial.SEVENBITS, serial.EIGHTBITS],
+                          parity: Literal[serial.PARITY_NONE, serial.PARITY_ODD, serial.PARITY_EVEN],
+                          stopbits: Literal[serial.STOPBITS_ONE, serial.STOPBITS_ONE_POINT_FIVE, serial.STOPBITS_TWO]
+                          ):
+        '''
+        开启接收串口数据的线程
+        :param port: 端口号
+        :param baudrate: 波特率
+        :param bytesize: 数据位
+        :param parity: 奇偶校验
+        :param stopbits: 停止位
+        :return:
+        '''
+        try:
+            self.recv_serial = serial.Serial(port=port, baudrate=baudrate, bytesize=bytesize, parity=parity, stopbits=stopbits)
+
+            self.is_receiving_serial = True
+
+            self.recv_serial_port_thread = threading.Thread(target=self.receiving_serial_loop, daemon=True)
+            self.recv_serial_port_thread.start()
+
+        except serial.SerialException as e:
+            print(f'串口打开失败: {e}')
+
+
+    def receiving_serial_loop(self):
+        ''' 接收串口数据的线程 '''
+        while self.is_receiving_serial and self.recv_serial:
+            # 检查是否有数据等待接收
+            if self.recv_serial.in_waiting:
+                serial_port_data = self.recv_serial.read(self.recv_serial.in_waiting)
+                print(f'串口Rx:' + ' '.join(f'{byte:02X}' for byte in serial_port_data))
+
+    def stop_receiving_serial(self):
+        ''' 停止接收串口数据的线程 '''
+        self.is_receiving_serial = False
+        if self.recv_serial:
+            self.recv_serial.close()
+            self.recv_serial = None
+

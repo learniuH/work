@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QComboBox, QPushButton, QRadioButton, QStackedWidget
 
 from widget.constant import SerialAsstConstant
 from config.validators import Validators
+from services.network import  SerialAssistant
 
 class SerialPortAsst:
     ''' 串口助手 '''
@@ -34,6 +35,7 @@ class SerialPortAsst:
         self.stackedWidget = stackedWidget                          # stackedWidget 界面
         self.ebyte_channel_lineEdit = ebyte_channel_lineEdit        # 亿佰特信道
 
+        self.serial_asst_manager = SerialAssistant()                # 串口线程管理器
         self.setup_validators()                                     # lineEdit 输入验证器
 
     def setup_validators(self):
@@ -51,30 +53,31 @@ class SerialPortAsst:
             comboBox.addItems(available_port)
 
     def open_serial_port(self):
-        ''' 点击打开串口 '''
+        ''' 打开/关闭 串口/线程 '''
 
-        # if True:
-        #     print()
-        #     break
+        # 没有端口号就不做处理
+        if self.com_comboBox.currentText() == '':
+            return
 
-        # 切换到串口助手主界面
-        if self.stackedWidget.currentIndex() != SerialAsstConstant.SERIAL_ASST_PAGE:
-            self.stackedWidget.setCurrentIndex(SerialAsstConstant.SERIAL_ASST_PAGE)
-            # 不要
 
         if self.com_port_open_pushButton.text() == '打开串口':
-            # 根据各参数的 comboBox 打开串口
-            ser = serial.Serial(port=self.com_comboBox.currentText(),
-                                baudrate=SerialAsstConstant.BAUD_RATE[self.baud_rate_comboBox.currentIndex()],
-                                bytesize=SerialAsstConstant.DATA_BIT[self.data_bits_comboBox.currentIndex()],
-                                parity=SerialAsstConstant.PARITY[self.parity_comboBox.currentIndex()],
-                                stopbits=SerialAsstConstant.STOP_BIT[self.stop_bits_comboBox.currentIndex()],
-                                )
-            self.com_comboBox.setDisabled(True)                 # 禁用端口选择的 comboBox
-            self.lora_config_pushButton.setEnabled(True)        # Lora 配置的按键使能
+            # 打开串口, 启动接收数据线程
+            self.serial_asst_manager.start_recv_serial(port=self.com_comboBox.currentText(),
+                                                       baudrate=SerialAsstConstant.BAUD_RATE[self.baud_rate_comboBox.currentIndex()],
+                                                       bytesize=SerialAsstConstant.DATA_BIT[self.data_bits_comboBox.currentIndex()],
+                                                       parity=SerialAsstConstant.PARITY[self.parity_comboBox.currentIndex()],
+                                                       stopbits=SerialAsstConstant.STOP_BIT[self.stop_bits_comboBox.currentIndex()],
+                                                       )
+
+            # 禁用端口选择的 comboBox
+            self.com_comboBox.setDisabled(True)
+            # Lora 配置的按键使能
+            self.lora_config_pushButton.setEnabled(True)
             self.com_port_open_pushButton.setText('关闭串口')
         else:
-            # 按钮的文字是关闭串口
+            # 关闭串口, 停止发送数据线程
+            self.serial_asst_manager.stop_receiving_serial()
+
             self.com_comboBox.setEnabled(True)                  # 端口选择的 comboBox 使能
             self.lora_config_pushButton.setDisabled(True)       # 禁用 Lora 配置的按键
             self.com_port_open_pushButton.setText('打开串口')
@@ -89,4 +92,16 @@ class SerialPortAsst:
         # 进入 亿佰特Lora 配置界面
         if self.ebyte_radiobutton.isChecked() and self.stackedWidget.currentIndex() != SerialAsstConstant.EBYTE_CONFIG_PAGE:
             self.stackedWidget.setCurrentIndex(SerialAsstConstant.EBYTE_CONFIG_PAGE)
+
+            # 修改 serial 波特率为 9600 (EByte Lora 修改配置参数的波特率为 9600)
+            self.serial_asst_manager.recv_serial.baudrate = SerialAsstConstant.BAUD_RATE_EBYTE_CONFIG
+
+    def update_ebyte_channel(self):
+        ''' 信道的 lineEdit text changed 时, 修改 Lora 信道 '''
+        print(f'当前的信道是{self.ebyte_channel_lineEdit.text()}')
+
+
+
+
+
 

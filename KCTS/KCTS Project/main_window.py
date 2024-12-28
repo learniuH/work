@@ -353,6 +353,8 @@ class MainWindow(QMainWindow):
             OUSimulator.key_button = {}
             # OU模拟器组包
             PackageToMu.generate_package(protocol_length)
+            # 实例化后创建 OU 模拟器, 更新 lineEdit 里面的包头
+            PackageToMu.update_package_header(self.main_window_ui.lineEdit_package_header)
 
     def switch_quantity_generation(self, byte_num: int, bit_index: Union[int, str], description: str, row: int):
         ''' 开关量区域: checkBox pushButton lineEdit '''
@@ -645,6 +647,8 @@ class MainWindow(QMainWindow):
         self.main_window_ui.pushButton_open_serial_port.clicked.connect(self.serial_port_asst.open_serial_port)
         # 点击串口助手中的 "Lora配置"
         self.main_window_ui.pushButton_lora_config.clicked.connect(self.serial_port_asst.lora_config)
+        # 串口助手亿佰特 信道 lineEdit 文本变化
+        self.main_window_ui.lineEdit_ebyte_channel.textChanged.connect(self.serial_port_asst.update_ebyte_channel)
 
     def keyPressEvent(self, event):
         ''' 重写该方法, 用于处理键盘按下时, OU模拟器的按键触发 '''
