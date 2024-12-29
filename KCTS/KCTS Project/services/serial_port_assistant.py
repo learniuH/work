@@ -34,6 +34,7 @@ class SerialPortAsst:
         self.stop_bits_comboBox = stop_bits_comboBox                # 获取 停止位
         self.com_port_open_pushButton = com_port_open_pushButton    # 打开/关闭 串口
         self.stackedWidget = stackedWidget                          # stackedWidget 界面
+
         self.ebyte_channel_lineEdit = ebyte_channel_lineEdit        # 亿佰特信道
 
         self.serial_asst_manager = SerialAssistant()                # 串口线程管理器
@@ -52,6 +53,10 @@ class SerialPortAsst:
         comboBox.clear()
         if available_port:
             comboBox.addItems(available_port)
+
+    def back_to_mainwindow(self):
+        ''' 点击返回箭头, 返回串口助手主界面 '''
+        self.stackedWidget.setCurrentIndex(SerialAsstConstant.SERIAL_ASST_PAGE)
 
     def open_serial_port(self):
         ''' 打开/关闭 串口/线程 '''

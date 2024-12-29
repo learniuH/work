@@ -3781,7 +3781,7 @@ QLineEdit {
                 <string>这是泽耀配置界面</string>
                </property>
               </widget>
-              <widget class="QPushButton" name="pushButton_back_to_serial_mainwindow_1">
+              <widget class="QPushButton" name="pushButton_ashining_back">
                <property name="geometry">
                 <rect>
                  <x>80</x>
@@ -3863,7 +3863,7 @@ QPushButton:pressed {
                 <set>Qt::AlignCenter</set>
                </property>
               </widget>
-              <widget class="QPushButton" name="pushButton_back_to_serial_mainwindow">
+              <widget class="QPushButton" name="pushButton_ebyte_back">
                <property name="geometry">
                 <rect>
                  <x>30</x>

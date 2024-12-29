@@ -1921,15 +1921,15 @@ class Ui_KCTS(object):
         self.label_1 = QtWidgets.QLabel(self.page_ashining_config)
         self.label_1.setGeometry(QtCore.QRect(320, 60, 241, 61))
         self.label_1.setObjectName("label_1")
-        self.pushButton_back_to_serial_mainwindow_1 = QtWidgets.QPushButton(self.page_ashining_config)
-        self.pushButton_back_to_serial_mainwindow_1.setGeometry(QtCore.QRect(80, 60, 51, 31))
+        self.pushButton_ashining_back = QtWidgets.QPushButton(self.page_ashining_config)
+        self.pushButton_ashining_back.setGeometry(QtCore.QRect(80, 60, 51, 31))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton_back_to_serial_mainwindow_1.sizePolicy().hasHeightForWidth())
-        self.pushButton_back_to_serial_mainwindow_1.setSizePolicy(sizePolicy)
-        self.pushButton_back_to_serial_mainwindow_1.setMinimumSize(QtCore.QSize(0, 0))
-        self.pushButton_back_to_serial_mainwindow_1.setStyleSheet("QPushButton {\n"
+        sizePolicy.setHeightForWidth(self.pushButton_ashining_back.sizePolicy().hasHeightForWidth())
+        self.pushButton_ashining_back.setSizePolicy(sizePolicy)
+        self.pushButton_ashining_back.setMinimumSize(QtCore.QSize(0, 0))
+        self.pushButton_ashining_back.setStyleSheet("QPushButton {\n"
 "    border-top-right-radius: 20px;\n"
 "    \n"
 "    image: url(:/checkBox/img/arrow-left.png);\n"
@@ -1940,8 +1940,8 @@ class Ui_KCTS(object):
 "    padding: 2px;\n"
 "}\n"
 "")
-        self.pushButton_back_to_serial_mainwindow_1.setText("")
-        self.pushButton_back_to_serial_mainwindow_1.setObjectName("pushButton_back_to_serial_mainwindow_1")
+        self.pushButton_ashining_back.setText("")
+        self.pushButton_ashining_back.setObjectName("pushButton_ashining_back")
         self.stackedWidget_serial_asst.addWidget(self.page_ashining_config)
         self.page_ebyte_config = QtWidgets.QWidget()
         self.page_ebyte_config.setObjectName("page_ebyte_config")
@@ -1956,15 +1956,15 @@ class Ui_KCTS(object):
         self.lineEdit_ebyte_channel.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.lineEdit_ebyte_channel.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEdit_ebyte_channel.setObjectName("lineEdit_ebyte_channel")
-        self.pushButton_back_to_serial_mainwindow = QtWidgets.QPushButton(self.page_ebyte_config)
-        self.pushButton_back_to_serial_mainwindow.setGeometry(QtCore.QRect(30, 30, 51, 31))
+        self.pushButton_ebyte_back = QtWidgets.QPushButton(self.page_ebyte_config)
+        self.pushButton_ebyte_back.setGeometry(QtCore.QRect(30, 30, 51, 31))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton_back_to_serial_mainwindow.sizePolicy().hasHeightForWidth())
-        self.pushButton_back_to_serial_mainwindow.setSizePolicy(sizePolicy)
-        self.pushButton_back_to_serial_mainwindow.setMinimumSize(QtCore.QSize(0, 0))
-        self.pushButton_back_to_serial_mainwindow.setStyleSheet("QPushButton {\n"
+        sizePolicy.setHeightForWidth(self.pushButton_ebyte_back.sizePolicy().hasHeightForWidth())
+        self.pushButton_ebyte_back.setSizePolicy(sizePolicy)
+        self.pushButton_ebyte_back.setMinimumSize(QtCore.QSize(0, 0))
+        self.pushButton_ebyte_back.setStyleSheet("QPushButton {\n"
 "    border-top-right-radius: 20px;\n"
 "    \n"
 "    image: url(:/checkBox/img/arrow-left.png);\n"
@@ -1975,8 +1975,8 @@ class Ui_KCTS(object):
 "    padding: 2px;\n"
 "}\n"
 "")
-        self.pushButton_back_to_serial_mainwindow.setText("")
-        self.pushButton_back_to_serial_mainwindow.setObjectName("pushButton_back_to_serial_mainwindow")
+        self.pushButton_ebyte_back.setText("")
+        self.pushButton_ebyte_back.setObjectName("pushButton_ebyte_back")
         self.stackedWidget_serial_asst.addWidget(self.page_ebyte_config)
         self.verticalLayout_10.addWidget(self.stackedWidget_serial_asst)
         self.widget_2 = QtWidgets.QWidget(self.serial_port_page)

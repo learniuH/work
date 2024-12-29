@@ -647,8 +647,12 @@ class MainWindow(QMainWindow):
         self.main_window_ui.pushButton_open_serial_port.clicked.connect(self.serial_port_asst.open_serial_port)
         # 点击串口助手中的 "Lora配置"
         self.main_window_ui.pushButton_lora_config.clicked.connect(self.serial_port_asst.lora_config)
+        # 点击亿佰特 Lora 配置 返回按钮
+        self.main_window_ui.pushButton_ebyte_back.clicked.connect(self.serial_port_asst.back_to_mainwindow)
         # 串口助手亿佰特 信道 lineEdit 文本变化
         self.main_window_ui.lineEdit_ebyte_channel.textChanged.connect(self.serial_port_asst.update_ebyte_channel)
+        # 点击泽耀 Lora 配置 返回按钮
+        self.main_window_ui.pushButton_ashining_back.clicked.connect(self.serial_port_asst.back_to_mainwindow)
 
     def keyPressEvent(self, event):
         ''' 重写该方法, 用于处理键盘按下时, OU模拟器的按键触发 '''
