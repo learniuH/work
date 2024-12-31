@@ -141,7 +141,8 @@ class PackageToMu:
 class PackageToLora:
     ''' 通过串口发送的数据 '''
     EBYTE_CHANNEL = None
-    EBYTE_CHANNEL_AT_COMMAND = [0xC0, 0x05, 0x01, EBYTE_CHANNEL]           # 设置寄存器的AT指令
+    EBYTE_CHANNEL_AT_COMMAND = [0xC0, 0x05, 0x01, EBYTE_CHANNEL]           # AT指令: 设置 EByte 信道
+    GET_EBYTE_CHANNEL = [0xC1, 0x05, 0x01]######################3
 
 
     @classmethod

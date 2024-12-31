@@ -103,11 +103,18 @@ class SerialPortAsst:
             self.serial_asst_manager.serial.baudrate = SerialAsstConstant.BAUD_RATE_EBYTE_CONFIG
             self.baud_rate_comboBox.setCurrentIndex(SerialAsstConstant.BAUD_RATE_9600_INDEX)
 
+    def get_ebyte_config(self):
+        ''' 点击 Lora配置 按钮获取亿佰特 Lora 配置 '''
+        # 发送 AT 指令, 获取信道
+
+
+
     def update_ebyte_channel(self):
         ''' 信道的 lineEdit text changed 时, 修改 Lora 信道, 发送 AT 指令 '''
         # print(f'当前的信道是{self.ebyte_channel_lineEdit.text()}')
-        # 修改信道
+        # 通过 lineEdit 修改信道
         PackageToLora.update_ebyte_channel(self.ebyte_channel_lineEdit.text())
         # 发动 AT 指令
         self.serial_asst_manager.serial.write(PackageToLora.EBYTE_CHANNEL_AT_COMMAND)
+
 
