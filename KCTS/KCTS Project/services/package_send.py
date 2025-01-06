@@ -144,6 +144,10 @@ class PackageToLora:
     EBYTE_CHANNEL_AT_COMMAND = [0xC0, 0x05, 0x01, EBYTE_CHANNEL]           # AT指令: 设置 EByte 信道
     GET_EBYTE_CHANNEL = [0xC1, 0x05, 0x01]######################3
 
+    # Lora AT 指令的包头
+    LORA_AT_HEADER = [0xC0,                                                 # EBYTE 设置寄存器
+                      0xC1,                                                 # EBYTE 读取寄存器
+                      ]
 
     @classmethod
     def update_ebyte_channel(cls, channel: str):

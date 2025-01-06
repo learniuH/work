@@ -142,7 +142,7 @@ class NetworkManager(QObject):
         while self.is_receiving_tu and self.recv_tu_socket:   # and self.package_recv:
             try:
                 self.tu_package_recv, tu_addr = self.recv_tu_socket.recvfrom(1024)
-                print(f'Rx: {tu_addr}' + ' '.join(f'{byte: 02X}' for byte in self.tu_package_recv))
+                print(f'Rx: {tu_addr}: ' + ' '.join(f'{byte:02X}' for byte in self.tu_package_recv))
                 # 处理来自TU的数据包
                 self.tu_package_receiver.parse_tu_package(self.tu_package_recv)
 
