@@ -2462,7 +2462,7 @@ class Ui_KCTS(object):
         self.tabWidget.setCurrentIndex(0)
         self.ou_analysis_send_stacked.setCurrentIndex(0)
         self.history_record_stacked.setCurrentIndex(1)
-        self.stackedWidget_serial_asst.setCurrentIndex(2)
+        self.stackedWidget_serial_asst.setCurrentIndex(0)
         self.comboBox_baud_rate.setCurrentIndex(6)
         self.comboBox_data_bits.setCurrentIndex(3)
         QtCore.QMetaObject.connectSlotsByName(KCTS)

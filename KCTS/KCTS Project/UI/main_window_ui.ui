@@ -3750,7 +3750,7 @@ QLineEdit {
 }</string>
              </property>
              <property name="currentIndex">
-              <number>2</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="page_serial_asst_mainwindow">
               <widget class="QLabel" name="label">

@@ -1,6 +1,6 @@
 from PyQt5.QtCore import pyqtSignal, QObject
 
-from .tu_protocol import StatusFeedBack
+from .protocol_definition import StatusFeedBack
 
 # class PackageProcess():
 #     ''' PackageFromTU 和 PackageFromOU 的父类 '''

@@ -313,11 +313,69 @@ class SerialAssistant:
 
     def receiving_serial_loop(self):
         ''' 接收串口数据的线程 '''
-        while self.is_receiving_serial and self.serial:
+        count       = 0
+        length      = 0                         # 数据包数据域长度
+        ebyte_config_recv_flag = False          # 亿佰特配置数据接收
+        ashing_config_recv_flag = False         # 泽耀配置数据接收
+        recv_buffer = []                        # 数据接收缓存区
+        while self.is_receiving_serial and self.serial.is_open:
             # 检查是否有数据等待接收
             if self.serial.in_waiting:
                 serial_port_data = self.serial.read(self.serial.in_waiting)
+                if count == 0:
+                    # 接收第一个字节 包头
+                    if serial_port_data[0] == 0xC1:
+                        recv_buffer.append(serial_port_data[0])
+                        ebyte_config_recv_flag = True
+                        print(f'已接受亿佰特包头！')
+                    else:
+                        # 接收泽耀模块的包头
+                        pass
+                    # else:
+                    #     continue
+                elif ebyte_config_recv_flag:
+                    # 接收亿佰特配置数据包
+                    if count == 1:
+                        # 寄存器起始地址
+                        recv_buffer.append(serial_port_data[0])
+                        print(f'第一个字节寄存器地址已接收')
+                    elif count == 2:
+                        # 长度
+                        if serial_port_data[0] > 0:
+                            recv_buffer.append(serial_port_data[0])
+                            length = recv_buffer[count]
+                            print(f'第二个字节长度已接收')
+                        else:
+                            # 如果第三个字节为0(长度为0) 丢弃这一包, 重新开始接收
+                            count = 0
+                            recv_buffer = []
+                            ebyte_config_recv_flag = False
+                    elif count == 3:
+                        # 数据域接收
+                        if length > 0:
+                            recv_buffer.append(serial_port_data[0])
+                            print(f'数据域接收')
+                            length -= 1
+                            if length == 0:
+                                # 数据接收完成 !
+                                print(f'亿佰特Lora配置参数接收完成: {recv_buffer}, 调用相应函数模块进行处理')
+                                count = 0
+                                recv_buffer = []
+                                ebyte_config_recv_flag = False
+                            # 数据域接收数据 跳过 count + 1
+                            continue
+
+
+                elif ashing_config_recv_flag:
+                    # 接收泽耀配置数据包
+                    pass
+
+                count += 1
+
+                # print(f'length={length}')
+                # print(f'count={count}')
                 print(f'串口Rx:' + ' '.join(f'{byte:02X}' for byte in serial_port_data))
+
 
     def stop_receiving_serial(self):
         ''' 停止接收串口数据的线程 '''
