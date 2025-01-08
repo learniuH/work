@@ -141,21 +141,17 @@ class PackageToMu:
 class PackageToLora:
     ''' 通过串口发送的数据 '''
     EBYTE_CHANNEL = None
-    EBYTE_CHANNEL_AT_COMMAND = [0xC0, 0x05, 0x01, EBYTE_CHANNEL]           # AT指令: 设置 EByte 信道
-    GET_EBYTE_CHANNEL = [0xC1, 0x05, 0x01]######################3
+    CHANGE_EBYTE_CHANNEL    = [0xC0, 0x05, 0x01, EBYTE_CHANNEL]         # AT指令: 设置 EByte 信道
+    GET_EBYTE_CHANNEL       = [0xC1, 0x05, 0x01]                        # AT指令: 获取 EByte 信号
 
-    # Lora AT 指令的包头
-    LORA_AT_HEADER = [0xC0,                                                 # EBYTE 设置寄存器
-                      0xC1,                                                 # EBYTE 读取寄存器
-                      ]
 
     @classmethod
     def update_ebyte_channel(cls, channel: str):
         ''' lineEdit 文本变化时, 发送更新信道的AT指令 '''
         if channel != '':
-            cls.EBYTE_CHANNEL_AT_COMMAND[3] = int(channel)          # lineEdit 写十进制的数, AT 指令显示的是 十六进制
+            cls.CHANGE_EBYTE_CHANNEL[3] = int(channel)          # lineEdit 写十进制的数, AT 指令显示的是 十六进制
         else:
-            cls.EBYTE_CHANNEL_AT_COMMAND[3] = 0                     # lineEdit 为空, channel 设置为 0
+            cls.CHANGE_EBYTE_CHANNEL[3] = 0                     # lineEdit 为空, channel 设置为 0
 
 
 

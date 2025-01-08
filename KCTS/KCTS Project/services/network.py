@@ -278,10 +278,13 @@ class NetworkManager(QObject):
             self.send_mu_socket = None
 
 
-class SerialAssistant:
+class SerialAssistant(QObject):
     ''' 串口助手的线程管理器 '''
+    ebyte_config_received_signal = pyqtSignal(list)                             # 亿佰特配置数据接收完成信号
+
     def __init__(self):
-        self.serial: Optional[serial.Serial] = None                        # 接收串口数据的对象
+        super().__init__()
+        self.serial: Optional[serial.Serial] = None                             # 接收串口数据的对象
         self.recv_serial_port_thread: Optional[threading.Thread] = None         # 接收串口数据的线程
         self.is_receiving_serial: bool = False
 
@@ -350,6 +353,7 @@ class SerialAssistant:
                             count = 0
                             recv_buffer = []
                             ebyte_config_recv_flag = False
+                            print(f'收到亿佰特配置包长度为0, 重新开始接收 !')
                     elif count == 3:
                         # 数据域接收
                         if length > 0:
@@ -358,10 +362,12 @@ class SerialAssistant:
                             length -= 1
                             if length == 0:
                                 # 数据接收完成 !
-                                print(f'亿佰特Lora配置参数接收完成: {recv_buffer}, 调用相应函数模块进行处理')
+                                print(f'亿佰特Lora配置参数接收完成 !{recv_buffer}')
+                                self.ebyte_config_received_signal.emit(recv_buffer)
                                 count = 0
                                 recv_buffer = []
                                 ebyte_config_recv_flag = False
+
                             # 数据域接收数据 跳过 count + 1
                             continue
 
@@ -372,8 +378,7 @@ class SerialAssistant:
 
                 count += 1
 
-                # print(f'length={length}')
-                # print(f'count={count}')
+
                 print(f'串口Rx:' + ' '.join(f'{byte:02X}' for byte in serial_port_data))
 
 

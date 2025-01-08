@@ -2,6 +2,7 @@ import serial
 import serial.tools.list_ports
 
 from PyQt5.QtWidgets import QComboBox, QPushButton, QRadioButton, QStackedWidget, QLineEdit
+from PyQt5.QtCore import pyqtSignal, QObject
 from serial.serialutil import SerialException
 
 from widget.constant import SerialAsstConstant
@@ -38,8 +39,14 @@ class SerialPortAsst:
 
         self.ebyte_channel_lineEdit = ebyte_channel_lineEdit        # 亿佰特信道
 
-        self.serial_asst_manager = SerialAssistant()                # 串口线程管理器
+        self.serial_asst_manager = SerialAssistant()                # 串口接收线程管理器
+
+        self.signal_bind()                                          # pyqtSignal 绑定
         self.setup_validators()                                     # lineEdit 输入验证器
+
+    def signal_bind(self):
+        ''' 数据包接收完成发送 pyqtSignal 信号 '''
+        self.serial_asst_manager.ebyte_config_received_signal.connect(self.ebyte_config_package_parse)
 
     def setup_validators(self):
         ''' 设置 lineEdit 输入验证器 '''
@@ -97,7 +104,7 @@ class SerialPortAsst:
                                                        parity=SerialAsstConstant.PARITY[self.parity_comboBox.currentIndex()],
                                                        stopbits=SerialAsstConstant.STOP_BIT[self.stop_bits_comboBox.currentIndex()],
                                                        )
-            if self.serial_asst_manager.serial:         # 串口对象创建成功
+            if self.serial_asst_manager.serial.is_open:         # 串口对象创建成功
                 # 禁用端口选择的 comboBox
                 self.com_comboBox.setDisabled(True)
                 # Lora 配置的按键使能
@@ -140,22 +147,25 @@ class SerialPortAsst:
             self.stackedWidget.setCurrentIndex(SerialAsstConstant.EBYTE_CONFIG_PAGE)
             # 串口参数更新
             self.parameter_init_Ebyte()
+            # 发送获取参数的 AT 指令
+            self.get_ebyte_config()
 
 
     def get_ebyte_config(self):
-        ''' 点击 Lora配置 按钮获取亿佰特 Lora 配置 '''
-        # 发送 AT 指令, 获取信道
+        ''' 点击 Lora配置, 发送 AT 指令, 以获取亿佰特 Lora 配置 '''
+        # 发送 AT 指令 - 获取信道
+        self.serial_asst_manager.serial.write(PackageToLora.GET_EBYTE_CHANNEL)
 
+
+    def ebyte_config_package_parse(self, config_package: list):
+        ''' 接收 pyqtSignal 信号, 解析亿佰特数据包, 获取信道 '''
         pass
 
-
-
     def update_ebyte_channel(self):
-        ''' 信道的 lineEdit text changed 时, 修改 Lora 信道, 发送 AT 指令 '''
+        ''' 信道的 lineEdit text changed 时, 发送 AT 指令, 修改 Lora 信道 '''
         # print(f'当前的信道是{self.ebyte_channel_lineEdit.text()}')
         # 通过 lineEdit 修改信道
         PackageToLora.update_ebyte_channel(self.ebyte_channel_lineEdit.text())
         # 发动 AT 指令
-        self.serial_asst_manager.serial.write(PackageToLora.EBYTE_CHANNEL_AT_COMMAND)
-
+        self.serial_asst_manager.serial.write(PackageToLora.CHANGE_EBYTE_CHANNEL)
 
