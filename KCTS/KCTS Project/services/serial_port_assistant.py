@@ -169,3 +169,6 @@ class SerialPortAsst:
         # 发动 AT 指令
         self.serial_asst_manager.serial.write(PackageToLora.CHANGE_EBYTE_CHANNEL)
 
+        # # 测试
+        # buffer = [0xC1, 0x00, 0x04]
+        # self.serial_asst_manager.serial.write(buffer)

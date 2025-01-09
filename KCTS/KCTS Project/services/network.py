@@ -333,9 +333,7 @@ class SerialAssistant(QObject):
                         print(f'已接受亿佰特包头！')
                     else:
                         # 接收泽耀模块的包头
-                        pass
-                    # else:
-                    #     continue
+                        continue
                 elif ebyte_config_recv_flag:
                     # 接收亿佰特配置数据包
                     if count == 1:
