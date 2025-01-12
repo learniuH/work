@@ -142,7 +142,15 @@ class PackageToLora:
     ''' 通过串口发送的数据 '''
     EBYTE_CHANNEL = None
     CHANGE_EBYTE_CHANNEL    = [0xC0, 0x05, 0x01, EBYTE_CHANNEL]         # AT指令: 设置 EByte 信道
-    GET_EBYTE_CHANNEL       = [0xC1, 0x05, 0x01]                        # AT指令: 获取 EByte 信号
+
+
+    GET_EBYTE_CHANNEL       = [0xC1, 0x05, 0x01]                        # AT指令: 获取 EByte 信道
+    GET_EBYTE_ADDR          = [0xC1, 0x00, 0x02]                        # AT指令: 获取 EByte 模块地址
+    GET_EBYTE_SERIAL_CONFIG = [0xC1, 0x03, 0x01]                        # AT指令: 获取 EByte 波特率, 校验位, 空中速率
+    DATA_LIST               = [bytes(GET_EBYTE_CHANNEL),
+                               bytes(GET_EBYTE_ADDR),
+                               bytes(GET_EBYTE_SERIAL_CONFIG),
+                               ]
 
 
     @classmethod

@@ -1,3 +1,5 @@
+from time import sleep
+
 import serial
 import serial.tools.list_ports
 
@@ -5,7 +7,7 @@ from PyQt5.QtWidgets import QComboBox, QPushButton, QRadioButton, QStackedWidget
 from PyQt5.QtCore import pyqtSignal, QObject
 from serial.serialutil import SerialException
 
-from widget.constant import SerialAsstConstant
+from widget.constant import SerialAsstConstant, SendCycle
 from config.validators import Validators
 from services.network import  SerialAssistant
 from services.package_send import PackageToLora
@@ -104,7 +106,7 @@ class SerialPortAsst:
                                                        parity=SerialAsstConstant.PARITY[self.parity_comboBox.currentIndex()],
                                                        stopbits=SerialAsstConstant.STOP_BIT[self.stop_bits_comboBox.currentIndex()],
                                                        )
-            if self.serial_asst_manager.serial.is_open:         # 串口对象创建成功
+            if self.serial_asst_manager.serial:         # 串口对象创建成功
                 # 禁用端口选择的 comboBox
                 self.com_comboBox.setDisabled(True)
                 # Lora 配置的按键使能
@@ -153,8 +155,7 @@ class SerialPortAsst:
 
     def get_ebyte_config(self):
         ''' 点击 Lora配置, 发送 AT 指令, 以获取亿佰特 Lora 配置 '''
-        # 发送 AT 指令 - 获取信道
-        self.serial_asst_manager.serial.write(PackageToLora.GET_EBYTE_CHANNEL)
+        self.serial_asst_manager.start_write_serial(SendCycle.CYCLE, is_loop=False)
 
 
     def ebyte_config_package_parse(self, config_package: list):
@@ -168,7 +169,3 @@ class SerialPortAsst:
         PackageToLora.update_ebyte_channel(self.ebyte_channel_lineEdit.text())
         # 发动 AT 指令
         self.serial_asst_manager.serial.write(PackageToLora.CHANGE_EBYTE_CHANNEL)
-
-        # # 测试
-        # buffer = [0xC1, 0x00, 0x04]
-        # self.serial_asst_manager.serial.write(buffer)

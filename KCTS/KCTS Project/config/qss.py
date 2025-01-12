@@ -1,8 +1,4 @@
 
-
-class SendCycle():
-    CYCLE = 100
-
 class QLabelStyleSheet():
     ''' QLabel 解析界面的两个状态'''
     LABEL_QSS_HIGHLIGHT = ('QLabel {'

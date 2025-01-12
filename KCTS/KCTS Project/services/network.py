@@ -7,7 +7,7 @@ from typing import Optional, Tuple, Literal
 
 from PyQt5.QtCore import QObject, pyqtSignal
 
-from .package_send import QueryCollectionStatus, PackageToMu
+from .package_send import QueryCollectionStatus, PackageToMu, PackageToLora
 from .package_parse import PackageFromTU, PackageFromOU
 from config.error_message import ErrorMessage
 
@@ -284,9 +284,11 @@ class SerialAssistant(QObject):
 
     def __init__(self):
         super().__init__()
-        self.serial: Optional[serial.Serial] = None                             # 接收串口数据的对象
+        self.serial: Optional[serial.Serial] = None                             # 串口对象
         self.recv_serial_port_thread: Optional[threading.Thread] = None         # 接收串口数据的线程
         self.is_receiving_serial: bool = False
+        self.write_serial_port_thread: Optional[threading.Thread] = None        # 写入串口数据的线程
+        self.is_writing_serial: bool = False
 
     def start_recv_serial(self, port: str, baudrate: int,
                           bytesize: Literal[serial.FIVEBITS, serial.SIXBITS, serial.SEVENBITS, serial.EIGHTBITS],
@@ -383,7 +385,43 @@ class SerialAssistant(QObject):
     def stop_receiving_serial(self):
         ''' 停止接收串口数据的线程 '''
         self.is_receiving_serial = False
-        if self.serial:
+        if self.serial.is_open:
             self.serial.close()
             self.serial = None
 
+    def start_write_serial(self, cycle: int, is_loop: bool):
+        '''
+        开始写入串口数据的线程
+        :param cycle: 写入数据的周期, 单位 ms
+        :param is_loop: 是否循环写入
+        :return: None
+        '''
+        self.is_writing_serial = True
+        self.write_serial_port_thread = threading.Thread(target=self.writing_serial_loop, args=(cycle, is_loop), daemon=True)
+        self.write_serial_port_thread.start()
+
+    def writing_serial_loop(self, cycle: int, is_loop: bool):
+        '''
+        写入数据线程
+        :param cycle: 写入数据的周期, 单位 ms
+        :param is_loop: 是否循环写入
+        :return: None
+        '''
+
+        while self.is_writing_serial and self.serial.is_open:
+            if is_loop:
+                # 开始循环写入数据
+                pass
+
+            else:
+                for data in PackageToLora.DATA_LIST:
+                    self.serial.write(data)
+                    print(f'发送数据{data}')
+                    time.sleep(cycle / 1000)
+
+                # 结束线程
+                self.stop_writing_serial()
+
+    def stop_writing_serial(self):
+        ''' 停止写入串口数据的线程 '''
+        self.is_writing_serial = False

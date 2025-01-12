@@ -1,5 +1,8 @@
 import serial
 
+class SendCycle:
+    CYCLE = 100                     # MU/TU/串口 发包周期
+
 class ConstantText:
     ''' 自定义控件的文本 '''
     BLANK_TEXT = ''                 # checkBox 空白文本
