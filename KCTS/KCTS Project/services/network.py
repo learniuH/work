@@ -416,7 +416,6 @@ class SerialAssistant(QObject):
             else:
                 for data in PackageToLora.DATA_LIST:
                     self.serial.write(data)
-                    print(f'发送数据{data}')
                     time.sleep(cycle / 1000)
 
                 # 结束线程

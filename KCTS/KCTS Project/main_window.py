@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog, QLi
 from UI.main_window_ui import Ui_KCTS
 
 from config.validators import Validators
-from config.qss import QLabelStyleSheet, SendCycle, AnalogStyleSheet
+from config.qss import QLabelStyleSheet, AnalogStyleSheet
 from services.network import NetworkManager
 from services.read_excel import ExcelRead
 from services.ou_simulator import OUSimulator
@@ -18,7 +18,7 @@ from widget.pushbutton import LearniuHPushButton
 from widget.lineedit import LearniuHLineEdit
 from widget.slider import LearniuHSlider
 from widget.spacer import LearniuHSpacer
-from widget.constant import ConstantText
+from widget.constant import ConstantText, SendCycle
 
 import sys
 import socket
@@ -102,10 +102,10 @@ class MainWindow(QMainWindow):
 
     def signal_bind(self):
         ''' 绑定 pyqtSignal 到对应事件与按键 '''
-        self.network_manager.tu_package_receiver.update_do_signal.connect(self.update_do_label_status)  # 用于更新MU数据显示区
+        self.network_manager.tu_package_receiver.update_do_signal.connect(self.update_do_label_status)          # 用于更新MU数据显示区
         self.network_manager.tu_package_receiver.update_pwm_signal.connect(self.update_pwm_progressBar_status)  # 用于更新MU数据显示区
         self.network_manager.tu_package_receiver.mu_output_record_signal.connect(self.update_mu_history_record) # 更新历史记录中MU的输出
-        self.network_manager.program_exception_signal.connect(self.top_hint_display)    # 更新提示
+        self.network_manager.program_exception_signal.connect(self.top_hint_display)                            # 更新提示
 
         # 将 DO PWM 信号与UI控件绑定
         self.function_definition = {

@@ -50,3 +50,8 @@ class StatusFeedBack:
         '45-46': 'PWM16'
     }
 
+class EbyteConfiguration:
+    ''' 亿佰特回包中寄存器(第二字节)的定义'''
+    register_define = {
+        0x05
+    }
