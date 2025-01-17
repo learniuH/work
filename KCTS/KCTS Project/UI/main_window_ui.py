@@ -1908,7 +1908,78 @@ class Ui_KCTS(object):
 "    border-bottom: 1px solid white;\n"
 "    color: white;\n"
 "    font: 10pt \"微软雅黑\";\n"
-"}")
+"}\n"
+"\n"
+"QComboBox {\n"
+"    border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"    background-color: qlineargradient(spread: pad, x1: 1, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #0d1117,  /* 起始颜色 */\n"
+"                                      stop: 1 #414a5a   /* 结束颜色 */ ); /* 背景颜色 */\n"
+"    color: white;        /* 字体颜色 */\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    height: 22px;\n"
+"    min-width: 80px;\n"
+"}\n"
+"\n"
+"QComboBox:disabled {\n"
+"    border: 1px solid #808080; /* 禁用状态下的边框颜色 */\n"
+"    background-color: #333333; /* 禁用状态下的背景颜色 */\n"
+"    color: #808080; /* 禁用状态下的字体颜色 */\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"    width: 18px; /* 保持 drop-down 的宽度一致 */\n"
+"}\n"
+"\n"
+"QComboBox::drop-down:disabled {\n"
+"    width: 16px; /* 禁用状态下确保宽度一致，避免位移 */\n"
+"    border: 1px solid #808080; /* 去掉边框 */\n"
+"    background-color: #333333; /* 禁用状态下的背景颜色 */\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView {\n"
+"    outline: 0px solid gray;\n"
+"    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"    color: white;\n"
+"    background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,\n"
+"                                      stop: 0 #989da5, stop: 1 #404959);\n"
+"    selection-background-color: #435068;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item {\n"
+"    height: 22px;\n"
+"}\n"
+"\n"
+"/* 滚动条的宽度 */\n"
+"QComboBox QScrollBar:vertical {\n"
+"\n"
+"    width: 10px;\n"
+"}\n"
+"\n"
+"QComboBox QScrollBar::handle:vertical {\n"
+"    min-height: 20px; /* 滑块最小高度 */\n"
+"}\n"
+"\n"
+"/* 滚动条悬停颜色 */\n"
+"QComboBox QScrollBar::handle:vertical:hover {\n"
+"    border: 1px solid white;        /* 滚动条的边框颜色 */\n"
+"    background-color: #3c485d;\n"
+"}\n"
+"\n"
+"/* 始终隐藏上下箭头 */\n"
+"QComboBox QScrollBar::sub-line,\n"
+"QComboBox QScrollBar::add-line {\n"
+"    background: none;\n"
+"}\n"
+"\n"
+"QComboBox QScrollBar::add-page,\n"
+"QComboBox QScrollBar::sub-page {\n"
+"    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"")
         self.stackedWidget_serial_asst.setObjectName("stackedWidget_serial_asst")
         self.page_serial_asst_mainwindow = QtWidgets.QWidget()
         self.page_serial_asst_mainwindow.setObjectName("page_serial_asst_mainwindow")
@@ -1949,10 +2020,10 @@ class Ui_KCTS(object):
         self.label_ebyte_config.setGeometry(QtCore.QRect(480, 40, 231, 41))
         self.label_ebyte_config.setObjectName("label_ebyte_config")
         self.label_ebyte_channel = QtWidgets.QLabel(self.page_ebyte_config)
-        self.label_ebyte_channel.setGeometry(QtCore.QRect(170, 210, 61, 41))
+        self.label_ebyte_channel.setGeometry(QtCore.QRect(160, 250, 81, 41))
         self.label_ebyte_channel.setObjectName("label_ebyte_channel")
         self.lineEdit_ebyte_channel = QtWidgets.QLineEdit(self.page_ebyte_config)
-        self.lineEdit_ebyte_channel.setGeometry(QtCore.QRect(230, 220, 113, 21))
+        self.lineEdit_ebyte_channel.setGeometry(QtCore.QRect(260, 260, 113, 21))
         self.lineEdit_ebyte_channel.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.lineEdit_ebyte_channel.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEdit_ebyte_channel.setObjectName("lineEdit_ebyte_channel")
@@ -1977,6 +2048,54 @@ class Ui_KCTS(object):
 "")
         self.pushButton_ebyte_back.setText("")
         self.pushButton_ebyte_back.setObjectName("pushButton_ebyte_back")
+        self.label_ebyte_addr = QtWidgets.QLabel(self.page_ebyte_config)
+        self.label_ebyte_addr.setGeometry(QtCore.QRect(140, 170, 81, 41))
+        self.label_ebyte_addr.setObjectName("label_ebyte_addr")
+        self.lineEdit_ebyte_addr = QtWidgets.QLineEdit(self.page_ebyte_config)
+        self.lineEdit_ebyte_addr.setGeometry(QtCore.QRect(240, 180, 113, 21))
+        self.lineEdit_ebyte_addr.setAlignment(QtCore.Qt.AlignCenter)
+        self.lineEdit_ebyte_addr.setObjectName("lineEdit_ebyte_addr")
+        self.comboBox_ebyte_baud = QtWidgets.QComboBox(self.page_ebyte_config)
+        self.comboBox_ebyte_baud.setGeometry(QtCore.QRect(610, 170, 91, 22))
+        self.comboBox_ebyte_baud.setMaxVisibleItems(7)
+        self.comboBox_ebyte_baud.setObjectName("comboBox_ebyte_baud")
+        self.comboBox_ebyte_baud.addItem("")
+        self.comboBox_ebyte_baud.addItem("")
+        self.comboBox_ebyte_baud.addItem("")
+        self.comboBox_ebyte_baud.addItem("")
+        self.comboBox_ebyte_baud.addItem("")
+        self.comboBox_ebyte_baud.addItem("")
+        self.comboBox_ebyte_baud.addItem("")
+        self.comboBox_ebyte_baud.addItem("")
+        self.label_ebyte_baud = QtWidgets.QLabel(self.page_ebyte_config)
+        self.label_ebyte_baud.setGeometry(QtCore.QRect(500, 160, 91, 41))
+        self.label_ebyte_baud.setObjectName("label_ebyte_baud")
+        self.label_ebyte_parity = QtWidgets.QLabel(self.page_ebyte_config)
+        self.label_ebyte_parity.setGeometry(QtCore.QRect(510, 240, 91, 41))
+        self.label_ebyte_parity.setObjectName("label_ebyte_parity")
+        self.label_ebyte_airspeed = QtWidgets.QLabel(self.page_ebyte_config)
+        self.label_ebyte_airspeed.setGeometry(QtCore.QRect(500, 310, 91, 41))
+        self.label_ebyte_airspeed.setObjectName("label_ebyte_airspeed")
+        self.comboBox_ebyte_airspeed = QtWidgets.QComboBox(self.page_ebyte_config)
+        self.comboBox_ebyte_airspeed.setGeometry(QtCore.QRect(610, 320, 101, 22))
+        self.comboBox_ebyte_airspeed.setMaxVisibleItems(7)
+        self.comboBox_ebyte_airspeed.setObjectName("comboBox_ebyte_airspeed")
+        self.comboBox_ebyte_airspeed.addItem("")
+        self.comboBox_ebyte_airspeed.addItem("")
+        self.comboBox_ebyte_airspeed.addItem("")
+        self.comboBox_ebyte_airspeed.addItem("")
+        self.comboBox_ebyte_airspeed.addItem("")
+        self.comboBox_ebyte_airspeed.addItem("")
+        self.comboBox_ebyte_airspeed.addItem("")
+        self.comboBox_ebyte_airspeed.addItem("")
+        self.comboBox_ebyte_parity = QtWidgets.QComboBox(self.page_ebyte_config)
+        self.comboBox_ebyte_parity.setGeometry(QtCore.QRect(610, 250, 87, 22))
+        self.comboBox_ebyte_parity.setMaxVisibleItems(7)
+        self.comboBox_ebyte_parity.setObjectName("comboBox_ebyte_parity")
+        self.comboBox_ebyte_parity.addItem("")
+        self.comboBox_ebyte_parity.addItem("")
+        self.comboBox_ebyte_parity.addItem("")
+        self.comboBox_ebyte_parity.addItem("")
         self.stackedWidget_serial_asst.addWidget(self.page_ebyte_config)
         self.verticalLayout_10.addWidget(self.stackedWidget_serial_asst)
         self.widget_2 = QtWidgets.QWidget(self.serial_port_page)
@@ -2458,11 +2577,13 @@ class Ui_KCTS(object):
         KCTS.setCentralWidget(self.Window)
 
         self.retranslateUi(KCTS)
-        self.sub_interface_stacked.setCurrentIndex(0)
+        self.sub_interface_stacked.setCurrentIndex(3)
         self.tabWidget.setCurrentIndex(0)
         self.ou_analysis_send_stacked.setCurrentIndex(0)
         self.history_record_stacked.setCurrentIndex(1)
         self.stackedWidget_serial_asst.setCurrentIndex(2)
+        self.comboBox_ebyte_baud.setCurrentIndex(7)
+        self.comboBox_ebyte_airspeed.setCurrentIndex(7)
         self.comboBox_baud_rate.setCurrentIndex(6)
         self.comboBox_data_bits.setCurrentIndex(3)
         QtCore.QMetaObject.connectSlotsByName(KCTS)
@@ -2586,7 +2707,31 @@ class Ui_KCTS(object):
         self.label.setText(_translate("KCTS", "串口助手主界面"))
         self.label_1.setText(_translate("KCTS", "这是泽耀配置界面"))
         self.label_ebyte_config.setText(_translate("KCTS", "亿佰特 Lora 配置管理"))
-        self.label_ebyte_channel.setText(_translate("KCTS", "信道 :"))
+        self.label_ebyte_channel.setText(_translate("KCTS", "信       道："))
+        self.label_ebyte_addr.setText(_translate("KCTS", "模块地址："))
+        self.comboBox_ebyte_baud.setItemText(0, _translate("KCTS", "1200bps"))
+        self.comboBox_ebyte_baud.setItemText(1, _translate("KCTS", "2400bps"))
+        self.comboBox_ebyte_baud.setItemText(2, _translate("KCTS", "4800bps"))
+        self.comboBox_ebyte_baud.setItemText(3, _translate("KCTS", "9600bps"))
+        self.comboBox_ebyte_baud.setItemText(4, _translate("KCTS", "19200bps"))
+        self.comboBox_ebyte_baud.setItemText(5, _translate("KCTS", "38400bps"))
+        self.comboBox_ebyte_baud.setItemText(6, _translate("KCTS", "57600bps"))
+        self.comboBox_ebyte_baud.setItemText(7, _translate("KCTS", "115200bps"))
+        self.label_ebyte_baud.setText(_translate("KCTS", "波  特  率："))
+        self.label_ebyte_parity.setText(_translate("KCTS", "奇偶校验："))
+        self.label_ebyte_airspeed.setText(_translate("KCTS", "空中速率："))
+        self.comboBox_ebyte_airspeed.setItemText(0, _translate("KCTS", "0.3Kbps"))
+        self.comboBox_ebyte_airspeed.setItemText(1, _translate("KCTS", "1.2Kbps"))
+        self.comboBox_ebyte_airspeed.setItemText(2, _translate("KCTS", "2.4Kbps"))
+        self.comboBox_ebyte_airspeed.setItemText(3, _translate("KCTS", "4.8Kbps"))
+        self.comboBox_ebyte_airspeed.setItemText(4, _translate("KCTS", "9.6Kbps"))
+        self.comboBox_ebyte_airspeed.setItemText(5, _translate("KCTS", "19.2Kbps"))
+        self.comboBox_ebyte_airspeed.setItemText(6, _translate("KCTS", "38.4Kbps"))
+        self.comboBox_ebyte_airspeed.setItemText(7, _translate("KCTS", "62.5Kbps"))
+        self.comboBox_ebyte_parity.setItemText(0, _translate("KCTS", "8N1"))
+        self.comboBox_ebyte_parity.setItemText(1, _translate("KCTS", "8O1"))
+        self.comboBox_ebyte_parity.setItemText(2, _translate("KCTS", "8E1"))
+        self.comboBox_ebyte_parity.setItemText(3, _translate("KCTS", "8N1"))
         self.label_com_select.setText(_translate("KCTS", "选择串口 :"))
         self.label_baud_rate.setText(_translate("KCTS", "波特率 :"))
         self.label_data_bits.setText(_translate("KCTS", "数据位 :"))

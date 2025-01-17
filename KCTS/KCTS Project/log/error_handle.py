@@ -28,7 +28,7 @@ class ExcelReaderExceptionHandle():
         Excel 读取方法的装饰器, 提供全面的异常处理
 
         :param func: 被装饰的原始方法
-        :return: 装时候的方法
+        :return: 装饰的方法
         '''
 
         @functools.wraps(func)

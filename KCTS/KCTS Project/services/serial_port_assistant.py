@@ -1,5 +1,3 @@
-from time import sleep
-
 import serial
 import serial.tools.list_ports
 
@@ -25,23 +23,31 @@ class SerialPortAsst:
                  stop_bits_comboBox: QComboBox,
                  com_port_open_pushButton: QPushButton,
                  stackedWidget: QStackedWidget,
+                 ebyte_addr_lineEdit: QLineEdit,
                  ebyte_channel_lineEdit: QLineEdit,
+                 ebyte_baud_comboBox: QComboBox,
+                 ebyte_parity_comboBox: QComboBox,
+                 ebyte_airspeed_comboBox: QComboBox,
                  ):
 
-        self.ashining_radiobutton = ashining_radiobutton            # 泽耀 Lora
-        self.ebyte_radiobutton = ebyte_radiobutton                  # 亿佰特 Lora
-        self.lora_config_pushButton = lora_config_pushButton        # 配置 Lora
-        self.com_comboBox = com_comboBox                            # 获取 COM 口
-        self.baud_rate_comboBox = baud_rate_comboBox                # 获取 波特率
-        self.data_bits_comboBox = data_bits_comboBox                # 获取 数据位
-        self.parity_comboBox = parity_comboBox                      # 获取 奇偶校验
-        self.stop_bits_comboBox = stop_bits_comboBox                # 获取 停止位
-        self.com_port_open_pushButton = com_port_open_pushButton    # 打开/关闭 串口
-        self.stackedWidget = stackedWidget                          # stackedWidget 界面
+        self.ashining_radiobutton       = ashining_radiobutton              # 泽耀 Lora
+        self.ebyte_radiobutton          = ebyte_radiobutton                 # 亿佰特 Lora
+        self.lora_config_pushButton     = lora_config_pushButton            # 配置 Lora
+        self.com_comboBox               = com_comboBox                      # 获取 COM 口
+        self.baud_rate_comboBox         = baud_rate_comboBox                # 获取 波特率
+        self.data_bits_comboBox         = data_bits_comboBox                # 获取 数据位
+        self.parity_comboBox            = parity_comboBox                   # 获取 奇偶校验
+        self.stop_bits_comboBox         = stop_bits_comboBox                # 获取 停止位
+        self.com_port_open_pushButton   = com_port_open_pushButton          # 打开/关闭 串口
+        self.stackedWidget              = stackedWidget                     # stackedWidget 界面
 
-        self.ebyte_channel_lineEdit = ebyte_channel_lineEdit        # 亿佰特信道
+        self.ebyte_addr_lineEdit        = ebyte_addr_lineEdit               # 亿佰特模块地址
+        self.ebyte_channel_lineEdit     = ebyte_channel_lineEdit            # 亿佰特信道
+        self.ebyte_baud_comboBox        = ebyte_baud_comboBox               # 亿佰特波特率
+        self.ebyte_parity_comboBox      = ebyte_parity_comboBox             # 亿佰特奇偶校验
+        self.ebyte_airspeed_comboBox    = ebyte_airspeed_comboBox           # 亿佰特空中速率
 
-        self.serial_asst_manager = SerialAssistant()                # 串口接收线程管理器
+        self.serial_asst_manager        = SerialAssistant()                # 串口接收线程管理器
 
         self.signal_bind()                                          # pyqtSignal 绑定
         self.setup_validators()                                     # lineEdit 输入验证器
@@ -152,15 +158,34 @@ class SerialPortAsst:
             # 发送获取参数的 AT 指令
             self.get_ebyte_config()
 
-
     def get_ebyte_config(self):
         ''' 点击 Lora配置, 发送 AT 指令, 以获取亿佰特 Lora 配置 '''
         self.serial_asst_manager.start_write_serial(SendCycle.CYCLE, is_loop=False)
 
+    def ebyte_channel(self, channel: bytes):
+        ''' 点击Lora配置后, 根据数据包更新界面上 亿佰特的信道 '''
+        self.ebyte_channel_lineEdit.blockSignals(True)
+        self.ebyte_channel_lineEdit.setText(f'{str(int(channel[0]))}')
+        self.ebyte_channel_lineEdit.blockSignals(False)
+
+    def ebyte_addr(self, addr: bytes):
+        ''' 点击Lora配置后, 根据数据包更新界面上 亿佰特的模块地址 '''
+        self.ebyte_addr_lineEdit.blockSignals(True)
+        addr = ' '.join(f'{byte:02X}' for byte in addr)
+        self.ebyte_addr_lineEdit.setText(addr)
+        self.ebyte_addr_lineEdit.blockSignals(False)
 
     def ebyte_config_package_parse(self, config_package: list):
         ''' 接收 pyqtSignal 信号, 解析亿佰特数据包, 获取信道 '''
-        pass
+        # 亿佰特寄存器定义
+        ebyte_register_define = {
+            0x00: self.ebyte_addr,
+            # 0x03: self.ebyte_serial_config,
+            0x05: self.ebyte_channel,
+        }
+        if config_package[1] in ebyte_register_define:
+            # 对于已定义的寄存器, 调用对应的函数进行处理
+            ebyte_register_define[config_package[1]](config_package[3:])
 
     def update_ebyte_channel(self):
         ''' 信道的 lineEdit text changed 时, 发送 AT 指令, 修改 Lora 信道 '''

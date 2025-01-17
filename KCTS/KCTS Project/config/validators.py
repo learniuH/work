@@ -59,5 +59,5 @@ class Validators:
         Returns:
             按键验证器
         '''
-        channel_regex = QRegExp('^([0-9]|[1-7][0-9]|8[0-3])$')
+        channel_regex = QRegExp('^([0-9]|[0-7][0-9]|8[0-3])$')
         return QRegExpValidator(channel_regex)

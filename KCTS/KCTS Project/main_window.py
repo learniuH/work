@@ -640,7 +640,11 @@ class MainWindow(QMainWindow):
                                                self.main_window_ui.comboBox_stop_bits,          # 停止位 comboBox
                                                self.main_window_ui.pushButton_open_serial_port, # 串口打开/关闭 pushButton
                                                self.main_window_ui.stackedWidget_serial_asst,   # stackedWidget
+                                               self.main_window_ui.lineEdit_ebyte_addr,         # 亿佰特 模块地址 lineEdit
                                                self.main_window_ui.lineEdit_ebyte_channel,      # 亿佰特 信道 lineEdit
+                                               self.main_window_ui.comboBox_ebyte_baud,         # 亿佰特 波特率 comboBox
+                                               self.main_window_ui.comboBox_parity,             # 亿佰特 奇偶检验 comboBox
+                                               self.main_window_ui.comboBox_ebyte_airspeed,     # 亿佰特 空中速率 comboBox
                                                )
 
         # 点击串口助手中的 "打开串口"

@@ -538,7 +538,7 @@ QListWidget::item:selected {
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="device_status_page">
           <layout class="QVBoxLayout" name="verticalLayout_5" stretch="2,5">
@@ -3747,7 +3747,78 @@ QLineEdit {
 	border-bottom: 1px solid white;
 	color: white;
 	font: 10pt &quot;微软雅黑&quot;;
-}</string>
+}
+
+QComboBox {
+	border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+	background-color: qlineargradient(spread: pad, x1: 1, y1: 0, x2: 0, y2: 1,
+		                              stop: 0 #0d1117,  /* 起始颜色 */
+		                              stop: 1 #414a5a   /* 结束颜色 */ ); /* 背景颜色 */
+	color: white;		/* 字体颜色 */
+	font: 9pt &quot;微软雅黑&quot;;
+	height: 22px;
+	min-width: 80px;
+}
+
+QComboBox:disabled {
+    border: 1px solid #808080; /* 禁用状态下的边框颜色 */
+    background-color: #333333; /* 禁用状态下的背景颜色 */
+    color: #808080; /* 禁用状态下的字体颜色 */
+}
+
+QComboBox::drop-down {
+    width: 18px; /* 保持 drop-down 的宽度一致 */
+}
+
+QComboBox::drop-down:disabled {
+    width: 16px; /* 禁用状态下确保宽度一致，避免位移 */
+    border: 1px solid #808080; /* 去掉边框 */
+    background-color: #333333; /* 禁用状态下的背景颜色 */
+}
+
+QComboBox QAbstractItemView {
+	outline: 0px solid gray;
+	border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+	color: white;
+	background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,
+                                      stop: 0 #989da5, stop: 1 #404959);
+	selection-background-color: #435068;
+}
+
+QComboBox QAbstractItemView::item {
+	height: 22px;
+}
+
+/* 滚动条的宽度 */
+QComboBox QScrollBar:vertical {
+
+	width: 10px;
+}
+
+QComboBox QScrollBar::handle:vertical {
+	min-height: 20px; /* 滑块最小高度 */
+}
+
+/* 滚动条悬停颜色 */
+QComboBox QScrollBar::handle:vertical:hover {
+	border: 1px solid white;		/* 滚动条的边框颜色 */
+	background-color: #3c485d;
+}
+
+/* 始终隐藏上下箭头 */
+QComboBox QScrollBar::sub-line,
+QComboBox QScrollBar::add-line {
+	background: none;
+}
+
+QComboBox QScrollBar::add-page,
+QComboBox QScrollBar::sub-page {
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+</string>
              </property>
              <property name="currentIndex">
               <number>2</number>
@@ -3837,21 +3908,21 @@ QPushButton:pressed {
               <widget class="QLabel" name="label_ebyte_channel">
                <property name="geometry">
                 <rect>
-                 <x>170</x>
-                 <y>210</y>
-                 <width>61</width>
+                 <x>160</x>
+                 <y>250</y>
+                 <width>81</width>
                  <height>41</height>
                 </rect>
                </property>
                <property name="text">
-                <string>信道 :</string>
+                <string>信       道：</string>
                </property>
               </widget>
               <widget class="QLineEdit" name="lineEdit_ebyte_channel">
                <property name="geometry">
                 <rect>
-                 <x>230</x>
-                 <y>220</y>
+                 <x>260</x>
+                 <y>260</y>
                  <width>113</width>
                  <height>21</height>
                 </rect>
@@ -3900,6 +3971,216 @@ QPushButton:pressed {
                <property name="text">
                 <string/>
                </property>
+              </widget>
+              <widget class="QLabel" name="label_ebyte_addr">
+               <property name="geometry">
+                <rect>
+                 <x>140</x>
+                 <y>170</y>
+                 <width>81</width>
+                 <height>41</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>模块地址：</string>
+               </property>
+              </widget>
+              <widget class="QLineEdit" name="lineEdit_ebyte_addr">
+               <property name="geometry">
+                <rect>
+                 <x>240</x>
+                 <y>180</y>
+                 <width>113</width>
+                 <height>21</height>
+                </rect>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+              <widget class="QComboBox" name="comboBox_ebyte_baud">
+               <property name="geometry">
+                <rect>
+                 <x>610</x>
+                 <y>170</y>
+                 <width>91</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="currentIndex">
+                <number>7</number>
+               </property>
+               <property name="maxVisibleItems">
+                <number>7</number>
+               </property>
+               <item>
+                <property name="text">
+                 <string>1200bps</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>2400bps</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>4800bps</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>9600bps</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>19200bps</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>38400bps</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>57600bps</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>115200bps</string>
+                </property>
+               </item>
+              </widget>
+              <widget class="QLabel" name="label_ebyte_baud">
+               <property name="geometry">
+                <rect>
+                 <x>500</x>
+                 <y>160</y>
+                 <width>91</width>
+                 <height>41</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>波  特  率：</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_ebyte_parity">
+               <property name="geometry">
+                <rect>
+                 <x>510</x>
+                 <y>240</y>
+                 <width>91</width>
+                 <height>41</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>奇偶校验：</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_ebyte_airspeed">
+               <property name="geometry">
+                <rect>
+                 <x>500</x>
+                 <y>310</y>
+                 <width>91</width>
+                 <height>41</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>空中速率：</string>
+               </property>
+              </widget>
+              <widget class="QComboBox" name="comboBox_ebyte_airspeed">
+               <property name="geometry">
+                <rect>
+                 <x>610</x>
+                 <y>320</y>
+                 <width>101</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="currentIndex">
+                <number>7</number>
+               </property>
+               <property name="maxVisibleItems">
+                <number>7</number>
+               </property>
+               <item>
+                <property name="text">
+                 <string>0.3Kbps</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>1.2Kbps</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>2.4Kbps</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>4.8Kbps</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>9.6Kbps</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>19.2Kbps</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>38.4Kbps</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>62.5Kbps</string>
+                </property>
+               </item>
+              </widget>
+              <widget class="QComboBox" name="comboBox_ebyte_parity">
+               <property name="geometry">
+                <rect>
+                 <x>610</x>
+                 <y>250</y>
+                 <width>87</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="maxVisibleItems">
+                <number>7</number>
+               </property>
+               <item>
+                <property name="text">
+                 <string>8N1</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>8O1</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>8E1</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>8N1</string>
+                </property>
+               </item>
               </widget>
              </widget>
             </widget>
