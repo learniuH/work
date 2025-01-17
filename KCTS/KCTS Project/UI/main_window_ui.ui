@@ -4176,11 +4176,6 @@ QPushButton:pressed {
                  <string>8E1</string>
                 </property>
                </item>
-               <item>
-                <property name="text">
-                 <string>8N1</string>
-                </property>
-               </item>
               </widget>
              </widget>
             </widget>

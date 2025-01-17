@@ -175,12 +175,98 @@ class SerialPortAsst:
         self.ebyte_addr_lineEdit.setText(addr)
         self.ebyte_addr_lineEdit.blockSignals(False)
 
+    def ebyte_serial_config(self, serial_config: bytes):
+        ''' 点击Lora配置后, 根据数据包更新界面上 亿佰特的串口相关参数 '''
+        ebyte_config_list = []
+        for i in range(8):
+            ebyte_config_list.append((int(str(serial_config[0])) >> i) & 1)
+        # 串口波特率
+        if ebyte_config_list[5] == 1:
+            if ebyte_config_list[6] == 1:
+                if ebyte_config_list[7] == 1:
+                    self.ebyte_baud_comboBox.setCurrentIndex(SerialAsstConstant.EBYTE_BAUD_RATE_115200_INDEX)
+                    print('波特率115200')
+                else:
+                    self.ebyte_baud_comboBox.setCurrentIndex(SerialAsstConstant.EBYTE_BAUD_RATE_9600_INDEX)
+                    print('波特率9600')
+            else:
+                if ebyte_config_list[7] == 1:
+                    self.ebyte_baud_comboBox.setCurrentIndex(SerialAsstConstant.EBYTE_BAUD_RATE_38400_INDEX)
+                    print('波特率38400')
+                else:
+                    self.ebyte_baud_comboBox.setCurrentIndex(SerialAsstConstant.EBYTE_BAUD_RATE_2400_INDEX)
+                    print('波特率2400')
+        else:
+            if ebyte_config_list[6] == 1:
+                if ebyte_config_list[7] == 1:
+                    self.ebyte_baud_comboBox.setCurrentIndex(SerialAsstConstant.EBYTE_BAUD_RATE_57600_INDEX)
+                    print('波特率57600')
+                else:
+                    self.ebyte_baud_comboBox.setCurrentIndex(SerialAsstConstant.EBYTE_BAUD_RATE_4800_INDEX)
+                    print('波特率4800')
+            else:
+                if ebyte_config_list[7] == 1:
+                    self.ebyte_baud_comboBox.setCurrentIndex(SerialAsstConstant.EBYTE_BAUD_RATE_19200_INDEX)
+                    print('波特率19200')
+                else:
+                    self.ebyte_baud_comboBox.setCurrentIndex(SerialAsstConstant.EBYTE_BAUD_RATE_1200_INDEX)
+                    print('波特率1200')
+
+        # 校验位
+        if ebyte_config_list[3] == 1:
+            if ebyte_config_list[4] == 1:
+                self.ebyte_parity_comboBox.setCurrentIndex(SerialAsstConstant.EBYTE_PARITY_8N1_INDEX)
+                print('8N1')
+            else:
+                self.ebyte_parity_comboBox.setCurrentIndex(SerialAsstConstant.EBYTE_PARITY_8O1_INDEX)
+                print('8o1')
+        else:
+            if ebyte_config_list[4] == 1:
+                self.ebyte_parity_comboBox.setCurrentIndex(SerialAsstConstant.EBYTE_PARITY_8E1_INDEX)
+                print('8E1')
+            else:
+                self.ebyte_parity_comboBox.setCurrentIndex(SerialAsstConstant.EBYTE_PARITY_8N1_INDEX)
+                print('8N1')
+
+        # 空中速率
+        if ebyte_config_list[0] == 1:
+            if ebyte_config_list[1] == 1:
+                if ebyte_config_list[2] == 1:
+                    self.ebyte_airspeed_comboBox.setCurrentIndex(SerialAsstConstant.EBYTE_AIRSPEED_625_INDEX)
+                    print('空中速率62.5K')
+                else:
+                    self.ebyte_airspeed_comboBox.setCurrentIndex(SerialAsstConstant.EBYTE_AIRSPEED_48_INDEX)
+                    print('空中速率4.8K')
+            else:
+                if ebyte_config_list[2] == 1:
+                    self.ebyte_airspeed_comboBox.setCurrentIndex(SerialAsstConstant.EBYTE_AIRSPEED_192_INDEX)
+                    print('空中速率19.2k')
+                else:
+                    self.ebyte_airspeed_comboBox.setCurrentIndex(SerialAsstConstant.EBYTE_AIRSPEED_24_INDEX)
+                    print('空中速率2.4K')
+        else:
+            if ebyte_config_list[1] == 1:
+                if ebyte_config_list[2] == 1:
+                    self.ebyte_airspeed_comboBox.setCurrentIndex(SerialAsstConstant.EBYTE_AIRSPEED_384_INDEX)
+                    print('空中速率38.4kK')
+                else:
+                    self.ebyte_airspeed_comboBox.setCurrentIndex(SerialAsstConstant.EBYTE_AIRSPEED_24_INDEX)
+                    print('空中速率2.4K')
+            else:
+                if ebyte_config_list[2] == 1:
+                    self.ebyte_airspeed_comboBox.setCurrentIndex(SerialAsstConstant.EBYTE_AIRSPEED_96_INDEX)
+                    print('空中速率9.6k')
+                else:
+                    self.ebyte_airspeed_comboBox.setCurrentIndex(SerialAsstConstant.EBYTE_AIRSPEED_24_INDEX)
+                    print('空中速率2.4K')
+
+
     def ebyte_config_package_parse(self, config_package: list):
         ''' 接收 pyqtSignal 信号, 解析亿佰特数据包, 获取信道 '''
         # 亿佰特寄存器定义
         ebyte_register_define = {
             0x00: self.ebyte_addr,
-            # 0x03: self.ebyte_serial_config,
+            0x03: self.ebyte_serial_config,
             0x05: self.ebyte_channel,
         }
         if config_package[1] in ebyte_register_define:

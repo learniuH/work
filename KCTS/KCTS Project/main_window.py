@@ -643,7 +643,7 @@ class MainWindow(QMainWindow):
                                                self.main_window_ui.lineEdit_ebyte_addr,         # 亿佰特 模块地址 lineEdit
                                                self.main_window_ui.lineEdit_ebyte_channel,      # 亿佰特 信道 lineEdit
                                                self.main_window_ui.comboBox_ebyte_baud,         # 亿佰特 波特率 comboBox
-                                               self.main_window_ui.comboBox_parity,             # 亿佰特 奇偶检验 comboBox
+                                               self.main_window_ui.comboBox_ebyte_parity,       # 亿佰特 奇偶检验 comboBox
                                                self.main_window_ui.comboBox_ebyte_airspeed,     # 亿佰特 空中速率 comboBox
                                                )
 

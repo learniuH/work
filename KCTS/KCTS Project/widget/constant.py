@@ -35,6 +35,28 @@ class SerialAsstConstant:
     STOPBITS_ONE_INDEX              = 0        # 停止位 1 索引
     STOPBITS_ONE_POINT_FIVE_INDEX   = 1        # 停止位 1.5 索引
 
+    EBYTE_BAUD_RATE_1200_INDEX          = 0         # 亿佰特波特率 1200 索引
+    EBYTE_BAUD_RATE_2400_INDEX          = 1         # 亿佰特波特率 2400 索引
+    EBYTE_BAUD_RATE_4800_INDEX          = 2         # 亿佰特波特率 4800 索引
+    EBYTE_BAUD_RATE_9600_INDEX          = 3         # 亿佰特波特率 9600 索引
+    EBYTE_BAUD_RATE_19200_INDEX         = 4         # 亿佰特波特率 19200 索引
+    EBYTE_BAUD_RATE_38400_INDEX         = 5         # 亿佰特波特率 28400 索引
+    EBYTE_BAUD_RATE_57600_INDEX         = 6         # 亿佰特波特率 57600 索引
+    EBYTE_BAUD_RATE_115200_INDEX        = 7         # 亿佰特波特率 115200 索引
+
+    EBYTE_PARITY_8N1_INDEX              = 0         # 亿佰特奇偶检验 8N1 索引
+    EBYTE_PARITY_8O1_INDEX              = 1         # 亿佰特奇偶检验 8O1 索引
+    EBYTE_PARITY_8E1_INDEX              = 2         # 亿佰特奇偶检验 8E1 索引
+
+    EBYTE_AIRSPEED_03_INDEX             = 0         # 亿佰特空中速率 0.3 索引
+    EBYTE_AIRSPEED_12_INDEX             = 1         # 亿佰特空中速率 1.2 索引
+    EBYTE_AIRSPEED_24_INDEX             = 2         # 亿佰特空中速率 2.4 索引
+    EBYTE_AIRSPEED_48_INDEX             = 3         # 亿佰特空中速率 4.8 索引
+    EBYTE_AIRSPEED_96_INDEX             = 4         # 亿佰特空中速率 9.6 索引
+    EBYTE_AIRSPEED_192_INDEX            = 5         # 亿佰特空中速率 19.2 索引
+    EBYTE_AIRSPEED_384_INDEX            = 6         # 亿佰特空中速率 38.4 索引
+    EBYTE_AIRSPEED_625_INDEX            = 7         # 亿佰特空中速率 62.5 索引
+
     # 串口助手 波特率 comboBox 索引 对应以下元素
     BAUD_RATE = (110, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200, 128000, 256000)
 
