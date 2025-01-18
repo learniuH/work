@@ -57,7 +57,17 @@ class Validators:
         ''' 获取亿佰特信道验证器, 0-83
 
         Returns:
-            按键验证器
+            lineEdit验证器
         '''
         channel_regex = QRegExp('^([0-9]|[0-7][0-9]|8[0-3])$')
         return QRegExpValidator(channel_regex)
+
+    @staticmethod
+    def ebyte_addr_vallidator() ->QRegExpValidator:
+        ''' 获取亿佰特模块地址验证器
+
+        :return: lineEdit 验证器
+        '''
+        # addr_regex = QRegExp('^[0-9A-Fa-f]{2} [0-9A-Fa-f]{2,3}$')
+        addr_regex = QRegExp(r'^[0-9A-Fa-f]{2} (?:[1-9A-Fa-f]{2}|0[0-9A-Fa-f]{2,3})$')
+        return QRegExpValidator(addr_regex)

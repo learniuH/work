@@ -140,8 +140,12 @@ class PackageToMu:
 
 class PackageToLora:
     ''' 通过串口发送的数据 '''
-    EBYTE_CHANNEL = None
-    CHANGE_EBYTE_CHANNEL    = [0xC0, 0x05, 0x01, EBYTE_CHANNEL]         # AT指令: 设置 EByte 信道
+    EBYTE_CHANNEL: int      = None
+    CHANGE_EBYTE_CHANNEL    = [0xC0, 0x05, 0x01, EBYTE_CHANNEL]             # AT指令: 设置 EByte 信道
+
+    EBYTE_ADDRH: int        = None
+    EBYTE_ADDRL: int        = None
+    CHANGE_EBYTE_ADDR       = [0xC0, 0x00, 0x02, EBYTE_ADDRH, EBYTE_ADDRL]  # AT指令: 设置 EByte 模块地址
 
 
     GET_EBYTE_CHANNEL       = [0xC1, 0x05, 0x01]                        # AT指令: 获取 EByte 信道
@@ -152,19 +156,35 @@ class PackageToLora:
                                bytes(GET_EBYTE_SERIAL_CONFIG),
                                ]
 
-
     @classmethod
     def update_ebyte_channel(cls, channel: str):
-        ''' lineEdit 文本变化时, 发送更新信道的AT指令 '''
+        ''' lineEdit 文本变化时, 发送更新信道 AT 指令 '''
         if channel != '':
             cls.CHANGE_EBYTE_CHANNEL[3] = int(channel)          # lineEdit 写十进制的数, AT 指令显示的是 十六进制
         else:
             cls.CHANGE_EBYTE_CHANNEL[3] = 0                     # lineEdit 为空, channel 设置为 0
 
+    @classmethod
+    def update_ebyte_addr(cls, addr: str) -> bool:
+        '''
+        lineEdit 文本变化时, 发送更新模块地址 AT 指令
+        :param addr: linEdit 的内容, 格式应该为 FF FF, 两个十六进制字节
+        :return: 允许发送 AT, 返回True; 不允许返回False
+        '''
+        # 提取 lineEdit 里面的两个字节
+        addr = [int(byte, 16) for byte in re.findall(r'\d+', addr)]
 
-
-
-
+        if len(addr) == 2:
+            # 当已经输入了两个字节时, 才下发AT指令
+            if addr[0] == cls.EBYTE_ADDRH and addr[1] == cls.EBYTE_ADDRL:
+                # 文本框内容和上一次Lora返回的地址相同时, 不发送AT指令
+                return False
+            else:
+                cls.CHANGE_EBYTE_ADDR[3] = addr[0]
+                cls.CHANGE_EBYTE_ADDR[4] = addr[1]
+                return True
+        else:
+            return False
 
 
 if __name__ == '__main__':

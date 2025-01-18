@@ -1,3 +1,5 @@
+import re
+
 import serial
 import serial.tools.list_ports
 
@@ -59,6 +61,7 @@ class SerialPortAsst:
     def setup_validators(self):
         ''' 设置 lineEdit 输入验证器 '''
         self.ebyte_channel_lineEdit.setValidator(Validators.ebyte_channel_validator())
+        self.ebyte_addr_lineEdit.setValidator(Validators.ebyte_addr_vallidator())
 
     @staticmethod
     def update_com_ports(comboBox: QComboBox):
@@ -85,7 +88,7 @@ class SerialPortAsst:
             self.serial_asst_manager.serial.bytesize = SerialAsstConstant.DATA_BIT[index]
 
     def update_parity(self, index: int):
-        ''' comboBox Index 变化 更新串口助手优先级 '''
+        ''' comboBox Index 变化 更新串口助手校验位 '''
         if self.serial_asst_manager.serial.is_open:
             self.serial_asst_manager.serial.parity = SerialAsstConstant.PARITY[index]
 
@@ -171,6 +174,10 @@ class SerialPortAsst:
     def ebyte_addr(self, addr: bytes):
         ''' 点击Lora配置后, 根据数据包更新界面上 亿佰特的模块地址 '''
         self.ebyte_addr_lineEdit.blockSignals(True)
+        # 将Lora返回的地址存入要发送的包中
+        PackageToLora.EBYTE_ADDRH = int(hex(addr[0]), 16)
+        PackageToLora.EBYTE_ADDRL = int(hex(addr[1]), 16)
+
         addr = ' '.join(f'{byte:02X}' for byte in addr)
         self.ebyte_addr_lineEdit.setText(addr)
         self.ebyte_addr_lineEdit.blockSignals(False)
@@ -278,5 +285,12 @@ class SerialPortAsst:
         # print(f'当前的信道是{self.ebyte_channel_lineEdit.text()}')
         # 通过 lineEdit 修改信道
         PackageToLora.update_ebyte_channel(self.ebyte_channel_lineEdit.text())
-        # 发动 AT 指令
+        # 发送 AT 指令
         self.serial_asst_manager.serial.write(PackageToLora.CHANGE_EBYTE_CHANNEL)
+
+    def update_ebyte_addr(self):
+        ''' 模块地址的 lineEdit text changed 时, 发送 AT 指令, 修改 Lora 模块地址 '''
+        # 通过 lineEdit 修改模块地址
+        if PackageToLora.update_ebyte_addr(self.ebyte_addr_lineEdit.text()):
+            # 返回True, 允许发送 AT 指令
+            self.serial_asst_manager.serial.write(PackageToLora.CHANGE_EBYTE_ADDR)
