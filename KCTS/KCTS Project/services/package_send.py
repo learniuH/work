@@ -1,8 +1,8 @@
 import re
 from typing import Union
-
 from PyQt5.QtWidgets import QLineEdit
 
+from widget.constant import SerialAsstConstant
 
 class QueryCollectionStatus:
     ''' 构造采集状态的UDP包 '''
@@ -147,6 +147,8 @@ class PackageToLora:
     EBYTE_ADDRL: int        = None
     CHANGE_EBYTE_ADDR       = [0xC0, 0x00, 0x02, EBYTE_ADDRH, EBYTE_ADDRL]  # AT指令: 设置 EByte 模块地址
 
+    EBYTE_SERIAL: bytes     = None
+    CHANGE_EBYTE_SERIAL     = [0xC0, 0x03, 0x01, EBYTE_SERIAL]              # AT指令：设置 EByte 串口参数
 
     GET_EBYTE_CHANNEL       = [0xC1, 0x05, 0x01]                        # AT指令: 获取 EByte 信道
     GET_EBYTE_ADDR          = [0xC1, 0x00, 0x02]                        # AT指令: 获取 EByte 模块地址
@@ -158,7 +160,7 @@ class PackageToLora:
 
     @classmethod
     def update_ebyte_channel(cls, channel: str):
-        ''' lineEdit 文本变化时, 发送更新信道 AT 指令 '''
+        ''' lineEdit 文本变化时, 更新信道 AT 指令 '''
         if channel != '':
             cls.CHANGE_EBYTE_CHANNEL[3] = int(channel)          # lineEdit 写十进制的数, AT 指令显示的是 十六进制
         else:
@@ -167,7 +169,7 @@ class PackageToLora:
     @classmethod
     def update_ebyte_addr(cls, addr: str) -> bool:
         '''
-        lineEdit 文本变化时, 发送更新模块地址 AT 指令
+        lineEdit 文本变化时, 更新模块地址 AT 指令
         :param addr: linEdit 的内容, 格式应该为 FF FF, 两个十六进制字节
         :return: 允许发送 AT, 返回True; 不允许返回False
         '''
@@ -185,6 +187,23 @@ class PackageToLora:
                 return True
         else:
             return False
+
+    @classmethod
+    def update_ebyte_serial(cls, index: int, start_bit: int):
+        '''
+         亿佰特波特率 comboBox Index 变化时, 更新波特率 AT 指令
+        :param index: comboBox 的 Index
+        :param start_bit: 亿佰特串口参数字节位索引的起始值
+        :return: None
+        '''
+        bit_index = start_bit
+        for bit_value in SerialAsstConstant.EBYTE_SERIAL[start_bit][index]:
+            # 遍历 EBYTE_SERIAL 这个字节的 对应位 替换为 EBYTE_SERIAL 字典里定义的值
+            if bit_value == 1:
+                cls.CHANGE_EBYTE_SERIAL[3] |= (1 << bit_index)
+            else:
+                cls.CHANGE_EBYTE_SERIAL[3] &= ~(1 << bit_index)
+            bit_index += 1
 
 
 if __name__ == '__main__':

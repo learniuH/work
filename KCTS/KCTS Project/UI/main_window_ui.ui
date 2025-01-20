@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1329</width>
-    <height>768</height>
+    <width>1325</width>
+    <height>759</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>KCTS</string>
   </property>
   <widget class="QWidget" name="Window">
-   <layout class="QVBoxLayout" name="verticalLayout" stretch="1,15">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,15">
     <property name="spacing">
      <number>0</number>
     </property>
@@ -176,7 +176,7 @@
         <widget class="QComboBox" name="sheet_name_list_comboBox">
          <property name="minimumSize">
           <size>
-           <width>120</width>
+           <width>0</width>
            <height>30</height>
           </size>
          </property>
@@ -4008,49 +4008,49 @@ QPushButton:pressed {
                 </rect>
                </property>
                <property name="currentIndex">
-                <number>7</number>
+                <number>0</number>
                </property>
                <property name="maxVisibleItems">
                 <number>7</number>
                </property>
                <item>
                 <property name="text">
-                 <string>1200bps</string>
+                 <string>1200</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>2400bps</string>
+                 <string>2400</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>4800bps</string>
+                 <string>4800</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>9600bps</string>
+                 <string>9600</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>19200bps</string>
+                 <string>19200</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>38400bps</string>
+                 <string>38400</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>57600bps</string>
+                 <string>57600</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>115200bps</string>
+                 <string>115200</string>
                 </property>
                </item>
               </widget>
@@ -4103,21 +4103,11 @@ QPushButton:pressed {
                 </rect>
                </property>
                <property name="currentIndex">
-                <number>7</number>
+                <number>0</number>
                </property>
                <property name="maxVisibleItems">
                 <number>7</number>
                </property>
-               <item>
-                <property name="text">
-                 <string>0.3Kbps</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>1.2Kbps</string>
-                </property>
-               </item>
                <item>
                 <property name="text">
                  <string>2.4Kbps</string>

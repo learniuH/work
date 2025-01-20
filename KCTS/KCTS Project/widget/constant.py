@@ -48,14 +48,12 @@ class SerialAsstConstant:
     EBYTE_PARITY_8O1_INDEX              = 1         # 亿佰特奇偶检验 8O1 索引
     EBYTE_PARITY_8E1_INDEX              = 2         # 亿佰特奇偶检验 8E1 索引
 
-    EBYTE_AIRSPEED_03_INDEX             = 0         # 亿佰特空中速率 0.3 索引
-    EBYTE_AIRSPEED_12_INDEX             = 1         # 亿佰特空中速率 1.2 索引
-    EBYTE_AIRSPEED_24_INDEX             = 2         # 亿佰特空中速率 2.4 索引
-    EBYTE_AIRSPEED_48_INDEX             = 3         # 亿佰特空中速率 4.8 索引
-    EBYTE_AIRSPEED_96_INDEX             = 4         # 亿佰特空中速率 9.6 索引
-    EBYTE_AIRSPEED_192_INDEX            = 5         # 亿佰特空中速率 19.2 索引
-    EBYTE_AIRSPEED_384_INDEX            = 6         # 亿佰特空中速率 38.4 索引
-    EBYTE_AIRSPEED_625_INDEX            = 7         # 亿佰特空中速率 62.5 索引
+    EBYTE_AIRSPEED_24_INDEX             = 0         # 亿佰特空中速率 2.4 索引
+    EBYTE_AIRSPEED_48_INDEX             = 1         # 亿佰特空中速率 4.8 索引
+    EBYTE_AIRSPEED_96_INDEX             = 2         # 亿佰特空中速率 9.6 索引
+    EBYTE_AIRSPEED_192_INDEX            = 3         # 亿佰特空中速率 19.2 索引
+    EBYTE_AIRSPEED_384_INDEX            = 4         # 亿佰特空中速率 38.4 索引
+    EBYTE_AIRSPEED_625_INDEX            = 5         # 亿佰特空中速率 62.5 索引
 
     # 串口助手 波特率 comboBox 索引 对应以下元素
     BAUD_RATE = (110, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200, 128000, 256000)
@@ -74,3 +72,10 @@ class SerialAsstConstant:
     DATA_BIT_EBYTE_CONFIG       = serial.EIGHTBITS
     PARITY_EBYTE_CONFIG         = serial.PARITY_NONE
     STOP_BIT_EBYTE_CONFIG       = serial.STOPBITS_ONE
+
+    # 亿佰特串口参数配置
+    EBYTE_SERIAL = {
+        5: ((0, 0, 0), (1, 0, 0), (0, 1, 0), (1, 1, 0), (0, 0, 1), (1, 0, 1), (0, 1, 1), (1, 1, 1)),    # 亿佰特 波特率 comboBox 索引 对应该字节 bit5-7 具体量
+        3: ((0, 0), (1, 0), (0, 1)),                                                                    # 亿佰特 校验位 comboBox 索引 对应该字节 bit3-4 具体量
+        0: ((0, 1, 0), (1, 1, 0), (0, 0, 1), (1, 0, 1), (0, 1, 1), (1, 1, 1)),                          # 亿佰特 空中速率 comboBox 索引 对应该字节 bit0-2 具体量
+    }

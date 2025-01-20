@@ -662,6 +662,12 @@ class MainWindow(QMainWindow):
         self.main_window_ui.lineEdit_ebyte_addr.textChanged.connect(self.serial_port_asst.update_ebyte_addr)
         # 亿佰特 信道 lineEdit 文本变化
         self.main_window_ui.lineEdit_ebyte_channel.textChanged.connect(self.serial_port_asst.update_ebyte_channel)
+        # 亿佰特 波特率 comboBox Index 变化
+        self.main_window_ui.comboBox_ebyte_baud.currentIndexChanged.connect(self.serial_port_asst.update_ebyte_baud)
+        # 亿佰特 奇偶校验 comboBox Index 变化
+        self.main_window_ui.comboBox_ebyte_parity.currentIndexChanged.connect(self.serial_port_asst.update_ebyte_parity)
+        # 亿佰特 空中速率 comboBox index 变化
+        self.main_window_ui.comboBox_ebyte_airspeed.currentIndexChanged.connect(self.serial_port_asst.update_ebyte_airSpeed)
         # 点击泽耀 Lora 配置 返回按钮
         self.main_window_ui.pushButton_ashining_back.clicked.connect(self.serial_port_asst.back_to_mainwindow)
 

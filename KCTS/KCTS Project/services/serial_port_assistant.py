@@ -184,6 +184,12 @@ class SerialPortAsst:
 
     def ebyte_serial_config(self, serial_config: bytes):
         ''' 点击Lora配置后, 根据数据包更新界面上 亿佰特的串口相关参数 '''
+        self.ebyte_baud_comboBox.blockSignals(True)
+        self.ebyte_parity_comboBox.blockSignals(True)
+        self.ebyte_airspeed_comboBox.blockSignals(True)
+        # 将 Lora 返回的串口参数存入要发送的包中
+        PackageToLora.CHANGE_EBYTE_SERIAL[3] = serial_config[0]
+
         ebyte_config_list = []
         for i in range(8):
             ebyte_config_list.append((int(str(serial_config[0])) >> i) & 1)
@@ -267,6 +273,10 @@ class SerialPortAsst:
                     self.ebyte_airspeed_comboBox.setCurrentIndex(SerialAsstConstant.EBYTE_AIRSPEED_24_INDEX)
                     print('空中速率2.4K')
 
+        self.ebyte_baud_comboBox.blockSignals(False)
+        self.ebyte_parity_comboBox.blockSignals(False)
+        self.ebyte_airspeed_comboBox.blockSignals(False)
+
 
     def ebyte_config_package_parse(self, config_package: list):
         ''' 接收 pyqtSignal 信号, 解析亿佰特数据包, 获取信道 '''
@@ -294,3 +304,27 @@ class SerialPortAsst:
         if PackageToLora.update_ebyte_addr(self.ebyte_addr_lineEdit.text()):
             # 返回True, 允许发送 AT 指令
             self.serial_asst_manager.serial.write(PackageToLora.CHANGE_EBYTE_ADDR)
+
+    def update_ebyte_baud(self, index: int):
+        """ 亿佰特波特率 comboBox Index 变化, 发送 AT 指令, 修改 亿佰特波特率 """
+        # 更新 AT 指令
+        start_bit = 5
+        PackageToLora.update_ebyte_serial(index, start_bit)
+        # 发送 AT 指令
+        self.serial_asst_manager.serial.write(PackageToLora.CHANGE_EBYTE_SERIAL)
+
+    def update_ebyte_parity(self, index: int):
+        """ 亿佰特奇偶检验 comboBox Index 变化, 发送 AT 指令, 修改亿佰特奇偶校验 """
+        # 更新 AT 指令
+        start_bit = 3
+        PackageToLora.update_ebyte_serial(index, start_bit)
+        # 发送 AT 指令
+        self.serial_asst_manager.serial.write(PackageToLora.CHANGE_EBYTE_SERIAL)
+
+    def update_ebyte_airSpeed(self, index: int):
+        """ 亿佰特空中速率 comboBox Index 变化, 发送 AT 指令, 修改亿佰特空中速率 """
+        # 更新 AT 指令
+        start_bit = 0
+        PackageToLora.update_ebyte_serial(index, start_bit)
+        # 发送 AT 指令
+        self.serial_asst_manager.serial.write(PackageToLora.CHANGE_EBYTE_SERIAL)
