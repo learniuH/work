@@ -1,5 +1,3 @@
-import re
-
 import serial
 import serial.tools.list_ports
 
@@ -79,23 +77,23 @@ class SerialPortAsst:
 
     def update_baud_rate(self, index: int):
         ''' comboBox Index 变化 更新串口助手波特率 '''
-        if self.serial_asst_manager.serial.is_open:
+        if self.serial_asst_manager.serial:
             self.serial_asst_manager.serial.baudrate = SerialAsstConstant.BAUD_RATE[index]
 
     def update_byte_size(self, index: int):
         ''' comboBox Index 变化 更新串口助手数据位'''
-        if self.serial_asst_manager.serial.is_open:
+        if self.serial_asst_manager.serial:
             self.serial_asst_manager.serial.bytesize = SerialAsstConstant.DATA_BIT[index]
 
     def update_parity(self, index: int):
         ''' comboBox Index 变化 更新串口助手校验位 '''
-        if self.serial_asst_manager.serial.is_open:
+        if self.serial_asst_manager.serial:
             self.serial_asst_manager.serial.parity = SerialAsstConstant.PARITY[index]
 
     def update_stop_bits(self, index: int):
         ''' comboBox Index 变化 更新串口助手停止位 '''
         try:
-            if self.serial_asst_manager.serial.is_open:
+            if self.serial_asst_manager.serial:
                 self.serial_asst_manager.serial.stopbits = SerialAsstConstant.STOP_BIT[index]
         except SerialException as e:
             print(f'停止位参数配置错误: {e}')

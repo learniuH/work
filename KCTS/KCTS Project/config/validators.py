@@ -68,6 +68,6 @@ class Validators:
 
         :return: lineEdit 验证器
         '''
-        # addr_regex = QRegExp('^[0-9A-Fa-f]{2} [0-9A-Fa-f]{2,3}$')
+        # addr_regex = QRegExp(r'^[0-9A-Fa-f]{2} (?:[1-9A-Fa-f]{2}|0[0-9A-Fa-f]{2,3})$')
         addr_regex = QRegExp(r'^[0-9A-Fa-f]{2} (?:[1-9A-Fa-f]{2}|0[0-9A-Fa-f]{2,3})$')
         return QRegExpValidator(addr_regex)
