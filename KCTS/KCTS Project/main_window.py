@@ -178,7 +178,7 @@ class MainWindow(QMainWindow):
         self.main_window_ui.sheet_name_list_comboBox.setView(QListView())
 
         # tableWidget item 宽度自适应窗口宽度
-        self.main_window_ui.ou_analysis_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        # self.main_window_ui.ou_analysis_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
         # 禁用中文输入法, 解决点击 lineEdit 为中文输入法的问题
         self.main_window_ui.lineEdit_package_header.setAttribute(Qt.WA_InputMethodEnabled, False)

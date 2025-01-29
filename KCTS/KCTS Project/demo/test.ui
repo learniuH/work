@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1211</width>
-    <height>485</height>
+    <height>563</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -412,10 +412,10 @@ QComboBox QScrollBar::sub-page {
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>40</x>
      <y>350</y>
-     <width>289</width>
-     <height>99</height>
+     <width>511</width>
+     <height>181</height>
     </rect>
    </property>
    <property name="minimumSize">
@@ -425,14 +425,48 @@ QComboBox QScrollBar::sub-page {
     </size>
    </property>
    <property name="styleSheet">
-    <string notr="true">    QHeaderView::section {
+    <string notr="true">/*    QHeaderView::section {
             background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                       stop: 0 #f6f7fa, stop: 1 #dadbde);
     }
 QTableWidget::item {
             background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                       stop: 0 #408a99, stop: 1 #dadbde);
-    }</string>
+    }
+*/
+/* 水平表头默认样式 */
+QTableWidget QHeaderView::section:horizontal {
+    background-color: orange; /* 背景颜色 */
+    color: white; /* 字体颜色 */
+    font: bold 10pt &quot;微软雅黑&quot;;
+    border: 1px solid white; /* 默认边框 */
+    padding: 4px;
+}
+
+/* 水平表头 checked 状态 */
+QTableWidget QHeaderView::section:horizontal:checked {
+    background-color: green; /* 选中时的背景颜色 */
+    color: yellow; /* 选中时的字体颜色 */
+    border-bottom: 2px solid red; /* 选中时底部边框 2px red */
+}
+
+/* 水平表头 pressed 状态 */
+QTableWidget QHeaderView::section:horizontal:pressed {
+    background-color: yellow; /* 按下时的背景颜色 */
+    color: orange; /* 按下时的字体颜色 */
+    border-bottom: 2px solid blue; /* 按下时底部边框 2px blue */
+}
+
+/* 同时处于 checked 和 pressed 状态 */
+QTableWidget QHeaderView::section:horizontal:checked:pressed {
+    background-color: red; /* 选中且按下时的背景颜色 */
+    color: cyan; /* 选中且按下时的字体颜色 */
+    border-bottom: 2px solid purple; /* 选中且按下时底部边框 2px purple */
+}
+
+
+
+ </string>
    </property>
    <property name="verticalScrollBarPolicy">
     <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -462,7 +496,7 @@ QTableWidget::item {
     <bool>true</bool>
    </property>
    <property name="rowCount">
-    <number>1</number>
+    <number>2</number>
    </property>
    <property name="columnCount">
     <number>8</number>
@@ -484,6 +518,7 @@ QTableWidget::item {
      <string>OU ANAL</string>
     </property>
    </row>
+   <row/>
    <column>
     <property name="text">
      <string>bit7</string>

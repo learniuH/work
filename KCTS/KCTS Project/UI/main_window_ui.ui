@@ -535,7 +535,8 @@ QListWidget::item:selected {
        <item>
         <widget class="QStackedWidget" name="sub_interface_stacked">
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">
+</string>
          </property>
          <property name="currentIndex">
           <number>1</number>
@@ -1253,19 +1254,798 @@ QPushButton:disabled {
           </layout>
          </widget>
          <widget class="QWidget" name="auto_test_page">
-          <widget class="QLabel" name="label_2">
-           <property name="geometry">
-            <rect>
-             <x>290</x>
-             <y>180</y>
-             <width>151</width>
-             <height>41</height>
-            </rect>
+          <property name="styleSheet">
+           <string notr="true">QTableWidget {
+	background: transparent;
+	border: none;
+	gridline-color: #bebebe;
+	outline: none;/* 去除单元格虚线框 */
+}
+
+/* TableWidget 左上角控件 QSS */
+QTableWidget QTableCornerButton::section {
+	background: qlineargradient(x1: 0, y1: 0, x2: 0.5, y2: 0.5,
+                                stop: 0 #697993, stop: 1 white);;
+	border: 2px outset #bebebe;
+}
+
+/* TableWidget 表头 QSS */
+QHeaderView {
+	background: transparent;
+}
+
+/* 水平表头默认样式 */
+QTableWidget QHeaderView::section:horizontal {
+    background-color: #eeeeee; /* 背景颜色 */
+    font: 9pt &quot;微软雅黑&quot;;
+    border: 1px solid #bebebe; /* 默认边框 */
+}
+
+/* 水平表头 checked 状态 */
+QTableWidget QHeaderView::section:horizontal:checked {
+    background-color: #d1d1d1; /* 选中时的背景颜色 */
+    color: #007a6b; /* 选中时的字体颜色 */
+    border-bottom: 3px solid #007a6b; /* 选中时底部边框 2px 绿色 */
+}
+
+/* 水平表头 pressed 状态 */
+QTableWidget QHeaderView::section:horizontal:pressed {
+    background-color: #d1d1d1; /* 按下时的背景颜色 */
+    color: #007a6b; /* 按下时的字体颜色 */
+    border-bottom: 3px solid #007a6b; /* 按下时底部边框 2px blue */
+}
+
+/* 同时处于 checked 和 pressed 状态 */
+QTableWidget QHeaderView::section:horizontal:checked:pressed {
+    background-color: #d1d1d1; /* 选中且按下时的背景颜色 */
+    color: #007a6b; /* 选中且按下时的字体颜色 */
+    border-bottom: 3px solid #007a6b; /* 选中且按下时底部边框 2px purple */
+}
+
+/* 垂直表头默认样式 */
+QTableWidget QHeaderView::section:vertical {
+    background-color: #eeeeee; /* 背景颜色 */
+    font: 9pt &quot;微软雅黑&quot;;
+    border: 1px solid #bebebe; /* 默认边框 */
+}
+
+/* 垂直表头 checked 状态 */
+QTableWidget QHeaderView::section:vertical:checked {
+    background-color: #d1d1d1; /* 选中时的背景颜色 */
+    color: #007a6b; /* 选中时的字体颜色 */
+    border-right: 3px solid #007a6b; /* 选中时底部边框 2px 绿色 */
+}
+
+/* 垂直表头 pressed 状态 */
+QTableWidget QHeaderView::section:vertical:pressed {
+    background-color: #d1d1d1; /* 按下时的背景颜色 */
+    color: #007a6b; /* 按下时的字体颜色 */
+    border-right: 3px solid #007a6b; /* 按下时底部边框 2px blue */
+}
+
+/* 同时处于 checked 和 pressed 状态 */
+QTableWidget QHeaderView::section:vertical:checked:pressed {
+    background-color: #d1d1d1; /* 选中且按下时的背景颜色 */
+    color: #007a6b; /* 选中且按下时的字体颜色 */
+    border-right: 3px solid #007a6b; /* 选中且按下时底部边框 2px purple */
+}
+
+/* TableWidget 表格 QSS */
+QTableWidget::item {
+	background: #f7f7f7;
+}
+
+/* TableWidget 表格选中 QSS */
+QTableWidget::item::selected {
+	border: 2px solid #109968;
+}
+
+/* 底部 PushButton QSS */
+QPushButton {
+	background: transparent;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+	border: 2px solid white;
+	border-radius: 10px;
+}
+
+/* 底部 LineEdit QSS */
+QLineEdit {
+	background: transparent;
+	border: none;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+}
+
+/* 底部 Label QSS */
+QLabel {
+	background: transparent;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+}</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_11">
+           <property name="leftMargin">
+            <number>0</number>
            </property>
-           <property name="text">
-            <string>这是自动化测试界面</string>
+           <property name="topMargin">
+            <number>0</number>
            </property>
-          </widget>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QTableWidget" name="tableWidget_test_case">
+             <property name="verticalScrollBarPolicy">
+              <enum>Qt::ScrollBarAlwaysOff</enum>
+             </property>
+             <property name="horizontalScrollBarPolicy">
+              <enum>Qt::ScrollBarAlwaysOff</enum>
+             </property>
+             <property name="editTriggers">
+              <set>QAbstractItemView::DoubleClicked</set>
+             </property>
+             <property name="rowCount">
+              <number>16</number>
+             </property>
+             <attribute name="horizontalHeaderVisible">
+              <bool>true</bool>
+             </attribute>
+             <attribute name="horizontalHeaderCascadingSectionResizes">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="horizontalHeaderMinimumSectionSize">
+              <number>31</number>
+             </attribute>
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>195</number>
+             </attribute>
+             <attribute name="horizontalHeaderStretchLastSection">
+              <bool>true</bool>
+             </attribute>
+             <attribute name="verticalHeaderCascadingSectionResizes">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="verticalHeaderDefaultSectionSize">
+              <number>38</number>
+             </attribute>
+             <attribute name="verticalHeaderStretchLastSection">
+              <bool>true</bool>
+             </attribute>
+             <row>
+              <property name="text">
+               <string>1</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>2</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>3</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>4</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>5</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>6</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>7</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>8</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>9</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>10</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>11</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>12</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>13</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>14</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>15</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>16</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </row>
+             <column>
+              <property name="text">
+               <string>用例编号</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>用例标题</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>操作步骤</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>预期结果</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>实际结果</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>测试结果</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </column>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <property name="spacing">
+              <number>7</number>
+             </property>
+             <property name="leftMargin">
+              <number>11</number>
+             </property>
+             <property name="rightMargin">
+              <number>11</number>
+             </property>
+             <property name="bottomMargin">
+              <number>11</number>
+             </property>
+             <item>
+              <widget class="QPushButton" name="pushButton_symmetry_1">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>70</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>70</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+	border: none;
+}</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_symmetry">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>25</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>25</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QLineEdit {
+	border: none;
+}</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_symmetry">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>15</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>15</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_symmetry_2">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>30</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>30</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_symmetry_2">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>70</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>70</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+	border: none;
+}</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_12">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_insert_case">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>105</width>
+                 <height>35</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>105</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>导入用例</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_14">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Fixed</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_test_start">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>105</width>
+                 <height>35</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>105</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>开始测试</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_15">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Fixed</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_test_end">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>105</width>
+                 <height>35</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>105</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>结束测试</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_13">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_previous_page">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>70</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>70</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+	border-radius: none;
+}</string>
+               </property>
+               <property name="text">
+                <string>上一页</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_current_page">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>25</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>25</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_dividing_line">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>15</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>15</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>/</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_total_pages">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>30</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>30</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>1</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_next_page">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>70</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>70</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+
+	border-radius: none;
+}</string>
+               </property>
+               <property name="text">
+                <string>下一页</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="analysis_page">
           <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -3038,6 +3818,12 @@ QTableWidget::item {
                      </attribute>
                      <attribute name="horizontalHeaderMinimumSectionSize">
                       <number>29</number>
+                     </attribute>
+                     <attribute name="horizontalHeaderDefaultSectionSize">
+                      <number>141</number>
+                     </attribute>
+                     <attribute name="horizontalHeaderStretchLastSection">
+                      <bool>true</bool>
                      </attribute>
                      <column>
                       <property name="text">

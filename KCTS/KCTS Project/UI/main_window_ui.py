@@ -285,7 +285,8 @@ class Ui_KCTS(object):
         self.navigation_list.addItem(item)
         self.horizontalLayout_2.addWidget(self.navigation_list)
         self.sub_interface_stacked = QtWidgets.QStackedWidget(self.Body)
-        self.sub_interface_stacked.setStyleSheet("")
+        self.sub_interface_stacked.setStyleSheet("\n"
+"")
         self.sub_interface_stacked.setObjectName("sub_interface_stacked")
         self.device_status_page = QtWidgets.QWidget()
         self.device_status_page.setObjectName("device_status_page")
@@ -666,10 +667,374 @@ class Ui_KCTS(object):
         self.verticalLayout_5.setStretch(1, 5)
         self.sub_interface_stacked.addWidget(self.device_status_page)
         self.auto_test_page = QtWidgets.QWidget()
+        self.auto_test_page.setStyleSheet("QTableWidget {\n"
+"    background: transparent;\n"
+"    border: none;\n"
+"    gridline-color: #bebebe;\n"
+"    outline: none;/* 去除单元格虚线框 */\n"
+"}\n"
+"\n"
+"/* TableWidget 左上角控件 QSS */\n"
+"QTableWidget QTableCornerButton::section {\n"
+"    background: qlineargradient(x1: 0, y1: 0, x2: 0.5, y2: 0.5,\n"
+"                                stop: 0 #697993, stop: 1 white);;\n"
+"    border: 2px outset #bebebe;\n"
+"}\n"
+"\n"
+"/* TableWidget 表头 QSS */\n"
+"QHeaderView {\n"
+"    background: transparent;\n"
+"}\n"
+"\n"
+"/* 水平表头默认样式 */\n"
+"QTableWidget QHeaderView::section:horizontal {\n"
+"    background-color: #eeeeee; /* 背景颜色 */\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    border: 1px solid #bebebe; /* 默认边框 */\n"
+"}\n"
+"\n"
+"/* 水平表头 checked 状态 */\n"
+"QTableWidget QHeaderView::section:horizontal:checked {\n"
+"    background-color: #d1d1d1; /* 选中时的背景颜色 */\n"
+"    color: #007a6b; /* 选中时的字体颜色 */\n"
+"    border-bottom: 3px solid #007a6b; /* 选中时底部边框 2px 绿色 */\n"
+"}\n"
+"\n"
+"/* 水平表头 pressed 状态 */\n"
+"QTableWidget QHeaderView::section:horizontal:pressed {\n"
+"    background-color: #d1d1d1; /* 按下时的背景颜色 */\n"
+"    color: #007a6b; /* 按下时的字体颜色 */\n"
+"    border-bottom: 3px solid #007a6b; /* 按下时底部边框 2px blue */\n"
+"}\n"
+"\n"
+"/* 同时处于 checked 和 pressed 状态 */\n"
+"QTableWidget QHeaderView::section:horizontal:checked:pressed {\n"
+"    background-color: #d1d1d1; /* 选中且按下时的背景颜色 */\n"
+"    color: #007a6b; /* 选中且按下时的字体颜色 */\n"
+"    border-bottom: 3px solid #007a6b; /* 选中且按下时底部边框 2px purple */\n"
+"}\n"
+"\n"
+"/* 垂直表头默认样式 */\n"
+"QTableWidget QHeaderView::section:vertical {\n"
+"    background-color: #eeeeee; /* 背景颜色 */\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    border: 1px solid #bebebe; /* 默认边框 */\n"
+"}\n"
+"\n"
+"/* 垂直表头 checked 状态 */\n"
+"QTableWidget QHeaderView::section:vertical:checked {\n"
+"    background-color: #d1d1d1; /* 选中时的背景颜色 */\n"
+"    color: #007a6b; /* 选中时的字体颜色 */\n"
+"    border-right: 3px solid #007a6b; /* 选中时底部边框 2px 绿色 */\n"
+"}\n"
+"\n"
+"/* 垂直表头 pressed 状态 */\n"
+"QTableWidget QHeaderView::section:vertical:pressed {\n"
+"    background-color: #d1d1d1; /* 按下时的背景颜色 */\n"
+"    color: #007a6b; /* 按下时的字体颜色 */\n"
+"    border-right: 3px solid #007a6b; /* 按下时底部边框 2px blue */\n"
+"}\n"
+"\n"
+"/* 同时处于 checked 和 pressed 状态 */\n"
+"QTableWidget QHeaderView::section:vertical:checked:pressed {\n"
+"    background-color: #d1d1d1; /* 选中且按下时的背景颜色 */\n"
+"    color: #007a6b; /* 选中且按下时的字体颜色 */\n"
+"    border-right: 3px solid #007a6b; /* 选中且按下时底部边框 2px purple */\n"
+"}\n"
+"\n"
+"/* TableWidget 表格 QSS */\n"
+"QTableWidget::item {\n"
+"    background: #f7f7f7;\n"
+"}\n"
+"\n"
+"/* TableWidget 表格选中 QSS */\n"
+"QTableWidget::item::selected {\n"
+"    border: 2px solid #109968;\n"
+"}\n"
+"\n"
+"/* 底部 PushButton QSS */\n"
+"QPushButton {\n"
+"    background: transparent;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"    border: 2px solid white;\n"
+"    border-radius: 10px;\n"
+"}\n"
+"\n"
+"/* 底部 LineEdit QSS */\n"
+"QLineEdit {\n"
+"    background: transparent;\n"
+"    border: none;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"/* 底部 Label QSS */\n"
+"QLabel {\n"
+"    background: transparent;\n"
+"    font: 10pt \"微软雅黑\";\n"
+"    color: white;\n"
+"}")
         self.auto_test_page.setObjectName("auto_test_page")
-        self.label_2 = QtWidgets.QLabel(self.auto_test_page)
-        self.label_2.setGeometry(QtCore.QRect(290, 180, 151, 41))
-        self.label_2.setObjectName("label_2")
+        self.verticalLayout_11 = QtWidgets.QVBoxLayout(self.auto_test_page)
+        self.verticalLayout_11.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_11.setObjectName("verticalLayout_11")
+        self.tableWidget_test_case = QtWidgets.QTableWidget(self.auto_test_page)
+        self.tableWidget_test_case.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.tableWidget_test_case.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.tableWidget_test_case.setEditTriggers(QtWidgets.QAbstractItemView.DoubleClicked)
+        self.tableWidget_test_case.setRowCount(16)
+        self.tableWidget_test_case.setObjectName("tableWidget_test_case")
+        self.tableWidget_test_case.setColumnCount(6)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setVerticalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setVerticalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setVerticalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setVerticalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setVerticalHeaderItem(4, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setVerticalHeaderItem(5, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setVerticalHeaderItem(6, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setVerticalHeaderItem(7, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setVerticalHeaderItem(8, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setVerticalHeaderItem(9, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setVerticalHeaderItem(10, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setVerticalHeaderItem(11, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setVerticalHeaderItem(12, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setVerticalHeaderItem(13, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setVerticalHeaderItem(14, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setVerticalHeaderItem(15, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setHorizontalHeaderItem(4, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setHorizontalHeaderItem(5, item)
+        self.tableWidget_test_case.horizontalHeader().setVisible(True)
+        self.tableWidget_test_case.horizontalHeader().setCascadingSectionResizes(False)
+        self.tableWidget_test_case.horizontalHeader().setDefaultSectionSize(195)
+        self.tableWidget_test_case.horizontalHeader().setMinimumSectionSize(31)
+        self.tableWidget_test_case.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget_test_case.verticalHeader().setCascadingSectionResizes(False)
+        self.tableWidget_test_case.verticalHeader().setDefaultSectionSize(38)
+        self.tableWidget_test_case.verticalHeader().setStretchLastSection(True)
+        self.verticalLayout_11.addWidget(self.tableWidget_test_case)
+        self.horizontalLayout_7 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_7.setContentsMargins(11, -1, 11, 11)
+        self.horizontalLayout_7.setSpacing(7)
+        self.horizontalLayout_7.setObjectName("horizontalLayout_7")
+        self.pushButton_symmetry_1 = QtWidgets.QPushButton(self.auto_test_page)
+        self.pushButton_symmetry_1.setEnabled(False)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton_symmetry_1.sizePolicy().hasHeightForWidth())
+        self.pushButton_symmetry_1.setSizePolicy(sizePolicy)
+        self.pushButton_symmetry_1.setMinimumSize(QtCore.QSize(70, 30))
+        self.pushButton_symmetry_1.setMaximumSize(QtCore.QSize(70, 16777215))
+        self.pushButton_symmetry_1.setStyleSheet("QPushButton {\n"
+"    border: none;\n"
+"}")
+        self.pushButton_symmetry_1.setText("")
+        self.pushButton_symmetry_1.setObjectName("pushButton_symmetry_1")
+        self.horizontalLayout_7.addWidget(self.pushButton_symmetry_1)
+        self.lineEdit_symmetry = QtWidgets.QLineEdit(self.auto_test_page)
+        self.lineEdit_symmetry.setEnabled(False)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lineEdit_symmetry.sizePolicy().hasHeightForWidth())
+        self.lineEdit_symmetry.setSizePolicy(sizePolicy)
+        self.lineEdit_symmetry.setMinimumSize(QtCore.QSize(25, 0))
+        self.lineEdit_symmetry.setMaximumSize(QtCore.QSize(25, 16777215))
+        self.lineEdit_symmetry.setStyleSheet("QLineEdit {\n"
+"    border: none;\n"
+"}")
+        self.lineEdit_symmetry.setAlignment(QtCore.Qt.AlignCenter)
+        self.lineEdit_symmetry.setObjectName("lineEdit_symmetry")
+        self.horizontalLayout_7.addWidget(self.lineEdit_symmetry)
+        self.label_symmetry = QtWidgets.QLabel(self.auto_test_page)
+        self.label_symmetry.setEnabled(False)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_symmetry.sizePolicy().hasHeightForWidth())
+        self.label_symmetry.setSizePolicy(sizePolicy)
+        self.label_symmetry.setMinimumSize(QtCore.QSize(15, 0))
+        self.label_symmetry.setMaximumSize(QtCore.QSize(15, 16777215))
+        self.label_symmetry.setText("")
+        self.label_symmetry.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_symmetry.setObjectName("label_symmetry")
+        self.horizontalLayout_7.addWidget(self.label_symmetry)
+        self.label_symmetry_2 = QtWidgets.QLabel(self.auto_test_page)
+        self.label_symmetry_2.setEnabled(False)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_symmetry_2.sizePolicy().hasHeightForWidth())
+        self.label_symmetry_2.setSizePolicy(sizePolicy)
+        self.label_symmetry_2.setMinimumSize(QtCore.QSize(30, 0))
+        self.label_symmetry_2.setMaximumSize(QtCore.QSize(30, 16777215))
+        self.label_symmetry_2.setText("")
+        self.label_symmetry_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_symmetry_2.setObjectName("label_symmetry_2")
+        self.horizontalLayout_7.addWidget(self.label_symmetry_2)
+        self.pushButton_symmetry_2 = QtWidgets.QPushButton(self.auto_test_page)
+        self.pushButton_symmetry_2.setEnabled(False)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton_symmetry_2.sizePolicy().hasHeightForWidth())
+        self.pushButton_symmetry_2.setSizePolicy(sizePolicy)
+        self.pushButton_symmetry_2.setMinimumSize(QtCore.QSize(70, 30))
+        self.pushButton_symmetry_2.setMaximumSize(QtCore.QSize(70, 16777215))
+        self.pushButton_symmetry_2.setStyleSheet("QPushButton {\n"
+"    border: none;\n"
+"}")
+        self.pushButton_symmetry_2.setText("")
+        self.pushButton_symmetry_2.setObjectName("pushButton_symmetry_2")
+        self.horizontalLayout_7.addWidget(self.pushButton_symmetry_2)
+        spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_7.addItem(spacerItem6)
+        self.pushButton_insert_case = QtWidgets.QPushButton(self.auto_test_page)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton_insert_case.sizePolicy().hasHeightForWidth())
+        self.pushButton_insert_case.setSizePolicy(sizePolicy)
+        self.pushButton_insert_case.setMinimumSize(QtCore.QSize(105, 35))
+        self.pushButton_insert_case.setMaximumSize(QtCore.QSize(105, 16777215))
+        self.pushButton_insert_case.setObjectName("pushButton_insert_case")
+        self.horizontalLayout_7.addWidget(self.pushButton_insert_case)
+        spacerItem7 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_7.addItem(spacerItem7)
+        self.pushButton_test_start = QtWidgets.QPushButton(self.auto_test_page)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton_test_start.sizePolicy().hasHeightForWidth())
+        self.pushButton_test_start.setSizePolicy(sizePolicy)
+        self.pushButton_test_start.setMinimumSize(QtCore.QSize(105, 35))
+        self.pushButton_test_start.setMaximumSize(QtCore.QSize(105, 16777215))
+        self.pushButton_test_start.setObjectName("pushButton_test_start")
+        self.horizontalLayout_7.addWidget(self.pushButton_test_start)
+        spacerItem8 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_7.addItem(spacerItem8)
+        self.pushButton_test_end = QtWidgets.QPushButton(self.auto_test_page)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton_test_end.sizePolicy().hasHeightForWidth())
+        self.pushButton_test_end.setSizePolicy(sizePolicy)
+        self.pushButton_test_end.setMinimumSize(QtCore.QSize(105, 35))
+        self.pushButton_test_end.setMaximumSize(QtCore.QSize(105, 16777215))
+        self.pushButton_test_end.setObjectName("pushButton_test_end")
+        self.horizontalLayout_7.addWidget(self.pushButton_test_end)
+        spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_7.addItem(spacerItem9)
+        self.pushButton_previous_page = QtWidgets.QPushButton(self.auto_test_page)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton_previous_page.sizePolicy().hasHeightForWidth())
+        self.pushButton_previous_page.setSizePolicy(sizePolicy)
+        self.pushButton_previous_page.setMinimumSize(QtCore.QSize(70, 30))
+        self.pushButton_previous_page.setMaximumSize(QtCore.QSize(70, 16777215))
+        self.pushButton_previous_page.setStyleSheet("QPushButton {\n"
+"    border-radius: none;\n"
+"}")
+        self.pushButton_previous_page.setObjectName("pushButton_previous_page")
+        self.horizontalLayout_7.addWidget(self.pushButton_previous_page)
+        self.lineEdit_current_page = QtWidgets.QLineEdit(self.auto_test_page)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lineEdit_current_page.sizePolicy().hasHeightForWidth())
+        self.lineEdit_current_page.setSizePolicy(sizePolicy)
+        self.lineEdit_current_page.setMinimumSize(QtCore.QSize(25, 0))
+        self.lineEdit_current_page.setMaximumSize(QtCore.QSize(25, 16777215))
+        self.lineEdit_current_page.setAlignment(QtCore.Qt.AlignCenter)
+        self.lineEdit_current_page.setObjectName("lineEdit_current_page")
+        self.horizontalLayout_7.addWidget(self.lineEdit_current_page)
+        self.label_dividing_line = QtWidgets.QLabel(self.auto_test_page)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_dividing_line.sizePolicy().hasHeightForWidth())
+        self.label_dividing_line.setSizePolicy(sizePolicy)
+        self.label_dividing_line.setMinimumSize(QtCore.QSize(15, 0))
+        self.label_dividing_line.setMaximumSize(QtCore.QSize(15, 16777215))
+        self.label_dividing_line.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_dividing_line.setObjectName("label_dividing_line")
+        self.horizontalLayout_7.addWidget(self.label_dividing_line)
+        self.label_total_pages = QtWidgets.QLabel(self.auto_test_page)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_total_pages.sizePolicy().hasHeightForWidth())
+        self.label_total_pages.setSizePolicy(sizePolicy)
+        self.label_total_pages.setMinimumSize(QtCore.QSize(30, 0))
+        self.label_total_pages.setMaximumSize(QtCore.QSize(30, 16777215))
+        self.label_total_pages.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_total_pages.setObjectName("label_total_pages")
+        self.horizontalLayout_7.addWidget(self.label_total_pages)
+        self.pushButton_next_page = QtWidgets.QPushButton(self.auto_test_page)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton_next_page.sizePolicy().hasHeightForWidth())
+        self.pushButton_next_page.setSizePolicy(sizePolicy)
+        self.pushButton_next_page.setMinimumSize(QtCore.QSize(70, 30))
+        self.pushButton_next_page.setMaximumSize(QtCore.QSize(70, 16777215))
+        self.pushButton_next_page.setStyleSheet("QPushButton {\n"
+"\n"
+"    border-radius: none;\n"
+"}")
+        self.pushButton_next_page.setObjectName("pushButton_next_page")
+        self.horizontalLayout_7.addWidget(self.pushButton_next_page)
+        self.verticalLayout_11.addLayout(self.horizontalLayout_7)
         self.sub_interface_stacked.addWidget(self.auto_test_page)
         self.analysis_page = QtWidgets.QWidget()
         self.analysis_page.setObjectName("analysis_page")
@@ -1575,7 +1940,9 @@ class Ui_KCTS(object):
         item.setFont(font)
         self.ou_analysis_table.setHorizontalHeaderItem(7, item)
         self.ou_analysis_table.horizontalHeader().setCascadingSectionResizes(False)
+        self.ou_analysis_table.horizontalHeader().setDefaultSectionSize(141)
         self.ou_analysis_table.horizontalHeader().setMinimumSectionSize(29)
+        self.ou_analysis_table.horizontalHeader().setStretchLastSection(True)
         self.verticalLayout_6.addWidget(self.ou_analysis_table)
         self.analog_gridlayout = QtWidgets.QGridLayout()
         self.analog_gridlayout.setObjectName("analog_gridlayout")
@@ -1595,8 +1962,8 @@ class Ui_KCTS(object):
         self.gridLayout_switch.setVerticalSpacing(8)
         self.gridLayout_switch.setObjectName("gridLayout_switch")
         self.horizontalLayout_5.addLayout(self.gridLayout_switch)
-        spacerItem6 = QtWidgets.QSpacerItem(30, 0, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_5.addItem(spacerItem6)
+        spacerItem10 = QtWidgets.QSpacerItem(30, 0, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_5.addItem(spacerItem10)
         self.gridLayout_analog = QtWidgets.QGridLayout()
         self.gridLayout_analog.setHorizontalSpacing(7)
         self.gridLayout_analog.setVerticalSpacing(8)
@@ -1662,8 +2029,8 @@ class Ui_KCTS(object):
 "")
         self.IOQuery_pushButton.setObjectName("IOQuery_pushButton")
         self.horizontalLayout_3.addWidget(self.IOQuery_pushButton)
-        spacerItem7 = QtWidgets.QSpacerItem(90, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_3.addItem(spacerItem7)
+        spacerItem11 = QtWidgets.QSpacerItem(90, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_3.addItem(spacerItem11)
         self.send_package_pushButton = QtWidgets.QPushButton(self.real_time_analysis_tab)
         self.send_package_pushButton.setEnabled(False)
         self.send_package_pushButton.setMinimumSize(QtCore.QSize(84, 45))
@@ -1984,7 +2351,7 @@ class Ui_KCTS(object):
         self.page_serial_asst_mainwindow = QtWidgets.QWidget()
         self.page_serial_asst_mainwindow.setObjectName("page_serial_asst_mainwindow")
         self.label = QtWidgets.QLabel(self.page_serial_asst_mainwindow)
-        self.label.setGeometry(QtCore.QRect(370, 190, 231, 16))
+        self.label.setGeometry(QtCore.QRect(370, 190, 231, 61))
         self.label.setObjectName("label")
         self.stackedWidget_serial_asst.addWidget(self.page_serial_asst_mainwindow)
         self.page_ashining_config = QtWidgets.QWidget()
@@ -2131,8 +2498,8 @@ class Ui_KCTS(object):
 "}")
         self.label_data_bits.setObjectName("label_data_bits")
         self.gridLayout_serial_port_info.addWidget(self.label_data_bits, 1, 5, 1, 1)
-        spacerItem8 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_serial_port_info.addItem(spacerItem8, 0, 4, 1, 1)
+        spacerItem12 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_serial_port_info.addItem(spacerItem12, 0, 4, 1, 1)
         self.label_stop_bit = QtWidgets.QLabel(self.widget_2)
         self.label_stop_bit.setStyleSheet("QLabel {\n"
 "    max-width: 100px;\n"
@@ -2415,8 +2782,8 @@ class Ui_KCTS(object):
         self.radioButton_ashining.setChecked(True)
         self.radioButton_ashining.setObjectName("radioButton_ashining")
         self.gridLayout_serial_port_info.addWidget(self.radioButton_ashining, 0, 1, 1, 1)
-        spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_serial_port_info.addItem(spacerItem9, 0, 7, 1, 1)
+        spacerItem13 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_serial_port_info.addItem(spacerItem13, 0, 7, 1, 1)
         self.pushButton_lora_config = QtWidgets.QPushButton(self.widget_2)
         self.pushButton_lora_config.setEnabled(False)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -2558,8 +2925,8 @@ class Ui_KCTS(object):
 "")
         self.pushButton_open_serial_port.setObjectName("pushButton_open_serial_port")
         self.gridLayout_serial_port_info.addWidget(self.pushButton_open_serial_port, 1, 3, 1, 1)
-        spacerItem10 = QtWidgets.QSpacerItem(10, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_serial_port_info.addItem(spacerItem10, 0, 0, 1, 1)
+        spacerItem14 = QtWidgets.QSpacerItem(10, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_serial_port_info.addItem(spacerItem14, 0, 0, 1, 1)
         self.horizontalLayout_6.addLayout(self.gridLayout_serial_port_info)
         self.verticalLayout_10.addWidget(self.widget_2)
         self.verticalLayout_10.setStretch(0, 4)
@@ -2573,11 +2940,11 @@ class Ui_KCTS(object):
         KCTS.setCentralWidget(self.Window)
 
         self.retranslateUi(KCTS)
-        self.sub_interface_stacked.setCurrentIndex(3)
+        self.sub_interface_stacked.setCurrentIndex(1)
         self.tabWidget.setCurrentIndex(0)
         self.ou_analysis_send_stacked.setCurrentIndex(0)
         self.history_record_stacked.setCurrentIndex(1)
-        self.stackedWidget_serial_asst.setCurrentIndex(2)
+        self.stackedWidget_serial_asst.setCurrentIndex(0)
         self.comboBox_ebyte_baud.setCurrentIndex(0)
         self.comboBox_ebyte_airspeed.setCurrentIndex(0)
         self.comboBox_baud_rate.setCurrentIndex(6)
@@ -2637,7 +3004,57 @@ class Ui_KCTS(object):
         self.recv_ou_port_label.setText(_translate("KCTS", "recv_OU_port :"))
         self.mu_recv_port_label.setText(_translate("KCTS", "MU recv_port :"))
         self.apply_pushButton.setText(_translate("KCTS", "应用"))
-        self.label_2.setText(_translate("KCTS", "这是自动化测试界面"))
+        item = self.tableWidget_test_case.verticalHeaderItem(0)
+        item.setText(_translate("KCTS", "1"))
+        item = self.tableWidget_test_case.verticalHeaderItem(1)
+        item.setText(_translate("KCTS", "2"))
+        item = self.tableWidget_test_case.verticalHeaderItem(2)
+        item.setText(_translate("KCTS", "3"))
+        item = self.tableWidget_test_case.verticalHeaderItem(3)
+        item.setText(_translate("KCTS", "4"))
+        item = self.tableWidget_test_case.verticalHeaderItem(4)
+        item.setText(_translate("KCTS", "5"))
+        item = self.tableWidget_test_case.verticalHeaderItem(5)
+        item.setText(_translate("KCTS", "6"))
+        item = self.tableWidget_test_case.verticalHeaderItem(6)
+        item.setText(_translate("KCTS", "7"))
+        item = self.tableWidget_test_case.verticalHeaderItem(7)
+        item.setText(_translate("KCTS", "8"))
+        item = self.tableWidget_test_case.verticalHeaderItem(8)
+        item.setText(_translate("KCTS", "9"))
+        item = self.tableWidget_test_case.verticalHeaderItem(9)
+        item.setText(_translate("KCTS", "10"))
+        item = self.tableWidget_test_case.verticalHeaderItem(10)
+        item.setText(_translate("KCTS", "11"))
+        item = self.tableWidget_test_case.verticalHeaderItem(11)
+        item.setText(_translate("KCTS", "12"))
+        item = self.tableWidget_test_case.verticalHeaderItem(12)
+        item.setText(_translate("KCTS", "13"))
+        item = self.tableWidget_test_case.verticalHeaderItem(13)
+        item.setText(_translate("KCTS", "14"))
+        item = self.tableWidget_test_case.verticalHeaderItem(14)
+        item.setText(_translate("KCTS", "15"))
+        item = self.tableWidget_test_case.verticalHeaderItem(15)
+        item.setText(_translate("KCTS", "16"))
+        item = self.tableWidget_test_case.horizontalHeaderItem(0)
+        item.setText(_translate("KCTS", "用例编号"))
+        item = self.tableWidget_test_case.horizontalHeaderItem(1)
+        item.setText(_translate("KCTS", "用例标题"))
+        item = self.tableWidget_test_case.horizontalHeaderItem(2)
+        item.setText(_translate("KCTS", "操作步骤"))
+        item = self.tableWidget_test_case.horizontalHeaderItem(3)
+        item.setText(_translate("KCTS", "预期结果"))
+        item = self.tableWidget_test_case.horizontalHeaderItem(4)
+        item.setText(_translate("KCTS", "实际结果"))
+        item = self.tableWidget_test_case.horizontalHeaderItem(5)
+        item.setText(_translate("KCTS", "测试结果"))
+        self.pushButton_insert_case.setText(_translate("KCTS", "导入用例"))
+        self.pushButton_test_start.setText(_translate("KCTS", "开始测试"))
+        self.pushButton_test_end.setText(_translate("KCTS", "结束测试"))
+        self.pushButton_previous_page.setText(_translate("KCTS", "上一页"))
+        self.label_dividing_line.setText(_translate("KCTS", "/"))
+        self.label_total_pages.setText(_translate("KCTS", "1"))
+        self.pushButton_next_page.setText(_translate("KCTS", "下一页"))
         self.PWM15_progressBar.setFormat(_translate("KCTS", "PWM15: %v.00V"))
         self.PWM7_progressBar.setFormat(_translate("KCTS", "PWM7: %v.00V"))
         self.PWM2_progressBar.setFormat(_translate("KCTS", "PWM2: %v.00V"))
