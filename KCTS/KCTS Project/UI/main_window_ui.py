@@ -764,7 +764,8 @@ class Ui_KCTS(object):
 "/* 底部 LineEdit QSS */\n"
 "QLineEdit {\n"
 "    background: transparent;\n"
-"    border: none;\n"
+"    border: 2px solid white;\n"
+"    border-radius: 6px;\n"
 "    font: 10pt \"微软雅黑\";\n"
 "    color: white;\n"
 "}\n"
@@ -887,8 +888,8 @@ class Ui_KCTS(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lineEdit_symmetry.sizePolicy().hasHeightForWidth())
         self.lineEdit_symmetry.setSizePolicy(sizePolicy)
-        self.lineEdit_symmetry.setMinimumSize(QtCore.QSize(25, 0))
-        self.lineEdit_symmetry.setMaximumSize(QtCore.QSize(25, 16777215))
+        self.lineEdit_symmetry.setMinimumSize(QtCore.QSize(30, 0))
+        self.lineEdit_symmetry.setMaximumSize(QtCore.QSize(30, 16777215))
         self.lineEdit_symmetry.setStyleSheet("QLineEdit {\n"
 "    border: none;\n"
 "}")
@@ -993,8 +994,8 @@ class Ui_KCTS(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lineEdit_current_page.sizePolicy().hasHeightForWidth())
         self.lineEdit_current_page.setSizePolicy(sizePolicy)
-        self.lineEdit_current_page.setMinimumSize(QtCore.QSize(25, 0))
-        self.lineEdit_current_page.setMaximumSize(QtCore.QSize(25, 16777215))
+        self.lineEdit_current_page.setMinimumSize(QtCore.QSize(30, 0))
+        self.lineEdit_current_page.setMaximumSize(QtCore.QSize(30, 16777215))
         self.lineEdit_current_page.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEdit_current_page.setObjectName("lineEdit_current_page")
         self.horizontalLayout_7.addWidget(self.lineEdit_current_page)

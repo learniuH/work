@@ -1352,7 +1352,8 @@ QPushButton {
 /* 底部 LineEdit QSS */
 QLineEdit {
 	background: transparent;
-	border: none;
+	border: 2px solid white;
+	border-radius: 6px;
 	font: 10pt &quot;微软雅黑&quot;;
 	color: white;
 }
@@ -1653,13 +1654,13 @@ QLabel {
                </property>
                <property name="minimumSize">
                 <size>
-                 <width>25</width>
+                 <width>30</width>
                  <height>0</height>
                 </size>
                </property>
                <property name="maximumSize">
                 <size>
-                 <width>25</width>
+                 <width>30</width>
                  <height>16777215</height>
                 </size>
                </property>
@@ -1941,13 +1942,13 @@ QLabel {
                </property>
                <property name="minimumSize">
                 <size>
-                 <width>25</width>
+                 <width>30</width>
                  <height>0</height>
                 </size>
                </property>
                <property name="maximumSize">
                 <size>
-                 <width>25</width>
+                 <width>30</width>
                  <height>16777215</height>
                 </size>
                </property>
