@@ -535,8 +535,7 @@ QListWidget::item:selected {
        <item>
         <widget class="QStackedWidget" name="sub_interface_stacked">
          <property name="styleSheet">
-          <string notr="true">
-</string>
+          <string notr="true"/>
          </property>
          <property name="currentIndex">
           <number>1</number>
@@ -1276,7 +1275,7 @@ QHeaderView {
 
 /* 水平表头默认样式 */
 QTableWidget QHeaderView::section:horizontal {
-    background-color: #eeeeee; /* 背景颜色 */
+    background-color: #eaeaea; /* 背景颜色 */
     font: 9pt &quot;微软雅黑&quot;;
     border: 1px solid #bebebe; /* 默认边框 */
 }
@@ -1304,7 +1303,7 @@ QTableWidget QHeaderView::section:horizontal:checked:pressed {
 
 /* 垂直表头默认样式 */
 QTableWidget QHeaderView::section:vertical {
-    background-color: #eeeeee; /* 背景颜色 */
+    background-color: #eaeaea; /* 背景颜色 */
     font: 9pt &quot;微软雅黑&quot;;
     border: 1px solid #bebebe; /* 默认边框 */
 }
@@ -1332,11 +1331,19 @@ QTableWidget QHeaderView::section:vertical:checked:pressed {
 
 /* TableWidget 表格 QSS */
 QTableWidget::item {
+	font: 9pt &quot;微软雅黑&quot;;
 	background: #f7f7f7;
 }
 
-/* TableWidget 表格选中 QSS */
-QTableWidget::item::selected {
+/* TableWidget LineEdit 编辑状态的表格的文字 */
+QTableWidget QLineEdit {
+	font: 9pt &quot;微软雅黑&quot;;
+	color: black;
+}
+
+/* 选中状态下的单元格 */
+QTableWidget::item:selected {
+    color: black;
 	border: 2px solid #109968;
 }
 
@@ -1347,6 +1354,12 @@ QPushButton {
 	color: white;
 	border: 2px solid white;
 	border-radius: 10px;
+}
+
+/* PushButton 点击 QSS */
+QPushButton:pressed {
+	padding-top: 1px;
+	padding-left: 1px;
 }
 
 /* 底部 LineEdit QSS */
@@ -1386,8 +1399,17 @@ QLabel {
              <property name="horizontalScrollBarPolicy">
               <enum>Qt::ScrollBarAlwaysOff</enum>
              </property>
+             <property name="autoScroll">
+              <bool>true</bool>
+             </property>
              <property name="editTriggers">
               <set>QAbstractItemView::DoubleClicked</set>
+             </property>
+             <property name="showGrid">
+              <bool>true</bool>
+             </property>
+             <property name="gridStyle">
+              <enum>Qt::SolidLine</enum>
              </property>
              <property name="rowCount">
               <number>16</number>

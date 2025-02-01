@@ -11,6 +11,7 @@ from services.read_excel import ExcelRead
 from services.ou_simulator import OUSimulator
 from services.package_send import PackageToMu
 from services.serial_port_assistant import SerialPortAsst
+from services.auto_test import AutoTest
 
 from widget.checkbox import LearniuHCheckBox
 from widget.combobox import LearniuHComboBox
@@ -46,6 +47,7 @@ class MainWindow(QMainWindow):
 
         self.main_window_init()     # 窗口界面初始化
         self.serial_port_init()     # 初始化串口助手
+        self.auto_test_init()       # 初始化自动化测试
 
         self.setup_validators()     # 正则表达式匹配 IP 端口 信息
         self.setup_connections()    # 控件信号连接绑定
@@ -670,6 +672,23 @@ class MainWindow(QMainWindow):
         self.main_window_ui.comboBox_ebyte_airspeed.currentIndexChanged.connect(self.serial_port_asst.update_ebyte_airSpeed)
         # 点击泽耀 Lora 配置 返回按钮
         self.main_window_ui.pushButton_ashining_back.clicked.connect(self.serial_port_asst.back_to_mainwindow)
+
+    def auto_test_init(self):
+        """ 自动化模块初始化 """
+        sub_widget = {
+            'tableWidget_test_case':    self.main_window_ui.tableWidget_test_case,
+            'pushButton_insert_case':   self.main_window_ui.pushButton_insert_case,
+            'pushButton_start_test':    self.main_window_ui.pushButton_test_start,
+            'pushButton_stop_test':     self.main_window_ui.pushButton_test_end,
+            'pushButton_previous_page': self.main_window_ui.pushButton_previous_page,
+            'pushButton_next_page':     self.main_window_ui.pushButton_next_page,
+            'lineEdit_current_page':    self.main_window_ui.lineEdit_current_page,
+            'label_total_pages':        self.main_window_ui.label_total_pages,
+        }
+        # 实例化自动化测试类
+        auto_tester = AutoTest(sub_widget)
+
+
 
     def keyPressEvent(self, event):
         ''' 重写该方法, 用于处理键盘按下时, OU模拟器的按键触发 '''

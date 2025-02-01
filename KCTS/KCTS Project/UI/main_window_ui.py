@@ -285,8 +285,7 @@ class Ui_KCTS(object):
         self.navigation_list.addItem(item)
         self.horizontalLayout_2.addWidget(self.navigation_list)
         self.sub_interface_stacked = QtWidgets.QStackedWidget(self.Body)
-        self.sub_interface_stacked.setStyleSheet("\n"
-"")
+        self.sub_interface_stacked.setStyleSheet("")
         self.sub_interface_stacked.setObjectName("sub_interface_stacked")
         self.device_status_page = QtWidgets.QWidget()
         self.device_status_page.setObjectName("device_status_page")
@@ -688,7 +687,7 @@ class Ui_KCTS(object):
 "\n"
 "/* 水平表头默认样式 */\n"
 "QTableWidget QHeaderView::section:horizontal {\n"
-"    background-color: #eeeeee; /* 背景颜色 */\n"
+"    background-color: #eaeaea; /* 背景颜色 */\n"
 "    font: 9pt \"微软雅黑\";\n"
 "    border: 1px solid #bebebe; /* 默认边框 */\n"
 "}\n"
@@ -716,7 +715,7 @@ class Ui_KCTS(object):
 "\n"
 "/* 垂直表头默认样式 */\n"
 "QTableWidget QHeaderView::section:vertical {\n"
-"    background-color: #eeeeee; /* 背景颜色 */\n"
+"    background-color: #eaeaea; /* 背景颜色 */\n"
 "    font: 9pt \"微软雅黑\";\n"
 "    border: 1px solid #bebebe; /* 默认边框 */\n"
 "}\n"
@@ -744,11 +743,19 @@ class Ui_KCTS(object):
 "\n"
 "/* TableWidget 表格 QSS */\n"
 "QTableWidget::item {\n"
+"    font: 9pt \"微软雅黑\";\n"
 "    background: #f7f7f7;\n"
 "}\n"
 "\n"
-"/* TableWidget 表格选中 QSS */\n"
-"QTableWidget::item::selected {\n"
+"/* TableWidget LineEdit 编辑状态的表格的文字 */\n"
+"QTableWidget QLineEdit {\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"/* 选中状态下的单元格 */\n"
+"QTableWidget::item:selected {\n"
+"    color: black;\n"
 "    border: 2px solid #109968;\n"
 "}\n"
 "\n"
@@ -759,6 +766,12 @@ class Ui_KCTS(object):
 "    color: white;\n"
 "    border: 2px solid white;\n"
 "    border-radius: 10px;\n"
+"}\n"
+"\n"
+"/* PushButton 点击 QSS */\n"
+"QPushButton:pressed {\n"
+"    padding-top: 1px;\n"
+"    padding-left: 1px;\n"
 "}\n"
 "\n"
 "/* 底部 LineEdit QSS */\n"
@@ -783,7 +796,10 @@ class Ui_KCTS(object):
         self.tableWidget_test_case = QtWidgets.QTableWidget(self.auto_test_page)
         self.tableWidget_test_case.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.tableWidget_test_case.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.tableWidget_test_case.setAutoScroll(True)
         self.tableWidget_test_case.setEditTriggers(QtWidgets.QAbstractItemView.DoubleClicked)
+        self.tableWidget_test_case.setShowGrid(True)
+        self.tableWidget_test_case.setGridStyle(QtCore.Qt.SolidLine)
         self.tableWidget_test_case.setRowCount(16)
         self.tableWidget_test_case.setObjectName("tableWidget_test_case")
         self.tableWidget_test_case.setColumnCount(6)
