@@ -312,7 +312,7 @@ class MainWindow(QMainWindow):
     def open_file_dialog(self):
         ''' 打开文件选择对话框, 只显示 Excel 文件 '''
         file_path, _ = QFileDialog.getOpenFileName(
-            self, '选择项目通信协议', '', 'Excel Files (*.xlsx *xls);;All Files (*)'
+            self, '选择项目通信协议', '', 'Excel Files (*.xlsx *xls)'
         )
         if file_path:
             # 暂时屏蔽信号, 避免清除 items 和 添加 items 的时候误触发函数
@@ -327,6 +327,9 @@ class MainWindow(QMainWindow):
             sheet_list = self.excel_reader.read_sheet_name()
             # 添加excel里面的表单
             self.main_window_ui.sheet_name_list_comboBox.addItems(sheet_list)
+
+            # 表单名导入后, 设置当前index为-1, 以使得点击index == 0的表单生效
+            self.main_window_ui.sheet_name_list_comboBox.setCurrentIndex(-1)
 
             # 恢复信号
             self.main_window_ui.sheet_name_list_comboBox.blockSignals(False)
@@ -676,14 +679,15 @@ class MainWindow(QMainWindow):
     def auto_test_init(self):
         """ 自动化模块初始化 """
         sub_widget = {
-            'tableWidget_test_case':    self.main_window_ui.tableWidget_test_case,
-            'pushButton_insert_case':   self.main_window_ui.pushButton_insert_case,
-            'pushButton_start_test':    self.main_window_ui.pushButton_test_start,
-            'pushButton_stop_test':     self.main_window_ui.pushButton_test_end,
-            'pushButton_previous_page': self.main_window_ui.pushButton_previous_page,
-            'pushButton_next_page':     self.main_window_ui.pushButton_next_page,
-            'lineEdit_current_page':    self.main_window_ui.lineEdit_current_page,
-            'label_total_pages':        self.main_window_ui.label_total_pages,
+            'tableWidget_test_case':        self.main_window_ui.tableWidget_test_case,
+            'comboBox_case_sheet_names':    self.main_window_ui.comboBox_case_sheet_names,
+            'pushButton_insert_case':       self.main_window_ui.pushButton_insert_case,
+            'pushButton_start_test':        self.main_window_ui.pushButton_test_start,
+            'pushButton_stop_test':         self.main_window_ui.pushButton_test_end,
+            'pushButton_previous_page':     self.main_window_ui.pushButton_previous_page,
+            'pushButton_next_page':         self.main_window_ui.pushButton_next_page,
+            'lineEdit_current_page':        self.main_window_ui.lineEdit_current_page,
+            'label_total_pages':            self.main_window_ui.label_total_pages,
         }
         # 实例化自动化测试类
         auto_tester = AutoTest(sub_widget)
