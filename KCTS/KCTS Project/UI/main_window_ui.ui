@@ -1347,6 +1347,23 @@ QTableWidget::item:selected {
 	border: 2px solid #109968;
 }
 
+/* comboBox QSS */
+QComboBox {
+	font: 9pt &quot;微软雅黑&quot;;
+	color: white;		/* 字体颜色 */
+}
+
+/* comboBox 下拉列表 QSS */
+QComboBox QAbstractItemView {
+	outline: 0px solid gray;
+	border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+	background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,
+                                      stop: 0 #404959, stop: 1 #989da5);
+	color: white;
+	selection-background-color: #435068;
+}
+
 /* 底部 PushButton QSS */
 QPushButton {
 	background: transparent;
@@ -1424,7 +1441,7 @@ QLabel {
               <number>31</number>
              </attribute>
              <attribute name="horizontalHeaderDefaultSectionSize">
-              <number>195</number>
+              <number>168</number>
              </attribute>
              <attribute name="horizontalHeaderStretchLastSection">
               <bool>true</bool>
@@ -1600,6 +1617,14 @@ QLabel {
              </column>
              <column>
               <property name="text">
+               <string>执行用例</string>
+              </property>
+              <property name="textAlignment">
+               <set>AlignCenter</set>
+              </property>
+             </column>
+             <column>
+              <property name="text">
                <string>实际结果</string>
               </property>
               <property name="textAlignment">
@@ -1622,7 +1647,7 @@ QLabel {
               <number>7</number>
              </property>
              <property name="leftMargin">
-              <number>11</number>
+              <number>15</number>
              </property>
              <property name="rightMargin">
               <number>11</number>
@@ -1630,180 +1655,6 @@ QLabel {
              <property name="bottomMargin">
               <number>11</number>
              </property>
-             <item>
-              <widget class="QPushButton" name="pushButton_symmetry_1">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>70</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>70</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QPushButton {
-	border: none;
-}</string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="lineEdit_symmetry">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>30</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>30</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QLineEdit {
-	border: none;
-}</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_symmetry">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>15</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>15</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_symmetry_2">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>30</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>30</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_symmetry_2">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>70</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>70</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QPushButton {
-	border: none;
-}</string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_12">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
              <item>
               <widget class="QPushButton" name="pushButton_insert_case">
                <property name="sizePolicy">
@@ -1846,6 +1697,44 @@ QLabel {
               </spacer>
              </item>
              <item>
+              <widget class="QComboBox" name="comboBox_case_sheet_names">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="maxVisibleItems">
+                <number>20</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_12">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Expanding</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
               <widget class="QPushButton" name="pushButton_test_start">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
@@ -1876,11 +1765,11 @@ QLabel {
                 <enum>Qt::Horizontal</enum>
                </property>
                <property name="sizeType">
-                <enum>QSizePolicy::Fixed</enum>
+                <enum>QSizePolicy::Maximum</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
-                 <width>20</width>
+                 <width>80</width>
                  <height>20</height>
                 </size>
                </property>
@@ -1915,6 +1804,9 @@ QLabel {
               <spacer name="horizontalSpacer_13">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Expanding</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>

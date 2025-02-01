@@ -759,6 +759,23 @@ class Ui_KCTS(object):
 "    border: 2px solid #109968;\n"
 "}\n"
 "\n"
+"/* comboBox QSS */\n"
+"QComboBox {\n"
+"    font: 9pt \"微软雅黑\";\n"
+"    color: white;        /* 字体颜色 */\n"
+"}\n"
+"\n"
+"/* comboBox 下拉列表 QSS */\n"
+"QComboBox QAbstractItemView {\n"
+"    outline: 0px solid gray;\n"
+"    border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"    background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,\n"
+"                                      stop: 0 #404959, stop: 1 #989da5);\n"
+"    color: white;\n"
+"    selection-background-color: #435068;\n"
+"}\n"
+"\n"
 "/* 底部 PushButton QSS */\n"
 "QPushButton {\n"
 "    background: transparent;\n"
@@ -802,7 +819,7 @@ class Ui_KCTS(object):
         self.tableWidget_test_case.setGridStyle(QtCore.Qt.SolidLine)
         self.tableWidget_test_case.setRowCount(16)
         self.tableWidget_test_case.setObjectName("tableWidget_test_case")
-        self.tableWidget_test_case.setColumnCount(6)
+        self.tableWidget_test_case.setColumnCount(7)
         item = QtWidgets.QTableWidgetItem()
         item.setTextAlignment(QtCore.Qt.AlignCenter)
         self.tableWidget_test_case.setVerticalHeaderItem(0, item)
@@ -869,9 +886,12 @@ class Ui_KCTS(object):
         item = QtWidgets.QTableWidgetItem()
         item.setTextAlignment(QtCore.Qt.AlignCenter)
         self.tableWidget_test_case.setHorizontalHeaderItem(5, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget_test_case.setHorizontalHeaderItem(6, item)
         self.tableWidget_test_case.horizontalHeader().setVisible(True)
         self.tableWidget_test_case.horizontalHeader().setCascadingSectionResizes(False)
-        self.tableWidget_test_case.horizontalHeader().setDefaultSectionSize(195)
+        self.tableWidget_test_case.horizontalHeader().setDefaultSectionSize(168)
         self.tableWidget_test_case.horizontalHeader().setMinimumSectionSize(31)
         self.tableWidget_test_case.horizontalHeader().setStretchLastSection(True)
         self.tableWidget_test_case.verticalHeader().setCascadingSectionResizes(False)
@@ -879,82 +899,9 @@ class Ui_KCTS(object):
         self.tableWidget_test_case.verticalHeader().setStretchLastSection(True)
         self.verticalLayout_11.addWidget(self.tableWidget_test_case)
         self.horizontalLayout_7 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_7.setContentsMargins(11, -1, 11, 11)
+        self.horizontalLayout_7.setContentsMargins(15, -1, 11, 11)
         self.horizontalLayout_7.setSpacing(7)
         self.horizontalLayout_7.setObjectName("horizontalLayout_7")
-        self.pushButton_symmetry_1 = QtWidgets.QPushButton(self.auto_test_page)
-        self.pushButton_symmetry_1.setEnabled(False)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton_symmetry_1.sizePolicy().hasHeightForWidth())
-        self.pushButton_symmetry_1.setSizePolicy(sizePolicy)
-        self.pushButton_symmetry_1.setMinimumSize(QtCore.QSize(70, 30))
-        self.pushButton_symmetry_1.setMaximumSize(QtCore.QSize(70, 16777215))
-        self.pushButton_symmetry_1.setStyleSheet("QPushButton {\n"
-"    border: none;\n"
-"}")
-        self.pushButton_symmetry_1.setText("")
-        self.pushButton_symmetry_1.setObjectName("pushButton_symmetry_1")
-        self.horizontalLayout_7.addWidget(self.pushButton_symmetry_1)
-        self.lineEdit_symmetry = QtWidgets.QLineEdit(self.auto_test_page)
-        self.lineEdit_symmetry.setEnabled(False)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.lineEdit_symmetry.sizePolicy().hasHeightForWidth())
-        self.lineEdit_symmetry.setSizePolicy(sizePolicy)
-        self.lineEdit_symmetry.setMinimumSize(QtCore.QSize(30, 0))
-        self.lineEdit_symmetry.setMaximumSize(QtCore.QSize(30, 16777215))
-        self.lineEdit_symmetry.setStyleSheet("QLineEdit {\n"
-"    border: none;\n"
-"}")
-        self.lineEdit_symmetry.setAlignment(QtCore.Qt.AlignCenter)
-        self.lineEdit_symmetry.setObjectName("lineEdit_symmetry")
-        self.horizontalLayout_7.addWidget(self.lineEdit_symmetry)
-        self.label_symmetry = QtWidgets.QLabel(self.auto_test_page)
-        self.label_symmetry.setEnabled(False)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_symmetry.sizePolicy().hasHeightForWidth())
-        self.label_symmetry.setSizePolicy(sizePolicy)
-        self.label_symmetry.setMinimumSize(QtCore.QSize(15, 0))
-        self.label_symmetry.setMaximumSize(QtCore.QSize(15, 16777215))
-        self.label_symmetry.setText("")
-        self.label_symmetry.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_symmetry.setObjectName("label_symmetry")
-        self.horizontalLayout_7.addWidget(self.label_symmetry)
-        self.label_symmetry_2 = QtWidgets.QLabel(self.auto_test_page)
-        self.label_symmetry_2.setEnabled(False)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_symmetry_2.sizePolicy().hasHeightForWidth())
-        self.label_symmetry_2.setSizePolicy(sizePolicy)
-        self.label_symmetry_2.setMinimumSize(QtCore.QSize(30, 0))
-        self.label_symmetry_2.setMaximumSize(QtCore.QSize(30, 16777215))
-        self.label_symmetry_2.setText("")
-        self.label_symmetry_2.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_symmetry_2.setObjectName("label_symmetry_2")
-        self.horizontalLayout_7.addWidget(self.label_symmetry_2)
-        self.pushButton_symmetry_2 = QtWidgets.QPushButton(self.auto_test_page)
-        self.pushButton_symmetry_2.setEnabled(False)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton_symmetry_2.sizePolicy().hasHeightForWidth())
-        self.pushButton_symmetry_2.setSizePolicy(sizePolicy)
-        self.pushButton_symmetry_2.setMinimumSize(QtCore.QSize(70, 30))
-        self.pushButton_symmetry_2.setMaximumSize(QtCore.QSize(70, 16777215))
-        self.pushButton_symmetry_2.setStyleSheet("QPushButton {\n"
-"    border: none;\n"
-"}")
-        self.pushButton_symmetry_2.setText("")
-        self.pushButton_symmetry_2.setObjectName("pushButton_symmetry_2")
-        self.horizontalLayout_7.addWidget(self.pushButton_symmetry_2)
-        spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_7.addItem(spacerItem6)
         self.pushButton_insert_case = QtWidgets.QPushButton(self.auto_test_page)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
@@ -965,7 +912,20 @@ class Ui_KCTS(object):
         self.pushButton_insert_case.setMaximumSize(QtCore.QSize(105, 16777215))
         self.pushButton_insert_case.setObjectName("pushButton_insert_case")
         self.horizontalLayout_7.addWidget(self.pushButton_insert_case)
-        spacerItem7 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        spacerItem6 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_7.addItem(spacerItem6)
+        self.comboBox_case_sheet_names = QtWidgets.QComboBox(self.auto_test_page)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.comboBox_case_sheet_names.sizePolicy().hasHeightForWidth())
+        self.comboBox_case_sheet_names.setSizePolicy(sizePolicy)
+        self.comboBox_case_sheet_names.setMinimumSize(QtCore.QSize(150, 30))
+        self.comboBox_case_sheet_names.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.comboBox_case_sheet_names.setMaxVisibleItems(20)
+        self.comboBox_case_sheet_names.setObjectName("comboBox_case_sheet_names")
+        self.horizontalLayout_7.addWidget(self.comboBox_case_sheet_names)
+        spacerItem7 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_7.addItem(spacerItem7)
         self.pushButton_test_start = QtWidgets.QPushButton(self.auto_test_page)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
@@ -977,7 +937,7 @@ class Ui_KCTS(object):
         self.pushButton_test_start.setMaximumSize(QtCore.QSize(105, 16777215))
         self.pushButton_test_start.setObjectName("pushButton_test_start")
         self.horizontalLayout_7.addWidget(self.pushButton_test_start)
-        spacerItem8 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        spacerItem8 = QtWidgets.QSpacerItem(80, 20, QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_7.addItem(spacerItem8)
         self.pushButton_test_end = QtWidgets.QPushButton(self.auto_test_page)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
@@ -3062,8 +3022,10 @@ class Ui_KCTS(object):
         item = self.tableWidget_test_case.horizontalHeaderItem(3)
         item.setText(_translate("KCTS", "预期结果"))
         item = self.tableWidget_test_case.horizontalHeaderItem(4)
-        item.setText(_translate("KCTS", "实际结果"))
+        item.setText(_translate("KCTS", "执行用例"))
         item = self.tableWidget_test_case.horizontalHeaderItem(5)
+        item.setText(_translate("KCTS", "实际结果"))
+        item = self.tableWidget_test_case.horizontalHeaderItem(6)
         item.setText(_translate("KCTS", "测试结果"))
         self.pushButton_insert_case.setText(_translate("KCTS", "导入用例"))
         self.pushButton_test_start.setText(_translate("KCTS", "开始测试"))

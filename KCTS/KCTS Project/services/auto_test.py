@@ -57,6 +57,8 @@ class AutoTest:
     def update_comboBox_items(self, sheet_names: list):
         """ 根据表单名列表更新 comboBox 的 items """
         self.comboBox_case_sheet_names.blockSignals(True)
+        # 清除所有 items
+        self.comboBox_case_sheet_names.clear()
         self.comboBox_case_sheet_names.addItems(sheet_names)
         self.comboBox_case_sheet_names.setCurrentIndex(-1)
         self.comboBox_case_sheet_names.blockSignals(False)
