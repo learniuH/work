@@ -1,47 +1,56 @@
-from PyQt5.QtWidgets import QApplication, QTableWidget, QTableWidgetItem, QStyledItemDelegate
-from PyQt5.QtGui import QPainter, QPen
 from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget
+from PyQt5.QtGui import QFont
 
-class SelectionBorderDelegate(QStyledItemDelegate):
-    """ 自定义委托，仅在选区外圈绘制边框 """
-    def paint(self, painter, option, index):
-        super().paint(painter, option, index)
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
 
-        table = option.widget
-        selection_model = table.selectionModel()
-        if not selection_model.isSelected(index):
-            return
+        # 创建 QTableWidget
+        self.tableWidget = QTableWidget(self)
+        self.tableWidget.setRowCount(3)
+        self.tableWidget.setColumnCount(3)
 
-        # 获取所有选中的索引
-        selected_indexes = selection_model.selectedIndexes()
-        if not selected_indexes:
-            return
+        # 设置字体以适应长文本显示
+        font = QFont("Arial", 10)
 
-        # 计算选区的最小/最大行列
-        min_row = min(index.row() for index in selected_indexes)
-        max_row = max(index.row() for index in selected_indexes)
-        min_col = min(index.column() for index in selected_indexes)
-        max_col = max(index.column() for index in selected_indexes)
+        # 创建长文本并插入第一个单元格
+        long_text = "This is a very long text that should wrap around within the cell. " \
+                    "It should automatically go to the next line when it reaches the end of the cell."
+        item1 = QTableWidgetItem(long_text)
+        item1.setFont(font)
+        item1.setTextAlignment(Qt.AlignLeft | Qt.AlignTop)  # 左上对齐
+        item1.setText(item1.text())  # 启用自动换行
+        self.tableWidget.setItem(0, 0, item1)
 
-        # 仅在选区外圈绘制边框
-        if index.row() == min_row or index.row() == max_row or \
-           index.column() == min_col or index.column() == max_col:
-            pen = QPen(Qt.green, 2)  # 绿色边框，宽度2px
-            painter.setPen(pen)
-            painter.drawRect(option.rect)
+        # 设置第二列的内容（多行文本）
+        long_text2 = "Here is another long text. The cell should resize automatically to fit the content."
+        item2 = QTableWidgetItem(long_text2)
+        item2.setFont(font)
+        item2.setTextAlignment(Qt.AlignLeft | Qt.AlignTop)  # 左上对齐
+        item2.setText(item2.text())  # 启用自动换行
+        self.tableWidget.setItem(1, 1, item2)
 
-# 创建应用程序
-app = QApplication([])
+        # 设置每行的高度，确保有足够空间显示多行文本
+        self.tableWidget.setRowHeight(0, 60)  # 设置第一行高度
+        self.tableWidget.setRowHeight(1, 60)  # 设置第二行高度
+        self.tableWidget.setRowHeight(2, 60)  # 设置第三行高度
 
-# 创建表格
-table = QTableWidget(5, 5)
-table.setItemDelegate(SelectionBorderDelegate(table))
+        # 设置列宽，确保文本能完全显示
+        self.tableWidget.setColumnWidth(0, 200)
+        self.tableWidget.setColumnWidth(1, 250)
 
-# 填充数据
-for row in range(5):
-    for col in range(5):
-        table.setItem(row, col, QTableWidgetItem(f"{row},{col}"))
+        # 创建布局并添加到主窗口
+        layout = QVBoxLayout()
+        layout.addWidget(self.tableWidget)
 
-table.resize(400, 300)
-table.show()
-app.exec_()
+        container = QWidget()
+        container.setLayout(layout)
+        self.setCentralWidget(container)
+
+if __name__ == '__main__':
+    app = QApplication([])
+    window = MainWindow()
+    window.resize(500, 300)
+    window.show()
+    app.exec_()

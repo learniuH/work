@@ -120,8 +120,11 @@ class AutoTest:
         # 填充表格内容
         for row in range(start_row, end_row):
             for col, value_header in enumerate(ConstantText.COLUMNS_TO_INSERT):
-                item = QTableWidgetItem(self.target_df.loc[row + 1, value_header])
+                item = QTableWidgetItem(str(self.target_df.loc[row + 1, value_header]))
                 self.tableWidget_test_case.setItem(row, col, item)
 
-        # 根据内容调整合适的列宽
-        self.tableWidget_test_case.resizeColumnsToContents()
+            # 设置大于一行的行高, 实现自动换行
+            self.tableWidget_test_case.setRowHeight(row, 100)
+
+        # 根据内容调整自适应行高
+        self.tableWidget_test_case.resizeRowsToContents()
