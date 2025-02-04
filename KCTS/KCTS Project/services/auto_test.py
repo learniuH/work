@@ -1,6 +1,7 @@
-from typing import Tuple
+from PyQt5.QtWidgets import QFileDialog, QTableWidget, QPushButton, QLineEdit, QLabel, QComboBox, QTableWidgetItem, \
+    QHeaderView
 
-from PyQt5.QtWidgets import QFileDialog, QTableWidget, QPushButton, QLineEdit, QLabel, QComboBox
+from widget.constant import ConstantText
 
 from openpyxl import load_workbook
 import pandas as pd
@@ -22,8 +23,10 @@ class AutoTest:
         self.lineEdit_current_page: QLineEdit           =   widget['lineEdit_current_page']
         self.label_total_pages: QLabel                  =   widget['label_total_pages']
 
-        self.file_path: str     =   None    # 测试用例路径
-
+        self.file_path: str             =   None    # 测试用例路径
+        self.target_df: pd.DataFrame    =   None    # 解析后的 Excel 表格数据
+        self.total_pages: int           =   None    # TableWidget 的总页数
+        self.page_index: int            =   None    # TableWidget 当前页索引
 
         self.slot_connect()
 
@@ -96,5 +99,29 @@ class AutoTest:
         all_rows, all_cols = np.where(df == '用例编号')
         # 选取行号最小的作为新的 columns, 并删除该行
         df.columns = df.iloc[all_rows[0]]
-        target_df = df.iloc[all_rows[0] + 1:, :]
-        print(self.get_merged_cells(sheet_name))
+        self.target_df = df.iloc[all_rows[0] + 1:, :]
+
+        # 页面初始化, 展示首页内容
+        self.total_pages = (len(self.target_df) // ConstantText.ROWS_PER_PAGES +
+                            (1 if len(self.target_df) % ConstantText.ROWS_PER_PAGES else 0))
+        self.page_index = 0
+        self.show_page(self.page_index)
+
+
+    def show_page(self, page_index: int):
+        """ 在 TableWidget 上显示当前页面数据 """
+        # 计算当前页面的开始行索引和终止行索引
+        start_row = page_index * ConstantText.ROWS_PER_PAGES
+        end_row = min((page_index + 1) * ConstantText.ROWS_PER_PAGES, len(self.target_df))
+
+        # 设置表格的行数
+        self.tableWidget_test_case.setRowCount(end_row - start_row)
+
+        # 填充表格内容
+        for row in range(start_row, end_row):
+            for col, value_header in enumerate(ConstantText.COLUMNS_TO_INSERT):
+                item = QTableWidgetItem(self.target_df.loc[row + 1, value_header])
+                self.tableWidget_test_case.setItem(row, col, item)
+
+        # 根据内容调整合适的列宽
+        self.tableWidget_test_case.resizeColumnsToContents()
