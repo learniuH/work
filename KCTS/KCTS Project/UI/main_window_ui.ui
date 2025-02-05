@@ -1254,7 +1254,73 @@ QPushButton:disabled {
          </widget>
          <widget class="QWidget" name="auto_test_page">
           <property name="styleSheet">
-           <string notr="true">QTableWidget {
+           <string notr="true">
+
+/* comboBox QSS */
+QComboBox {
+	font: 9pt &quot;微软雅黑&quot;;
+	color: white;		/* 字体颜色 */
+}
+
+/* comboBox 下拉列表 QSS */
+QComboBox QAbstractItemView {
+	outline: 0px solid gray;
+	border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+	background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,
+                                      stop: 0 #404959, stop: 1 #989da5);
+	color: white;
+	selection-background-color: #435068;
+}
+
+/* 底部 PushButton QSS */
+QPushButton {
+	background: transparent;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+	border: 2px solid white;
+	border-radius: 10px;
+}
+
+/* PushButton 点击 QSS */
+QPushButton:pressed {
+	padding-top: 1px;
+	padding-left: 1px;
+}
+
+/* 底部 LineEdit QSS */
+QLineEdit {
+	background: transparent;
+	border: 2px solid white;
+	border-radius: 6px;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+}
+
+/* 底部 Label QSS */
+QLabel {
+	background: transparent;
+	font: 10pt &quot;微软雅黑&quot;;
+	color: white;
+}</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_11">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QTableWidget" name="tableWidget_test_case">
+             <property name="styleSheet">
+              <string notr="true">QTableWidget {
 	background: transparent;
 	border: none;
 	gridline-color: #bebebe;
@@ -1347,69 +1413,60 @@ QTableWidget::item:selected {
 	border: 2px solid #109968;
 }
 
-/* comboBox QSS */
-QComboBox {
-	font: 9pt &quot;微软雅黑&quot;;
-	color: white;		/* 字体颜色 */
+/* tableWidget 水平ScrollBar */
+QTableWidget QScrollBar::horizontal {
+	height: 12px;
 }
 
-/* comboBox 下拉列表 QSS */
-QComboBox QAbstractItemView {
-	outline: 0px solid gray;
-	border: 2px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
-	background-color: qlineargradient(x1: 1, y1: 0, x2: 0, y2: 0,
-                                      stop: 0 #404959, stop: 1 #989da5);
-	color: white;
-	selection-background-color: #435068;
+/* tableWidget 垂直ScrollBar */
+QTableWidget QScrollBar::vertical {
+	width: 12px;
 }
 
-/* 底部 PushButton QSS */
-QPushButton {
-	background: transparent;
-	font: 10pt &quot;微软雅黑&quot;;
-	color: white;
-	border: 2px solid white;
-	border-radius: 10px;
+/* tableWidget 水平滑块 */
+QTableWidget QScrollBar::handle:horizontal {
+	border: none;
+	background-color: #d2d2d2;
+	border-radius: 3px;
 }
 
-/* PushButton 点击 QSS */
-QPushButton:pressed {
-	padding-top: 1px;
-	padding-left: 1px;
+/* tableWidget 水平滑块悬浮 */
+QTableWidget QScrollBar::handle:horizontal:hover {
+	background-color: #b6b6b6;
 }
 
-/* 底部 LineEdit QSS */
-QLineEdit {
-	background: transparent;
-	border: 2px solid white;
-	border-radius: 6px;
-	font: 10pt &quot;微软雅黑&quot;;
-	color: white;
+/* tableWidget 垂直滑块 */
+QTableWidget QScrollBar::handle:vertical {
+	border: none;
+	background-color: #d2d2d2;
+	border-radius: 3px;
 }
 
-/* 底部 Label QSS */
-QLabel {
-	background: transparent;
-	font: 10pt &quot;微软雅黑&quot;;
-	color: white;
+/* tableWidget 垂直滑块悬浮 */
+QTableWidget QScrollBar::handle:vertical:hover {
+	background-color: #b6b6b6;
+}
+
+/* 滑块上方 */
+QTableWidget QScrollBar::add-page {
+	background-color: #eeeeee;
+}
+
+/* 滑块下方 */
+QTableWidget QScrollBar::sub-page {
+	background-color: #eeeeee;
+}
+
+/* 滑块上方边缘方块 */
+QTableWidget QScrollBar::add-line {
+	background: red;
+}
+
+/* 滑块下方边缘方块 */
+QTableWidget QScrollBar::sub-line {
+	background: red;
 }</string>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_11">
-           <property name="leftMargin">
-            <number>0</number>
-           </property>
-           <property name="topMargin">
-            <number>0</number>
-           </property>
-           <property name="rightMargin">
-            <number>0</number>
-           </property>
-           <property name="bottomMargin">
-            <number>0</number>
-           </property>
-           <item>
-            <widget class="QTableWidget" name="tableWidget_test_case">
+             </property>
              <property name="verticalScrollBarPolicy">
               <enum>Qt::ScrollBarAlwaysOn</enum>
              </property>
@@ -1417,10 +1474,16 @@ QLabel {
               <enum>Qt::ScrollBarAlwaysOn</enum>
              </property>
              <property name="autoScroll">
-              <bool>true</bool>
+              <bool>false</bool>
+             </property>
+             <property name="autoScrollMargin">
+              <number>16</number>
              </property>
              <property name="editTriggers">
               <set>QAbstractItemView::NoEditTriggers</set>
+             </property>
+             <property name="verticalScrollMode">
+              <enum>QAbstractItemView::ScrollPerItem</enum>
              </property>
              <property name="showGrid">
               <bool>true</bool>

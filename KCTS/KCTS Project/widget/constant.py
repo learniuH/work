@@ -10,7 +10,7 @@ class ConstantText:
     SPACER_WIDTH = 20               # OU模拟器每列之间的弹簧宽度
     WIDGET_PER_COL = 13             # OU模拟器每列13个控件
     TIMER_PERIOD = 6                # OU模拟器模拟量定时器的周期
-    ROWS_PER_PAGES = 15             # 自动化界面TableWidget每页最多15行
+    ROWS_PER_PAGES = 100             # 自动化界面TableWidget每页最多15行
     COLUMNS_TO_INSERT = ["用例编号", "用例标题", "操作步骤", "预期结果"]        # 自动化界面通过Excel数据导入的列
 
 
