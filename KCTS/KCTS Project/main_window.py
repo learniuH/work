@@ -44,6 +44,7 @@ class MainWindow(QMainWindow):
 
         self.excel_reader = None                    # 读取Excel文件实例
         self.serial_port_asst = None                # 串口助手
+        self.auto_tester: AutoTest = None           # 自动化实例
 
         self.main_window_init()     # 窗口界面初始化
         self.serial_port_init()     # 初始化串口助手
@@ -690,7 +691,7 @@ class MainWindow(QMainWindow):
             'label_total_pages':            self.main_window_ui.label_total_pages,
         }
         # 实例化自动化测试类
-        auto_tester = AutoTest(sub_widget)
+        self.auto_tester = AutoTest(sub_widget)
 
 
 
@@ -786,6 +787,11 @@ class MainWindow(QMainWindow):
         ''' 鼠标点击空白区域清除所有控件的焦点 '''
         self.setFocus()
         super().mousePressEvent(event)  # 调用父类的鼠标点击事件处理
+
+    def resizeEvent(self, event):
+        """ 窗口大小改变时, 调整自动化界面 TableWidget 显示的行数 """
+        self.auto_tester.adaptive_row_nums()
+        super().resizeEvent(event)       # 调用父类的 resizeEvent 处理
 
     def closeEvent(self, event):
         ''' 主程序关闭时, 保存配置页面的所有配置 '''

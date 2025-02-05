@@ -23,6 +23,8 @@ class AutoTest:
         self.lineEdit_current_page: QLineEdit           =   widget['lineEdit_current_page']
         self.label_total_pages: QLabel                  =   widget['label_total_pages']
 
+        self.row_count_tableWidget: int =   None
+
         self.file_path: str             =   None    # 测试用例路径
         self.target_df: pd.DataFrame    =   None    # 解析后的 Excel 表格数据
         self.total_pages: int           =   None    # TableWidget 的总页数
@@ -32,6 +34,12 @@ class AutoTest:
 
     def slot_connect(self):
         """ 自动化测试界面子控件槽链接 """
+        self.tableWidget_test_case.horizontalHeader().sectionDoubleClicked.connect(self.adaptive_width)      # 表头双击事件, 传递表头 index
+        self.tableWidget_test_case.verticalHeader().sectionDoubleClicked.connect(self.adaptive_height)
+
+        self.tableWidget_test_case.horizontalHeader().sectionResized.connect(self.a)        # 表头宽度变化事件, 传递 列索引 旧/新宽度
+
+
         self.pushButton_insert_case.clicked.connect(lambda: self.open_dialog())
         # 信号重载(传递当前文本 str)
         # self.comboBox_case_sheet_names.currentIndexChanged[str].connect(
@@ -42,6 +50,17 @@ class AutoTest:
         # self.pushButton_previous_page.clicked.connect()
         # self.pushButton_next_page.clicked.connect()
         # self.lineEdit_current_page.textChanged.connect()
+
+    def adaptive_width(self, index: int):
+        """ 双击水平表头, 对应列自适应宽度 """
+        self.tableWidget_test_case.resizeColumnToContents(index)
+
+    def adaptive_height(self, index: int):
+        """ 双击垂直表头, 对应行自适应高度 """
+        self.tableWidget_test_case.resizeRowToContents(index)
+
+    def a(self, index: int, old_width, new_width):
+        print(f'索引是{index}, 旧的宽度是{old_width}, 新的宽度是{new_width}')
 
     def open_dialog(self):
         """ 点击导入用例, 更新 comboBox内容 """
@@ -128,3 +147,9 @@ class AutoTest:
 
         # 根据内容调整自适应行高
         self.tableWidget_test_case.resizeRowsToContents()
+
+    def adaptive_row_nums(self):
+        """ 窗口大小改变时, 根据 TableWidget 调整内容显示, 计算当前页面的行数 """
+        print(self.tableWidget_test_case.rowCount())
+        print(self.tableWidget_test_case.height())
+        print(self.tableWidget_test_case.horizontalHeader().height())
