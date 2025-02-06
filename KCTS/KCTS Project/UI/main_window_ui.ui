@@ -1413,58 +1413,39 @@ QTableWidget::item:selected {
 	border: 2px solid #109968;
 }
 
-/* tableWidget 水平ScrollBar */
-QTableWidget QScrollBar::horizontal {
-	height: 12px;
+QTableWidget QScrollBar:horizontal {
+	background: #eeeeee;
+	padding-left: 20px;	/* 左预留位置 */
+	padding-right: 20px;	/* 右预留位置 */
+	padding-top: 3px;		/* 上预留位置（美观） */
+	padding-bottom: 3px;	/* 下预留位置（美观） */
 }
 
-/* tableWidget 垂直ScrollBar */
-QTableWidget QScrollBar::vertical {
-	width: 12px;
-}
-
-/* tableWidget 水平滑块 */
 QTableWidget QScrollBar::handle:horizontal {
-	border: none;
-	background-color: #d2d2d2;
-	border-radius: 3px;
+	background: #cecece;
+	border-radius: 6px;
 }
 
-/* tableWidget 水平滑块悬浮 */
 QTableWidget QScrollBar::handle:horizontal:hover {
-	background-color: #b6b6b6;
+	background: #b6b6b6;
 }
 
-/* tableWidget 垂直滑块 */
+QTableWidget QScrollBar:vertical {
+	background: #eeeeee;
+	padding-top: 20px;		/* 上预留位置 */
+	padding-bottom: 20px;	/* 下预留位置 */
+	padding-left: 3px;		/* 左预留位置（美观） */
+	padding-right: 3px;		/* 右预留位置（美观） */
+}
+
 QTableWidget QScrollBar::handle:vertical {
-	border: none;
-	background-color: #d2d2d2;
-	border-radius: 3px;
+	background: #cecece;
+	min-height: 80px;		/* 最小高度 */
+	border-radius: 6px;
 }
 
-/* tableWidget 垂直滑块悬浮 */
 QTableWidget QScrollBar::handle:vertical:hover {
-	background-color: #b6b6b6;
-}
-
-/* 滑块上方 */
-QTableWidget QScrollBar::add-page {
-	background-color: #eeeeee;
-}
-
-/* 滑块下方 */
-QTableWidget QScrollBar::sub-page {
-	background-color: #eeeeee;
-}
-
-/* 滑块上方边缘方块 */
-QTableWidget QScrollBar::add-line {
-	background: red;
-}
-
-/* 滑块下方边缘方块 */
-QTableWidget QScrollBar::sub-line {
-	background: red;
+	background: #b6b6b6;
 }</string>
              </property>
              <property name="verticalScrollBarPolicy">
@@ -1492,7 +1473,7 @@ QTableWidget QScrollBar::sub-line {
               <enum>Qt::SolidLine</enum>
              </property>
              <property name="rowCount">
-              <number>0</number>
+              <number>20</number>
              </property>
              <attribute name="horizontalHeaderVisible">
               <bool>true</bool>
@@ -1518,6 +1499,26 @@ QTableWidget QScrollBar::sub-line {
              <attribute name="verticalHeaderStretchLastSection">
               <bool>false</bool>
              </attribute>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
              <column>
               <property name="text">
                <string>用例编号</string>
