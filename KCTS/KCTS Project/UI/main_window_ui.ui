@@ -1432,10 +1432,12 @@ QTableWidget QScrollBar::handle:horizontal:hover {
 
 QTableWidget QScrollBar:vertical {
 	background: #eeeeee;
-	padding-top: 20px;		/* 上预留位置 */
-	padding-bottom: 20px;	/* 下预留位置 */
-	padding-left: 3px;		/* 左预留位置（美观） */
-	padding-right: 3px;		/* 右预留位置（美观） */
+	padding-top: 20px;		/* 滑块上预留位置 */
+	padding-bottom: 20px;	/* 滑块下预留位置 */
+	padding-left: 3px;		/* 滑块左预留位置（美观） */
+	padding-right: 3px;		/* 滑块右预留位置（美观） */
+	margin-top: 32px;		/* 箭头上方预留位置 */
+	margin-bottom: 0px;		/* 箭头下方预留位置 */
 }
 
 QTableWidget QScrollBar::handle:vertical {
@@ -1446,7 +1448,20 @@ QTableWidget QScrollBar::handle:vertical {
 
 QTableWidget QScrollBar::handle:vertical:hover {
 	background: #b6b6b6;
-}</string>
+}
+
+QTableWidget QScrollBar::sub-line:vertical {
+	height: 1px;
+	subcontrol-position: top;	/* 保持按键在顶部 */
+	margin-top: 20px;
+}
+
+QTableWidget QScrollBar::add-line:vertical {
+	height: 20px;
+	subcontrol-position: bottom;  /* 保持按钮在底部 */
+}
+
+</string>
              </property>
              <property name="verticalScrollBarPolicy">
               <enum>Qt::ScrollBarAlwaysOn</enum>

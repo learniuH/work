@@ -832,10 +832,12 @@ class Ui_KCTS(object):
 "\n"
 "QTableWidget QScrollBar:vertical {\n"
 "    background: #eeeeee;\n"
-"    padding-top: 20px;        /* 上预留位置 */\n"
-"    padding-bottom: 20px;    /* 下预留位置 */\n"
-"    padding-left: 3px;        /* 左预留位置（美观） */\n"
-"    padding-right: 3px;        /* 右预留位置（美观） */\n"
+"    padding-top: 20px;        /* 滑块上预留位置 */\n"
+"    padding-bottom: 20px;    /* 滑块下预留位置 */\n"
+"    padding-left: 3px;        /* 滑块左预留位置（美观） */\n"
+"    padding-right: 3px;        /* 滑块右预留位置（美观） */\n"
+"    margin-top: 32px;        /* 箭头上方预留位置 */\n"
+"    margin-bottom: 0px;        /* 箭头下方预留位置 */\n"
 "}\n"
 "\n"
 "QTableWidget QScrollBar::handle:vertical {\n"
@@ -846,7 +848,20 @@ class Ui_KCTS(object):
 "\n"
 "QTableWidget QScrollBar::handle:vertical:hover {\n"
 "    background: #b6b6b6;\n"
-"}")
+"}\n"
+"\n"
+"QTableWidget QScrollBar::sub-line:vertical {\n"
+"    height: 1px;\n"
+"    subcontrol-position: top;    /* 保持按键在顶部 */\n"
+"    margin-top: 20px;\n"
+"}\n"
+"\n"
+"QTableWidget QScrollBar::add-line:vertical {\n"
+"    height: 20px;\n"
+"    subcontrol-position: bottom;  /* 保持按钮在底部 */\n"
+"}\n"
+"\n"
+"")
         self.tableWidget_test_case.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
         self.tableWidget_test_case.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
         self.tableWidget_test_case.setAutoScroll(False)
