@@ -1254,9 +1254,7 @@ QPushButton:disabled {
          </widget>
          <widget class="QWidget" name="auto_test_page">
           <property name="styleSheet">
-           <string notr="true">
-
-/* comboBox QSS */
+           <string notr="true">/* comboBox QSS */
 QComboBox {
 	font: 9pt &quot;微软雅黑&quot;;
 	color: white;		/* 字体颜色 */
@@ -1302,9 +1300,62 @@ QLabel {
 	background: transparent;
 	font: 10pt &quot;微软雅黑&quot;;
 	color: white;
-}</string>
+}
+
+QScrollBar:horizontal {
+	background: #eeeeee;
+	padding-left: 20px;	/* 左预留位置 */
+	padding-right: 20px;	/* 右预留位置 */
+	padding-top: 3px;		/* 上预留位置（美观） */
+	padding-bottom: 3px;	/* 下预留位置（美观） */
+}
+
+QScrollBar::handle:horizontal {
+	background: #cecece;
+	border-radius: 6px;
+}
+
+QScrollBar::handle:horizontal:hover {
+	background: #b6b6b6;
+}
+
+QScrollBar:vertical {
+	background: #eeeeee;
+	padding-top: 20px;		/* 滑块上预留位置 */
+	padding-bottom: 20px;	/* 滑块下预留位置 */
+	padding-left: 3px;		/* 滑块左预留位置（美观） */
+	padding-right: 3px;		/* 滑块右预留位置（美观） */
+	margin-top: 32px;		/* 箭头上方预留位置 */
+	margin-bottom: 0px;		/* 箭头下方预留位置 */
+}
+
+QScrollBar::handle:vertical {
+	background: #cecece;
+	min-height: 80px;		/* 最小高度 */
+	border-radius: 6px;
+}
+
+QScrollBar::handle:vertical:hover {
+	background: #b6b6b6;
+}
+
+QScrollBar::sub-line:vertical {
+	height: 1px;
+	subcontrol-position: top;  /* 保持按钮在底部 */
+	margin-top: 20px;
+}
+
+QScrollBar::add-line:vertical {
+	height: 20px;
+	subcontrol-position: bottom;  /* 保持按钮在底部 */
+}
+
+</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_11">
+           <property name="spacing">
+            <number>0</number>
+           </property>
            <property name="leftMargin">
             <number>0</number>
            </property>
@@ -1318,9 +1369,14 @@ QLabel {
             <number>0</number>
            </property>
            <item>
-            <widget class="QTableWidget" name="tableWidget_test_case">
-             <property name="styleSheet">
-              <string notr="true">QTableWidget {
+            <layout class="QHBoxLayout" name="horizontalLayout_8">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QTableWidget" name="tableWidget_test_case">
+               <property name="styleSheet">
+                <string notr="true">QTableWidget {
 	background: transparent;
 	border: none;
 	gridline-color: #bebebe;
@@ -1411,186 +1467,170 @@ QTableWidget QLineEdit {
 QTableWidget::item:selected {
     color: black;
 	border: 2px solid #109968;
-}
-
-QTableWidget QScrollBar:horizontal {
-	background: #eeeeee;
-	padding-left: 20px;	/* 左预留位置 */
-	padding-right: 20px;	/* 右预留位置 */
-	padding-top: 3px;		/* 上预留位置（美观） */
-	padding-bottom: 3px;	/* 下预留位置（美观） */
-}
-
-QTableWidget QScrollBar::handle:horizontal {
-	background: #cecece;
-	border-radius: 6px;
-}
-
-QTableWidget QScrollBar::handle:horizontal:hover {
-	background: #b6b6b6;
-}
-
-QTableWidget QScrollBar:vertical {
-	background: #eeeeee;
-	padding-top: 20px;		/* 滑块上预留位置 */
-	padding-bottom: 20px;	/* 滑块下预留位置 */
-	padding-left: 3px;		/* 滑块左预留位置（美观） */
-	padding-right: 3px;		/* 滑块右预留位置（美观） */
-	margin-top: 32px;		/* 箭头上方预留位置 */
-	margin-bottom: 0px;		/* 箭头下方预留位置 */
-}
-
-QTableWidget QScrollBar::handle:vertical {
-	background: #cecece;
-	min-height: 80px;		/* 最小高度 */
-	border-radius: 6px;
-}
-
-QTableWidget QScrollBar::handle:vertical:hover {
-	background: #b6b6b6;
-}
-
-QTableWidget QScrollBar::sub-line:vertical {
-	height: 1px;
-	subcontrol-position: top;	/* 保持按键在顶部 */
-	margin-top: 20px;
-}
-
-QTableWidget QScrollBar::add-line:vertical {
-	height: 20px;
-	subcontrol-position: bottom;  /* 保持按钮在底部 */
-}
-
-</string>
-             </property>
-             <property name="verticalScrollBarPolicy">
-              <enum>Qt::ScrollBarAlwaysOn</enum>
-             </property>
-             <property name="horizontalScrollBarPolicy">
-              <enum>Qt::ScrollBarAlwaysOn</enum>
-             </property>
-             <property name="autoScroll">
-              <bool>false</bool>
-             </property>
-             <property name="autoScrollMargin">
-              <number>16</number>
-             </property>
-             <property name="editTriggers">
-              <set>QAbstractItemView::NoEditTriggers</set>
-             </property>
-             <property name="verticalScrollMode">
-              <enum>QAbstractItemView::ScrollPerItem</enum>
-             </property>
-             <property name="showGrid">
-              <bool>true</bool>
-             </property>
-             <property name="gridStyle">
-              <enum>Qt::SolidLine</enum>
-             </property>
-             <property name="rowCount">
-              <number>20</number>
-             </property>
-             <attribute name="horizontalHeaderVisible">
-              <bool>true</bool>
-             </attribute>
-             <attribute name="horizontalHeaderCascadingSectionResizes">
-              <bool>false</bool>
-             </attribute>
-             <attribute name="horizontalHeaderMinimumSectionSize">
-              <number>31</number>
-             </attribute>
-             <attribute name="horizontalHeaderDefaultSectionSize">
-              <number>171</number>
-             </attribute>
-             <attribute name="horizontalHeaderStretchLastSection">
-              <bool>true</bool>
-             </attribute>
-             <attribute name="verticalHeaderCascadingSectionResizes">
-              <bool>false</bool>
-             </attribute>
-             <attribute name="verticalHeaderDefaultSectionSize">
-              <number>200</number>
-             </attribute>
-             <attribute name="verticalHeaderStretchLastSection">
-              <bool>false</bool>
-             </attribute>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <column>
-              <property name="text">
-               <string>用例编号</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignCenter</set>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>用例标题</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignCenter</set>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>操作步骤</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignCenter</set>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>预期结果</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignCenter</set>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>执行用例</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignCenter</set>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>实际结果</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignCenter</set>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>测试结果</string>
-              </property>
-              <property name="textAlignment">
-               <set>AlignCenter</set>
-              </property>
-             </column>
-            </widget>
+}</string>
+               </property>
+               <property name="verticalScrollBarPolicy">
+                <enum>Qt::ScrollBarAlwaysOff</enum>
+               </property>
+               <property name="horizontalScrollBarPolicy">
+                <enum>Qt::ScrollBarAlwaysOff</enum>
+               </property>
+               <property name="autoScroll">
+                <bool>false</bool>
+               </property>
+               <property name="autoScrollMargin">
+                <number>16</number>
+               </property>
+               <property name="editTriggers">
+                <set>QAbstractItemView::NoEditTriggers</set>
+               </property>
+               <property name="verticalScrollMode">
+                <enum>QAbstractItemView::ScrollPerItem</enum>
+               </property>
+               <property name="showGrid">
+                <bool>true</bool>
+               </property>
+               <property name="gridStyle">
+                <enum>Qt::SolidLine</enum>
+               </property>
+               <property name="rowCount">
+                <number>20</number>
+               </property>
+               <attribute name="horizontalHeaderVisible">
+                <bool>true</bool>
+               </attribute>
+               <attribute name="horizontalHeaderCascadingSectionResizes">
+                <bool>false</bool>
+               </attribute>
+               <attribute name="horizontalHeaderMinimumSectionSize">
+                <number>31</number>
+               </attribute>
+               <attribute name="horizontalHeaderDefaultSectionSize">
+                <number>171</number>
+               </attribute>
+               <attribute name="horizontalHeaderStretchLastSection">
+                <bool>true</bool>
+               </attribute>
+               <attribute name="verticalHeaderCascadingSectionResizes">
+                <bool>false</bool>
+               </attribute>
+               <attribute name="verticalHeaderDefaultSectionSize">
+                <number>200</number>
+               </attribute>
+               <attribute name="verticalHeaderStretchLastSection">
+                <bool>false</bool>
+               </attribute>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <column>
+                <property name="text">
+                 <string>用例编号</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignCenter</set>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>用例标题</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignCenter</set>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>操作步骤</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignCenter</set>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>预期结果</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignCenter</set>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>执行用例</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignCenter</set>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>实际结果</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignCenter</set>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>测试结果</string>
+                </property>
+                <property name="textAlignment">
+                 <set>AlignCenter</set>
+                </property>
+               </column>
+              </widget>
+             </item>
+             <item>
+              <widget class="QScrollBar" name="verticalScrollBar_tableWidget">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_9">
+             <item>
+              <widget class="QPushButton" name="pushButton">
+               <property name="text">
+                <string>PushButton</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_4">
+               <property name="text">
+                <string>PushButton</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QScrollBar" name="horizontalScrollBar_tableWidget">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_7">
@@ -1599,6 +1639,9 @@ QTableWidget QScrollBar::add-line:vertical {
              </property>
              <property name="leftMargin">
               <number>15</number>
+             </property>
+             <property name="topMargin">
+              <number>11</number>
              </property>
              <property name="rightMargin">
               <number>11</number>

@@ -666,9 +666,7 @@ class Ui_KCTS(object):
         self.verticalLayout_5.setStretch(1, 5)
         self.sub_interface_stacked.addWidget(self.device_status_page)
         self.auto_test_page = QtWidgets.QWidget()
-        self.auto_test_page.setStyleSheet("\n"
-"\n"
-"/* comboBox QSS */\n"
+        self.auto_test_page.setStyleSheet("/* comboBox QSS */\n"
 "QComboBox {\n"
 "    font: 9pt \"微软雅黑\";\n"
 "    color: white;        /* 字体颜色 */\n"
@@ -852,7 +850,7 @@ class Ui_KCTS(object):
 "\n"
 "QTableWidget QScrollBar::sub-line:vertical {\n"
 "    height: 1px;\n"
-"    subcontrol-position: top;    /* 保持按键在顶部 */\n"
+"    subcontrol-position: top;  /* 保持按钮在底部 */\n"
 "    margin-top: 20px;\n"
 "}\n"
 "\n"
